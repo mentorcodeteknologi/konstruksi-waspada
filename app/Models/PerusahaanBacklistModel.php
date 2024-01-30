@@ -4,9 +4,9 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class PerusahaanBacklist extends Model
+class PerusahaanBacklistModel extends Model
 {
-    protected $table            = 'perusahaanbacklists';
+    protected $table            = 'perusahaan_backlist';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
