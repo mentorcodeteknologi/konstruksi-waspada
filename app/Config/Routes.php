@@ -30,10 +30,21 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
+// HOME ROUTES
+$routes->get('/', 'HomeController::index');
 
-// AUTH ROUTES
-$routes->get('/', 'UsersController::index');
+// DASHBOARD ROUTES
+$routes->get('/dashboard', 'DashboardController::index');
 
+// USERS ROUTES
+$routes->group('users', function ($routes) {
+    $routes->get('', 'UsersController::index');
+    $routes->get('tambah', 'UsersController::tambah');
+    $routes->post('tambah', 'UsersController::tambah_user');
+    $routes->get('edit/(:any)', 'UsersController::edit/$1');
+    $routes->post('edit/(:any)', 'UsersController::edit_users/$1');
+    $routes->post('hapus/(:any)', 'UsersController::hapus_users/$1');
+});
 /*
  * --------------------------------------------------------------------
  * Additional Routing
