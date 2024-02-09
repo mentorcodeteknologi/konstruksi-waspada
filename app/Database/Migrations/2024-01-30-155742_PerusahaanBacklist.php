@@ -87,7 +87,7 @@ class PerusahaanBacklist extends Migration
             'created_at'               => [
                 'type'                 => 'DATETIME',
             ],
-            'updated_at '              => [
+            'updated_at'               => [
                 'type'                 => 'DATETIME',
             ],
         ]);

@@ -37,7 +37,7 @@ $routes->get('/', 'HomeController::index');
 $routes->get('/dashboard', 'DashboardController::index');
 
 // KELOLA USERS
-$routes->group('users', ['filter' => 'auth'], function ($routes) {
+$routes->group('users', function ($routes) {
     $routes->get('', 'UsersController::index');
     $routes->get('create', 'UsersController::create');
     $routes->post('create', 'UsersController::create_user');

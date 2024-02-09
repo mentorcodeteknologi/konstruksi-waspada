@@ -21,19 +21,25 @@
              </div>
              <ul class="sidebar-menu">
                  <li>
-                     <a class="sidebar-header" href="index.html">
+                     <a class="sidebar-header" href="<?= base_url('dashboard'); ?>">
                          <i data-feather="home"></i>
                          <span>Dashboard</span>
                      </a>
                  </li>
                  <li>
-                     <a class="sidebar-header" href="media.html">
+                     <a class="sidebar-header" href="<?= base_url('users'); ?>">
+                         <i data-feather="user"></i>
+                         <span>Users</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a class="sidebar-header" href="<?= base_url('camera'); ?>">
                          <i data-feather="camera"></i>
                          <span>Article</span>
                      </a>
                  </li>
                  <li>
-                     <a class="sidebar-header" href="userblacklist.html">
+                     <a class="sidebar-header" href="<?= base_url('users_blacklist'); ?>">
                          <i data-feather="users"></i>
                          <span>User Blacklist</span>
                      </a>

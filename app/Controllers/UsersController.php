@@ -2,8 +2,10 @@
 
 namespace App\Controllers;
 
+use CodeIgniter\I18n\Time;
 use App\Controllers\BaseController;
 use App\Models\UsersModel;
+use App\Helpers\Helpers;
 
 class UsersController extends BaseController
 {
@@ -27,7 +29,12 @@ class UsersController extends BaseController
     // ========================= //
     public function index()
     {
-        return view('users/index');
+        $data = [
+            'title'     => 'Users',
+            'subtitle'  => 'List Data Users',
+            'list_user' => $this->usersModel->findAll()
+        ];
+        return view('users/index', $data);
     }
 
 
@@ -36,7 +43,11 @@ class UsersController extends BaseController
     // ========================= //
     public function create()
     {
-        return view('users/create');
+        $data = [
+            'title'    => 'Users',
+            'subtitle' => 'Tambah Data Users'
+        ];
+        return view('users/create', $data);
     }
 
 
@@ -45,13 +56,16 @@ class UsersController extends BaseController
     // ========================= //
     public function create_user()
     {
+        $helper = new Helpers();
         $data = [
-            'nama' => $this->request->getVar('nama'),
-            'email' => $this->request->getVar('email'),
-            'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
-            'role' => $this->request->getVar('role'),
-            'encrypt' => $this->request->getVar('encrypt'),
+            'nama'       => $this->request->getVar('nama'),
+            'email'      => $this->request->getVar('email'),
+            'password'   => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+            'role'       => $this->request->getVar('role'),
+            'encrypt'    => $helper->generateRandomString(8, 'ec'),
             'perusahaan' => $this->request->getVar('perusahaan'),
+            'created_at' => Time::now('Asia/Jakarta', 'en_US'),
+            'updated_at' => Time::now('Asia/Jakarta', 'en_US')
         ];
 
         $this->usersModel->insert($data);

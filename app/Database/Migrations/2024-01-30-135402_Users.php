@@ -37,6 +37,12 @@ class Users extends Migration
             'perusahaan'         => [
                 'type'           => 'VARCHAR',
                 'constraint'     => 100,
+                'null'           => true,
+            ],
+            'foto'               => [
+                'type'           => 'VARCHAR',
+                'constraint'     => 255,
+                'default'        => 'default.png'
             ],
             'created_at'         => [
                 'type'           => 'DATETIME',

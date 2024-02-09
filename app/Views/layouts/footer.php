@@ -58,7 +58,7 @@
 <script src="<?= base_url('assets/backend') ?>/js/chart/sparkline/sparkline.js"></script>
 
 <!--Customizer admin-->
-<!-- <script src="<?= base_url('assets/backend') ?>/js/admin-customizer.js"></script> -->
+<script src="<?= base_url('assets/backend') ?>/js/admin-customizer.js"></script>
 
 <!--dashboard custom js-->
 <script src="<?= base_url('assets/backend') ?>/js/dashboard/default.js"></script>
@@ -74,6 +74,7 @@
 
 <!--script admin-->
 <script src="<?= base_url('assets/backend') ?>/js/admin-script.js"></script>
+
 </body>
 
 </html>
