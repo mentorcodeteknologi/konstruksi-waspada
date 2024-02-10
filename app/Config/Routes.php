@@ -40,10 +40,10 @@ $routes->get('/login', 'LoginController::index');
 $routes->get('/register', 'RegisterController::index');
 
 // USER BLACKLIST FRONTEND ROUTES
-$routes->get('//userblacklist_frontend', 'UserBlacklistFrontendController::index');
+$routes->get('/user_blacklist_frontend', 'UserBlacklistFrontendController::index');
 
 // ALAT HILANG ROUTES
-$routes->get('/alathilang', 'AlatHilangController::index');
+$routes->get('/alathilang', 'AlatHilangController::indexFE');
 
 // DASHBOARD ROUTES
 $routes->get('/dashboard', 'DashboardController::index');

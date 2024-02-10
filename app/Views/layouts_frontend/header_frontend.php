@@ -183,7 +183,7 @@
                                     </li>
                                     <li><a href="/">Blog</a></li>
                                     <li>
-                                        <a href="/userblacklist_frontend">User Blacklist</a>
+                                        <a href="/user_blacklist_frontend">User Blacklist</a>
                                     </li>
                                     <li>
                                         <a href="/alathilang">Alat Hilang</a>

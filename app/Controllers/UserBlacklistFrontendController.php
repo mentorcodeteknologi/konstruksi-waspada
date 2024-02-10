@@ -13,6 +13,6 @@ class UserBlacklistFrontendController extends BaseController
         $data = [
             'title' => 'User Blacklist Form'
         ];
-        return view('userblacklist_frontend/index', $data);
+        return view('user_blacklist_frontend/index', $data);
     }
 }
