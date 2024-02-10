@@ -76,6 +76,10 @@ class UserBacklist extends Migration
                 'type'                 => 'INT',
                 'constraint'           => 11,
             ],
+            'slug'                     => [
+                'type'                 => 'VARCHAR',
+                'constraint'           => 100,
+            ],
             'created_at'               => [
                 'type'                 => 'DATETIME',
             ],

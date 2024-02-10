@@ -39,9 +39,27 @@
                      </a>
                  </li>
                  <li>
-                     <a class="sidebar-header" href="<?= base_url('users_blacklist'); ?>">
+                     <a class="sidebar-header" href="<?= base_url('alat_hilang'); ?>">
+                         <i data-feather="tool"></i>
+                         <span>Alat Hilang</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a class="sidebar-header" href="<?= base_url('user_blacklist'); ?>">
                          <i data-feather="users"></i>
                          <span>User Blacklist</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a class="sidebar-header" href="<?= base_url('kalender'); ?>">
+                         <i data-feather="calender"></i>
+                         <span>Kalender</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a class="sidebar-header" href="<?= base_url('scan_qr'); ?>">
+                         <i data-feather="tablet"></i>
+                         <span>Scan QR Whatsapp</span>
                      </a>
                  </li>
                  <li>

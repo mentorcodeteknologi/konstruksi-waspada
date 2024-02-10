@@ -55,6 +55,16 @@ $routes->group('artikel', function ($routes) {
     $routes->post('delete/(:any)', 'ArtikelController::delete/$1');
 });
 
+// ROUTES USER BLACKLIST
+$routes->group('user_blacklist', function ($routes) {
+    $routes->get('', 'UserBacklistController::index');
+    $routes->get('create', 'UserBacklistController::create');
+    $routes->post('create', 'UserBacklistController::createUserBacklist');
+    $routes->get('update/(:any)', 'UserBacklistController::update/$1');
+    $routes->post('update/(:any)', 'UserBacklistController::updateUserBacklist/$1');
+    $routes->post('delete/(:any)', 'UserBacklistController::delete/$1');
+});
+
 
 /*
  * --------------------------------------------------------------------
