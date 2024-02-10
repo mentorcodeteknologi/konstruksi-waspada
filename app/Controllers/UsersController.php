@@ -54,32 +54,46 @@ class UsersController extends BaseController
     // ========================= //
     // FUNCTION CREATE USER
     // ========================= //
-    public function create_user()
+    public function createUser()
     {
         $helper = new Helpers();
+
+        // UPLOAD FOTO PROFILE
+        $file = $this->request->getFile('foto');
+        $foto = 'default.png';
+        if ($file && $file->isValid()) {
+            $foto = $file->getRandomName();
+            $file->move('assets/backend/images/', $foto);
+        }
+
         $data = [
             'nama'       => $this->request->getVar('nama'),
             'email'      => $this->request->getVar('email'),
             'password'   => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
             'role'       => $this->request->getVar('role'),
-            'encrypt'    => $helper->generateRandomString(8, 'ec'),
+            'status'     => 'active',
+            'encrypt'    => $helper->generateRandomString(12, 'ec'),
+            'foto'       => $foto,
             'perusahaan' => $this->request->getVar('perusahaan'),
             'created_at' => Time::now('Asia/Jakarta', 'en_US'),
             'updated_at' => Time::now('Asia/Jakarta', 'en_US')
         ];
 
         $this->usersModel->insert($data);
-        return redirect()->to('/users');
+        session()->setFlashdata('pesan', 'Data Berhasil Disimpan');
+        return redirect()->to(base_url('users'));
     }
 
 
     // ========================= //
     // FUNCTION UPDATE
     // ========================= //
-    public function update($id)
+    public function update($encrypt)
     {
         $data = [
-            'user' => $this->usersModel->find($id)
+            'title'       => 'Users',
+            'subtitle'    => 'Edit Data Users',
+            'detail_user' => $this->usersModel->getDataByEncrypt($encrypt)
         ];
         return view('users/update', $data);
     }
@@ -88,28 +102,38 @@ class UsersController extends BaseController
     // ========================= //
     // FUNCTION UPDATE USER
     // ========================= //
-    public function update_users($id)
+    public function updateUsers($encrypt)
     {
+        $userData = $this->usersModel->getDataByEncrypt($encrypt);
+        $file     = $this->request->getFile('foto');
+
+        // Cek apakah ada file yang diupload
+        if ($file == "") {
+            $foto = $userData['foto'];
+        } else {
+            // Hapus foto lama
+            if ($userData['foto'] != 'default.png') {
+                unlink('assets/backend/images/' . $userData['foto']);
+            }
+            $foto = $file->getRandomName();
+            $file->move('assets/backend/images/', $foto);
+        }
+
+        // Cek apakah password diubah
+        $password = ($this->request->getVar('password') == $userData['password']) ? $userData['password'] : password_hash($this->request->getVar('password'), PASSWORD_DEFAULT);
+
         $data = [
-            'nama' => $this->request->getVar('nama'),
-            'email' => $this->request->getVar('email'),
-            'password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
-            'role' => $this->request->getVar('role'),
-            'encrypt' => $this->request->getVar('encrypt'),
+            'nama'       => $this->request->getVar('nama'),
+            'email'      => $this->request->getVar('email'),
+            'password'   => $password,
+            'role'       => $this->request->getVar('role'),
+            'status'     => $this->request->getVar('status'),
             'perusahaan' => $this->request->getVar('perusahaan'),
+            'updated_at' => Time::now('Asia/Jakarta', 'en_US')
         ];
 
-        $this->usersModel->update($id, $data);
-        return redirect()->to('/users');
-    }
-
-
-    // ========================= //
-    // FUNCTION DELETE
-    // ========================= //
-    public function delete($id)
-    {
-        $this->usersModel->delete($id);
-        return redirect()->to('/users');
+        $this->usersModel->update($encrypt, $data);
+        session()->setFlashdata('pesan', 'Data Berhasil Diubah');
+        return redirect()->to('users');
     }
 }

@@ -36,14 +36,24 @@ $routes->get('/', 'HomeController::index');
 // DASHBOARD ROUTES
 $routes->get('/dashboard', 'DashboardController::index');
 
-// KELOLA USERS
+// ROUTES USERS
 $routes->group('users', function ($routes) {
     $routes->get('', 'UsersController::index');
     $routes->get('create', 'UsersController::create');
-    $routes->post('create', 'UsersController::create_user');
-    $routes->get('update/(:num)', 'UsersController::update/$1');
-    $routes->post('update/(:num)', 'UsersController::update_users/$1');
-    $routes->post('delete/(:num)', 'UsersController::delete/$1');
+    $routes->post('create', 'UsersController::createUser');
+    $routes->get('update/(:any)', 'UsersController::update/$1');
+    $routes->post('update/(:any)', 'UsersController::updateUsers/$1');
+    // $routes->post('delete/(:any)', 'UsersController::delete/$1');
+});
+
+// ROUTES ARTIKEL
+$routes->group('artikel', function ($routes) {
+    $routes->get('', 'ArtikelController::index');
+    $routes->get('create', 'ArtikelController::create');
+    $routes->post('create', 'ArtikelController::createArtikel');
+    $routes->get('update/(:any)', 'ArtikelController::update/$1');
+    $routes->post('update/(:any)', 'ArtikelController::updateArtikel/$1');
+    $routes->post('delete/(:any)', 'ArtikelController::delete/$1');
 });
 
 

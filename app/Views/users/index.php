@@ -39,8 +39,7 @@
         // NOTIFIKASI BERHASIL SIMPAN DATA
         if (session()->getFlashdata('pesan')) {
             echo '<div class="alert alert-success alert-dismissible">
-             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <i class="icon fas fa-check"></i>' . session()->getFlashdata('pesan') . '</div>';
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . session()->getFlashdata('pesan') . '</div>';
         }
         ?>
 
@@ -59,6 +58,7 @@
                         <th>Email</th>
                         <th>Foto</th>
                         <th>Role</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -71,14 +71,11 @@
                             <td><?= $no++ ?></td>
                             <td><?= $value['nama'] ?></td>
                             <td><?= $value['email'] ?></td>
-                            <td><img src="<?= base_url('assets/images/' . $value['foto']) ?>" width="100px" height="100px"></td>
+                            <td><img src="<?= base_url('assets/backend/images/' . $value['foto']) ?>" width="50px" height="50px"></td>
                             <td><?= $value['role'] ?></td>
-
-                            <td class="d-flex justify-content-center">
-                                <a href="<?= base_url('users/edit/' . $value['id']) ?>" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
-                                <form method="post" action="<?= base_url('users/delete/' . $value['id']) ?>" onsubmit="return confirm('Apakah yakin akan menghapus data ini?')">
-                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                </form>
+                            <td><?= $value['status'] ?></td>
+                            <td>
+                                <a href="<?= base_url('users/update/' . $value['encrypt']) ?>" class="btn btn-info btn-sm">Edit</a>
                             </td>
 
                         </tr>

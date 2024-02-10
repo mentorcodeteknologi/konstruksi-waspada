@@ -44,6 +44,11 @@ class Users extends Migration
                 'constraint'     => 255,
                 'default'        => 'default.png'
             ],
+            'status'             => [
+                'type'           => 'ENUM',
+                'constraint'     => ['active', 'nonactive'],
+                'default'        => 'active'
+            ],
             'created_at'         => [
                 'type'           => 'DATETIME',
             ],
