@@ -49,7 +49,7 @@
 
                             <div class="form-group">
                                 <label>Isi</label>
-                                <input type="text" name="isi" id="isi" class="form-control" placeholder="Isi Artikel" required>
+                                <textarea name="isi" id="isi" class="form-control" placeholder="Isi Artikel" required> </textarea>
                             </div>
 
                             <div class="form-group">

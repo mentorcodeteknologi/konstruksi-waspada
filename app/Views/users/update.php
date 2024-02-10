@@ -69,6 +69,18 @@
                                 </Select>
                             </div>
 
+                            <div class=" form-group">
+                                <label>Status</label>
+                                <Select name="status" id="status" class="form-control" required>
+                                    <option value="<?= $detail_user['status'] ?>"><?= ucwords($detail_user['status']) ?></option>
+                                    <?php if ($detail_user['status'] == 'active') { ?>
+                                        <option value='nonactive'>Non Active</option>
+                                    <?php } else { ?>
+                                        <option value='active'>Active</option>
+                                    <?php  } ?>
+                                </Select>
+                            </div>
+
                             <div class="form-group">
                                 <label>Nama Perusahaan</label>
                                 <input type="text" name="perusahaan" id="perusahaan" class="form-control" placeholder="Perusahaan" value="<?= $detail_user['perusahaan'] ?>">

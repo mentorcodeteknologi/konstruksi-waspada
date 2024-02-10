@@ -110,7 +110,7 @@ class ArtikelController extends BaseController
         } else {
             // Hapus gambar lama
             if ($artikelData['gambar'] != 'default.png') {
-                unlink('assets/backend/images/artikel' . $artikelData['gambar']);
+                unlink('assets/backend/images/artikel/' . $artikelData['gambar']);
             }
             $foto = $file->getRandomName();
             $file->move('assets/backend/images/artikel', $foto);

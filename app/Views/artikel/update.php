@@ -49,7 +49,7 @@
 
                             <div class="form-group">
                                 <label>Isi</label>
-                                <input type="text" name="isi" id="isi" class="form-control" placeholder="Isi Artikel" value="<?= $detail_artikel['isi'] ?>" required>
+                                <textarea name="isi" id="isi" class="form-control" placeholder="Isi Artikel" required><?= $detail_artikel['isi'] ?></textarea>
                             </div>
 
                             <div class="form-group">

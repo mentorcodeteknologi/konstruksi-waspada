@@ -128,6 +128,7 @@ class UsersController extends BaseController
             'password'   => $password,
             'role'       => $this->request->getVar('role'),
             'status'     => $this->request->getVar('status'),
+            'foto'       => $foto,
             'perusahaan' => $this->request->getVar('perusahaan'),
             'updated_at' => Time::now('Asia/Jakarta', 'en_US')
         ];
