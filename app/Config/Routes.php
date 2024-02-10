@@ -76,6 +76,9 @@ $routes->group('user_blacklist', function ($routes) {
     $routes->post('delete/(:any)', 'UserBacklistController::delete/$1');
 });
 
+// ROUTES WHATSAPP SCAN QR
+$routes->get('/scan_qr', 'WhatsappController::index');
+
 
 
 /*

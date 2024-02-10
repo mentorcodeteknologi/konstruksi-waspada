@@ -42,6 +42,8 @@
     <!-- App css-->
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/backend') ?>/css/style.css">
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 
 <body>

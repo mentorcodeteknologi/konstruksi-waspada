@@ -19,6 +19,7 @@
 <!-- latest jquery-->
 <script src="<?= base_url('assets/backend') ?>/js/jquery-3.3.1.min.js"></script>
 
+
 <!-- Bootstrap js-->
 <script src="<?= base_url('assets/backend') ?>/js/bootstrap.bundle.min.js"></script>
 
@@ -78,6 +79,10 @@
 
 <script>
     $(function() {
+       
+    });
+
+    function setDataTable(){
         $("#example1").DataTable({
             "responsive": true,
             "lengthChange": false,
@@ -92,8 +97,35 @@
             "autoWidth": false,
             "responsive": true,
         });
-    });
+    }
+    function getQR(){
+        let data = {
+                "username": "user",
+                "password": "password"
+            };
+        $.ajax({
+            url: 'https://74d4-149-108-148-14.ngrok-free.app/api/login',
+            method: 'post',
+            data: data, 
+            contentType:"application/json",
+            dataType:"json",
+            beforeSend: function(){
+                $("#targetQr").html("");
+                $("#targetQr").append(`<div class="spinner-border" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                      </div>`);
+            },
+            success: function(res) {
+                // Handle the API response here
+                console.log(res);
+            },
+            error: function(xhr, status, error) {
+                console.error(status, error);
+            }
+        });
+    }
 </script>
+<?= $this->renderSection('scripts'); ?>
 
 </body>
 
