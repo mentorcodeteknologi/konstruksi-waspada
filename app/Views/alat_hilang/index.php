@@ -43,8 +43,8 @@
         }
         ?>
 
-        <form action="<?= base_url('user_blacklist/create') ?>">
-            <button type="submit" class="btn btn-primary">+ Tambah Data User Backlist</button>
+        <form action="<?= base_url('alat_hilang/create') ?>">
+            <button type="submit" class="btn btn-primary">+ Tambah Data Alat Hilang</button>
         </form>
         <br><br><br>
 
@@ -54,23 +54,11 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>NIK</th>
-                        <th>Nama</th>
-                        <th>Foto KTP</th>
-                        <th>No HP</th>
+                        <th>Nama Alat</th>
                         <th>Merek</th>
-                        <th>Type Alat</th>
-                        <th>Nomer Seri</th>
-                        <th>Surat Perjanjian</th>
-                        <th>Foto Alat</th>
-                        <th>Foto Serah Terima Alat</th>
-                        <th>Jenis Pelanggaran</th>
-                        <th>Mulai Rental</th>
-                        <th>Akhir Rental</th>
-                        <th>Bukti Lainnya</th>
-                        <th>Nominal Kerugian</th>
+                        <th>Deskripsi</th>
+                        <th>Foto</th>
                         <th>Slug</th>
-                        <th>Users</th>
                         <th>Created At</th>
                         <th>Updated At</th>
                         <th>Action</th>
@@ -80,31 +68,21 @@
                 <tbody>
                     <?php
                     $no = 1;
-                    foreach ($list_user_backlist as $value) { ?>
+                    foreach ($list_alat_hilang as $value) { ?>
                         <tr class="text-center">
                             <td><?= $no++ ?></td>
-                            <td><?= $value['nik'] ?></td>
-                            <td><?= $value['nama'] ?></td>
-                            <td><img src="<?= base_url('assets/backend/images/user_backlist/' . $value['slug'] . "/" . $value['foto_ktp']) ?>" width="50px" height="50px"></td>
-                            <td><?= $value['foto_ktp'] ?></td>
-                            <td><?= $value['no_hp'] ?></td>
-                            <td><?= $value['merek'] ?></td>
-                            <td><?= $value['type_alat'] ?></td>
-                            <td><?= $value['no_seri'] ?></td>
-                            <td><?= $value['surat_perjanjian'] ?></td>
-                            <td><img src="<?= base_url('assets/backend/images/user_backlist/' .  $value['slug'] . "/" . $value['foto_alat']) ?>" width="50px" height="50px"></td>
-                            <td><img src="<?= base_url('assets/backend/images/user_backlist/' .  $value['slug'] . "/" . $value['foto_serah_terima_alat']) ?>" width="50px" height="50px"></td>
-                            <td><img src="<?= base_url('assets/backend/images/user_backlist/' .  $value['slug'] . "/" . $value['jenis_pelanggaran']) ?>" width="50px" height="50px"></td>
-                            <td><?= $value['mulai_rental'] ?></td>
-                            <td><?= $value['akhir_rental'] ?></td>
-                            <td><?= $value['bukti_lainnya'] ?></td>
-                            <td><?= $value['nominal_kerugian'] ?></td>
+                            <td><?= $value['nama_alat'] ?></td>
+                            <td><?= $value['merk'] ?></td>
+                            <td><?= $value['deskripsi'] ?></td>
+                            <td><img src="<?= base_url('assets/backend/images/alat_hilang/' . $value['foto']) ?>" width="50px" height="50px"></td>
                             <td><?= $value['slug'] ?></td>
-                            <td><?= $value['user'] ?></td>
                             <td><?= $value['created_at'] ?></td>
                             <td><?= $value['updated_at'] ?></td>
                             <td>
-                                <a href="<?= base_url('users/update/' . $value['encrypt']) ?>" class="btn btn-info btn-sm">Edit</a>
+                                <a href="<?= base_url('alat_hilang/update/' . $value['slug']) ?>" class="btn btn-info btn-sm">Edit</a>
+                                <form action="<?= base_url('alat_hilang/delete/' . $value['slug']); ?>" method="post">
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
+                                </form>
                             </td>
 
                         </tr>

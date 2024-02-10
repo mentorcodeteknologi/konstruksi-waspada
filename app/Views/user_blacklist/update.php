@@ -41,19 +41,19 @@
                 <div class="row ">
                     <div class="col-sm-12 ">
 
-                        <form action="<?= base_url('user_blacklist/update/' . $detail_users_backlist['slug']) ?>" method="post" enctype="multipart/form-data">
+                        <form action="<?= base_url('user_blacklist/update/' . $detail_users_blacklist['slug']) ?>" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label>NIK</label>
-                                <input type="text" name="nik" id="nik" class="form-control" placeholder="nik" value="<?= $detail_users_backlist['nik'] ?>" required>
+                                <input type="text" name="nik" id="nik" class="form-control" placeholder="nik" value="<?= $detail_users_blacklist['nik'] ?>" required>
                             </div>
 
                             <div class="form-group">
                                 <label>Nama</label>
-                                <input type="text" name="nama" id="nama" class="form-control" placeholder="nama" value="<?= $detail_users_backlist['nama'] ?>" required>
+                                <input type="text" name="nama" id="nama" class="form-control" placeholder="nama" value="<?= $detail_users_blacklist['nama'] ?>" required>
                             </div>
 
                             <div class="form-group">
-                                <img src="<?= base_url('assets/backend/images/users_backlist/' . $detail_users_backlist['slug'] . "/" . $detail_users_backlist['foto_ktp']) ?>" width="100px" height="100px" class="center">
+                                <img src="<?= base_url('assets/backend/images/users_blacklist/' . $detail_users_blacklist['slug'] . "/" . $detail_users_blacklist['foto_ktp']) ?>" width="100px" height="100px" class="center">
 
                                 <div class="form-group">
                                     <label>Edit Foto</label>
@@ -63,26 +63,26 @@
 
                             <div class="form-group">
                                 <label>No HP</label>
-                                <input type="text" name="no_hp" id="no_hp" class="form-control" placeholder="no_hp" value="<?= $detail_users_backlist['no_hp'] ?>" required>
+                                <input type="text" name="no_hp" id="no_hp" class="form-control" placeholder="no_hp" value="<?= $detail_users_blacklist['no_hp'] ?>" required>
                             </div>
 
                             <div class="form-group">
                                 <label>Merek</label>
-                                <input type="text" name="merek" id="merek" class="form-control" placeholder="merek" value="<?= $detail_users_backlist['merek'] ?>" required>
+                                <input type="text" name="merek" id="merek" class="form-control" placeholder="merek" value="<?= $detail_users_blacklist['merek'] ?>" required>
                             </div>
 
                             <div class="form-group">
                                 <label>Type Alat</label>
-                                <input type="text" name="type_alat" id="type_alat" class="form-control" placeholder="type_alat" value="<?= $detail_users_backlist['type_alat'] ?>" required>
+                                <input type="text" name="type_alat" id="type_alat" class="form-control" placeholder="type_alat" value="<?= $detail_users_blacklist['type_alat'] ?>" required>
                             </div>
 
                             <div class="form-group">
                                 <label>No Seri</label>
-                                <input type="text" name="no_seri" id="no_seri" class="form-control" placeholder="no_seri" value="<?= $detail_users_backlist['no_seri'] ?>" required>
+                                <input type="text" name="no_seri" id="no_seri" class="form-control" placeholder="no_seri" value="<?= $detail_users_blacklist['no_seri'] ?>" required>
                             </div>
 
                             <div class="form-group">
-                                <a href="<?= base_url('assets/backend/images/users_backlist/' . $detail_users_backlist['slug'] . "/" . $detail_users_backlist['surat_perjanjian']) ?>" target="_blank">Lihat Surat Perjanjian</a>
+                                <a href="<?= base_url('assets/backend/images/users_blacklist/' . $detail_users_blacklist['slug'] . "/" . $detail_users_blacklist['surat_perjanjian']) ?>" target="_blank">Lihat Surat Perjanjian</a>
 
                                 <div class="form-group">
                                     <label>Edit Surat Perjanjian</label>
@@ -91,7 +91,7 @@
                             </div>
 
                             <div class="form-group">
-                                <img src="<?= base_url('assets/backend/images/users_backlist/' . $detail_users_backlist['slug'] . "/" . $detail_users_backlist['foto_alat']) ?>" width="100px" height="100px" class="center">
+                                <img src="<?= base_url('assets/backend/images/users_blacklist/' . $detail_users_blacklist['slug'] . "/" . $detail_users_blacklist['foto_alat']) ?>" width="100px" height="100px" class="center">
 
                                 <div class="form-group">
                                     <label>Edit Foto Alat</label>
@@ -100,7 +100,7 @@
                             </div>
 
                             <div class="form-group">
-                                <img src="<?= base_url('assets/backend/images/users_backlist/' . $detail_users_backlist['slug'] . "/" . $detail_users_backlist['foto_serah_terima_alat']) ?>" width="100px" height="100px" class="center">
+                                <img src="<?= base_url('assets/backend/images/users_blacklist/' . $detail_users_blacklist['slug'] . "/" . $detail_users_blacklist['foto_serah_terima_alat']) ?>" width="100px" height="100px" class="center">
 
                                 <div class="form-group">
                                     <label>Edit Foto Serah Termina Alat</label>
@@ -111,11 +111,11 @@
                             <div class=" form-group">
                                 <label>Jenis Pelanggaran</label>
                                 <Select name="jenis_pelanggaran" id="jenis_pelanggaran" class="form-control" required>
-                                    <option value="<?= $detail_users_backlist['jenis_pelanggaran'] ?>"><?= ucwords($detail_users_backlist['jenis_pelanggaran']) ?></option>
-                                    <?php if ($detail_users_backlist['jenis_pelanggaran'] == 'Pelanggaran Ringan') { ?>
+                                    <option value="<?= $detail_users_blacklist['jenis_pelanggaran'] ?>"><?= ucwords($detail_users_blacklist['jenis_pelanggaran']) ?></option>
+                                    <?php if ($detail_users_blacklist['jenis_pelanggaran'] == 'Pelanggaran Ringan') { ?>
                                         <option value='Pelanggaran Sedang'>Pelanggaran Sedang</option>
                                         <option value='Pelanggaran Berat'>Pelanggaran Berat</option>
-                                    <?php } else if ($detail_users_backlist['jenis_pelanggaran'] == 'Pelanggaran Sedang') { ?>
+                                    <?php } else if ($detail_users_blacklist['jenis_pelanggaran'] == 'Pelanggaran Sedang') { ?>
                                         <option value='Pelanggaran Ringan'>Pelanggaran Ringan</option>
                                         <option value='Pelanggaran Berat'>Pelanggaran Berat</option>
                                     <?php } else { ?>
@@ -127,16 +127,16 @@
 
                             <div class="form-group">
                                 <label>Muali Rental</label>
-                                <input type="date" name="mulai_rental" id="mulai_rental" class="form-control" placeholder="mulai_rental" value="<?= $detail_users_backlist['mulai_rental'] ?>">
+                                <input type="date" name="mulai_rental" id="mulai_rental" class="form-control" placeholder="mulai_rental" value="<?= $detail_users_blacklist['mulai_rental'] ?>">
                             </div>
 
                             <div class="form-group">
                                 <label>Akhir Rental</label>
-                                <input type="date" name="akhir_rental" id="akhir_rental" class="form-control" placeholder="akhir_rental" value="<?= $detail_users_backlist['akhir_rental'] ?>">
+                                <input type="date" name="akhir_rental" id="akhir_rental" class="form-control" placeholder="akhir_rental" value="<?= $detail_users_blacklist['akhir_rental'] ?>">
                             </div>
 
                             <div class="form-group">
-                                <img src="<?= base_url('assets/backend/images/users_backlist/' . $detail_users_backlist['slug'] . "/" . $detail_users_backlist['bukti_lainnya']) ?>" width="100px" height="100px" class="center">
+                                <img src="<?= base_url('assets/backend/images/users_blacklist/' . $detail_users_blacklist['slug'] . "/" . $detail_users_blacklist['bukti_lainnya']) ?>" width="100px" height="100px" class="center">
 
                                 <div class="form-group">
                                     <label>Edit Bukti Lainnya</label>
@@ -146,7 +146,7 @@
 
                             <div class="form-group">
                                 <label>Nominal Kerugian</label>
-                                <input type="text" name="nominal_kerugian" id="nominal_kerugian" class="form-control" placeholder="nominal_kerugian" value="<?= $detail_users_backlist['nominal_kerugian'] ?>">
+                                <input type="text" name="nominal_kerugian" id="nominal_kerugian" class="form-control" placeholder="nominal_kerugian" value="<?= $detail_users_blacklist['nominal_kerugian'] ?>">
                             </div>
 
                             <div class="form-group">

@@ -35,6 +35,8 @@ $routes->get('/', 'HomeController::index');
 
 // DASHBOARD ROUTES
 $routes->get('/dashboard', 'DashboardController::index');
+// $routes->get('/dashboard', 'DashboardController::index', ['filter' => 'auth:user,admin']);
+
 
 // ROUTES USERS
 $routes->group('users', function ($routes) {
@@ -68,12 +70,12 @@ $routes->group('alat_hilang', function ($routes) {
 
 // ROUTES USER BLACKLIST
 $routes->group('user_blacklist', function ($routes) {
-    $routes->get('', 'UserBacklistController::index');
-    $routes->get('create', 'UserBacklistController::create');
-    $routes->post('create', 'UserBacklistController::createUserBacklist');
-    $routes->get('update/(:any)', 'UserBacklistController::update/$1');
-    $routes->post('update/(:any)', 'UserBacklistController::updateUserBacklist/$1');
-    $routes->post('delete/(:any)', 'UserBacklistController::delete/$1');
+    $routes->get('', 'UserBlacklistController::index');
+    $routes->get('create', 'UserBlacklistController::create');
+    $routes->post('create', 'UserBlacklistController::createUserBlacklist');
+    $routes->get('update/(:any)', 'UserBlacklistController::update/$1');
+    $routes->post('update/(:any)', 'UserBlacklistController::updateUserBlacklist/$1');
+    $routes->post('delete/(:any)', 'UserBlacklistController::delete/$1');
 });
 
 

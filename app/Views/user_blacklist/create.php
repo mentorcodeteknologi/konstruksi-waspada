@@ -49,7 +49,7 @@
 
                             <div class="form-group">
                                 <label>Nama</label>
-                                <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama User Backlist" required>
+                                <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama User Blacklist" required>
                             </div>
 
                             <div class="form-group">
