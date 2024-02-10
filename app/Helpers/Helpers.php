@@ -30,7 +30,7 @@ class Helpers
         $characters     = 'abcdefghijklmnopqrstuvwxyz';
         $shuffled       = str_shuffle($characters);
         $slug           = substr($shuffled, 0, -25);
-        $slug          .= bin2hex(random_bytes(6)) . "-" . date('Ymdthis');
+        $slug          .= bin2hex(random_bytes(5)) . "-e" . date('Ymdthis');
         return $slug;
     }
 }

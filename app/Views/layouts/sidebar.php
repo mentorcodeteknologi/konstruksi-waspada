@@ -33,9 +33,9 @@
                      </a>
                  </li>
                  <li>
-                     <a class="sidebar-header" href="<?= base_url('camera'); ?>">
+                     <a class="sidebar-header" href="<?= base_url('artikel'); ?>">
                          <i data-feather="camera"></i>
-                         <span>Article</span>
+                         <span>Artikel</span>
                      </a>
                  </li>
                  <li>
@@ -45,7 +45,7 @@
                      </a>
                  </li>
                  <li>
-                     <a class="sidebar-header" href="../index.html">
+                     <a class="sidebar-header" href="<?= base_url('logout'); ?>">
                          <i data-feather="log-out"></i>
                          <span>Logout</span>
                      </a>

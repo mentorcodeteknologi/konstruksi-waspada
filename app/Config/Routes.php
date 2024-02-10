@@ -43,7 +43,6 @@ $routes->group('users', function ($routes) {
     $routes->post('create', 'UsersController::createUser');
     $routes->get('update/(:any)', 'UsersController::update/$1');
     $routes->post('update/(:any)', 'UsersController::updateUsers/$1');
-    // $routes->post('delete/(:any)', 'UsersController::delete/$1');
 });
 
 // ROUTES ARTIKEL

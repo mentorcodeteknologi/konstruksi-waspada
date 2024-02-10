@@ -132,7 +132,7 @@ class UsersController extends BaseController
             'updated_at' => Time::now('Asia/Jakarta', 'en_US')
         ];
 
-        $this->usersModel->update($encrypt, $data);
+        $this->usersModel->update($userData['id'], $data);
         session()->setFlashdata('pesan', 'Data Berhasil Diubah');
         return redirect()->to('users');
     }
