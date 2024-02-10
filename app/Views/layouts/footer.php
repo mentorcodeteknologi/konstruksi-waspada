@@ -58,7 +58,7 @@
 <script src="<?= base_url('assets/backend') ?>/js/chart/sparkline/sparkline.js"></script>
 
 <!--Customizer admin-->
-<!-- <script src="<?= base_url('assets/backend') ?>/js/admin-customizer.js"></script> -->
+<script src="<?= base_url('assets/backend') ?>/js/admin-customizer.js"></script>
 
 <!--dashboard custom js-->
 <script src="<?= base_url('assets/backend') ?>/js/dashboard/default.js"></script>
@@ -74,6 +74,27 @@
 
 <!--script admin-->
 <script src="<?= base_url('assets/backend') ?>/js/admin-script.js"></script>
+
+
+<script>
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+</script>
+
 </body>
 
 </html>

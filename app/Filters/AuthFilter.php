@@ -11,13 +11,6 @@ class AuthFilter implements FilterInterface
 {
     /**
      * Do whatever processing this filter needs to do.
-     * By default it should not return anything during
-     * normal execution. However, when an abnormal state
-     * is found, it should return an instance of
-     * CodeIgniter\HTTP\Response. If it does, script
-     * execution will end and that Response will be
-     * sent back to the client, allowing for error pages,
-     * redirects, etc.
      *
      * @param RequestInterface $request
      * @param array|null       $arguments
@@ -38,9 +31,8 @@ class AuthFilter implements FilterInterface
         $userRole = session()->get('role');
         // Periksa apakah role pengguna ada dalam daftar yang diizinkan
         if (!in_array($userRole, $allowedRoles)) {
-            $response = Services::response();
-            $response->setStatusCode(403);
-            return redirect()->back(); // Redirect jika rolenya tidak sesuai
+            // Jika rolenya tidak sesuai, kembalikan response dengan status 404
+            return Services::response()->setStatusCode(404);
         }
 
         return null;

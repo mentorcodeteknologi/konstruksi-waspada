@@ -30,6 +30,9 @@
     <!-- Prism css-->
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/backend') ?>/css/vendors/prism.css">
 
+    <!-- Animate icon -->
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/frontend') ?>/css/vendors/animate.css">
+
     <!-- Chartist css -->
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/backend') ?>/css/vendors/chartist.css">
 
@@ -38,6 +41,7 @@
 
     <!-- App css-->
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/backend') ?>/css/style.css">
+
 </head>
 
 <body>

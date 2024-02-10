@@ -47,16 +47,51 @@ $routes->get('/alathilang', 'AlatHilangController::index');
 
 // DASHBOARD ROUTES
 $routes->get('/dashboard', 'DashboardController::index');
+// $routes->get('/dashboard', 'DashboardController::index', ['filter' => 'auth:user,admin']);
 
-// USERS ROUTES
+
+// ROUTES USERS
 $routes->group('users', function ($routes) {
     $routes->get('', 'UsersController::index');
-    $routes->get('tambah', 'UsersController::tambah');
-    $routes->post('tambah', 'UsersController::tambah_user');
-    $routes->get('edit/(:any)', 'UsersController::edit/$1');
-    $routes->post('edit/(:any)', 'UsersController::edit_users/$1');
-    $routes->post('hapus/(:any)', 'UsersController::hapus_users/$1');
+    $routes->get('create', 'UsersController::create');
+    $routes->post('create', 'UsersController::createUser');
+    $routes->get('update/(:any)', 'UsersController::update/$1');
+    $routes->post('update/(:any)', 'UsersController::updateUsers/$1');
 });
+
+// ROUTES ARTIKEL
+$routes->group('artikel', function ($routes) {
+    $routes->get('', 'ArtikelController::index');
+    $routes->get('create', 'ArtikelController::create');
+    $routes->post('create', 'ArtikelController::createArtikel');
+    $routes->get('update/(:any)', 'ArtikelController::update/$1');
+    $routes->post('update/(:any)', 'ArtikelController::updateArtikel/$1');
+    $routes->post('delete/(:any)', 'ArtikelController::delete/$1');
+});
+
+// ROUTES ALAT HILANG
+$routes->group('alat_hilang', function ($routes) {
+    $routes->get('', 'AlatHilangController::index');
+    $routes->get('create', 'AlatHilangController::create');
+    $routes->post('create', 'AlatHilangController::createAlatHilang');
+    $routes->get('update/(:any)', 'AlatHilangController::update/$1');
+    $routes->post('update/(:any)', 'AlatHilangController::updateAlatHilang/$1');
+    $routes->post('delete/(:any)', 'AlatHilangController::delete/$1');
+});
+
+
+// ROUTES USER BLACKLIST
+$routes->group('user_blacklist', function ($routes) {
+    $routes->get('', 'UserBlacklistController::index');
+    $routes->get('create', 'UserBlacklistController::create');
+    $routes->post('create', 'UserBlacklistController::createUserBlacklist');
+    $routes->get('update/(:any)', 'UserBlacklistController::update/$1');
+    $routes->post('update/(:any)', 'UserBlacklistController::updateUserBlacklist/$1');
+    $routes->post('delete/(:any)', 'UserBlacklistController::delete/$1');
+});
+
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

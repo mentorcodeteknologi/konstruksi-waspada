@@ -21,25 +21,49 @@
              </div>
              <ul class="sidebar-menu">
                  <li>
-                     <a class="sidebar-header" href="index.html">
+                     <a class="sidebar-header" href="<?= base_url('dashboard'); ?>">
                          <i data-feather="home"></i>
                          <span>Dashboard</span>
                      </a>
                  </li>
                  <li>
-                     <a class="sidebar-header" href="media.html">
-                         <i data-feather="camera"></i>
-                         <span>Article</span>
+                     <a class="sidebar-header" href="<?= base_url('users'); ?>">
+                         <i data-feather="user"></i>
+                         <span>Users</span>
                      </a>
                  </li>
                  <li>
-                     <a class="sidebar-header" href="userblacklist.html">
+                     <a class="sidebar-header" href="<?= base_url('artikel'); ?>">
+                         <i data-feather="camera"></i>
+                         <span>Artikel</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a class="sidebar-header" href="<?= base_url('alat_hilang'); ?>">
+                         <i data-feather="tool"></i>
+                         <span>Alat Hilang</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a class="sidebar-header" href="<?= base_url('user_blacklist'); ?>">
                          <i data-feather="users"></i>
                          <span>User Blacklist</span>
                      </a>
                  </li>
                  <li>
-                     <a class="sidebar-header" href="../index.html">
+                     <a class="sidebar-header" href="<?= base_url('kalender'); ?>">
+                         <i data-feather="calendar"></i>
+                         <span>Kalender</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a class="sidebar-header" href="<?= base_url('scan_qr'); ?>">
+                         <i data-feather="tablet"></i>
+                         <span>Scan QR Whatsapp</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a class="sidebar-header" href="<?= base_url('logout'); ?>">
                          <i data-feather="log-out"></i>
                          <span>Logout</span>
                      </a>
