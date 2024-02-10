@@ -33,6 +33,18 @@ $routes->set404Override();
 // HOME ROUTES
 $routes->get('/', 'HomeController::index');
 
+// LOGIN ROUTES
+$routes->get('/login', 'LoginController::index');
+
+// REGISTER ROUTES
+$routes->get('/register', 'RegisterController::index');
+
+// USER BLACKLIST FRONTEND ROUTES
+$routes->get('//userblacklist_frontend', 'UserBlacklistFrontendController::index');
+
+// ALAT HILANG ROUTES
+$routes->get('/alathilang', 'AlatHilangController::index');
+
 // DASHBOARD ROUTES
 $routes->get('/dashboard', 'DashboardController::index');
 // $routes->get('/dashboard', 'DashboardController::index', ['filter' => 'auth:user,admin']);
