@@ -33,6 +33,7 @@ class Users extends Migration
             'encrypt'            => [
                 'type'           => 'VARCHAR',
                 'constraint'     => 100,
+                'not null'       => true,
             ],
             'perusahaan'         => [
                 'type'           => 'VARCHAR',
@@ -47,7 +48,15 @@ class Users extends Migration
             'status'             => [
                 'type'           => 'ENUM',
                 'constraint'     => ['active', 'nonactive'],
-                'default'        => 'active'
+                'default'        => 'nonactive'
+            ],
+            'is_veryfied_email'  => [
+                'type'           => 'BOOLEAN',
+                'default'        => false
+            ],
+            'is_veryfied_wa'  => [
+                'type'           => 'BOOLEAN',
+                'default'        => false
             ],
             'created_at'         => [
                 'type'           => 'DATETIME',

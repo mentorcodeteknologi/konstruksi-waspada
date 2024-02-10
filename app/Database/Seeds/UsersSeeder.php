@@ -15,8 +15,9 @@ class UsersSeeder extends Seeder
             'email'      => 'admin@gmial.com',
             'password'   => password_hash('admin', PASSWORD_DEFAULT),
             'role'       => 'admin',
-            'perusahaan' => 'PT. ABC',
-            'foto'       => 'default.jpg',
+            'foto'       => 'default.png',
+            'ecrypt'     => 'ec1ptA1Dm1n',
+            'status'     => 'active',
             'created_at' => Time::now(),
             'updated_at' => Time::now()
         ];

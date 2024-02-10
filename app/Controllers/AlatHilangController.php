@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 
 use App\Controllers\BaseController;
-use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\I18n\Time;
 use App\Models\AlatHilangModel;
 use App\Helpers\Helpers;
@@ -23,8 +22,8 @@ class AlatHilangController extends BaseController
     {
         $this->alatHilangModel = new AlatHilangModel();
     }
-  
-  // Alat Hilang Front End
+
+    // Alat Hilang Front End
     public function indexFE()
     {
         $data = [
