@@ -55,6 +55,17 @@ $routes->group('artikel', function ($routes) {
     $routes->post('delete/(:any)', 'ArtikelController::delete/$1');
 });
 
+// ROUTES ALAT HILANG
+$routes->group('alat_hilang', function ($routes) {
+    $routes->get('', 'AlatHilangController::index');
+    $routes->get('create', 'AlatHilangController::create');
+    $routes->post('create', 'AlatHilangController::createAlatHilang');
+    $routes->get('update/(:any)', 'AlatHilangController::update/$1');
+    $routes->post('update/(:any)', 'AlatHilangController::updateAlatHilang/$1');
+    $routes->post('delete/(:any)', 'AlatHilangController::delete/$1');
+});
+
+
 // ROUTES USER BLACKLIST
 $routes->group('user_blacklist', function ($routes) {
     $routes->get('', 'UserBacklistController::index');
@@ -64,6 +75,7 @@ $routes->group('user_blacklist', function ($routes) {
     $routes->post('update/(:any)', 'UserBacklistController::updateUserBacklist/$1');
     $routes->post('delete/(:any)', 'UserBacklistController::delete/$1');
 });
+
 
 
 /*

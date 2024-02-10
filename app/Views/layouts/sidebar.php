@@ -52,7 +52,7 @@
                  </li>
                  <li>
                      <a class="sidebar-header" href="<?= base_url('kalender'); ?>">
-                         <i data-feather="calender"></i>
+                         <i data-feather="calendar"></i>
                          <span>Kalender</span>
                      </a>
                  </li>
