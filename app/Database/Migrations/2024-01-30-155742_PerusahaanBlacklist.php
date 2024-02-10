@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class PerusahaanBacklist extends Migration
+class PerusahaanBlacklist extends Migration
 {
     public function up()
     {
@@ -80,10 +80,6 @@ class PerusahaanBacklist extends Migration
                 'type'                 => 'VARCHAR',
                 'constraint'           => 255,
             ],
-            'id_user'                  => [
-                'type'                 => 'INT',
-                'constraint'           => 11,
-            ],
             'created_at'               => [
                 'type'                 => 'DATETIME',
             ],
@@ -92,12 +88,11 @@ class PerusahaanBacklist extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('id_user', 'users', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->createTable('perusahaan_backlist');
+        $this->forge->createTable('perusahaan_blacklist');
     }
 
     public function down()
     {
-        $this->forge->dropTable('perusahaan_backlist');
+        $this->forge->dropTable('perusahaan_blacklist');
     }
 }

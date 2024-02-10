@@ -4,15 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class PerusahaanBlacklistModel extends Model
+class AlatHilangModel extends Model
 {
-    protected $table            = 'perusahaan_blacklist';
+    protected $table            = 'alat_hilang';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['npwp_perusahaan', 'nama_perusahaan', 'foto_npwp', 'nama_penanggung_jawab', 'no_hp', 'merek', 'type_alat', 'no_seri', 'surat_perjanjian', 'foto_alat', 'foto_serah_terima_alat', 'jenis_pelanggaran', 'mulai_rental', 'akhir_rental', 'bukti_laainnya', 'nominal_kerugian', 'id_user', 'created_at', 'updated_at'];
+    protected $allowedFields    = ['nama_alat', 'merk', 'deskripsi', 'foto', 'slug', 'created_at', 'updated_at'];
 
     protected bool $allowEmptyInserts = false;
 
@@ -39,4 +39,9 @@ class PerusahaanBlacklistModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getDataBySlug($slug)
+    {
+        return $this->select('*')->where('slug', $slug)->get()->getRowArray();
+    }
 }

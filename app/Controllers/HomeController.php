@@ -6,8 +6,12 @@ use App\Controllers\BaseController;
 
 class HomeController extends BaseController
 {
+    // Home
     public function index()
     {
-        return view('home/index');
+        $data = [
+            'title' => 'Homepage'
+        ];
+        return view('home/index', $data);
     }
 }
