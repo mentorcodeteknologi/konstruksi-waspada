@@ -59,7 +59,7 @@
 
                             <div class="form-group">
                                 <label>Foto</label>
-                                <input type="file" name="foto" id="foto" class="form-control" accept=".jpg,.png,.jpeg">
+                                <input type="file" name="foto" id="foto" class="form-control" accept=".jpg,.png,.jpeg" required>
                                 <img src="" id="viewImg" class="img-fluid mt-2" width="200px">
                             </div>
 

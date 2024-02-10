@@ -33,6 +33,12 @@
                      </a>
                  </li>
                  <li>
+                     <a class="sidebar-header" href="<?= base_url('pembayaran'); ?>">
+                         <i data-feather="dollar-sign"></i>
+                         <span>Pembayaran</span>
+                     </a>
+                 </li>
+                 <li>
                      <a class="sidebar-header" href="<?= base_url('artikel'); ?>">
                          <i data-feather="camera"></i>
                          <span>Artikel</span>

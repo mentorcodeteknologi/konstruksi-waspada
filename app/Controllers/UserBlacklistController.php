@@ -88,13 +88,16 @@ class UserBlacklistController extends BaseController
             'nama'                   => $this->request->getVar('nama'),
             'foto_ktp'               => $fotoKtp,
             'no_hp'                  => $this->request->getVar('no_hp'),
-            'merk'                   => $this->request->getVar('merek'),
+            'merek'                  => $this->request->getVar('merek'),
             'type_alat'              => $this->request->getVar('type_alat'),
             'no_seri'                => $this->request->getVar('no_seri'),
             'surat_perjanjian'       => $suratPerjanjian,
             'foto_alat'              => $fotoAlat,
             'foto_serah_terima_alat' => $fotoSerahTerimaAlat,
             'jenis_pelanggaran'      => $this->request->getVar('jenis_pelanggaran'),
+            'mulai_rental'           => $this->request->getVar('mulai_rental'),
+            'akhir_rental'           => $this->request->getVar('akhir_rental'),
+            'nominal_kerugian'       => $this->request->getVar('nominal_kerugian'),
             'slug'                   => $slug,
             'created_at'             => Time::now('Asia/Jakarta', 'en_US'),
             'updated_at'             => Time::now('Asia/Jakarta', 'en_US')
@@ -115,16 +118,16 @@ class UserBlacklistController extends BaseController
 
 
     // ========================= //
-    // FUNCTION EDIT
+    // FUNCTION UPDATE
     // ========================= //
-    public function edit($slug)
+    public function update($slug)
     {
         $data = [
-            'title'         => 'User Blacklist',
-            'subtitle'      => 'Edit Data User Blacklist',
-            'user_blacklist' => $this->userBlacklistModel->getDataBySlug($slug)
+            'title'                  => 'User Blacklist',
+            'subtitle'               => 'Edit Data User Blacklist',
+            'detail_users_blacklist' => $this->userBlacklistModel->getDataBySlug($slug)
         ];
-        return view('user_blacklist/edit', $data);
+        return view('user_blacklist/update', $data);
     }
 
 
@@ -133,24 +136,88 @@ class UserBlacklistController extends BaseController
     // ============================= //
     public function updateUserBlacklist($slug)
     {
-        $helper = new Helpers();
         $datas  = $this->userBlacklistModel->getDataBySlug($slug);
 
+        // CEK FOLDER USER BLACKLIST
+        $path = 'assets/backend/images/user_blacklist/' . $slug . "/";
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+
+        // CHECK APAKAH FOTO KTP ADA PERUBAHAN
+        $fileKtp = $this->request->getFile('foto_ktp');
+        if ($fileKtp->isValid()) {
+            $fotoKtp = $fileKtp->getRandomName();
+            $fileKtp->move($path, $fotoKtp);
+            // HAPUS FOTO KTP LAMA
+            unlink($path . $datas['foto_ktp']);
+        } else {
+            $fotoKtp = $datas['foto_ktp'];
+        }
+
+        // CHECK APAKAH SURAT PERJANJIAN ADA PERUBAHAN
+        $fileSuratPerjanjian = $this->request->getFile('surat_perjanjian');
+        if ($fileSuratPerjanjian->isValid()) {
+            $suratPerjanjian = $fileSuratPerjanjian->getRandomName();
+            $fileSuratPerjanjian->move($path, $suratPerjanjian);
+            // HAPUS SURAT PERJANJIAN LAMA
+            unlink($path . $datas['surat_perjanjian']);
+        } else {
+            $suratPerjanjian = $datas['surat_perjanjian'];
+        }
+
+        // CHECK APAKAH FOTO ALAT ADA PERUBAHAN
+        $fileFotoAlat = $this->request->getFile('foto_alat');
+        if ($fileFotoAlat->isValid()) {
+            $fotoAlat = $fileFotoAlat->getRandomName();
+            $fileFotoAlat->move($path, $fotoAlat);
+            // HAPUS FOTO ALAT LAMA
+            unlink($path . $datas['foto_alat']);
+        } else {
+            $fotoAlat = $datas['foto_alat'];
+        }
+
+        // CHECK APAKAH FOTO SERAH TERIMA ALAT ADA PERUBAHAN
+        $fileFotoSerahTerimaAlat = $this->request->getFile('foto_serah_terima_alat');
+        if ($fileFotoSerahTerimaAlat->isValid()) {
+            $fotoSerahTerimaAlat = $fileFotoSerahTerimaAlat->getRandomName();
+            $fileFotoSerahTerimaAlat->move($path, $fotoSerahTerimaAlat);
+            // HAPUS FOTO SERAH TERIMA ALAT LAMA
+            unlink($path . $datas['foto_serah_terima_alat']);
+        } else {
+            $fotoSerahTerimaAlat = $datas['foto_serah_terima_alat'];
+        }
+
         $data = [
-            'nik'                      => $this->request->getVar('nik'),
-            'nama'                     => $this->request->getVar('nama'),
-            'foto_ktp'                 => $this->request->getVar('foto_ktp'),
-            'no_hp'                    => $this->request->getVar('no_hp'),
-            'merek'                    => $this->request->getVar('merek'),
-            'type_alat'                => $this->request->getVar('type_alat'),
-            'no_seri'                  => $this->request->getVar('no_seri'),
-            'surat_perjanjian'         => $this->request->getVar('surat_perjanjian'),
-            'foto_alat'                => $this->request->getVar('foto_alat'),
-            'foto_serah_terima_alat'   => $this->request->getVar('foto_serah_terima_alat'),
-            'jenis_pelanggaran'        => $this->request->getVar('jenis_pelanggaran'),
-            'slug'                     => $helper->generateSlug(),
-            'updated_at'               => Time::now('Asia/Jakarta', 'en_US')
+            'nik'                    => $this->request->getVar('nik'),
+            'nama'                   => $this->request->getVar('nama'),
+            'foto_ktp'               => $fotoKtp,
+            'no_hp'                  => $this->request->getVar('no_hp'),
+            'merek'                  => $this->request->getVar('merek'),
+            'type_alat'              => $this->request->getVar('type_alat'),
+            'no_seri'                => $this->request->getVar('no_seri'),
+            'surat_perjanjian'       => $suratPerjanjian,
+            'foto_alat'              => $fotoAlat,
+            'foto_serah_terima_alat' => $fotoSerahTerimaAlat,
+            'mulai_rental'           => $this->request->getVar('mulai_rental'),
+            'akhir_rental'           => $this->request->getVar('akhir_rental'),
+            'nominal_kerugian'       => $this->request->getVar('nominal_kerugian'),
+            'jenis_pelanggaran'      => $this->request->getVar('jenis_pelanggaran'),
+            'updated_at'             => Time::now('Asia/Jakarta', 'en_US')
         ];
+
+        // UPLOAD BUKTI LAINNYA OPTIONAL
+        $fileBuktiLainnya = $this->request->getFile('bukti_lainnya');
+        if ($fileBuktiLainnya->isValid()) {
+            $buktiLainnya = $fileBuktiLainnya->getRandomName();
+            $fileBuktiLainnya->move($path, $buktiLainnya);
+            // HAPUS BUKTI LAINNYA LAMA
+            unlink($path . $datas['bukti_lainnya']);
+            $data['bukti_lainnya'] = $buktiLainnya;
+        } else {
+            $buktiLainnya = $datas['bukti_lainnya'];
+            $data['bukti_lainnya'] = $buktiLainnya;
+        }
 
         $this->userBlacklistModel->update($datas['id'], $data);
         session()->setFlashdata('pesan', 'Data berhasil diupdate');

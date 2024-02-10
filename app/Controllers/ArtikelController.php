@@ -99,7 +99,7 @@ class ArtikelController extends BaseController
     // ========================= //
     // FUNCTION UPDATE USER
     // ========================= //
-    public function updateartikel($slug)
+    public function updateArtikel($slug)
     {
         $artikelData = $this->artikelModel->getDataBySlug($slug);
         $file        = $this->request->getFile('gambar');
@@ -109,11 +109,9 @@ class ArtikelController extends BaseController
             $foto = $artikelData['gambar'];
         } else {
             // Hapus gambar lama
-            if ($artikelData['gambar'] != 'default.png') {
-                unlink('assets/backend/images/artikel/' . $artikelData['gambar']);
-            }
+            unlink('assets/backend/images/artikel/' . $artikelData['gambar']);
             $foto = $file->getRandomName();
-            $file->move('assets/backend/images/artikel', $foto);
+            $file->move('assets/backend/images/artikel/', $foto);
         }
 
         $data = [
@@ -123,6 +121,7 @@ class ArtikelController extends BaseController
             'penulis'    => $this->request->getVar('penulis'),
             'updated_at' => Time::now('Asia/Jakarta', 'en_US')
         ];
+        dd($data);
 
         $this->artikelModel->update($artikelData['id'], $data);
         session()->setFlashdata('pesan', 'Data Berhasil Diubah');

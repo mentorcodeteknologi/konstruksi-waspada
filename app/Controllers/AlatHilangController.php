@@ -139,22 +139,22 @@ class AlatHilangController extends BaseController
 
         $this->alatHilangModel->update($userData['id'], $data);
         session()->setFlashdata('pesan', 'Data Berhasil Diubah');
-        return redirect()->to('users');
+        return redirect()->to(base_url('alat_hilang'));
     }
 
 
     // ========================= //
     // FUNCTION DELETE
     // ========================= //
-    public function delete($id)
+    public function delete($slug)
     {
-        $userData = $this->alatHilangModel->find($id);
+        $userData = $this->alatHilangModel->getDataBySlug($slug);
         if ($userData['foto'] != 'default.png') {
             unlink('assets/backend/images/alat_hilang/' . $userData['foto']);
         }
 
-        $this->alatHilangModel->delete($id);
+        $this->alatHilangModel->delete($userData['id']);
         session()->setFlashdata('pesan', 'Data Berhasil Dihapus');
-        return redirect()->to('users');
+        return redirect()->to(base_url('alat_hilang'));
     }
 }

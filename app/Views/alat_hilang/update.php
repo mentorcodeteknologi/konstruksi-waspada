@@ -58,7 +58,7 @@
                             </div>
 
                             <div class="form-group">
-                                <img src="<?= base_url('assets/backend/images/alat_hilang' . $detail_alat_hilang['foto']) ?>" width="100px" height="100px" class="center">
+                                <img src="<?= base_url('assets/backend/images/alat_hilang/' . $detail_alat_hilang['foto']) ?>" width="100px" height="100px" class="center">
 
                                 <div class="form-group">
                                     <label>Edit Foto</label>

@@ -53,7 +53,7 @@
                             </div>
 
                             <div class="form-group">
-                                <img src="<?= base_url('assets/backend/images/users_blacklist/' . $detail_users_blacklist['slug'] . "/" . $detail_users_blacklist['foto_ktp']) ?>" width="100px" height="100px" class="center">
+                                <img src="<?= base_url('assets/backend/images/user_blacklist/' . $detail_users_blacklist['slug'] . "/" . $detail_users_blacklist['foto_ktp']) ?>" width="100px" height="100px" class="center">
 
                                 <div class="form-group">
                                     <label>Edit Foto</label>
@@ -82,7 +82,7 @@
                             </div>
 
                             <div class="form-group">
-                                <a href="<?= base_url('assets/backend/images/users_blacklist/' . $detail_users_blacklist['slug'] . "/" . $detail_users_blacklist['surat_perjanjian']) ?>" target="_blank">Lihat Surat Perjanjian</a>
+                                <a href="<?= base_url('assets/backend/images/user_blacklist/' . $detail_users_blacklist['slug'] . "/" . $detail_users_blacklist['surat_perjanjian']) ?>" target="_blank">Lihat Surat Perjanjian</a>
 
                                 <div class="form-group">
                                     <label>Edit Surat Perjanjian</label>
@@ -91,7 +91,7 @@
                             </div>
 
                             <div class="form-group">
-                                <img src="<?= base_url('assets/backend/images/users_blacklist/' . $detail_users_blacklist['slug'] . "/" . $detail_users_blacklist['foto_alat']) ?>" width="100px" height="100px" class="center">
+                                <img src="<?= base_url('assets/backend/images/user_blacklist/' . $detail_users_blacklist['slug'] . "/" . $detail_users_blacklist['foto_alat']) ?>" width="100px" height="100px" class="center">
 
                                 <div class="form-group">
                                     <label>Edit Foto Alat</label>
@@ -100,7 +100,7 @@
                             </div>
 
                             <div class="form-group">
-                                <img src="<?= base_url('assets/backend/images/users_blacklist/' . $detail_users_blacklist['slug'] . "/" . $detail_users_blacklist['foto_serah_terima_alat']) ?>" width="100px" height="100px" class="center">
+                                <img src="<?= base_url('assets/backend/images/user_blacklist/' . $detail_users_blacklist['slug'] . "/" . $detail_users_blacklist['foto_serah_terima_alat']) ?>" width="100px" height="100px" class="center">
 
                                 <div class="form-group">
                                     <label>Edit Foto Serah Termina Alat</label>
@@ -127,16 +127,16 @@
 
                             <div class="form-group">
                                 <label>Muali Rental</label>
-                                <input type="date" name="mulai_rental" id="mulai_rental" class="form-control" placeholder="mulai_rental" value="<?= $detail_users_blacklist['mulai_rental'] ?>">
+                                <input type="date" name="mulai_rental" id="mulai_rental" class="form-control" placeholder="mulai_rental" value="<?= $detail_users_blacklist['mulai_rental'] ?>" required value="<?= date('Y-m-d') ?>">
                             </div>
 
                             <div class="form-group">
                                 <label>Akhir Rental</label>
-                                <input type="date" name="akhir_rental" id="akhir_rental" class="form-control" placeholder="akhir_rental" value="<?= $detail_users_blacklist['akhir_rental'] ?>">
+                                <input type="date" name="akhir_rental" id="akhir_rental" class="form-control" placeholder="akhir_rental" value="<?= $detail_users_blacklist['akhir_rental'] ?>" required value="<?= date('Y-m-d') ?>">
                             </div>
 
                             <div class="form-group">
-                                <img src="<?= base_url('assets/backend/images/users_blacklist/' . $detail_users_blacklist['slug'] . "/" . $detail_users_blacklist['bukti_lainnya']) ?>" width="100px" height="100px" class="center">
+                                <img src="<?= base_url('assets/backend/images/user_blacklist/' . $detail_users_blacklist['slug'] . "/" . $detail_users_blacklist['bukti_lainnya']) ?>" width="100px" height="100px" class="center">
 
                                 <div class="form-group">
                                     <label>Edit Bukti Lainnya</label>

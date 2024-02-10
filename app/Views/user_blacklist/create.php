@@ -54,7 +54,7 @@
 
                             <div class="form-group">
                                 <label>Foto KTP</label>
-                                <input type="file" name="foto_ktp" id="foto_ktp" class="form-control" accept=".jpg,.png,.jpeg">
+                                <input type="file" name="foto_ktp" id="foto_ktp" class="form-control" accept=".jpg,.png,.jpeg" required>
                                 <img src="" id="viewImg" class="img-fluid mt-2" width="200px">
                             </div>
 
@@ -80,19 +80,19 @@
 
                             <div class="form-group">
                                 <label>Surat Perjanjian</label>
-                                <input type="file" name="surat_perjanjian" id="surat_perjanjian" class="form-control" accept="image/*,.pdf,.doc,.docx,.txt">
+                                <input type="file" name="surat_perjanjian" id="surat_perjanjian" class="form-control" accept="image/*,.pdf,.doc,.docx,.txt" required>
                                 <img src="" id="viewImg" class="img-fluid mt-2" width="200px">
                             </div>
 
                             <div class="form-group">
                                 <label>Foto Alat</label>
-                                <input type="file" name="foto_alat" id="foto_alat" class="form-control" accept=".jpg,.png,.jpeg">
+                                <input type="file" name="foto_alat" id="foto_alat" class="form-control" accept=".jpg,.png,.jpeg" required>
                                 <img src="" id="viewImg" class="img-fluid mt-2" width="200px">
                             </div>
 
                             <div class="form-group">
                                 <label>Foto Serah Terima Alat</label>
-                                <input type="file" name="foto_serah_terima_alat" id="foto_serah_terima_alat" class="form-control" accept=".jpg,.png,.jpeg">
+                                <input type="file" name="foto_serah_terima_alat" id="foto_serah_terima_alat" class="form-control" accept=".jpg,.png,.jpeg" required>
                                 <img src="" id="viewImg" class="img-fluid mt-2" width="200px">
                             </div>
 
@@ -108,15 +108,15 @@
 
                             <div class="form-group">
                                 <label>Mulai Rental</label>
-                                <input type="date" name="mulai_rental" id="mulai_rental" class="form-control" placeholder="Mulai Rental">
+                                <input type="date" name="mulai_rental" id="mulai_rental" class="form-control" placeholder="Mulai Rental" required value="<?= date('Y-m-d') ?>">
                             </div>
 
                             <div class="form-group">
                                 <label>Akhir Rental</label>
-                                <input type="date" name="akhir_rental" id="akhir_rental" class="form-control" placeholder="Akhir Rental">
+                                <input type="date" name="akhir_rental" id="akhir_rental" class="form-control" placeholder="Akhir Rental" required value="<?= date('Y-m-d') ?>">
                             </div>
 
-                            <div class="form-group">
+                            <div class=" form-group">
                                 <label>Bukti Lainnya</label>
                                 <input type="file" name="bukti_lainnya" id="bukti_lainnya" class="form-control" accept=".jpg,.png,.jpeg">
                                 <img src="" id="viewImg" class="img-fluid mt-2" width="200px">
