@@ -90,6 +90,17 @@ $routes->group('user_blacklist', function ($routes) {
     $routes->post('delete/(:any)', 'UserBlacklistController::delete/$1');
 });
 
+// ROUTES PEMBAYARAN
+$routes->group('pembayaran', function ($routes) {
+    $routes->get('', 'PembayaranController::index');
+    $routes->get('create', 'PembayaranController::create');
+    $routes->post('create', 'PembayaranController::createPembayaran');
+    $routes->post('validasi', 'PembayaranController::validasiPembayaran');
+    // $routes->get('update/(:any)', 'PembayaranController::update/$1');
+    // $routes->post('update/(:any)', 'PembayaranController::updatePembayaran/$1');
+    // $routes->post('delete/(:any)', 'PembayaranController::delete/$1');
+});
+
 
 
 /*

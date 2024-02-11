@@ -9,7 +9,7 @@ class Pembayaran extends Migration
     public function up()
     {
         $this->forge->addField([
-            'id_pembayaran'      => [
+            'id'                 => [
                 'type'           => 'INT',
                 'constraint'     => 11,
                 'auto_increment' => true
@@ -17,7 +17,6 @@ class Pembayaran extends Migration
             'id_user'            => [
                 'type'           => 'INT',
                 'constraint'     => 11,
-                'unsigned'       => true
             ],
             'jumlah_pembayaran'  => [
                 'type'           => 'INT',
@@ -26,10 +25,18 @@ class Pembayaran extends Migration
             'bukti_pembayaran'   => [
                 'type'           => 'VARCHAR',
                 'constraint'     => 255
-            ]
+            ],
+            'slug'               => [
+                'type'           => 'VARCHAR',
+                'constraint'     => 50
+            ],
+            'validasi_pembayaran' => [
+                'type'            => 'BOOLEAN',
+                'default'         => false
+            ],
         ]);
-        $this->forge->addKey('id_pembayaran', true);
-        $this->forge->addForeignKey('id_user', 'users', 'id_user', 'CASCADE', 'CASCADE');
+        $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('id_user', 'users', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('pembayaran');
     }
 
