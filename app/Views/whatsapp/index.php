@@ -46,9 +46,9 @@
     
             <div class="row justify-content-center">
                 <div class="col-lg text-center">
-                    <div id="targetQr">
-                        <img src="<?= base_url('/assets/frontend/1.jpg')?>" width="400" height="400" class="border" style="display:block; margin: 0 auto;" >
+                    <div id="targetQr" class="mt-3" style="display:block; margin: 0 auto;">
                     </div>
+                    <div id="status" style="display:none;">WhatsApp Connected</div>
                 </div>
             </div>
     
@@ -69,9 +69,12 @@
 <?= $this->section('scripts') ?>
 <script>
     let statQR;
-   $(document).ready(function(){
-    getQR();
-   });
+    $(document).ready(() => {
+        setToken();
+        setInterval(() => {
+            hitGetAPI('/api/ready');
+        }, 5000);
+    });
 
     
 </script>

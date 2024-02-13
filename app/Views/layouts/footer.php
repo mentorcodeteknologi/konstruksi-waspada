@@ -75,12 +75,12 @@
 
 <!--script admin-->
 <script src="<?= base_url('assets/backend') ?>/js/admin-script.js"></script>
+<script src="<?= base_url('assets/backend') ?>/js/qrcode.js"></script>
 
 
 <script>
-    $(function() {
-       
-    });
+    const host = 'http://localhost:3000';
+    let token = null;
 
     function setDataTable(){
         $("#example1").DataTable({
@@ -98,14 +98,18 @@
             "responsive": true,
         });
     }
-    function getQR(){
-        let data = {
-                "username": "user",
-                "password": "password"
-            };
+    function setToken() {
+        let data = JSON.stringify({
+                username: "user",
+                password: "password"
+            });
+        hitPostAPI(data, '/api/login');
+    }
+
+    function hitPostAPI(data, api){
         $.ajax({
-            url: 'https://74d4-149-108-148-14.ngrok-free.app/api/login',
-            method: 'post',
+            url: host + api,
+            method: 'POST',
             data: data, 
             contentType:"application/json",
             dataType:"json",
@@ -116,13 +120,53 @@
                                       </div>`);
             },
             success: function(res) {
-                // Handle the API response here
-                console.log(res);
+                token = res.token;
+                console.log(token);
+                $.ajaxSetup({
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                hitGetAPI('/api/qr-code');
+                
             },
             error: function(xhr, status, error) {
                 console.error(status, error);
             }
         });
+    }
+    function hitGetAPI(api){
+        $.ajax({
+            url: host + api,
+            method: 'GET',
+            contentType:"application/json",
+            dataType:"json",
+            success: function(res) {
+                if (res.qrCodeData) {
+                    showQrCode(res.qrCodeData);
+                } else if(res.status == true){
+                    $('#targetQr').hide();
+                    $('#status').show();
+                }                
+            },
+            error: function(xhr, status, error) {
+                console.error(status, error);
+            }
+        });
+    }
+    function showQrCode(qrCodeData){
+        $("#targetQr").html("");
+        var qr = new QRCode(document.getElementById("targetQr"), {
+            text: qrCodeData,
+            width: 400,
+            height: 400,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+            // Tampilkan gambar QR Code di halaman
+            // $("#targetQr").append(`<img src="${imageDataUrl}" width="400" height="400" class="border" style="display:block; margin: 0 auto;" >`);
+            
     }
 </script>
 <?= $this->renderSection('scripts'); ?>
