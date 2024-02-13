@@ -40,13 +40,14 @@
             <div class="col-lg-12">
                 <h3>create account</h3>
                 <div class="theme-card">
-                    <form action="/authregister" method="post" class="theme-form">
+                    <a href=""></a>
+                    <form action="<?= base_url('register') ?>" method="post" class="theme-form" enctype="multipart/form-data">
                         <?= csrf_field(); ?>
 
                         <div class="form-row row">
                             <div class="col-md-6">
                                 <label for="email">email</label>
-                                <input type="text" class="form-control" name="email" id="email" placeholder="Email" required="">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="review">Password</label>
@@ -57,26 +58,30 @@
                         <div class="form-row row">
                             <div class="col-md-6">
                                 <label for="nama">Nama</label>
-                                <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama" required="">
+                                <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama" required=>
                             </div>
 
-                            <div class="form-group">
+                            <div class="col-md-6">
                                 <label>Nama Perusahaan</label>
                                 <input type="text" name="perusahaan" id="perusahaan" class="form-control" placeholder="Perusahaan">
                             </div>
-
-                            <div class="form-group">
-                                <label>Foto</label>
-                                <input type="file" name="foto" id="foto" class="form-control" accept=".jpg,.png,.jpeg">
-                                <img src="" id="viewImg" class="img-fluid mt-2" width="200px">
-                            </div>
                         </div>
 
-                        <!-- <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Foto</label>
+                            <input type="file" name="foto" id="foto" class="form-control" accept=".jpg,.png,.jpeg">
+                            <img src="" id="viewImg" class="img-fluid mt-2" width="200px">
+                        </div>
+
+                        <button type="syubmit" class="btn btn-solid w-auto">create Account</button>
+
+                </div>
+
+                <!-- <div class="col-md-6">
                                 <label for="review">Jabatan</label>
                                 <input type="text" class="form-control" id="jabatan" placeholder="Jabatan" required="">
                             </div> -->
-                        <!-- <div class="col-md-6">
+                <!-- <div class="col-md-6">
                                 <label for="review">No.NPWP/KTP</label>
                                 <input type="text" class="form-control" id="no_npwp_ktp" placeholder="No.NPWP/KTP" required="">
                             </div>
@@ -88,12 +93,10 @@
                                 <label for="review">No Handphone</label>
                                 <input type="text" class="form-control" id="no_handphone" placeholder="No Handphone" required="">
                             </div> -->
-
-                        <button type="syubmit" class="btn btn-solid w-auto">create Account</button>
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
+    </div>
     </div>
 </section>
 <!--Section ends-->

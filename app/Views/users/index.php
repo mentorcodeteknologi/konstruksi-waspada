@@ -49,8 +49,9 @@
         <br><br><br>
 
 
+        <!-- class="table table-bordered table-striped" -->
         <div class="table-responsive table-desi">
-            <table class="all-package coupon-table table table-striped">
+            <table id="example1" class="all-package coupon-table table table-striped">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -92,3 +93,22 @@
 <!-- Container-fluid Ends-->
 
 <?= $this->endSection(); ?>
+
+<script>
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+</script>

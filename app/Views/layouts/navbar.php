@@ -1,3 +1,7 @@
+<?php
+// SESSION UNTUK MENGAMBIL DATA SESSION
+$session = session();
+?>
 <!-- Page Header Start-->
 <div class="page-main-header">
     <div class="main-header-right row">
@@ -110,7 +114,7 @@
                 </li>
                 <li class="onhover-dropdown">
                     <div class="media align-items-center">
-                        <img class="align-self-center pull-right img-50 blur-up lazyloaded" src="assets/images/dashboard/user3.jpg" alt="header-user">
+                        <img class="align-self-center pull-right img-50 blur-up lazyloaded" src="<?= base_url('assets/backend/images/') . $session->get('foto') ?>" alt="header-user">
                         <div class="dotted-animation">
                             <span class="animate-circle"></span>
                             <span class="main-circle"></span>
@@ -138,7 +142,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)">
+                            <a href="<?= base_url('logout'); ?>">
                                 <i data-feather="log-out"></i>Logout
                             </a>
                         </li>

@@ -77,6 +77,14 @@
 
 
 <script>
+    window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function() {
+            $(this).remove();
+        });
+    }, 6000);
+</script>
+
+<script>
     $(function() {
         $("#example1").DataTable({
             "responsive": true,
