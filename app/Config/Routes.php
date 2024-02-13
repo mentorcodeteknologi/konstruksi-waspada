@@ -91,6 +91,8 @@ $routes->group('user_blacklist', ['filter' => 'auth:user,admin'], function ($rou
     $routes->post('delete/(:any)', 'UserBlacklistController::delete/$1');
 });
 
+// ROUTES WHATSAPP SCAN QR
+$routes->get('/scan_qr', 'WhatsappController::index');
 // ROUTES PEMBAYARAN
 $routes->group('pembayaran', ['filter' => 'auth:admin'], function ($routes) {
     $routes->get('', 'PembayaranController::index');
