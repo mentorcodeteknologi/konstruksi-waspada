@@ -33,11 +33,15 @@ $routes->set404Override();
 // HOME ROUTES
 $routes->get('/', 'HomeController::index');
 
-// LOGIN ROUTES
-$routes->get('/login', 'LoginController::index');
+// AUTH ROUTES
+$routes->get('/login', 'AuthController::indexLogin');
+$routes->get('/register', 'AuthController::indexRegister');
+$routes->post('/authlogin', 'AuthController::authLogin'); //proses form login
+$routes->post('/authregister', 'AuthController::authRegister'); //proses form register
+$routes->get('/logout', 'AuthController::logout');
 
 // REGISTER ROUTES
-$routes->get('/register', 'RegisterController::index');
+// $routes->get('/register', 'RegisterController::index');
 
 // USER BLACKLIST FRONTEND ROUTES
 $routes->get('/user_blacklist_frontend', 'UserBlacklistFrontendController::index');
