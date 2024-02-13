@@ -42,6 +42,7 @@
                     <div class="col-sm-12 ">
 
                         <form action="<?= base_url('artikel/create') ?>" method="post" enctype="multipart/form-data">
+                            <?= csrf_field(); ?>
                             <div class="form-group">
                                 <label>Judul</label>
                                 <input type="text" name="judul" id="judul" class="form-control" placeholder="Judul" required>

@@ -18,4 +18,25 @@ class UsersModel extends Model
     {
         return $this->select('*')->where('encrypt', $encrypt)->get()->getRowArray();
     }
+
+    // ============================= //
+    // FUNCTION CHECK LOGIN
+    // ============================= //
+    public function checkLogin($email, $password)
+    {
+        $builder = $this->db->table('users');
+        $builder->select('*');
+        $builder->where('email', $email);
+        $user = $builder->get()->getRowArray();
+
+        if ($user) {
+            if (password_verify($password, $user['password'])) {
+                return $user;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }

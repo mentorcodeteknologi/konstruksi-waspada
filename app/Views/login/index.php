@@ -32,15 +32,15 @@
             <div class="col-lg-6">
                 <h3>Login</h3>
                 <div class="theme-card">
-                    <form action="/authlogin" method="post" class="theme-form">
+                    <form action="/login" method="post" class="theme-form" enctype="multipart/form-data">
                         <?= csrf_field(); ?>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control" name="email" id="email" placeholder="Enter your Email" required="true" autofocus>
+                            <input type="text" class="form-control" name="email" id="email" placeholder="Enter your Email" required autofocus>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" name="email" id="email" placeholder="Enter your password" required="true">
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Enter your password" required>
                         </div>
                         <button type="submit" class="btn btn-solid">Login</button>
                     </form>

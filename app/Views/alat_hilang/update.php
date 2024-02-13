@@ -42,6 +42,7 @@
                     <div class="col-sm-12 ">
 
                         <form action="<?= base_url('alat_hilang/update/' . $detail_alat_hilang['slug']) ?>" method="post" enctype="multipart/form-data">
+                            <?= csrf_field(); ?>
                             <div class="form-group">
                                 <label>Nama</label>
                                 <input type="text" name="nama_alat" id="nama_alat" class="form-control" placeholder="Nama Alat" value="<?= $detail_alat_hilang['nama_alat'] ?>" required>

@@ -35,8 +35,8 @@ $routes->get('/', 'HomeController::index');
 
 // AUTH ROUTES
 $routes->get('/login', 'AuthController::indexLogin');
+$routes->post('/login', 'AuthController::login'); //proses form login
 $routes->get('/register', 'AuthController::indexRegister');
-$routes->post('/authlogin', 'AuthController::authLogin'); //proses form login
 $routes->post('/authregister', 'AuthController::authRegister'); //proses form register
 $routes->get('/logout', 'AuthController::logout');
 

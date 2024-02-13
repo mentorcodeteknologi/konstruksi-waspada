@@ -42,6 +42,7 @@
                     <div class="col-sm-12 ">
 
                         <form action="<?= base_url('users/create') ?>" method="post" enctype="multipart/form-data">
+                            <?= csrf_field(); ?>
                             <div class="form-group">
                                 <label>Nama</label>
                                 <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama User" required>

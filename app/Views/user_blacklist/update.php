@@ -42,6 +42,7 @@
                     <div class="col-sm-12 ">
 
                         <form action="<?= base_url('user_blacklist/update/' . $detail_users_blacklist['slug']) ?>" method="post" enctype="multipart/form-data">
+                            <?= csrf_field(); ?>
                             <div class="form-group">
                                 <label>NIK</label>
                                 <input type="text" name="nik" id="nik" class="form-control" placeholder="nik" value="<?= $detail_users_blacklist['nik'] ?>" required>
