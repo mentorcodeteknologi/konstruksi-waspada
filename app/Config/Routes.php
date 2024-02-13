@@ -33,11 +33,15 @@ $routes->set404Override();
 // HOME ROUTES
 $routes->get('/', 'HomeController::index');
 
-// LOGIN ROUTES
-$routes->get('/login', 'LoginController::index');
+// AUTH ROUTES
+$routes->get('/login', 'AuthController::indexLogin');
+$routes->post('/login', 'AuthController::login'); //proses form login
+$routes->get('/register', 'AuthController::indexRegister');
+$routes->post('/authregister', 'AuthController::authRegister'); //proses form register
+$routes->get('/logout', 'AuthController::logout');
 
 // REGISTER ROUTES
-$routes->get('/register', 'RegisterController::index');
+// $routes->get('/register', 'RegisterController::index');
 
 // USER BLACKLIST FRONTEND ROUTES
 $routes->get('/user_blacklist_frontend', 'UserBlacklistFrontendController::index');
@@ -92,6 +96,16 @@ $routes->group('user_blacklist', function ($routes) {
 
 // ROUTES WHATSAPP SCAN QR
 $routes->get('/scan_qr', 'WhatsappController::index');
+// ROUTES PEMBAYARAN
+$routes->group('pembayaran', function ($routes) {
+    $routes->get('', 'PembayaranController::index');
+    $routes->get('create', 'PembayaranController::create');
+    $routes->post('create', 'PembayaranController::createPembayaran');
+    $routes->post('validasi', 'PembayaranController::validasiPembayaran');
+    // $routes->get('update/(:any)', 'PembayaranController::update/$1');
+    // $routes->post('update/(:any)', 'PembayaranController::updatePembayaran/$1');
+    // $routes->post('delete/(:any)', 'PembayaranController::delete/$1');
+});
 
 
 

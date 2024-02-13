@@ -42,6 +42,7 @@
                     <div class="col-sm-12 ">
 
                         <form action="<?= base_url('alat_hilang/create') ?>" method="post" enctype="multipart/form-data">
+                            <?= csrf_field(); ?>
                             <div class="form-group">
                                 <label>Nama Alat</label>
                                 <input type="text" name="nama_alat" id="nama_alat" class="form-control" placeholder="Nama Alat" required>
@@ -59,7 +60,7 @@
 
                             <div class="form-group">
                                 <label>Foto</label>
-                                <input type="file" name="foto" id="foto" class="form-control" accept=".jpg,.png,.jpeg">
+                                <input type="file" name="foto" id="foto" class="form-control" accept=".jpg,.png,.jpeg" required>
                                 <img src="" id="viewImg" class="img-fluid mt-2" width="200px">
                             </div>
 

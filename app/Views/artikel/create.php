@@ -42,6 +42,7 @@
                     <div class="col-sm-12 ">
 
                         <form action="<?= base_url('artikel/create') ?>" method="post" enctype="multipart/form-data">
+                            <?= csrf_field(); ?>
                             <div class="form-group">
                                 <label>Judul</label>
                                 <input type="text" name="judul" id="judul" class="form-control" placeholder="Judul" required>
@@ -49,7 +50,7 @@
 
                             <div class="form-group">
                                 <label>Isi</label>
-                                <input type="text" name="isi" id="isi" class="form-control" placeholder="Isi Artikel" required>
+                                <textarea name="isi" id="isi" class="form-control" placeholder="Isi Artikel" required> </textarea>
                             </div>
 
                             <div class="form-group">

@@ -30,6 +30,14 @@
     </div>
     <!-- Container-fluid Ends-->
 
+    <center>
+        <br>
+        <form action="<?= base_url('pembayaran/create') ?>">
+            <button type="submit" class="btn btn-primary">Go to Premium</button>
+        </form>
+        <br><br>
+    </center>
+
     <!-- Container-fluid starts-->
     <div class="container-fluid">
         <div class="row">
@@ -101,6 +109,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- 
             <div class="col-xl-6 xl-100">
                 <div class="card">
                     <div class="card-header">
@@ -127,6 +137,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="col-xl-6 xl-100">
                 <div class="card">
                     <div class="card-header">
@@ -1002,8 +1013,10 @@
             </div>
 
         </div>
+    </div> -->
+            <!-- Container-fluid Ends-->
+        </div>
     </div>
-    <!-- Container-fluid Ends-->
 </div>
 
 <?= $this->endSection(); ?>

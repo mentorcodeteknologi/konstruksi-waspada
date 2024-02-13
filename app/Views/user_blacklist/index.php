@@ -60,7 +60,7 @@
                         <th>No HP</th>
                         <th>Merek</th>
                         <th>Type Alat</th>
-                        <th>Nomer Seri</th>
+                        <th>No Seri</th>
                         <th>Surat Perjanjian</th>
                         <th>Foto Alat</th>
                         <th>Foto Serah Terima Alat</th>
@@ -89,7 +89,10 @@
                             <td><?= $value['merek'] ?></td>
                             <td><?= $value['type_alat'] ?></td>
                             <td><?= $value['no_seri'] ?></td>
-                            <td><?= $value['surat_perjanjian'] ?></td>
+                            <td>
+                                <a href="<?= base_url('assets/backend/images/user_blacklist/' . $value['slug'] . "/" . $value['surat_perjanjian']) ?>" target="_blank">Lihat Surat Perjanjian</a>
+                            </td>
+
                             <td><img src="<?= base_url('assets/backend/images/user_blacklist/' .  $value['slug'] . "/" . $value['foto_alat']) ?>" width="50px" height="50px"></td>
                             <td><img src="<?= base_url('assets/backend/images/user_blacklist/' .  $value['slug'] . "/" . $value['foto_serah_terima_alat']) ?>" width="50px" height="50px"></td>
                             <td><?= $value['jenis_pelanggaran'] ?></td>

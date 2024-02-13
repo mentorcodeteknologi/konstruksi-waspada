@@ -22,6 +22,14 @@
     </div>
 </div>
 <!-- breadcrumb End -->
+<!-- flashdata message -->
+<?php if (session()->getFlashdata('success')) : ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong><?= session()->getFlashdata('success'); ?></strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<?php endif; ?>
+<!-- flashdata message -->
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
@@ -32,21 +40,43 @@
             <div class="col-lg-12">
                 <h3>create account</h3>
                 <div class="theme-card">
-                    <form class="theme-form">
+                    <form action="/authregister" method="post" class="theme-form">
+                        <?= csrf_field(); ?>
+
                         <div class="form-row row">
                             <div class="col-md-6">
-                                <label for="email">Nama</label>
-                                <input type="text" class="form-control" id="nama" placeholder="Nama" required="">
+                                <label for="email">email</label>
+                                <input type="text" class="form-control" name="email" id="email" placeholder="Email" required="">
                             </div>
                             <div class="col-md-6">
-                                <label for="review">Nama Perusahaan</label>
-                                <input type="text" class="form-control" id="nama_perusahaan" placeholder="Nama Perusahaan" required="">
+                                <label for="review">Password</label>
+                                <input type="password" class="form-control" name="password" id="review" placeholder="Enter your password" required="">
                             </div>
+                        </div>
+
+                        <div class="form-row row">
                             <div class="col-md-6">
+                                <label for="nama">Nama</label>
+                                <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama" required="">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Nama Perusahaan</label>
+                                <input type="text" name="perusahaan" id="perusahaan" class="form-control" placeholder="Perusahaan">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Foto</label>
+                                <input type="file" name="foto" id="foto" class="form-control" accept=".jpg,.png,.jpeg">
+                                <img src="" id="viewImg" class="img-fluid mt-2" width="200px">
+                            </div>
+                        </div>
+
+                        <!-- <div class="col-md-6">
                                 <label for="review">Jabatan</label>
                                 <input type="text" class="form-control" id="jabatan" placeholder="Jabatan" required="">
-                            </div>
-                            <div class="col-md-6">
+                            </div> -->
+                        <!-- <div class="col-md-6">
                                 <label for="review">No.NPWP/KTP</label>
                                 <input type="text" class="form-control" id="no_npwp_ktp" placeholder="No.NPWP/KTP" required="">
                             </div>
@@ -57,18 +87,9 @@
                             <div class="col-md-6">
                                 <label for="review">No Handphone</label>
                                 <input type="text" class="form-control" id="no_handphone" placeholder="No Handphone" required="">
-                            </div>
-                        </div>
-                        <div class="form-row row">
-                            <div class="col-md-6">
-                                <label for="email">email</label>
-                                <input type="text" class="form-control" id="email" placeholder="Email" required="">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="review">Password</label>
-                                <input type="password" class="form-control" id="review" placeholder="Enter your password" required="">
-                            </div><a href="#" class="btn btn-solid w-auto">create Account</a>
-                        </div>
+                            </div> -->
+
+                        <button type="syubmit" class="btn btn-solid w-auto">create Account</button>
                     </form>
                 </div>
             </div>

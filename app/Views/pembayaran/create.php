@@ -41,30 +41,22 @@
                 <div class="row ">
                     <div class="col-sm-12 ">
 
-                        <form action="<?= base_url('artikel/update/' . $detail_artikel['slug']) ?>" method="post" enctype="multipart/form-data">
+                        <form action="<?= base_url('pembayaran/create') ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field(); ?>
                             <div class="form-group">
-                                <label>Judul</label>
-                                <input type="text" name="judul" id="judul" class="form-control" placeholder="Judul" value="<?= $detail_artikel['judul'] ?>" required>
+                                <label>Nama</label>
+                                <input type="text" name="id_user" id="id_user" class="form-control" placeholder="Nama User" required readonly>
                             </div>
 
                             <div class="form-group">
-                                <label>Isi</label>
-                                <textarea name="isi" id="isi" class="form-control" placeholder="Isi Artikel" required><?= $detail_artikel['isi'] ?></textarea>
+                                <label>Jumlah Pembayaran</label>
+                                <input type="jumlah_pembayaran" name="jumlah_pembayaran" id="jumlah_pembayaran" class="form-control" placeholder="Jumlah Pembayaran" required>
                             </div>
 
                             <div class="form-group">
-                                <label>Penulis</label>
-                                <input type="text" name="penulis" id="penulis" class="form-control" placeholder="Penulis" value="<?= $detail_artikel['penulis'] ?>" required>
-                            </div>
-
-                            <div class="form-group">
-                                <img src="<?= base_url('assets/backend/images/artikel/' . $detail_artikel['gambar']) ?>" width="100px" height="100px" class="center">
-
-                                <div class="form-group">
-                                    <label>Edit Gambar</label>
-                                    <input type="file" name="gambar" id="gambar" class="form-control" accept=".jpg,.png,.jpeg">
-                                </div>
+                                <label>Bukti Pembayaran</label>
+                                <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="form-control" accept=".jpg,.png,.jpeg" required>
+                                <img src="" id="viewImg" class="img-fluid mt-2" width="200px">
                             </div>
 
                             <div class="form-group">
