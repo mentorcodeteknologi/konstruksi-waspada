@@ -40,7 +40,6 @@
             <div class="col-lg-12">
                 <h3>create account</h3>
                 <div class="theme-card">
-                    <a href=""></a>
                     <form action="<?= base_url('register') ?>" method="post" class="theme-form" enctype="multipart/form-data">
                         <?= csrf_field(); ?>
 
@@ -73,8 +72,8 @@
                             <img src="" id="viewImg" class="img-fluid mt-2" width="200px">
                         </div>
 
-                        <button type="syubmit" class="btn btn-solid w-auto">create Account</button>
-
+                        <button type="submit" class="btn btn-solid w-auto">create Account</button>
+                    </form>
                 </div>
 
                 <!-- <div class="col-md-6">
@@ -93,7 +92,7 @@
                                 <label for="review">No Handphone</label>
                                 <input type="text" class="form-control" id="no_handphone" placeholder="No Handphone" required="">
                             </div> -->
-                </form>
+
             </div>
         </div>
     </div>
