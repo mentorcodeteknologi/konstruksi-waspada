@@ -22,7 +22,7 @@ class AuthFilter implements FilterInterface
         // Validasi apakah pengguna sudah login
         $session = session();
         if (!$session->get('logged_in')) {
-            return redirect()->to(base_url('/'));
+            return redirect()->to(base_url('/login'));
         }
 
         // ROLE PENGUNA YANG DIPERBOLEHKAN DALAM AKSES ROUTE
@@ -32,7 +32,7 @@ class AuthFilter implements FilterInterface
         // Periksa apakah role pengguna ada dalam daftar yang diizinkan
         if (!in_array($userRole, $allowedRoles)) {
             // Jika rolenya tidak sesuai, kembalikan response dengan status 404
-            return Services::response()->setStatusCode(404);
+            return redirect()->to(base_url('/404'));
         }
 
         return null;

@@ -10,4 +10,9 @@ class DashboardController extends BaseController
     {
         return view('dashboard/index');
     }
+
+    public function pageNotFound()
+    {
+        return view('dashboard/page_not_found');
+    }
 }

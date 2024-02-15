@@ -83,7 +83,7 @@ class AuthController extends BaseController
     // ========================= //
     // FUNCTION AUTH REGISTER
     // ========================= //
-    public function authRegister()
+    public function register()
     {
         $helper = new Helpers();
 
@@ -99,7 +99,7 @@ class AuthController extends BaseController
             'nama'       => $this->request->getVar('nama'),
             'email'      => $this->request->getVar('email'),
             'password'   => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
-            'role'       => 'user',
+            'role'       => 'users',
             'status'     => 'nonaktif',
             'encrypt'    => $helper->generateRandomString(12, 'ec'),
             'foto'       => $foto,

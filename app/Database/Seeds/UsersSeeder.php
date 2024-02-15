@@ -16,7 +16,7 @@ class UsersSeeder extends Seeder
             'password'   => password_hash('admin', PASSWORD_DEFAULT),
             'role'       => 'admin',
             'foto'       => 'default.png',
-            'encrypt'    => 'ec1ptA1Dm1n',
+            'encrypt'    => 'ec1ptA1Dm1n12e',
             'status'     => 'active',
             'created_at' => Time::now(),
             'updated_at' => Time::now()
