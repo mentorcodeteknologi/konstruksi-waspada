@@ -12,7 +12,7 @@ class AlatHilangModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama_alat', 'merk', 'deskripsi', 'foto', 'slug', 'created_at', 'updated_at'];
+    protected $allowedFields    = ['id_user', 'merk', 'type_alat', 'serial_number', 'foto', 'pembelian_dari', 'tanggal_kehilangan', 'surat_kepemilikian', 'lokasi_kehilangan', 'kronologi', 'nominal_kerugian', 'slug', 'created_at', 'updated_at'];
 
     protected bool $allowEmptyInserts = false;
 

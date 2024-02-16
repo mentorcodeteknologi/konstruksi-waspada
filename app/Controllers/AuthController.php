@@ -75,6 +75,10 @@ class AuthController extends BaseController
             'status'    => $userDatas['status'],
             'logged_in' => true
         ];
+
+        $otpCode    = rand(100000, 999999);
+
+
         $session->set($session_data);
         return redirect()->to(base_url('dashboard'));
     }

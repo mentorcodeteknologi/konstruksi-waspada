@@ -18,6 +18,14 @@ class Users extends Migration
                 'type'           => 'VARCHAR',
                 'constraint'     => 100,
             ],
+            'id_card'            => [
+                'type'           => 'VARCHAR',
+                'constraint'     => 100,
+            ],
+            'no_hp'              => [
+                'type'           => 'VARCHAR',
+                'constraint'     => 15,
+            ],
             'email'              => [
                 'type'           => 'VARCHAR',
                 'constraint'     => 100,
@@ -25,6 +33,9 @@ class Users extends Migration
             'password'           => [
                 'type'           => 'VARCHAR',
                 'constraint'     => 255,
+            ],
+            'alamat'             => [
+                'type'           => 'TEXT',
             ],
             'role'               => [
                 'type'           => 'VARCHAR',
@@ -40,6 +51,11 @@ class Users extends Migration
                 'constraint'     => 100,
                 'null'           => true,
             ],
+            'jabatan'            => [
+                'type'           => 'VARCHAR',
+                'constraint'     => 100,
+                'null'           => true,
+            ],
             'foto'               => [
                 'type'           => 'VARCHAR',
                 'constraint'     => 255,
@@ -51,10 +67,6 @@ class Users extends Migration
                 'default'        => 'nonactive'
             ],
             'is_veryfied_email'  => [
-                'type'           => 'BOOLEAN',
-                'default'        => false
-            ],
-            'is_veryfied_wa'  => [
                 'type'           => 'BOOLEAN',
                 'default'        => false
             ],
