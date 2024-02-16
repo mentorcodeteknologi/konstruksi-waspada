@@ -14,11 +14,11 @@ class PerusahaanBlacklist extends Migration
                 'constraint'           => 11,
                 'auto_increment'       => true,
             ],
-            'npwp_perusahaan'          => [
+            'npwp'                     => [
                 'type'                 => 'VARCHAR',
                 'constraint'           => 20,
             ],
-            'nama_perusahaan'          => [
+            'nama'                     => [
                 'type'                 => 'VARCHAR',
                 'constraint'           => 100,
             ],
@@ -29,12 +29,13 @@ class PerusahaanBlacklist extends Migration
             'nama_penanggung_jawab'    => [
                 'type'                 => 'VARCHAR',
                 'constraint'           => 100,
+                'null'                 => true,
             ],
             'no_hp'                    => [
                 'type'                 => 'VARCHAR',
                 'constraint'           => 20,
             ],
-            'merek'                    => [
+            'mrek'                     => [
                 'type'                 => 'VARCHAR',
                 'constraint'           => 100,
             ],
@@ -53,10 +54,12 @@ class PerusahaanBlacklist extends Migration
             'foto_alat'                => [
                 'type'                 => 'VARCHAR',
                 'constraint'           => 100,
+                'null'                 => true,
             ],
             'foto_serah_terima_alat'   => [
                 'type'                 => 'VARCHAR',
                 'constraint'           => 100,
+                'null'                 => true,
             ],
             'jenis_pelanggaran'        => [
                 'type'                 => 'VARCHAR',
@@ -68,17 +71,25 @@ class PerusahaanBlacklist extends Migration
             'akhir_rental'             => [
                 'type'                 => 'DATETIME',
             ],
-            'bukti_laainnya'           => [
+            'bukti_lainnya'            => [
                 'type'                 => 'VARCHAR',
                 'constraint'           => 100,
+                'null'                 => true,
             ],
             'nominal_kerugian'         => [
                 'type'                 => 'VARCHAR',
                 'constraint'           => 100,
             ],
             'keterangan'               => [
+                'type'                 => 'TEXT',
+            ],
+            'slug'                     => [
                 'type'                 => 'VARCHAR',
-                'constraint'           => 255,
+                'constraint'           => 100,
+            ],
+            'id_user'                  => [
+                'type'                 => 'INT',
+                'constraint'           => 11,
             ],
             'created_at'               => [
                 'type'                 => 'DATETIME',
@@ -88,6 +99,7 @@ class PerusahaanBlacklist extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('id_user', 'users', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('perusahaan_blacklist');
     }
 

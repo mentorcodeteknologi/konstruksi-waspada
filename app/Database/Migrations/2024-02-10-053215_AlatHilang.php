@@ -14,20 +14,46 @@ class AlatHilang extends Migration
                 'constraint'     => 11,
                 'auto_increment' => true
             ],
-            'nama_alat'          => [
-                'type'           => 'VARCHAR',
-                'constraint'     => 100
+            'id_user'            => [
+                'type'           => 'INT',
+                'constraint'     => 11
             ],
             'merk'               => [
                 'type'           => 'VARCHAR',
                 'constraint'     => 100
             ],
-            'deskripsi'          => [
-                'type'           => 'TEXT'
+            'type_alat'          => [
+                'type'           => 'VARCHAR',
+                'constraint'     => 100
+            ],
+            'serial_number'      => [
+                'type'           => 'VARCHAR',
+                'constraint'     => 100
             ],
             'foto'               => [
                 'type'           => 'VARCHAR',
                 'constraint'     => 100
+            ],
+            'pembelian_dari'     => [
+                'type'           => 'VARCHAR',
+                'constraint'     => 100
+            ],
+            'tanggal_kehilangan' => [
+                'type'           => 'DATE'
+            ],
+            'surat_kepemilikian' => [
+                'type'           => 'VARCHAR',
+                'constraint'     => 100
+            ],
+            'lokasi_kehilangan'  => [
+                'type'           => 'TEXT',
+            ],
+            'kronologi'          => [
+                'type'           => 'TEXT'
+            ],
+            'nominal_kerugian'    => [
+                'type'           => 'INT',
+                'constraint'     => 50
             ],
             'slug'               => [
                 'type'           => 'VARCHAR',
@@ -41,6 +67,7 @@ class AlatHilang extends Migration
             ]
         ]);
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('id_user', 'users', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('alat_hilang');
     }
 

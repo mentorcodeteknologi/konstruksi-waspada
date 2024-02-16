@@ -29,8 +29,9 @@ class UserBlacklist extends Migration
             'no_hp'                    => [
                 'type'                 => 'VARCHAR',
                 'constraint'           => 20,
+                'null'                 => true,
             ],
-            'merek'                    => [
+            'merk'                     => [
                 'type'                 => 'VARCHAR',
                 'constraint'           => 100,
             ],
@@ -67,14 +68,22 @@ class UserBlacklist extends Migration
             'bukti_lainnya'            => [
                 'type'                 => 'VARCHAR',
                 'constraint'           => 100,
+                'null'                 => true,
             ],
             'nominal_kerugian'         => [
                 'type'                 => 'INT',
                 'constraint'           => 20,
             ],
+            'keterangan'               => [
+                'type'                 => 'TEXT',
+            ],
             'slug'                     => [
                 'type'                 => 'VARCHAR',
                 'constraint'           => 100,
+            ],
+            'id_user'                  => [
+                'type'                 => 'INT',
+                'constraint'           => 11,
             ],
             'created_at'               => [
                 'type'                 => 'DATETIME',
@@ -84,6 +93,7 @@ class UserBlacklist extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('id_user', 'users', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('user_blacklist');
     }
 
