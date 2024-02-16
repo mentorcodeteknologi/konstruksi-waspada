@@ -117,4 +117,54 @@
         </div>
     </div>
 </section>
+
+<!-- view form kehilangan alat -->
+<div class="container mb-5">
+    <div class="card">
+        <div class="card-header">
+            <form class="form-inline search-form search-box">
+                <div class="form-group">
+                    <input class="form-control-plaintext" type="search" placeholder="Search.." /><span class="d-sm-none mobile-search"><i data-feather="search"></i></span>
+                </div>
+            </form>
+        </div>
+
+        <div class="card-body">
+            <h4>Tabel Kehilangan Alat</h4>
+            <div class="table-responsive table-desi">
+                <table class="all-package coupon-table table table-striped">
+                    <thead>
+                        <tr>
+                            <!-- <th>
+                    <button
+                      type="button"
+                      class="btn btn-primary add-row delete_all"
+                    >
+                      Delete
+                    </button>
+                  </th> -->
+                            <th>PEMILIK ALAT</th>
+                            <th>NO HP</th>
+                            <th>TYPE ALAT DAN MERK</th>
+                            <th>SERIAL NUMBER</th>
+                            <th>TANGGAL KEHILANGAN</th>
+                            <th>LOKASI KEHILANGAN</th>
+                            <th>KRONOLOGIS KEJADIAN</th>
+                            <th>STATUS KEPEMILIKAN</th>
+                        </tr>
+                    </thead>
+
+                    <!-- <tbody>
+                        
+                            <tr>
+                                
+                            </tr>
+                        
+                    </tbody> -->
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- view form kehilangan alat -->
 <?= $this->endSection(); ?>

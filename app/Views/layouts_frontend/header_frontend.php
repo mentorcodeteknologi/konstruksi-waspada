@@ -16,6 +16,20 @@
                                 <li><a href="/register">register</a></li>
                             </ul>
                         </li>
+                        <li class="onhover-dropdown mobile-account">
+                            <i class="fa fa-building" aria-hidden="true"></i>User Blacklist
+                            <ul class="onhover-show-div">
+                                <li> <a href="/user_blacklist_frontend">User Blacklist</a></li>
+                            </ul>
+                        </li>
+                        <li class="onhover-dropdown mobile-account">
+                            <i class="fa fa-globe" aria-hidden="true"></i> Blog
+                            <ul class="onhover-show-div">
+                                <li>
+                                    <a href="/">Blog</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -181,7 +195,9 @@
                                     <li>
                                         <div class="mobile-back text-end">Back<i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
                                     </li>
-                                    <li><a href="/">Blog</a></li>
+                                    <li>
+                                        <a href="/">Blog</a>
+                                    </li>
                                     <li>
                                         <a href="/user_blacklist_frontend">User Blacklist</a>
                                     </li>

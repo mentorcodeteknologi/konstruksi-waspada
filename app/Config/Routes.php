@@ -32,6 +32,7 @@ $routes->set404Override();
 
 // HOME ROUTES
 $routes->get('/', 'HomeController::index');
+$routes->get('/blog_details/(:any)', 'HomeController::blog_details/$1');
 
 // AUTH ROUTES
 $routes->get('/login', 'AuthController::indexLogin');
