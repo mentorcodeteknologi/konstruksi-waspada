@@ -69,6 +69,8 @@ class ArtikelController extends BaseController
         $data = [
             'judul'      => $this->request->getVar('judul'),
             'isi'        => $this->request->getVar('isi'),
+            'url'        => $this->request->getVar('url'),
+            'deskripsi'  => $this->request->getVar('deskripsi'),
             'gambar'     => $foto,
             'slug'       => $helper->generateSlug(),
             'penulis'    => $this->request->getVar('penulis'),
@@ -117,11 +119,12 @@ class ArtikelController extends BaseController
         $data = [
             'judul'      => $this->request->getVar('judul'),
             'isi'        => $this->request->getVar('isi'),
+            'url'        => $this->request->getVar('url'),
+            'deskripsi'  => $this->request->getVar('deskripsi'),
             'gambar'     => $foto,
             'penulis'    => $this->request->getVar('penulis'),
             'updated_at' => Time::now('Asia/Jakarta', 'en_US')
         ];
-        dd($data);
 
         $this->artikelModel->update($artikelData['id'], $data);
         session()->setFlashdata('pesan', 'Data Berhasil Diubah');

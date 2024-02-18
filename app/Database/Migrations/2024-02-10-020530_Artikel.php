@@ -29,6 +29,10 @@ class Artikel extends Migration
                 'type'       => 'TEXT',
                 'null'       => true,
             ],
+            'deskripsi'      => [
+                'type'       => 'TEXT',
+                'null'       => true,
+            ],
             'slug'           => [
                 'type'       => 'VARCHAR',
                 'constraint' => 20,

@@ -64,6 +64,11 @@
                             </div>
 
                             <div class="form-group">
+                                <label>Deskripsi</label>
+                                <input type="text" name="deskripsi" id="deskripsi" class="form-control" placeholder="deskripsi" value="<?= $detail_artikel['deskripsi'] ?>" required>
+                            </div>
+
+                            <div class="form-group">
                                 <img src="<?= base_url('assets/backend/images/artikel/' . $detail_artikel['gambar']) ?>" width="100px" height="100px" class="center">
 
                                 <div class="form-group">

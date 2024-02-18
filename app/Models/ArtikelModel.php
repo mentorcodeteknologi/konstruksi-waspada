@@ -12,7 +12,7 @@ class ArtikelModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['judul', 'isi', 'gambar', 'slug', 'url', 'penulis', 'created_at', 'updated_at'];
+    protected $allowedFields    = ['judul', 'isi', 'gambar', 'slug', 'url', 'deskripsi', 'penulis', 'created_at', 'updated_at'];
 
     protected bool $allowEmptyInserts = false;
 

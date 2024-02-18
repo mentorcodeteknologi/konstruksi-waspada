@@ -76,6 +76,7 @@
                             <td><?= $value['isi'] ?></td>
                             <td><?= $value['slug'] ?></td>
                             <td><?= $value['url'] ?></td>
+                            <td><?= $value['deskripsi'] ?></td>
                             <td><?= $value['penulis'] ?></td>
                             <td><?= $value['created_at'] ?></td>
                             <td><?= $value['updated_at'] ?></td>

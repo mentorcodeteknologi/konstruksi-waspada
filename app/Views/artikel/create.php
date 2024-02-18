@@ -64,6 +64,11 @@
                             </div>
 
                             <div class="form-group">
+                                <label>Deskripsi</label>
+                                <input type="text" name="Deskripsi" id="Deskripsi" class="form-control" placeholder="Deskripsi" required>
+                            </div>
+
+                            <div class="form-group">
                                 <label>Gambar</label>
                                 <input type="file" name="gambar" id="gambar" class="form-control" accept=".jpg,.png,.jpeg" required>
                                 <img src="" id="viewImg" class="img-fluid mt-2" width="200px">
