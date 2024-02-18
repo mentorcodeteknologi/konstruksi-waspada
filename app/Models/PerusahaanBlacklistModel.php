@@ -12,7 +12,7 @@ class PerusahaanBlacklistModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['npwp', 'nama', 'foto_npwp', 'nama_penanggung_jawab', 'no_hp', 'mrek', 'type_alat', 'no_seri', 'surat_perjanjian', 'foto_alat', 'foto_serah_terima_alat', 'jenis_pelanggaran', 'mulai_rental', 'akhir_rental', 'bukti_lainnya', 'nominal_kerugian', 'keterangan', 'slug', 'id_user', 'created_at', 'updated_at'];
+    protected $allowedFields    = ['npwp', 'nama', 'foto_npwp', 'valid', 'nama_penanggung_jawab', 'no_hp', 'merk', 'type_alat', 'no_seri', 'surat_perjanjian', 'foto_alat', 'foto_serah_terima_alat', 'jenis_pelanggaran', 'mulai_rental', 'akhir_rental', 'bukti_lainnya', 'nominal_kerugian', 'keterangan', 'slug', 'id_user', 'created_at', 'updated_at'];
 
     protected bool $allowEmptyInserts = false;
 
@@ -39,4 +39,17 @@ class PerusahaanBlacklistModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+
+    // ============================ //
+    // FUNCTION FIND ALL DATAS
+    // ============================ //
+    public function findAllDatas()
+    {
+        $builder = $this->db->table('perusahaan_blacklist');
+        $builder->select('perusahaan_blacklist.*, users.perusahaan');
+        $builder->join('users', 'users.id = perusahaan_blacklist.id_user');
+        $builder->orderBy('perusahaan_blacklist.created_at', 'DESC');
+        return $builder->get()->getResultArray();
+    }
 }

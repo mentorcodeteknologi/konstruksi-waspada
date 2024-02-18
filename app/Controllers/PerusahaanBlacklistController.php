@@ -4,21 +4,21 @@ namespace App\Controllers;
 
 use CodeIgniter\I18n\Time;
 use App\Controllers\BaseController;
-use App\Models\UserBlacklistModel;
+use App\Models\PerusahaanBlacklistModel;
 use App\Helpers\Helpers;
 
-class UserBlacklistController extends BaseController
+class PerusahaanBlacklistController extends BaseController
 {
 
     // DEKLARASI MODEL
-    protected $userBlacklistModel;
+    protected $perusahaanBlacklistModel;
 
     // ========================= //
     // FUNCTION CONSTRUCTOR
     // ========================= //
     public function __construct()
     {
-        $this->userBlacklistModel = new UserBlacklistModel();
+        $this->perusahaanBlacklistModel = new PerusahaanBlacklistModel();
     }
 
 
@@ -28,11 +28,11 @@ class UserBlacklistController extends BaseController
     public function index()
     {
         $data = [
-            'title'               => 'User Blacklist',
-            'subtitle'            => 'List Data User Blacklist',
-            'list_user_blacklist' => $this->userBlacklistModel->findAllDatas()
+            'title'                    => 'Perusahaan Blacklist',
+            'subtitle'                 => 'List Data Perusahaan Blacklist',
+            'list_perusahan_blacklist' => $this->perusahaanBlacklistModel->findAllDatas()
         ];
-        return view('user_blacklist/index', $data);
+        return view('perusahaan_blacklist/index', $data);
     }
 
 
@@ -42,30 +42,30 @@ class UserBlacklistController extends BaseController
     public function create()
     {
         $data = [
-            'title'    => 'User Blacklist',
-            'subtitle' => 'Tambah Data User Blacklist'
+            'title'    => 'Perusahan Blacklist',
+            'subtitle' => 'Tambah Data Perusahaan Blacklist'
         ];
-        return view('user_blacklist/create', $data);
+        return view('perusahaan_blacklist/create', $data);
     }
 
 
     // ============================= //
-    // FUNCTION CREATE USER Blacklist
+    // FUNCTION CREATE PERUSAHAAN BLACKLIST
     // ============================= //
-    public function createUserBlacklist()
+    public function createPerusahaanBlacklist()
     {
         $session = session();
         $helper = new Helpers();
         $slug   = $helper->generateSlug();
-        $path   = 'assets/backend/images/user_blacklist/' . $slug . "/";
+        $path   = 'assets/backend/images/perusahaan_blacklist/' . $slug . "/";
 
-        // CEK FOLDER USER BLACKLIST
+        // CEK FOLDER PERUSAHAAN BLACKLIST
         if (!file_exists($path)) {
             mkdir($path, 0777, true);
         }
 
         // UPLOAD FOTO KTP
-        $fileKtp = $this->request->getFile('foto_ktp');
+        $fileKtp = $this->request->getFile('foto_npwp');
         $fotoKtp = $fileKtp->getRandomName();
         $fileKtp->move($path, $fotoKtp);
 
@@ -87,6 +87,7 @@ class UserBlacklistController extends BaseController
         $data = [
             'nik'                    => $this->request->getVar('nik'),
             'nama'                   => $this->request->getVar('nama'),
+            'nama_penanggung_jawab'  => $this->request->getVar('nama_penanggung_jawab'),
             'foto_ktp'               => $fotoKtp,
             'no_hp'                  => $this->request->getVar('no_hp'),
             'merk'                   => $this->request->getVar('merk'),
@@ -114,7 +115,7 @@ class UserBlacklistController extends BaseController
             $data['bukti_lainnya'] = $buktiLainnya;
         }
 
-        $this->userBlacklistModel->insert($data);
+        $this->perusahaanBlacklistModel->insert($data);
         session()->setFlashdata('pesan', 'Data berhasil disimpan');
         return redirect()->to(base_url('user_blacklist'));
     }
@@ -128,7 +129,7 @@ class UserBlacklistController extends BaseController
         $data = [
             'title'                  => 'User Blacklist',
             'subtitle'               => 'Edit Data User Blacklist',
-            'detail_users_blacklist' => $this->userBlacklistModel->getDataBySlug($slug)
+            'detail_users_blacklist' => $this->perusahaanBlacklistModel->getDataBySlug($slug)
         ];
         return view('user_blacklist/update', $data);
     }
@@ -139,7 +140,7 @@ class UserBlacklistController extends BaseController
     // ============================= //
     public function updateUserBlacklist($slug)
     {
-        $datas  = $this->userBlacklistModel->getDataBySlug($slug);
+        $datas  = $this->perusahaanBlacklistModel->getDataBySlug($slug);
 
         // CEK FOLDER USER BLACKLIST
         $path = 'assets/backend/images/user_blacklist/' . $slug . "/";
@@ -223,7 +224,7 @@ class UserBlacklistController extends BaseController
             $data['bukti_lainnya'] = $buktiLainnya;
         }
 
-        $this->userBlacklistModel->update($datas['id'], $data);
+        $this->perusahaanBlacklistModel->update($datas['id'], $data);
         session()->setFlashdata('pesan', 'Data berhasil diupdate');
         return redirect()->to(base_url('user_blacklist'));
     }
@@ -236,7 +237,7 @@ class UserBlacklistController extends BaseController
         $data = [
             'title'                  => 'Detail User Blacklist',
             'subtitle'               => 'Detail Data User Blacklist',
-            'detail_users_blacklist' => $this->userBlacklistModel->getDataBySlug($slug)
+            'detail_users_blacklist' => $this->perusahaanBlacklistModel->getDataBySlug($slug)
         ];
         return view('user_blacklist/update', $data);
     }
@@ -247,9 +248,9 @@ class UserBlacklistController extends BaseController
     // ========================= //
     public function validation($slug)
     {
-        $datas = $this->userBlacklistModel->getDataBySlug($slug);
+        $datas = $this->perusahaanBlacklistModel->getDataBySlug($slug);
 
-        $this->userBlacklistModel->update($datas['id'], ['valid' => true]);
+        $this->perusahaanBlacklistModel->update($datas['id'], ['valid' => true]);
         session()->setFlashdata('pesan', 'Data berhasil divalidasi');
         return redirect()->to(base_url('user_blacklist'));
     }
@@ -261,7 +262,7 @@ class UserBlacklistController extends BaseController
     public function delete($slug)
     {
         $helper = new Helpers();
-        $datas  = $this->userBlacklistModel->getDataBySlug($slug);
+        $datas  = $this->perusahaanBlacklistModel->getDataBySlug($slug);
 
         // HAPUS FOLDER
         $path = 'assets/backend/images/user_blacklist/' . $slug . "/";
@@ -269,7 +270,7 @@ class UserBlacklistController extends BaseController
             $helper->deleteDir($path);
         }
 
-        $this->userBlacklistModel->delete($datas['id']);
+        $this->perusahaanBlacklistModel->delete($datas['id']);
         session()->setFlashdata('pesan', 'Data berhasil dihapus');
         return redirect()->to(base_url('user_blacklist'));
     }

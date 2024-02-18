@@ -41,11 +41,11 @@
                 <div class="row ">
                     <div class="col-sm-12 ">
 
-                        <form action="<?= base_url('user_blacklist/create') ?>" method="post" enctype="multipart/form-data">
+                        <form action="<?= base_url('perusahaan_blacklist/create') ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field(); ?>
                             <div class="form-group">
-                                <label>NIK</label>
-                                <input type="text" name="nik" id="nik" class="form-control" placeholder="NIK User" required>
+                                <label>NPWP</label>
+                                <input type="text" name="npwp" id="npwp" class="form-control" placeholder="No NPWP" required>
                             </div>
 
                             <div class="form-group">
@@ -54,9 +54,14 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Foto KTP</label>
-                                <input type="file" name="foto_ktp" id="foto_ktp" class="form-control" accept=".jpg,.png,.jpeg" required>
+                                <label>Foto NPWP</label>
+                                <input type="file" name="foto_npwp" id="foto_npwp" class="form-control" accept=".jpg,.png,.jpeg" required>
                                 <img src="" id="viewImg" class="img-fluid mt-2" width="200px">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Nama Penanggung Jawab</label>
+                                <input type="text" name="nama_penanggung_jawab" id="nama_penanggung_jawab" class="form-control" placeholder="Nama Penanggung Jawab" required>
                             </div>
 
                             <div class="form-group">

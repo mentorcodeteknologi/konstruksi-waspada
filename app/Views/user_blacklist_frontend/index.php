@@ -52,8 +52,8 @@
                                 <input type="text" class="form-control" name="no_hp" id="no_hp" placeholder="No HP Terlapor" required="">
                             </div>
                             <div class="col-md-6">
-                                <label for="review">Merek</label>
-                                <input type="text" class="form-control" name="merek" id="merek" placeholder="Merek" required="">
+                                <label for="review">merk</label>
+                                <input type="text" class="form-control" name="merk" id="merk" placeholder="merk" required="">
                             </div>
                             <div class="col-md-6">
                                 <label for="review">Tipe Alat</label>
@@ -147,7 +147,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="review">Merk</label>
-                                <input type="text" class="form-control" id="merek" placeholder="Merk" required="">
+                                <input type="text" class="form-control" id="merk" placeholder="Merk" required="">
                             </div>
                             <div class="col-md-6">
                                 <label for="review">Tipe Alat</label>
@@ -253,7 +253,7 @@
                                 <td><?= $u['nik'] ?></td>
                                 <td><?= $u['nama'] ?></td>
                                 <td><?= $u['jenis_pelanggaran'] ?></td>
-                                <td><?= $u['merek'] ?> <?= $u['type_alat'] ?></td>
+                                <td><?= $u['merk'] ?> <?= $u['type_alat'] ?></td>
                                 <td><?= $u['no_seri'] ?></td>
                                 <td><?= date('d-m-Y', strtotime($u['mulai_rental'])); ?> - <?= date('d-m-Y', strtotime($u['akhir_rental'])); ?></td>
                                 <td>keterangan belum ada db</td>

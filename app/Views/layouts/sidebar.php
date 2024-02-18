@@ -67,6 +67,12 @@ $session = session();
                     </a>
                 </li>
                 <li>
+                    <a class="sidebar-header" href="<?= base_url('perusahaan_blacklist'); ?>">
+                        <i data-feather="users"></i>
+                        <span>Perusahaan Blacklist</span>
+                    </a>
+                </li>
+                <li>
                     <a class="sidebar-header" href="<?= base_url('kalender'); ?>">
                         <i data-feather="calendar"></i>
                         <span>Kalender</span>

@@ -45,16 +45,20 @@ $routes->get('/logout', 'AuthController::logout');
 $routes->get('/user_blacklist_frontend', 'UserBlacklistFrontendController::index');
 
 // ALAT HILANG ROUTES
+$routes->get('alat_hilang/detail', 'AlatHilangFrontendController::index');
+
 
 // DASHBOARD ROUTES
 $routes->get('/404', 'DashboardController::pageNotFound');
 $routes->get('/dashboard', 'DashboardController::index', ['filter' => 'auth:users,admin']);
+
 
 // ROUTES OTP
 $routes->group('otp', ['filter' => 'auth:users,admin'], function ($routes) {
     $routes->get('', 'AuthController::otp');
     $routes->post('', 'AuthController::verifyOtpLogin');
 });
+
 
 // ROUTES USERS
 $routes->group('users', ['filter' => 'auth:admin'], function ($routes) {
@@ -63,7 +67,10 @@ $routes->group('users', ['filter' => 'auth:admin'], function ($routes) {
     $routes->post('create', 'UsersController::createUser');
     $routes->get('update/(:any)', 'UsersController::update/$1');
     $routes->post('update/(:any)', 'UsersController::updateUsers/$1');
+    $routes->get('edit-profile/(:any)', 'UsersController::edit/$1');
+    $routes->post('edit-profile/(:any)', 'UsersController::editProfile/$1');
 });
+
 
 // ROUTES ARTIKEL
 $routes->group('artikel', ['filter' => 'auth:user,admin'], function ($routes) {
@@ -75,12 +82,9 @@ $routes->group('artikel', ['filter' => 'auth:user,admin'], function ($routes) {
     $routes->post('delete/(:any)', 'ArtikelController::delete/$1');
 });
 
+
 // ROUTES ALAT HILANG
 $routes->group('alat_hilang', ['filter' => 'auth:user,admin'], function ($routes) {
-    // FRONT END
-    $routes->get('detail', 'AlatHilangFrontendController::index');
-
-    // BACK END
     $routes->get('', 'AlatHilangController::index');
     $routes->get('create', 'AlatHilangController::create');
     $routes->post('create', 'AlatHilangController::createAlatHilang');
@@ -98,11 +102,28 @@ $routes->group('user_blacklist', ['filter' => 'auth:user,admin'], function ($rou
     $routes->get('update/(:any)', 'UserBlacklistController::update/$1');
     $routes->post('update/(:any)', 'UserBlacklistController::updateUserBlacklist/$1');
     $routes->post('delete/(:any)', 'UserBlacklistController::delete/$1');
+    $routes->get('detail/(:any)', 'UserBlacklistController::detail/$1');
     $routes->post('validation/(:any)', 'UserBlacklistController::validation/$1');
 });
 
+
+// ROUTES PERUSAHAAN BLACKLIST
+$routes->group('perusahaan_blacklist', ['filter' => 'auth:user,admin'], function ($routes) {
+    $routes->get('', 'PerusahaanBlacklistController::index');
+    $routes->get('create', 'PerusahaanBlacklistController::create');
+    $routes->post('create', 'PerusahaanBlacklistController::createPerusahaanBlacklist');
+    $routes->get('update/(:any)', 'PerusahaanBlacklistController::update/$1');
+    $routes->post('update/(:any)', 'PerusahaanBlacklistController::updatePerusahaanBlacklist/$1');
+    $routes->post('delete/(:any)', 'PerusahaanBlacklistController::delete/$1');
+    $routes->get('detail/(:any)', 'PerusahaanBlacklistController::detail/$1');
+    $routes->post('validation/(:any)', 'PerusahaanBlacklistController::validation/$1');
+});
+
+
 // ROUTES WHATSAPP SCAN QR
 $routes->get('/scan_qr', 'WhatsappController::index');
+
+
 // ROUTES PEMBAYARAN
 $routes->group('pembayaran', ['filter' => 'auth:admin'], function ($routes) {
     $routes->get('', 'PembayaranController::index');

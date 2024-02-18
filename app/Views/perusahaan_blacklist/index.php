@@ -43,8 +43,8 @@
         }
         ?>
 
-        <form action="<?= base_url('alat_hilang/create') ?>">
-            <button type="submit" class="btn btn-primary">+ Tambah Data Alat Hilang</button>
+        <form action="<?= base_url('perusahaan_blacklist/create') ?>">
+            <button type="submit" class="btn btn-primary">+ Tambah Data User blacklist</button>
         </form>
         <br><br><br>
 
@@ -54,11 +54,17 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Alat</th>
-                        <th>Merk</th>
-                        <th>Deskripsi</th>
-                        <th>Foto</th>
-                        <th>Slug</th>
+                        <th>Perusahaan Penyedia Sewa</th>
+                        <th>NIK Terlapor</th>
+                        <th>Nama Terlapor</th>
+                        <th>Nama Penangung Jawab Terlapor</th>
+                        <th>Jenis Pelanggaran</th>
+                        <th>merk</th>
+                        <th>Type Alat</th>
+                        <th>No Seri</th>
+                        <th>Durasi</th>
+                        <th>Keterangan</th>
+                        <th>Nominal Kerugian</th>
                         <th>Created At</th>
                         <th>Updated At</th>
                         <th>Action</th>
@@ -68,19 +74,30 @@
                 <tbody>
                     <?php
                     $no = 1;
-                    foreach ($list_alat_hilang as $value) { ?>
+                    foreach ($list_perusahan_blacklist as $value) { ?>
                         <tr class="text-center">
                             <td><?= $no++ ?></td>
-                            <td><?= $value['nama_alat'] ?></td>
+                            <td><?= $value['perusahaan'] ?></td>
+                            <td><?= $value['npwp'] ?></td>
+                            <td><?= $value['nama'] ?></td>
+                            <td><?= $value['nama_penanggung_jawab'] ?></td>
+                            <td><?= $value['valid'] ?></td>
+                            <td><?= $value['jenis_pelanggaran'] ?></td>
                             <td><?= $value['merk'] ?></td>
-                            <td><?= $value['deskripsi'] ?></td>
-                            <td><img src="<?= base_url('assets/backend/images/alat_hilang/' . $value['foto']) ?>" width="50px" height="50px"></td>
-                            <td><?= $value['slug'] ?></td>
+                            <td><?= $value['type_alat'] ?></td>
+                            <td><?= $value['no_seri'] ?></td>
+                            <td><?= $value['durasi'] . " Bulan" ?></td>
+                            <td><?= $value['keterangan'] ?></td>
+                            <td><?= $value['nominal_kerugian'] ?></td>
                             <td><?= $value['created_at'] ?></td>
                             <td><?= $value['updated_at'] ?></td>
                             <td>
-                                <a href="<?= base_url('alat_hilang/update/' . $value['slug']) ?>" class="btn btn-info btn-sm">Edit</a>
-                                <form action="<?= base_url('alat_hilang/delete/' . $value['slug']); ?>" method="post">
+                                <a href="<?= base_url('perusahaan_blacklist/update/' . $value['slug']) ?>" class="btn btn-info btn-sm">Edit</a>
+                                <a href="<?= base_url('perusahaan_blacklist/detail/' . $value['slug']) ?>" class="btn btn-success btn-sm">Detail</a>
+                                <form action="<?= base_url('perusahaan_blacklist/validation/' . $value['slug']); ?>" method="post">
+                                    <button type="submit" class="btn btn-primary btn-sm" onclick="return confirm('Apakah Anda yakin ingin validasi data ini?')">Validation</button>
+                                </form>
+                                <form action="<?= base_url('perusahaan_blacklist/delete/' . $value['slug']); ?>" method="post">
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
                                 </form>
                             </td>

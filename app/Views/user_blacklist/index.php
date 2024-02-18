@@ -58,7 +58,7 @@
                         <th>NIK Terlapor</th>
                         <th>Nama Terlapor</th>
                         <th>Jenis Pelanggaran</th>
-                        <th>Merek</th>
+                        <th>merk</th>
                         <th>Type Alat</th>
                         <th>No Seri</th>
                         <th>Durasi</th>
@@ -79,16 +79,22 @@
                             <td><?= $value['perusahaan'] ?></td>
                             <td><?= $value['nik'] ?></td>
                             <td><?= $value['nama'] ?></td>
+                            <td><?= $value['valid'] ?></td>
                             <td><?= $value['jenis_pelanggaran'] ?></td>
-                            <td><?= $value['merek'] ?></td>
+                            <td><?= $value['merk'] ?></td>
                             <td><?= $value['type_alat'] ?></td>
                             <td><?= $value['no_seri'] ?></td>
-                            <td><?= $value['durasi'] ?></td>
+                            <td><?= $value['durasi'] . " Bulan" ?></td>
+                            <td><?= $value['keterangan'] ?></td>
                             <td><?= $value['nominal_kerugian'] ?></td>
                             <td><?= $value['created_at'] ?></td>
                             <td><?= $value['updated_at'] ?></td>
                             <td>
                                 <a href="<?= base_url('user_blacklist/update/' . $value['slug']) ?>" class="btn btn-info btn-sm">Edit</a>
+                                <a href="<?= base_url('user_blacklist/detail/' . $value['slug']) ?>" class="btn btn-success btn-sm">Detail</a>
+                                <form action="<?= base_url('user_blacklist/validation/' . $value['slug']); ?>" method="post">
+                                    <button type="submit" class="btn btn-primary btn-sm" onclick="return confirm('Apakah Anda yakin ingin validasi data ini?')">Validation</button>
+                                </form>
                                 <form action="<?= base_url('user_blacklist/delete/' . $value['slug']); ?>" method="post">
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
                                 </form>
