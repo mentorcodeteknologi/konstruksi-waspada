@@ -50,7 +50,7 @@
 
                             <div class="form-group">
                                 <label>Merk</label>
-                                <input type="text" name="merk" id="merk" class="form-control" placeholder="Merek" required>
+                                <input type="text" name="merk" id="merk" class="form-control" placeholder="merk" required>
                             </div>
 
                             <div class="form-group">

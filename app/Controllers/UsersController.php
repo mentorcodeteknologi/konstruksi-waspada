@@ -56,25 +56,37 @@ class UsersController extends BaseController
     // ========================= //
     public function createUser()
     {
-        $helper = new Helpers();
+        $helper  = new Helpers();
+        $encrypt = $helper->generateRandomString(12, 'ec');
+        $path    = 'assets/backend/images/profile/' . $encrypt . "/";
 
         // UPLOAD FOTO PROFILE
         $file = $this->request->getFile('foto');
         $foto = 'default.png';
         if ($file && $file->isValid()) {
             $foto = $file->getRandomName();
-            $file->move('assets/backend/images/', $foto);
+
+            // CEK FOLDER USER BLACKLIST
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+
+            $file->move($path, $foto);
         }
 
         $data = [
             'nama'       => $this->request->getVar('nama'),
+            'id_card'    => $this->request->getVar('id_card'),
+            'no_hp'      => $this->request->getVar('no_hp'),
             'email'      => $this->request->getVar('email'),
             'password'   => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+            'alamat'     => $this->request->getVar('alamat'),
             'role'       => $this->request->getVar('role'),
-            'status'     => 'active',
-            'encrypt'    => $helper->generateRandomString(12, 'ec'),
-            'foto'       => $foto,
+            'encrypt'    => $encrypt,
             'perusahaan' => $this->request->getVar('perusahaan'),
+            'jabatan'    => $this->request->getVar('jabatan'),
+            'foto'       => $foto,
+            'status'     => 'active',
             'created_at' => Time::now('Asia/Jakarta', 'en_US'),
             'updated_at' => Time::now('Asia/Jakarta', 'en_US')
         ];
@@ -106,6 +118,7 @@ class UsersController extends BaseController
     {
         $userData = $this->usersModel->getDataByEncrypt($encrypt);
         $file     = $this->request->getFile('foto');
+        $path     = 'assets/backend/images/profile/' . $userData['encrypt'] . "/";
 
         // Cek apakah ada file yang diupload
         if ($file == "") {
@@ -113,10 +126,16 @@ class UsersController extends BaseController
         } else {
             // Hapus foto lama
             if ($userData['foto'] != 'default.png') {
-                unlink('assets/backend/images/' . $userData['foto']);
+                unlink($path . $userData['foto']);
             }
+
+            // CEK FOLDER USER BLACKLIST
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+
             $foto = $file->getRandomName();
-            $file->move('assets/backend/images/', $foto);
+            $file->move($path, $foto);
         }
 
         // Cek apakah password diubah
@@ -124,12 +143,79 @@ class UsersController extends BaseController
 
         $data = [
             'nama'       => $this->request->getVar('nama'),
+            'id_card'    => $this->request->getVar('id_card'),
+            'no_hp'      => $this->request->getVar('no_hp'),
             'email'      => $this->request->getVar('email'),
             'password'   => $password,
+            'alamat'     => $this->request->getVar('alamat'),
             'role'       => $this->request->getVar('role'),
-            'status'     => $this->request->getVar('status'),
-            'foto'       => $foto,
             'perusahaan' => $this->request->getVar('perusahaan'),
+            'jabatan'    => $this->request->getVar('jabatan'),
+            'foto'       => $foto,
+            'status'     => $this->request->getVar('status'),
+            'updated_at' => Time::now('Asia/Jakarta', 'en_US')
+        ];
+
+        $this->usersModel->update($userData['id'], $data);
+        session()->setFlashdata('pesan', 'Data Berhasil Diubah');
+        return redirect()->to('users');
+    }
+
+    // ========================= //
+    // FUNCTION EDIT PTOFILE
+    // ========================= //
+    public function Edit($encrypt)
+    {
+        $data = [
+            'title'       => 'Users',
+            'subtitle'    => 'Edit Profile Users',
+            'detail_user' => $this->usersModel->getDataByEncrypt($encrypt)
+        ];
+        return view('users/edit_profile', $data);
+    }
+
+
+    // ========================= //
+    // FUNCTION EDIT PROFILE
+    // ========================= //
+    public function editProfile($encrypt)
+    {
+        $userData = $this->usersModel->getDataByEncrypt($encrypt);
+        $file     = $this->request->getFile('foto');
+        $path     = 'assets/backend/images/profile/' . $userData['encrypt'] . "/";
+
+        // Cek apakah ada file yang diupload
+        if ($file == "") {
+            $foto = $userData['foto'];
+        } else {
+            // Hapus foto lama
+            if ($userData['foto'] != 'default.png') {
+                unlink($path . $userData['foto']);
+            }
+
+            // CEK FOLDER USER BLACKLIST
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+
+            $foto = $file->getRandomName();
+            $file->move($path, $foto);
+        }
+
+        // Cek apakah password diubah
+        $password = ($this->request->getVar('password') == $userData['password']) ? $userData['password'] : password_hash($this->request->getVar('password'), PASSWORD_DEFAULT);
+
+        $data = [
+            'nama'       => $this->request->getVar('nama'),
+            'id_card'    => $this->request->getVar('id_card'),
+            'no_hp'      => $this->request->getVar('no_hp'),
+            'email'      => $this->request->getVar('email'),
+            'password'   => $password,
+            'alamat'     => $this->request->getVar('alamat'),
+            'role'       => $this->request->getVar('role'),
+            'perusahaan' => $this->request->getVar('perusahaan'),
+            'jabatan'    => $this->request->getVar('jabatan'),
+            'foto'       => $foto,
             'updated_at' => Time::now('Asia/Jakarta', 'en_US')
         ];
 

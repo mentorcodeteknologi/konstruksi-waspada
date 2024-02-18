@@ -43,8 +43,8 @@
         }
         ?>
 
-        <form action="<?= base_url('artikel/create') ?>">
-            <button type="submit" class="btn btn-primary">+ Tambah Data Artikel</button>
+        <form action="<?= base_url('calendar/create') ?>">
+            <button type="submit" class="btn btn-primary">+ Tambah Data Calendar</button>
         </form>
         <br><br><br>
 
@@ -54,11 +54,8 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Judul</th>
-                        <th>Gambar</th>
-                        <th>Isi</th>
-                        <th>slug</th>
-                        <th>Penulis</th>
+                        <th>Tanggal</th>
+                        <th>Nama Kegiatan</th>
                         <th>Created At</th>
                         <th>Update At</th>
                         <th>Action</th>
@@ -68,21 +65,16 @@
                 <tbody>
                     <?php
                     $no = 1;
-                    foreach ($list_artikel as $value) { ?>
+                    foreach ($list_calendar as $value) { ?>
                         <tr class="text-center">
                             <td><?= $no++ ?></td>
-                            <td><?= $value['judul'] ?></td>
-                            <td><img src="<?= base_url('assets/backend/images/artikel/' . $value['gambar']) ?>" width="100px" height="100px"></td>
-                            <td><?= $value['isi'] ?></td>
-                            <td><?= $value['slug'] ?></td>
-                            <td><?= $value['url'] ?></td>
-                            <td><?= $value['deskripsi'] ?></td>
-                            <td><?= $value['penulis'] ?></td>
+                            <td><?= $value['tanggal_kegiatan'] ?></td>
+                            <td><?= $value['nama_kegiatan'] ?></td>
                             <td><?= $value['created_at'] ?></td>
                             <td><?= $value['updated_at'] ?></td>
                             <td>
-                                <a href="<?= base_url('artikel/update/' . $value['slug']) ?>" class="btn btn-info btn-sm">Edit</a>
-                                <form action="<?= base_url('artikel/delete/' . $value['slug']); ?>" method="post">
+                                <a href="<?= base_url('calendar/update/' . base64_encode($value['id'])) ?>" class="btn btn-info btn-sm">Edit</a>
+                                <form action="<?= base_url('calendar/delete/' . base64_encode($value['id'])); ?>" method="post">
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
                                 </form>
                             </td>

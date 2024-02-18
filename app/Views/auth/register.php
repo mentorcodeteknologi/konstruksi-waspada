@@ -48,6 +48,7 @@
                                 <label for="email">email</label>
                                 <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
                             </div>
+
                             <div class="col-md-6">
                                 <label for="review">Password</label>
                                 <input type="password" class="form-control" name="password" id="review" placeholder="Enter your password" required="">
@@ -61,8 +62,32 @@
                             </div>
 
                             <div class="col-md-6">
+                                <label>No NIK/NPWP</label>
+                                <input type="text" name="id_card" id="id_card" class="form-control" placeholder="No NIK/No NPWP " required>
+                            </div>
+                        </div>
+
+                        <div class="form-row row">
+                            <div class="col-md-6">
+                                <label>No Whatsapp</label>
+                                <input type="text" name="no_hp" id="no_hp" class="form-control" value="+62" placeholder="No Whatsapp" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label>Alamat</label>
+                                <input type="text" name="alamat" id="alamat" class="form-control" placeholder="Alamat" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row row">
+                            <div class="col-md-6">
                                 <label>Nama Perusahaan</label>
                                 <input type="text" name="perusahaan" id="perusahaan" class="form-control" placeholder="Perusahaan">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label>Jabatan</label>
+                                <input type="text" name="jabatan" id="jabatan" class="form-control" placeholder="Jabatan">
                             </div>
                         </div>
 
@@ -75,23 +100,6 @@
                         <button type="submit" class="btn btn-solid w-auto">create Account</button>
                     </form>
                 </div>
-
-                <!-- <div class="col-md-6">
-                                <label for="review">Jabatan</label>
-                                <input type="text" class="form-control" id="jabatan" placeholder="Jabatan" required="">
-                            </div> -->
-                <!-- <div class="col-md-6">
-                                <label for="review">No.NPWP/KTP</label>
-                                <input type="text" class="form-control" id="no_npwp_ktp" placeholder="No.NPWP/KTP" required="">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="review">Alamat</label>
-                                <input type="text" class="form-control" id="alamat" placeholder="Alamat" required="">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="review">No Handphone</label>
-                                <input type="text" class="form-control" id="no_handphone" placeholder="No Handphone" required="">
-                            </div> -->
 
             </div>
         </div>

@@ -41,37 +41,16 @@
                 <div class="row ">
                     <div class="col-sm-12 ">
 
-                        <form action="<?= base_url('artikel/create') ?>" method="post" enctype="multipart/form-data">
+                        <form action="<?= base_url('calendar/create') ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field(); ?>
                             <div class="form-group">
-                                <label>Judul</label>
-                                <input type="text" name="judul" id="judul" class="form-control" placeholder="Judul" required>
+                                <label>Tanggal</label>
+                                <input type="date" name="tanggal_kegiatan" id="tanggal_kegiatan" class="form-control" placeholder="Tanggal Kegiatan" required>
                             </div>
 
                             <div class="form-group">
-                                <label>Isi</label>
-                                <textarea name="isi" id="isi" class="form-control" placeholder="Isi Artikel" required> </textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Pemulis</label>
-                                <input type="text" name="penulis" id="penulis" class="form-control" placeholder="Penulis" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label>URL Youtube</label>
-                                <input type="text" name="url" id="url" class="form-control" placeholder="Url Youtube" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Deskripsi</label>
-                                <input type="text" name="Deskripsi" id="Deskripsi" class="form-control" placeholder="Deskripsi" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Gambar</label>
-                                <input type="file" name="gambar" id="gambar" class="form-control" accept=".jpg,.png,.jpeg" required>
-                                <img src="" id="viewImg" class="img-fluid mt-2" width="200px">
+                                <label>Nama Kegiatan</label>
+                                <textarea name="nama_kegiatan" id="nama_kegiatan" class="form-control" placeholder="Nama Kegiatan" required> </textarea>
                             </div>
 
                             <div class="form-group">

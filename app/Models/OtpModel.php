@@ -4,15 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class PerusahaanBlacklistModel extends Model
+class OtpModel extends Model
 {
-    protected $table            = 'perusahaan_blacklist';
+    protected $table            = 'otp';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['npwp', 'nama', 'foto_npwp', 'nama_penanggung_jawab', 'no_hp', 'mrek', 'type_alat', 'no_seri', 'surat_perjanjian', 'foto_alat', 'foto_serah_terima_alat', 'jenis_pelanggaran', 'mulai_rental', 'akhir_rental', 'bukti_lainnya', 'nominal_kerugian', 'keterangan', 'slug', 'id_user', 'created_at', 'updated_at'];
+    protected $allowedFields    = ['kode', 'type', 'expired_at', 'id_user', 'created_at', 'updated_at'];
 
     protected bool $allowEmptyInserts = false;
 
@@ -39,4 +39,18 @@ class PerusahaanBlacklistModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+
+    // ============================= //
+    // FUNCTION VALIDATION OTP
+    // ============================= //
+    public function validationOtp($encrypt, $kode)
+    {
+        $builder = $this->db->table('otp');
+        $builder->select('*');
+        $builder->where('id_user', $encrypt);
+        $builder->where('kode', $kode);
+        $builder->where('expired_at >', date('Y-m-d H:i:s'));
+        return $builder->get()->getRowArray();
+    }
 }

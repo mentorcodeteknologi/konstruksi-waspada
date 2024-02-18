@@ -202,7 +202,7 @@
                                         <a href="/user_blacklist_frontend">User Blacklist</a>
                                     </li>
                                     <li>
-                                        <a href="/alathilang">Alat Hilang</a>
+                                        <a href="/alat_hilang_frontend">Alat Hilang</a>
                                     </li>
                                 </ul>
                             </nav>

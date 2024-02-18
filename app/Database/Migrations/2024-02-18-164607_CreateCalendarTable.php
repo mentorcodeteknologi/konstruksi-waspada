@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Otp extends Migration
+class CreateCalendarTable extends Migration
 {
     public function up()
     {
@@ -14,35 +14,31 @@ class Otp extends Migration
                 'constraint'     => 11,
                 'auto_increment' => true
             ],
-            'kode'               => [
-                'type'           => 'INT',
-                'constraint'     => 11
-            ],
-            'type'               => [
-                'type'           => 'ENUM',
-                'constraint'     => ['email', 'whatsapp']
-            ],
-            'expired_at'         => [
-                'type'           => 'DATETIME',
-            ],
             'id_user'            => [
                 'type'           => 'INT',
-                'constraint'     => 11
+                'constraint'     => 11,
+            ],
+            'nama_kegiatan'      => [
+                'type'           => 'VARCHAR',
+                'constraint'     => 255,
+            ],
+            'tanggal_kegiatan'   => [
+                'type'           => 'DATE',
             ],
             'created_at'         => [
                 'type'           => 'DATETIME',
             ],
             'updated_at'         => [
                 'type'           => 'DATETIME',
-            ]
+            ],
         ]);
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('id_user', 'users', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->createTable('otp');
+        $this->forge->createTable('calendar');
     }
 
     public function down()
     {
-        $this->forge->dropTable('otp');
+        $this->forge->dropTable('calendar');
     }
 }

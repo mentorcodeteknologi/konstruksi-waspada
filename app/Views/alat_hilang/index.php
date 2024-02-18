@@ -55,7 +55,7 @@
                     <tr>
                         <th>No</th>
                         <th>Nama Alat</th>
-                        <th>Merek</th>
+                        <th>Merk</th>
                         <th>Deskripsi</th>
                         <th>Foto</th>
                         <th>Slug</th>

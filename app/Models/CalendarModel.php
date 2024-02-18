@@ -4,15 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ArtikelModel extends Model
+class CalendarModel extends Model
 {
-    protected $table            = 'artikel';
+    protected $table            = 'calendar';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['judul', 'isi', 'gambar', 'slug', 'url', 'deskripsi', 'penulis', 'created_at', 'updated_at'];
+    protected $allowedFields    = ['id', 'id_user', 'nama_kegiatan', 'tanggal_kegiatan'];
 
     protected bool $allowEmptyInserts = false;
 
@@ -44,8 +44,8 @@ class ArtikelModel extends Model
     // ============================= //
     // FUNCTION GET DATA BY SLUG
     // ============================= //
-    public function getDataBySlug($slug)
+    public function getDataBySlug($id)
     {
-        return $this->select('*')->where('slug', $slug)->get()->getRowArray();
+        return $this->select('*')->where('id', $id)->get()->getRowArray();
     }
 }

@@ -41,49 +41,54 @@
                 <div class="row ">
                     <div class="col-sm-12 ">
 
-                        <form action="<?= base_url('user_blacklist/update/' . $detail_users_blacklist['slug']) ?>" method="post" enctype="multipart/form-data">
+                        <form action="<?= base_url('perusahaan_blacklist/update/' . $detail_perusahaan_blacklist['slug']) ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field(); ?>
                             <div class="form-group">
-                                <label>NIK</label>
-                                <input type="text" name="nik" id="nik" class="form-control" placeholder="nik" value="<?= $detail_users_blacklist['nik'] ?>" required>
+                                <label>NPWP</label>
+                                <input type="text" name="npwp" id="npwp" class="form-control" placeholder="npwp" value="<?= $detail_perusahaan_blacklist['npwp'] ?>" required>
                             </div>
 
                             <div class="form-group">
                                 <label>Nama</label>
-                                <input type="text" name="nama" id="nama" class="form-control" placeholder="nama" value="<?= $detail_users_blacklist['nama'] ?>" required>
+                                <input type="text" name="nama" id="nama" class="form-control" placeholder="nama" value="<?= $detail_perusahaan_blacklist['nama'] ?>" required>
                             </div>
 
                             <div class="form-group">
-                                <img src="<?= base_url('assets/backend/images/user_blacklist/' . $detail_users_blacklist['slug'] . "/" . $detail_users_blacklist['foto_ktp']) ?>" width="100px" height="100px" class="center">
+                                <img src="<?= base_url('assets/backend/images/user_blacklist/' . $detail_perusahaan_blacklist['slug'] . "/" . $detail_perusahaan_blacklist['foto_ktp']) ?>" width="100px" height="100px" class="center">
 
                                 <div class="form-group">
-                                    <label>Edit Foto KTP</label>
-                                    <input type="file" name="foto_ktp" id="foto_ktp" class="form-control" accept=".jpg,.png,.jpeg">
+                                    <label>Edit Foto NPWP</label>
+                                    <input type="file" name="foto_npwp" id="foto_npwp" class="form-control" accept=".jpg,.png,.jpeg">
                                 </div>
                             </div>
 
                             <div class="form-group">
+                                <label>Nama Penanggung Jawab</label>
+                                <input type="text" name="nama_penanggung_jawab" id="nama_penanggung_jawab" class="form-control" placeholder="nama_penanggung_jawab" value="<?= $detail_perusahaan_blacklist['nama_penanggung_jawab'] ?>" required>
+                            </div>
+
+                            <div class="form-group">
                                 <label>No HP</label>
-                                <input type="text" name="no_hp" id="no_hp" class="form-control" placeholder="no_hp" value="<?= $detail_users_blacklist['no_hp'] ?>" required>
+                                <input type="text" name="no_hp" id="no_hp" class="form-control" placeholder="no_hp" value="<?= $detail_perusahaan_blacklist['no_hp'] ?>" required>
                             </div>
 
                             <div class="form-group">
                                 <label>Merk</label>
-                                <input type="text" name="merk" id="merk" class="form-control" placeholder="merk" value="<?= $detail_users_blacklist['merk'] ?>" required>
+                                <input type="text" name="merk" id="merk" class="form-control" placeholder="merk" value="<?= $detail_perusahaan_blacklist['merk'] ?>" required>
                             </div>
 
                             <div class="form-group">
                                 <label>Type Alat</label>
-                                <input type="text" name="type_alat" id="type_alat" class="form-control" placeholder="type_alat" value="<?= $detail_users_blacklist['type_alat'] ?>" required>
+                                <input type="text" name="type_alat" id="type_alat" class="form-control" placeholder="type_alat" value="<?= $detail_perusahaan_blacklist['type_alat'] ?>" required>
                             </div>
 
                             <div class="form-group">
                                 <label>No Seri</label>
-                                <input type="text" name="no_seri" id="no_seri" class="form-control" placeholder="no_seri" value="<?= $detail_users_blacklist['no_seri'] ?>" required>
+                                <input type="text" name="no_seri" id="no_seri" class="form-control" placeholder="no_seri" value="<?= $detail_perusahaan_blacklist['no_seri'] ?>" required>
                             </div>
 
                             <div class="form-group">
-                                <a href="<?= base_url('assets/backend/images/user_blacklist/' . $detail_users_blacklist['slug'] . "/" . $detail_users_blacklist['surat_perjanjian']) ?>" target="_blank">Lihat Surat Perjanjian</a>
+                                <a href="<?= base_url('assets/backend/images/user_blacklist/' . $detail_perusahaan_blacklist['slug'] . "/" . $detail_perusahaan_blacklist['surat_perjanjian']) ?>" target="_blank">Lihat Surat Perjanjian</a>
 
                                 <div class="form-group">
                                     <label>Edit Surat Perjanjian</label>
@@ -92,7 +97,7 @@
                             </div>
 
                             <div class="form-group">
-                                <img src="<?= base_url('assets/backend/images/user_blacklist/' . $detail_users_blacklist['slug'] . "/" . $detail_users_blacklist['foto_alat']) ?>" width="100px" height="100px" class="center">
+                                <img src="<?= base_url('assets/backend/images/user_blacklist/' . $detail_perusahaan_blacklist['slug'] . "/" . $detail_perusahaan_blacklist['foto_alat']) ?>" width="100px" height="100px" class="center">
 
                                 <div class="form-group">
                                     <label>Edit Foto Alat</label>
@@ -101,7 +106,7 @@
                             </div>
 
                             <div class="form-group">
-                                <img src="<?= base_url('assets/backend/images/user_blacklist/' . $detail_users_blacklist['slug'] . "/" . $detail_users_blacklist['foto_serah_terima_alat']) ?>" width="100px" height="100px" class="center">
+                                <img src="<?= base_url('assets/backend/images/user_blacklist/' . $detail_perusahaan_blacklist['slug'] . "/" . $detail_perusahaan_blacklist['foto_serah_terima_alat']) ?>" width="100px" height="100px" class="center">
 
                                 <div class="form-group">
                                     <label>Edit Foto Serah Termina Alat</label>
@@ -112,8 +117,8 @@
                             <div class=" form-group">
                                 <label>Jenis Pelanggaran</label>
                                 <Select name="jenis_pelanggaran" id="jenis_pelanggaran" class="form-control" required>
-                                    <option value="<?= $detail_users_blacklist['jenis_pelanggaran'] ?>"><?= $detail_users_blacklist['jenis_pelanggaran'] ?></option>
-                                    <?php if ($detail_users_blacklist['jenis_pelanggaran'] == 'Menggelapkan Alat') { ?>
+                                    <option value="<?= $detail_perusahaan_blacklist['jenis_pelanggaran'] ?>"><?= $detail_perusahaan_blacklist['jenis_pelanggaran'] ?></option>
+                                    <?php if ($detail_perusahaan_blacklist['jenis_pelanggaran'] == 'Menggelapkan Alat') { ?>
                                         <option value='Tidak Membayar Sewa'>Tidak Membayar Sewa</option>
                                     <?php } else { ?>
                                         <option value='Menggelapkan Alat'>Menggelapkan Alat</option>
@@ -123,16 +128,16 @@
 
                             <div class="form-group">
                                 <label>Muali Rental</label>
-                                <input type="date" name="mulai_rental" id="mulai_rental" class="form-control" placeholder="mulai_rental" value="<?= $detail_users_blacklist['mulai_rental'] ?>" required value="<?= date('Y-m-d') ?>">
+                                <input type="date" name="mulai_rental" id="mulai_rental" class="form-control" placeholder="mulai_rental" value="<?= $detail_perusahaan_blacklist['mulai_rental'] ?>" required value="<?= date('Y-m-d') ?>">
                             </div>
 
                             <div class="form-group">
                                 <label>Akhir Rental</label>
-                                <input type="date" name="akhir_rental" id="akhir_rental" class="form-control" placeholder="akhir_rental" value="<?= $detail_users_blacklist['akhir_rental'] ?>" required value="<?= date('Y-m-d') ?>">
+                                <input type="date" name="akhir_rental" id="akhir_rental" class="form-control" placeholder="akhir_rental" value="<?= $detail_perusahaan_blacklist['akhir_rental'] ?>" required value="<?= date('Y-m-d') ?>">
                             </div>
 
                             <div class="form-group">
-                                <img src="<?= base_url('assets/backend/images/user_blacklist/' . $detail_users_blacklist['slug'] . "/" . $detail_users_blacklist['bukti_lainnya']) ?>" width="100px" height="100px" class="center">
+                                <img src="<?= base_url('assets/backend/images/user_blacklist/' . $detail_perusahaan_blacklist['slug'] . "/" . $detail_perusahaan_blacklist['bukti_lainnya']) ?>" width="100px" height="100px" class="center">
 
                                 <div class="form-group">
                                     <label>Edit Bukti Lainnya</label>
@@ -142,12 +147,12 @@
 
                             <div class="form-group">
                                 <label>Nominal Kerugian</label>
-                                <input type="number" name="nominal_kerugian" id="nominal_kerugian" class="form-control" placeholder="nominal_kerugian" value="<?= $detail_users_blacklist['nominal_kerugian'] ?>">
+                                <input type="number" name="nominal_kerugian" id="nominal_kerugian" class="form-control" placeholder="nominal_kerugian" value="<?= $detail_perusahaan_blacklist['nominal_kerugian'] ?>">
                             </div>
 
                             <div class="form-group">
                                 <label>Keterangan</label>
-                                <input type="text" name="keterangan" id="keterangan" class="form-control" placeholder="keterangan" value="<?= $detail_users_blacklist['keterangan'] ?>">
+                                <input type="text" name="keterangan" id="keterangan" class="form-control" placeholder="keterangan" value="<?= $detail_perusahaan_blacklist['keterangan'] ?>">
                             </div>
 
                             <div class="form-group">

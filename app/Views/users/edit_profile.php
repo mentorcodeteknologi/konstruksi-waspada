@@ -41,7 +41,7 @@
                 <div class="row ">
                     <div class="col-sm-12 ">
 
-                        <form action="<?= base_url('users/update/' . $detail_user['encrypt']) ?>" method="post" enctype="multipart/form-data">
+                        <form action="<?= base_url('users/edit-profile/' . $detail_user['encrypt']) ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field(); ?>
                             <div class="form-group">
                                 <label>Nama</label>
@@ -93,18 +93,6 @@
                             <div class="form-group">
                                 <label>Jabatan</label>
                                 <input type="text" name="jabatan" id="jabatan" class="form-control" placeholder="Jabatan" value="<?= $detail_user['jabatan'] ?>">
-                            </div>
-
-                            <div class=" form-group">
-                                <label>Status</label>
-                                <Select name="status" id="status" class="form-control" required>
-                                    <option value="<?= $detail_user['status'] ?>"><?= ucwords($detail_user['status']) ?></option>
-                                    <?php if ($detail_user['status'] == 'active') { ?>
-                                        <option value='nonactive'>Non Active</option>
-                                    <?php } else { ?>
-                                        <option value='active'>Active</option>
-                                    <?php  } ?>
-                                </Select>
                             </div>
 
                             <div class="form-group">

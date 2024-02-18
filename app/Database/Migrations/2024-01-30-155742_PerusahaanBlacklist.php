@@ -35,7 +35,7 @@ class PerusahaanBlacklist extends Migration
                 'type'                 => 'VARCHAR',
                 'constraint'           => 20,
             ],
-            'mrek'                     => [
+            'merk'                     => [
                 'type'                 => 'VARCHAR',
                 'constraint'           => 100,
             ],
@@ -90,6 +90,10 @@ class PerusahaanBlacklist extends Migration
             'id_user'                  => [
                 'type'                 => 'INT',
                 'constraint'           => 11,
+            ],
+            'valid'                    => [
+                'type'                 => 'BOOLEAN',
+                'default'              => false,
             ],
             'created_at'               => [
                 'type'                 => 'DATETIME',

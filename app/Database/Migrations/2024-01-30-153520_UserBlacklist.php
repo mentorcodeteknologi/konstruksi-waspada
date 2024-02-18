@@ -85,6 +85,10 @@ class UserBlacklist extends Migration
                 'type'                 => 'INT',
                 'constraint'           => 11,
             ],
+            'valid'                    => [
+                'type'                 => 'BOOLEAN',
+                'default'              => false,
+            ],
             'created_at'               => [
                 'type'                 => 'DATETIME',
             ],

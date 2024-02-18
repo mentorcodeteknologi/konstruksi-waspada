@@ -4,15 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ArtikelModel extends Model
+class PerusahaanBlacklistModel extends Model
 {
-    protected $table            = 'artikel';
+    protected $table            = 'perusahaan_blacklist';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['judul', 'isi', 'gambar', 'slug', 'url', 'deskripsi', 'penulis', 'created_at', 'updated_at'];
+    protected $allowedFields    = ['npwp', 'nama', 'foto_npwp', 'valid', 'nama_penanggung_jawab', 'no_hp', 'merk', 'type_alat', 'no_seri', 'surat_perjanjian', 'foto_alat', 'foto_serah_terima_alat', 'jenis_pelanggaran', 'mulai_rental', 'akhir_rental', 'bukti_lainnya', 'nominal_kerugian', 'keterangan', 'slug', 'id_user', 'created_at', 'updated_at'];
 
     protected bool $allowEmptyInserts = false;
 
@@ -41,11 +41,15 @@ class ArtikelModel extends Model
     protected $afterDelete    = [];
 
 
-    // ============================= //
-    // FUNCTION GET DATA BY SLUG
-    // ============================= //
-    public function getDataBySlug($slug)
+    // ============================ //
+    // FUNCTION FIND ALL DATAS
+    // ============================ //
+    public function findAllDatas()
     {
-        return $this->select('*')->where('slug', $slug)->get()->getRowArray();
+        $builder = $this->db->table('perusahaan_blacklist');
+        $builder->select('perusahaan_blacklist.*, users.perusahaan');
+        $builder->join('users', 'users.id = perusahaan_blacklist.id_user');
+        $builder->orderBy('perusahaan_blacklist.created_at', 'DESC');
+        return $builder->get()->getResultArray();
     }
 }

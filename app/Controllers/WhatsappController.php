@@ -19,7 +19,6 @@ class WhatsappController extends BaseController
     // ========================= //
     public function __construct()
     {
-        
     }
 
 
@@ -61,7 +60,7 @@ class WhatsappController extends BaseController
     //         'nama'                     => $this->request->getVar('nama'),
     //         'foto_ktp'                 => $this->request->getVar('foto_ktp'),
     //         'no_hp'                    => $this->request->getVar('no_hp'),
-    //         'merek'                    => $this->request->getVar('merek'),
+    //         'merk'                    => $this->request->getVar('merk'),
     //         'type_alat'                => $this->request->getVar('type_alat'),
     //         'no_seri'                  => $this->request->getVar('no_seri'),
     //         'surat_perjanjian'         => $this->request->getVar('surat_perjanjian'),
@@ -106,7 +105,7 @@ class WhatsappController extends BaseController
     //         'nama'                     => $this->request->getVar('nama'),
     //         'foto_ktp'                 => $this->request->getVar('foto_ktp'),
     //         'no_hp'                    => $this->request->getVar('no_hp'),
-    //         'merek'                    => $this->request->getVar('merek'),
+    //         'merk'                    => $this->request->getVar('merk'),
     //         'type_alat'                => $this->request->getVar('type_alat'),
     //         'no_seri'                  => $this->request->getVar('no_seri'),
     //         'surat_perjanjian'         => $this->request->getVar('surat_perjanjian'),
