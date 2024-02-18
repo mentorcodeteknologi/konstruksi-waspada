@@ -57,7 +57,7 @@
                                 <img src="<?= base_url('assets/backend/images/user_blacklist/' . $detail_users_blacklist['slug'] . "/" . $detail_users_blacklist['foto_ktp']) ?>" width="100px" height="100px" class="center">
 
                                 <div class="form-group">
-                                    <label>Edit Foto</label>
+                                    <label>Edit Foto KTP</label>
                                     <input type="file" name="foto_ktp" id="foto_ktp" class="form-control" accept=".jpg,.png,.jpeg">
                                 </div>
                             </div>
@@ -69,7 +69,7 @@
 
                             <div class="form-group">
                                 <label>Merek</label>
-                                <input type="text" name="merek" id="merek" class="form-control" placeholder="merek" value="<?= $detail_users_blacklist['merek'] ?>" required>
+                                <input type="text" name="merk" id="merk" class="form-control" placeholder="merk" value="<?= $detail_users_blacklist['merk'] ?>" required>
                             </div>
 
                             <div class="form-group">
@@ -112,16 +112,11 @@
                             <div class=" form-group">
                                 <label>Jenis Pelanggaran</label>
                                 <Select name="jenis_pelanggaran" id="jenis_pelanggaran" class="form-control" required>
-                                    <option value="<?= $detail_users_blacklist['jenis_pelanggaran'] ?>"><?= ucwords($detail_users_blacklist['jenis_pelanggaran']) ?></option>
-                                    <?php if ($detail_users_blacklist['jenis_pelanggaran'] == 'Pelanggaran Ringan') { ?>
-                                        <option value='Pelanggaran Sedang'>Pelanggaran Sedang</option>
-                                        <option value='Pelanggaran Berat'>Pelanggaran Berat</option>
-                                    <?php } else if ($detail_users_blacklist['jenis_pelanggaran'] == 'Pelanggaran Sedang') { ?>
-                                        <option value='Pelanggaran Ringan'>Pelanggaran Ringan</option>
-                                        <option value='Pelanggaran Berat'>Pelanggaran Berat</option>
+                                    <option value="<?= $detail_users_blacklist['jenis_pelanggaran'] ?>"><?= $detail_users_blacklist['jenis_pelanggaran'] ?></option>
+                                    <?php if ($detail_users_blacklist['jenis_pelanggaran'] == 'Menggelapkan Alat') { ?>
+                                        <option value='Tidak Membayar Sewa'>Tidak Membayar Sewa</option>
                                     <?php } else { ?>
-                                        <option value='Pelanggaran Ringan'>Pelanggaran Ringan</option>
-                                        <option value='Pelanggaran Sedang'>Pelanggaran Sedang</option>
+                                        <option value='Menggelapkan Alat'>Menggelapkan Alat</option>
                                     <?php } ?>
                                 </Select>
                             </div>
@@ -147,7 +142,12 @@
 
                             <div class="form-group">
                                 <label>Nominal Kerugian</label>
-                                <input type="text" name="nominal_kerugian" id="nominal_kerugian" class="form-control" placeholder="nominal_kerugian" value="<?= $detail_users_blacklist['nominal_kerugian'] ?>">
+                                <input type="number" name="nominal_kerugian" id="nominal_kerugian" class="form-control" placeholder="nominal_kerugian" value="<?= $detail_users_blacklist['nominal_kerugian'] ?>">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Keterangan</label>
+                                <input type="text" name="keterangan" id="keterangan" class="form-control" placeholder="keterangan" value="<?= $detail_users_blacklist['keterangan'] ?>">
                             </div>
 
                             <div class="form-group">

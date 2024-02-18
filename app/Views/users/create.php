@@ -70,7 +70,7 @@
 
                             <div class="form-group">
                                 <label>Alamat</label>
-                                <input type="text" name="alamat" id="alamat" class="form-control" placeholder="Alamat">
+                                <input type="text" name="alamat" id="alamat" class="form-control" placeholder="Alamat" required>
                             </div>
 
                             <div class="form-group">

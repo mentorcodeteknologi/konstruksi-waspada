@@ -17,4 +17,23 @@ class UserBlacklistModel extends Model
     {
         return $this->select('*')->where('slug', $slug)->get()->getRowArray();
     }
+
+    // ============================= //
+    // FUNCTION FIND ALL DATAS
+    // ============================= //
+    public function findAllDatas($valid = null)
+    {
+        $builder = $this->db->table('user_blacklist');
+        $builder->select('user_blacklist.nik, user_blacklist.nama, user_blacklist.merek, user_blacklist.type_alat, user_blacklist.no_seri, user_blacklist.keterangan, user_blacklist.nominal_kerugian, user_blacklist.created_at, user_blacklist.updated_at, users.username');
+
+        // Menghitung durasi rental dalam bulan
+        $builder->select("DATEDIFF(user_blacklist.akhir_rental, user_blacklist.mulai_rental) / 30 AS durasi");
+
+        $builder->join('users', 'users.id = user_blacklist.id_user');
+        $builder->orderBy('user_blacklist.updated_at', 'DESC');
+        if ($valid != null) {
+            $builder->where('user_blacklist.valid = 1');
+        }
+        return $builder->get()->getResultArray();
+    }
 }

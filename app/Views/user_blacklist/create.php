@@ -66,7 +66,7 @@
 
                             <div class="form-group">
                                 <label>Merek</label>
-                                <input type="text" name="merek" id="merek" class="form-control" placeholder="Merek" required>
+                                <input type="text" name="merk" id="merk" class="form-control" placeholder="Merk" required>
                             </div>
 
                             <div class="form-group">
@@ -101,9 +101,8 @@
                                 <label>Jenis Pelanggaran</label>
                                 <Select name="jenis_pelanggaran" id="jenis_pelanggaran" class="form-control" required>
                                     <option value=''>Pilih Jenis Pelanggaran</option>
-                                    <option value='Pelanggaran Ringan'>Pelanggaran Ringan</option>
-                                    <option value='Pelanggaran Sedang'>Pelanggaran Sedang</option>
-                                    <option value='Pelanggaran Berat'>Pelanggaran Berat</option>
+                                    <option value='Menggelapkan Alat'>Menggelapkan Alat</option>
+                                    <option value='Tidak Membayar Sewa'>Tidak Membayar Sewa</option>
                                 </Select>
                             </div>
 
@@ -126,6 +125,16 @@
                             <div class="form-group">
                                 <label>Nominal Kerugian</label>
                                 <input type="text" name="nominal_kerugian" id="nominal_kerugian" class="form-control" placeholder="Nominal Kerugian" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Nominal Kerugian</label>
+                                <input type="number" name="nominal_kerugian" id="nominal_kerugian" class="form-control" placeholder="Nominal Kerugian" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Keterangan</label>
+                                <input type="text" name="keterangan" id="keterangan" class="form-control" placeholder="Keterangan">
                             </div>
 
                             <div class="form-group">

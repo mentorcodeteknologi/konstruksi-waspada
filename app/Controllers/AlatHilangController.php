@@ -23,15 +23,6 @@ class AlatHilangController extends BaseController
         $this->alatHilangModel = new AlatHilangModel();
     }
 
-    // Alat Hilang Front End
-    public function indexFE()
-    {
-        $data = [
-            'title' => 'Alat Hilang'
-        ];
-        return view('alat_hilang_frontend/index', $data);
-    }
-
 
     // ========================= //
     // FUNCTION INDEX

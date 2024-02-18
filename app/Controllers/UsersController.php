@@ -58,13 +58,20 @@ class UsersController extends BaseController
     {
         $helper  = new Helpers();
         $encrypt = $helper->generateRandomString(12, 'ec');
+        $path    = 'assets/backend/images/profile/' . $encrypt . "/";
 
         // UPLOAD FOTO PROFILE
         $file = $this->request->getFile('foto');
         $foto = 'default.png';
         if ($file && $file->isValid()) {
             $foto = $file->getRandomName();
-            $file->move('assets/backend/images/profile/' . $encrypt . "/", $foto);
+
+            // CEK FOLDER USER BLACKLIST
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+
+            $file->move($path, $foto);
         }
 
         $data = [
@@ -111,6 +118,7 @@ class UsersController extends BaseController
     {
         $userData = $this->usersModel->getDataByEncrypt($encrypt);
         $file     = $this->request->getFile('foto');
+        $path     = 'assets/backend/images/profile/' . $userData['encrypt'] . "/";
 
         // Cek apakah ada file yang diupload
         if ($file == "") {
@@ -118,10 +126,16 @@ class UsersController extends BaseController
         } else {
             // Hapus foto lama
             if ($userData['foto'] != 'default.png') {
-                unlink('assets/backend/images/profile' . $encrypt . "/" . $userData['foto']);
+                unlink($path . $userData['foto']);
             }
+
+            // CEK FOLDER USER BLACKLIST
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+
             $foto = $file->getRandomName();
-            $file->move('assets/backend/images/profile' . $encrypt . "/", $foto);
+            $file->move($path, $foto);
         }
 
         // Cek apakah password diubah

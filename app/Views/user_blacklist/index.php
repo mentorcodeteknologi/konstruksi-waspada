@@ -54,22 +54,16 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>NIK</th>
-                        <th>Nama</th>
-                        <th>Foto KTP</th>
-                        <th>No HP</th>
+                        <th>Perusahaan Penyedia Sewa</th>
+                        <th>NIK Terlapor</th>
+                        <th>Nama Terlapor</th>
+                        <th>Jenis Pelanggaran</th>
                         <th>Merek</th>
                         <th>Type Alat</th>
                         <th>No Seri</th>
-                        <th>Surat Perjanjian</th>
-                        <th>Foto Alat</th>
-                        <th>Foto Serah Terima Alat</th>
-                        <th>Jenis Pelanggaran</th>
-                        <th>Mulai Rental</th>
-                        <th>Akhir Rental</th>
-                        <th>Bukti Lainnya</th>
+                        <th>Durasi</th>
+                        <th>Keterangan</th>
                         <th>Nominal Kerugian</th>
-                        <th>Slug</th>
                         <th>Created At</th>
                         <th>Updated At</th>
                         <th>Action</th>
@@ -82,25 +76,15 @@
                     foreach ($list_user_blacklist as $value) { ?>
                         <tr class="text-center">
                             <td><?= $no++ ?></td>
+                            <td><?= $value['perusahaan'] ?></td>
                             <td><?= $value['nik'] ?></td>
                             <td><?= $value['nama'] ?></td>
-                            <td><img src="<?= base_url('assets/backend/images/user_blacklist/' . $value['slug'] . "/" . $value['foto_ktp']) ?>" width="50px" height="50px"></td>
-                            <td><?= $value['no_hp'] ?></td>
+                            <td><?= $value['jenis_pelanggaran'] ?></td>
                             <td><?= $value['merek'] ?></td>
                             <td><?= $value['type_alat'] ?></td>
                             <td><?= $value['no_seri'] ?></td>
-                            <td>
-                                <a href="<?= base_url('assets/backend/images/user_blacklist/' . $value['slug'] . "/" . $value['surat_perjanjian']) ?>" target="_blank">Lihat Surat Perjanjian</a>
-                            </td>
-
-                            <td><img src="<?= base_url('assets/backend/images/user_blacklist/' .  $value['slug'] . "/" . $value['foto_alat']) ?>" width="50px" height="50px"></td>
-                            <td><img src="<?= base_url('assets/backend/images/user_blacklist/' .  $value['slug'] . "/" . $value['foto_serah_terima_alat']) ?>" width="50px" height="50px"></td>
-                            <td><?= $value['jenis_pelanggaran'] ?></td>
-                            <td><?= $value['mulai_rental'] ?></td>
-                            <td><?= $value['akhir_rental'] ?></td>
-                            <td><img src="<?= base_url('assets/backend/images/user_blacklist/' .  $value['slug'] . "/" . $value['bukti_lainnya']) ?>" width="50px" height="50px"></td>
+                            <td><?= $value['durasi'] ?></td>
                             <td><?= $value['nominal_kerugian'] ?></td>
-                            <td><?= $value['slug'] ?></td>
                             <td><?= $value['created_at'] ?></td>
                             <td><?= $value['updated_at'] ?></td>
                             <td>

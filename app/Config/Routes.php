@@ -50,6 +50,11 @@ $routes->get('/user_blacklist_frontend', 'UserBlacklistFrontendController::index
 $routes->get('/404', 'DashboardController::pageNotFound');
 $routes->get('/dashboard', 'DashboardController::index', ['filter' => 'auth:users,admin']);
 
+// ROUTES OTP
+$routes->group('otp', ['filter' => 'auth:users,admin'], function ($routes) {
+    $routes->get('', 'AuthController::otp');
+    $routes->post('', 'AuthController::verifyOtpLogin');
+});
 
 // ROUTES USERS
 $routes->group('users', ['filter' => 'auth:admin'], function ($routes) {
@@ -73,7 +78,7 @@ $routes->group('artikel', ['filter' => 'auth:user,admin'], function ($routes) {
 // ROUTES ALAT HILANG
 $routes->group('alat_hilang', ['filter' => 'auth:user,admin'], function ($routes) {
     // FRONT END
-    $routes->get('detail', 'AlatHilangController::indexFE');
+    $routes->get('detail', 'AlatHilangFrontendController::index');
 
     // BACK END
     $routes->get('', 'AlatHilangController::index');
@@ -93,6 +98,7 @@ $routes->group('user_blacklist', ['filter' => 'auth:user,admin'], function ($rou
     $routes->get('update/(:any)', 'UserBlacklistController::update/$1');
     $routes->post('update/(:any)', 'UserBlacklistController::updateUserBlacklist/$1');
     $routes->post('delete/(:any)', 'UserBlacklistController::delete/$1');
+    $routes->post('validation/(:any)', 'UserBlacklistController::validation/$1');
 });
 
 // ROUTES WHATSAPP SCAN QR

@@ -99,6 +99,19 @@ class AuthController extends BaseController
         return redirect()->to(base_url('dashboard'));
     }
 
+
+    // ========================= //
+    // FUNCTION OTP
+    // ========================= //
+    public function otp()
+    {
+        $data = [
+            'title' => 'OTP'
+        ];
+        return view('auth/otp', $data);
+    }
+
+
     // ========================= //
     // FUNCTION VERIFY OTP LOGIN
     // ========================= //
@@ -129,13 +142,20 @@ class AuthController extends BaseController
     {
         $helper  = new Helpers();
         $encrypt = $helper->generateRandomString(12, 'ec');
+        $path    = 'assets/backend/images/profile/' . $encrypt . "/";
 
         // UPLOAD FOTO PROFILE
         $file = $this->request->getFile('foto');
         $foto = 'default.png';
         if ($file && $file->isValid()) {
             $foto = $file->getRandomName();
-            $file->move('assets/backend/images/profile/' . $encrypt . "/", $foto);
+
+            // CEK FOLDER USER BLACKLIST
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+
+            $file->move($path, $foto);
         }
 
         $data = [
@@ -145,7 +165,7 @@ class AuthController extends BaseController
             'email'      => $this->request->getVar('email'),
             'password'   => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
             'alamat'     => $this->request->getVar('alamat'),
-            'role'       => $this->request->getVar('role'),
+            'role'       => 'users',
             'encrypt'    => $encrypt,
             'perusahaan' => $this->request->getVar('perusahaan'),
             'jabatan'    => $this->request->getVar('jabatan'),
