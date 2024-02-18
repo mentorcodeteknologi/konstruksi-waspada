@@ -50,6 +50,7 @@ $routes->get('/alathilang', 'AlatHilangController::indexFE');
 // DASHBOARD ROUTES
 $routes->get('/404', 'DashboardController::pageNotFound');
 $routes->get('/dashboard', 'DashboardController::index', ['filter' => 'auth:users,admin']);
+$routes->get('/websocket', 'WebsocketController::index');
 
 
 // ROUTES USERS

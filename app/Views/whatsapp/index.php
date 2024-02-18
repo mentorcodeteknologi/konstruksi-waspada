@@ -34,16 +34,16 @@
     <div class="card">
         <div class="card-body">
             <button class="btn btn-primary btn-sm">Refresh QR</button>
-    
+
             <?php
-    
+
             // NOTIFIKASI BERHASIL SIMPAN DATA
             if (session()->getFlashdata('pesan')) {
                 echo '<div class="alert alert-success alert-dismissible">
                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . session()->getFlashdata('pesan') . '</div>';
             }
             ?>
-    
+
             <div class="row justify-content-center">
                 <div class="col-lg text-center">
                     <div id="targetQr" class="mt-3" style="display:block; margin: 0 auto;">
@@ -51,9 +51,9 @@
                     <div id="status" style="display:none;">WhatsApp Connected</div>
                 </div>
             </div>
-    
-    
-           
+
+
+
         </div>
     </div>
 
@@ -68,14 +68,26 @@
 
 <?= $this->section('scripts') ?>
 <script>
-    let statQR;
+    // let statQR;
+    // let intervalId; 
     $(document).ready(() => {
-        setToken();
-        setInterval(() => {
-            hitGetAPI('/api/ready');
-        }, 5000);
-    });
+        hitGetAPI("/api/ready");
+        const socket = new WebSocket('ws://localhost:8081');
+        socket.onopen = function(event) {
+            console.log('Connected to WebSocket server');
+        };
+        socket.onmessage = function(event) {
+            const messageData = JSON.parse(event.data);
+            if (messageData.code === "qr") {
+                showQrCode(messageData.message);
+            } else if (messageData.code === "status") {
+                if (messageData.message === "Connected") {
+                    $('#targetQr').hide();
+                    $('#status').show();
+                }
+            } 
 
-    
+        };
+    });
 </script>
 <?= $this->endSection(); ?>
