@@ -75,6 +75,7 @@
                             <td><img src="<?= base_url('assets/backend/images/artikel/' . $value['gambar']) ?>" width="100px" height="100px"></td>
                             <td><?= $value['isi'] ?></td>
                             <td><?= $value['slug'] ?></td>
+                            <td><?= $value['url'] ?></td>
                             <td><?= $value['penulis'] ?></td>
                             <td><?= $value['created_at'] ?></td>
                             <td><?= $value['updated_at'] ?></td>

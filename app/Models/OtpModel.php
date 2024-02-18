@@ -4,15 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ArtikelModel extends Model
+class OtpModel extends Model
 {
-    protected $table            = 'artikel';
+    protected $table            = 'otp';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['judul', 'isi', 'gambar', 'slug', 'url', 'penulis', 'created_at', 'updated_at'];
+    protected $allowedFields    = ['kode', 'type', 'expired_at', 'id_user', 'created_at', 'updated_at'];
 
     protected bool $allowEmptyInserts = false;
 
@@ -42,10 +42,15 @@ class ArtikelModel extends Model
 
 
     // ============================= //
-    // FUNCTION GET DATA BY SLUG
+    // FUNCTION VALIDATION OTP
     // ============================= //
-    public function getDataBySlug($slug)
+    public function validationOtp($encrypt, $kode)
     {
-        return $this->select('*')->where('slug', $slug)->get()->getRowArray();
+        $builder = $this->db->table('otp');
+        $builder->select('*');
+        $builder->where('id_user', $encrypt);
+        $builder->where('kode', $kode);
+        $builder->where('expired_at >', date('Y-m-d H:i:s'));
+        return $builder->get()->getRowArray();
     }
 }

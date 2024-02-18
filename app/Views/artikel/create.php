@@ -59,6 +59,11 @@
                             </div>
 
                             <div class="form-group">
+                                <label>URL Youtube</label>
+                                <input type="text" name="url" id="url" class="form-control" placeholder="Url Youtube" required>
+                            </div>
+
+                            <div class="form-group">
                                 <label>Gambar</label>
                                 <input type="file" name="gambar" id="gambar" class="form-control" accept=".jpg,.png,.jpeg" required>
                                 <img src="" id="viewImg" class="img-fluid mt-2" width="200px">

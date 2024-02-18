@@ -29,7 +29,7 @@ class AlatHilangController extends BaseController
         $data = [
             'title' => 'Alat Hilang'
         ];
-        return view('alathilang/index', $data);
+        return view('alat_hilang_frontend/index', $data);
     }
 
 

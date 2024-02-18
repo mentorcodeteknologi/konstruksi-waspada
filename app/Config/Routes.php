@@ -45,7 +45,6 @@ $routes->get('/logout', 'AuthController::logout');
 $routes->get('/user_blacklist_frontend', 'UserBlacklistFrontendController::index');
 
 // ALAT HILANG ROUTES
-$routes->get('/alathilang', 'AlatHilangController::indexFE');
 
 // DASHBOARD ROUTES
 $routes->get('/404', 'DashboardController::pageNotFound');
@@ -73,6 +72,10 @@ $routes->group('artikel', ['filter' => 'auth:user,admin'], function ($routes) {
 
 // ROUTES ALAT HILANG
 $routes->group('alat_hilang', ['filter' => 'auth:user,admin'], function ($routes) {
+    // FRONT END
+    $routes->get('detail', 'AlatHilangController::indexFE');
+
+    // BACK END
     $routes->get('', 'AlatHilangController::index');
     $routes->get('create', 'AlatHilangController::create');
     $routes->post('create', 'AlatHilangController::createAlatHilang');

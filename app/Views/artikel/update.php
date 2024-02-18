@@ -59,6 +59,11 @@
                             </div>
 
                             <div class="form-group">
+                                <label>URL Youtube</label>
+                                <input type="text" name="url" id="url" class="form-control" placeholder="url" value="<?= $detail_artikel['url'] ?>" required>
+                            </div>
+
+                            <div class="form-group">
                                 <img src="<?= base_url('assets/backend/images/artikel/' . $detail_artikel['gambar']) ?>" width="100px" height="100px" class="center">
 
                                 <div class="form-group">

@@ -49,6 +49,16 @@
                             </div>
 
                             <div class="form-group">
+                                <label>No NIK/NPWP</label>
+                                <input type="text" name="id_card" id="id_card" class="form-control" placeholder="No NIK/No NPWP" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>No Whatsapp</label>
+                                <input type="text" name="no_hp" id="no_hp" class="form-control" value="+62" placeholder="No Whatsapp" required>
+                            </div>
+
+                            <div class="form-group">
                                 <label>Email</label>
                                 <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
                             </div>
@@ -56,6 +66,11 @@
                             <div class="form-group">
                                 <label>Password</label>
                                 <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Alamat</label>
+                                <input type="text" name="alamat" id="alamat" class="form-control" placeholder="Alamat">
                             </div>
 
                             <div class="form-group">
@@ -70,6 +85,11 @@
                             <div class="form-group">
                                 <label>Nama Perusahaan</label>
                                 <input type="text" name="perusahaan" id="perusahaan" class="form-control" placeholder="Perusahaan">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Jabatan</label>
+                                <input type="text" name="jabatan" id="jabatan" class="form-control" placeholder="Jabatan">
                             </div>
 
                             <div class="form-group">

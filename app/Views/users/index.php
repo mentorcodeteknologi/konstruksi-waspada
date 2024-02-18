@@ -56,10 +56,17 @@
                     <tr>
                         <th>No</th>
                         <th>Nama</th>
+                        <th>NO. NIK/NPWP</th>
+                        <th>NO Whatsapp</th>
                         <th>Email</th>
+                        <th>Alamat</th>
                         <th>Foto</th>
+                        <th>Perusahaan</th>
+                        <th>Jabatan</th>
                         <th>Role</th>
                         <th>Status</th>
+                        <th>Created At</th>
+                        <th>Updated At</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -71,10 +78,17 @@
                         <tr class="text-center">
                             <td><?= $no++ ?></td>
                             <td><?= $value['nama'] ?></td>
+                            <td><?= $value['id_card'] ?></td>
+                            <td><?= $value['no_hp'] ?></td>
                             <td><?= $value['email'] ?></td>
+                            <td><?= $value['alamat'] ?></td>
                             <td><img src="<?= base_url('assets/backend/images/' . $value['foto']) ?>" width="50px" height="50px"></td>
+                            <td><?= $value['perusahaan'] ?></td>
+                            <td><?= $value['jabatan'] ?></td>
                             <td><?= $value['role'] ?></td>
                             <td><?= $value['status'] ?></td>
+                            <td><?= $value['created_at'] ?></td>
+                            <td><?= $value['updated_at'] ?></td>
                             <td>
                                 <a href="<?= base_url('users/update/' . $value['encrypt']) ?>" class="btn btn-info btn-sm">Edit</a>
                             </td>

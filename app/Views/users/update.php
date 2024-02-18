@@ -49,6 +49,16 @@
                             </div>
 
                             <div class="form-group">
+                                <label>No NIK/NPWP</label>
+                                <input type="text" name="id_card" id="id_card" class="form-control" placeholder="Id Card" value="<?= $detail_user['id_card'] ?>" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>No Whatsapp</label>
+                                <input type="text" name="no_hp" id="no_hp" class="form-control" placeholder="No HP" value="<?= $detail_user['no_hp'] ?>" required>
+                            </div>
+
+                            <div class="form-group">
                                 <label>Email</label>
                                 <input type="text" name="email" id="email" class="form-control" placeholder="Email" value="<?= $detail_user['email'] ?>" required>
                             </div>
@@ -56,6 +66,11 @@
                             <div class="form-group">
                                 <label>Password</label>
                                 <input type="password" name="password" id="password" class="form-control" placeholder="Password" value="<?= $detail_user['password'] ?>" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Alamat</label>
+                                <input type="text" name="alamat" id="alamat" class="form-control" placeholder="Alamat" value="<?= $detail_user['alamat'] ?>" required>
                             </div>
 
                             <div class=" form-group">
@@ -70,6 +85,16 @@
                                 </Select>
                             </div>
 
+                            <div class="form-group">
+                                <label>Nama Perusahaan</label>
+                                <input type="text" name="perusahaan" id="perusahaan" class="form-control" placeholder="Perusahaan" value="<?= $detail_user['perusahaan'] ?>">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Jabatan</label>
+                                <input type="text" name="jabatan" id="jabatan" class="form-control" placeholder="Jabatan" value="<?= $detail_user['jabatan'] ?>">
+                            </div>
+
                             <div class=" form-group">
                                 <label>Status</label>
                                 <Select name="status" id="status" class="form-control" required>
@@ -80,11 +105,6 @@
                                         <option value='active'>Active</option>
                                     <?php  } ?>
                                 </Select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Nama Perusahaan</label>
-                                <input type="text" name="perusahaan" id="perusahaan" class="form-control" placeholder="Perusahaan" value="<?= $detail_user['perusahaan'] ?>">
                             </div>
 
                             <div class="form-group">
