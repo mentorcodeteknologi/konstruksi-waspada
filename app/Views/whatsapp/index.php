@@ -40,7 +40,7 @@
             // NOTIFIKASI BERHASIL SIMPAN DATA
             if (session()->getFlashdata('pesan')) {
                 echo '<div class="alert alert-success alert-dismissible">
-                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . session()->getFlashdata('pesan') . '</div>';
+                 ' . session()->getFlashdata('pesan') . '</div>';
             }
             ?>
 
@@ -85,7 +85,7 @@
                     $('#targetQr').hide();
                     $('#status').show();
                 }
-            } 
+            }
 
         };
     });
