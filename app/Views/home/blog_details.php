@@ -12,7 +12,7 @@
             <div class="col-sm-6">
                 <nav aria-label="breadcrumb" class="theme-breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('/') ?>">Home</a></li>
                         <li class="breadcrumb-item active">Blog Details</li>
                     </ol>
                 </nav>
@@ -41,8 +41,8 @@
                 <p><?= $detail_artikel['isi']; ?></p>
             </div>
         </div>
-        <!-- <div class="row section-b-space blog-advance">
-            <div class="col-lg-6">
+        <div class="row section-b-space blog-advance">
+            <!-- <div class="col-lg-6">
                 <div><img src="assets/4.jpg" class="img-fluid blur-up lazyload bg-img" alt=""></div>
             </div>
             <div class="col-lg-6">
@@ -80,27 +80,18 @@
                     Praesent eget lectus sit amet diam vestibulum varius. Suspendisse dignissim mattis leo, nec
                     facilisis erat tempor quis. Vestibulum eu vestibulum ex. Maecenas luctus orci sed blandit
                     fermentum. In vulputate eu metus a faucibus. Suspendisse feugiat condimentum congue.</p>
-            </div>
-        </div> -->
-        <!-- <div class="row section-b-space blog-advance">
+            </div> -->
+        </div>
+        <div class="row section-b-space blog-advance">
             <div class="col">
                 <h4>Youtube : </h4>
-                <iframe width="100%" height="315" src="https://www.youtube.com/embed/Wz-ak4s8A-4?si=z068tqP_q4Wdox9k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe width="100%" height="315" src="<?= $detail_artikel['url']; ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
             <div class="col">
                 <h4>Description :</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Voluptatem quas porro molestiae dolor animi possimus rem. Ipsam neque aliquam fugiat
-                    ducimus velit repellat architecto aliquid quia iusto rerum incidunt voluptatibus
-                    deserunt corrupti eligendi earum sunt atque non labore, autem eum nesciunt dolore
-                    numquam excepturi. Consectetur nemo, officiis distinctio unde similique laboriosam
-                    ab voluptate dolorum repudiandae adipisci minima officia ullam, ipsum qui explicabo
-                    sint dolore quidem voluptatem aliquid. Delectus pariatur sunt, quo quod a quae
-                    perferendis! Eius animi quo adipisci quibusdam voluptas totam ipsa provident dolorum
-                    doloribus, enim porro id accusamus, non necessitatibus at reprehenderit laborum saepe
-                    dolorem possimus asperiores placeat?</p>
+                <p><?= $detail_artikel['deskripsi']; ?></p>
             </div>
-        </div> -->
+        </div>
 
         <div class="row section-b-space">
             <h2>Comments</h2>

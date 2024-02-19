@@ -43,6 +43,8 @@ $routes->get('/logout', 'AuthController::logout');
 
 // USER BLACKLIST FRONTEND ROUTES
 $routes->get('/user_blacklist_frontend', 'UserBlacklistFrontendController::index');
+$routes->post('/createUserPerusahaanBlacklist', 'UserBlacklistFrontendController::createPerusahaanBlacklist');
+$routes->post('/createUserPeroranganBlacklist', 'UserBlacklistFrontendController::createUserBlacklist');
 
 // ALAT HILANG ROUTES
 $routes->get('alat_hilang/detail', 'AlatHilangFrontendController::index');

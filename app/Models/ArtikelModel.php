@@ -48,4 +48,16 @@ class ArtikelModel extends Model
     {
         return $this->select('*')->where('slug', $slug)->get()->getRowArray();
     }
+
+    // ============================= //
+    // FUNCTION GET ARTIKEL DI FRONTEND
+    // ============================= //
+    public function getRecentArticles($limit = 10)
+    {
+        return $this->select('*')
+            ->orderBy('created_at', 'desc')
+            ->limit($limit)
+            ->get()
+            ->getResultArray();
+    }
 }

@@ -12,7 +12,7 @@
             <div class="col-sm-6">
                 <nav aria-label="breadcrumb" class="theme-breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('/') ?>">Home</a></li>
                         <li class="breadcrumb-item active">blog</li>
                     </ol>
                 </nav>
@@ -31,13 +31,13 @@
                     <div class="row blog-media">
                         <div class="col-xl-6">
                             <div class="blog-left">
-                                <a href="/blog_details/<?= $a['slug']; ?>"><img src="<?= base_url('assets/backend/images/artikel/' . $a['gambar']) ?>" class="img-fluid blur-up lazyload bg-img" alt=""></a>
+                                <a href="<?= base_url('blog_details/' . $a['slug']) ?>"><img src="<?= base_url('assets/backend/images/artikel/' . $a['gambar']) ?>" class="img-fluid blur-up lazyload bg-img" alt=""></a>
                             </div>
                         </div>
                         <div class="col-xl-6">
                             <div class="blog-right">
                                 <div>
-                                    <h6><?= $a['created_at']; ?></h6> <a href="<?= base_url('blog_details/' . $a['slug']) ?>">
+                                    <h6><?= date('d-m-Y', strtotime($a['created_at'])); ?></h6> <a href="<?= base_url('blog_details/' . $a['slug']) ?>">
                                         <h4><?= $a['judul']; ?></h4>
                                     </a>
                                     <ul class="post-social">
@@ -137,15 +137,17 @@
                     <div class="theme-card">
                         <h4>Recent Blog</h4>
                         <ul class="recent-blog">
-                            <li>
-                                <div class="media"> <img class="img-fluid blur-up lazyload" src="<?= base_url('assets/frontend') ?>/images/blog/1.jpg" alt="Generic placeholder image">
-                                    <div class="media-body align-self-center">
-                                        <h6>25 Dec 2018</h6>
-                                        <p>0 hits</p>
+                            <?php foreach ($recentArtikel as $ra) : ?>
+                                <li>
+                                    <div class="media"> <img class="img-fluid blur-up lazyload" src="<?= base_url('assets/backend/images/artikel/' . $ra['gambar']) ?>" alt="Generic placeholder image">
+                                        <div class="media-body align-self-center">
+                                            <h6><?= date('d-m-Y', strtotime($a['created_at'])); ?></h6>
+                                            <p>0 hits</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                            <li>
+                                </li>
+                            <?php endforeach ?>
+                            <!-- <li>
                                 <div class="media"> <img class="img-fluid blur-up lazyload" src="<?= base_url('assets/frontend') ?>/images/blog/2.jpg" alt="Generic placeholder image">
                                     <div class="media-body align-self-center">
                                         <h6>25 Dec 2018</h6>
@@ -176,7 +178,7 @@
                                         <p>0 hits</p>
                                     </div>
                                 </div>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                     <div class="theme-card">
