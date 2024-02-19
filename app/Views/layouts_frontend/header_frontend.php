@@ -13,6 +13,20 @@
                 </div>
                 <div class="col-lg-6 text-end">
                     <ul class="header-dropdown">
+                        <li class="onhover-dropdown mobile-account">
+                            <i class="fa fa-globe" aria-hidden="true"></i> Blog
+                            <ul class="onhover-show-div">
+                                <li>
+                                    <a href="<?= base_url('/') ?>">Blog</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="onhover-dropdown mobile-account">
+                            <i class="fa fa-building" aria-hidden="true"></i>User Blacklist
+                            <ul class="onhover-show-div">
+                                <li> <a href="<?= base_url('user_blacklist_frontend') ?>">User Blacklist</a></li>
+                            </ul>
+                        </li>
                         <?php
                         // Cek apakah pengguna sudah login atau belum
                         $logged_in = false;
@@ -32,21 +46,6 @@
                                     <li><a href="<?= base_url('register') ?>">Register</a></li>
                                 </ul>
                             <?php endif; ?>
-                        </li>
-
-                        <li class="onhover-dropdown mobile-account">
-                            <i class="fa fa-building" aria-hidden="true"></i>User Blacklist
-                            <ul class="onhover-show-div">
-                                <li> <a href="<?= base_url('user_blacklist_frontend') ?>">User Blacklist</a></li>
-                            </ul>
-                        </li>
-                        <li class="onhover-dropdown mobile-account">
-                            <i class="fa fa-globe" aria-hidden="true"></i> Blog
-                            <ul class="onhover-show-div">
-                                <li>
-                                    <a href="<?= base_url('/') ?>">Blog</a>
-                                </li>
-                            </ul>
                         </li>
                     </ul>
                 </div>
