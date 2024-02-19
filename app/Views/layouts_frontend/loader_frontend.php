@@ -10,13 +10,19 @@
                     <div class="col-lg-6 text-end">
                         <ul class="header-dropdown">
                             <li class="onhover-dropdown mobile-account">
-                                <i class="fa fa-globe" aria-hidden="true"></i> Blog
+                                <i class="fa fa-globe" aria-hidden="true"></i>
                             </li>
                             <li class="onhover-dropdown mobile-account">
-                                <i class="fa fa-building" aria-hidden="true"></i>User Blacklist
+                                <i class="fa fa-users" aria-hidden="true"></i>
                             </li>
                             <li class="onhover-dropdown mobile-account">
-                                <i class="fa fa-user" aria-hidden="true"></i> My Account
+                                <i class="fa fa-wrench" aria-hidden="true"></i>
+                            </li>
+                            <li class="onhover-dropdown mobile-account">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </li>
+                            <li class="onhover-dropdown mobile-account">
+                                <i class="fa fa-user" aria-hidden="true"></i>
                             </li>
                         </ul>
                     </div>
