@@ -166,6 +166,6 @@ class UserBlacklistFrontendController extends BaseController
 
         $this->userBlacklistModel->insert($data);
         session()->setFlashdata('pesan', 'Data berhasil disimpan');
-        return redirect()->to(base_url('user_blacklist'));
+        return redirect()->to(base_url('user_blacklist_frontend'));
     }
 }
