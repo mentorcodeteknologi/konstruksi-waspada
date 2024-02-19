@@ -94,6 +94,8 @@ $routes->group('calendar', ['filter' => 'auth:users,admin'], function ($routes) 
     $routes->post('update/(:any)', 'CalendarController::updateCalendar/$1');
     $routes->post('delete/(:any)', 'CalendarController::delete/$1');
 });
+$routes->get('calendar_frontend', 'CalendarController::indexFront');
+$routes->get('calendar_data', 'CalendarController::calendar_data');
 
 
 // ROUTES ALAT HILANG

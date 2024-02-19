@@ -222,6 +222,9 @@
                                     <li>
                                         <a href="<?= base_url('alat_hilang/detail') ?>">Alat Hilang</a>
                                     </li>
+                                    <li>
+                                        <a href="<?= base_url('calendar_frontend') ?>">Kalender</a>
+                                    </li>
                                 </ul>
                             </nav>
                         </div>

@@ -37,6 +37,13 @@ $session = session();
                 <div class="card-body">
                     <div class="col-lg-12">
                         <h3>User Blacklist</h3>
+                        <!-- Pesan untuk menampilkan sebelum login -->
+                        <div id="messageBox" style="text-align: center; background-color: #f8d7da; padding: 20px; margin-bottom: 15px;">
+                            <p style="font-size: 18px;">Sebelum Anda mengisi form di bawah, silakan login jika Anda sudah punya akun. Jika Anda belum memiliki akun, silakan registrasi terlebih dahulu.</p>
+                            <a href="<?= base_url('login') ?>" class="btn btn-orange">Login</a>
+                            <a href="<?= base_url('register') ?>" class="btn btn-orange">Register</a>
+                        </div>
+                        <!-- Pesan untuk menampilkan sebelum login -->
                         <ul class="nav nav-tabs tab-coupon" id="myTab" role="tablist">
                             <li class="nav-item"><a class="nav-link active show" id="user-tab" data-bs-toggle="tab" href="#user" role="tab" aria-controls="user" aria-selected="true" data-original-title="" title="">List Blacklist</a></li>
                             <li class="nav-item"><a class="nav-link" id="add-user-tabs" data-bs-toggle="tab" href="#add-user" role="tab" aria-controls="add-user" aria-selected="false" data-original-title="" title="">Add User Blacklist</a></li>
@@ -89,20 +96,9 @@ $session = session();
                             </div>
                             <div class="tab-pane fade" id="add-user" role="tabpanel" aria-labelledby="add-user-tabs">
                                 <div class="theme-card">
-                                <h3>Form User Blacklist</h3>
+                                    <h3>Form User Blacklist</h3>
                                     <form action="<?= base_url('createUserPeroranganBlacklist') ?>" method="post" class="theme-form" enctype="multipart/form-data">
                                         <?= csrf_field(); ?>
-                                        <div class="form-row row">
-                                            <!-- Masukkan pesan di sini -->
-                                            <div class="col-md-12">
-                                                <div id="messageBox" style="text-align: center; background-color: #f8d7da; padding: 20px; margin-bottom: 15px; display: none;">
-                                                    <p style="font-size: 18px;">Sebelum anda mengisi form di bawah.</p>
-                                                    <p style="font-size: 18px;">Silahkan login jika anda sudah punya akun, jika anda belum memiliki akun silahkan registrasi terlebih dahulu.</p>
-                                                    <a href="<?= base_url('login') ?>" class="btn btn-orange">Login</a>
-                                                    <a href="<?= base_url('register') ?>" class="btn btn-orange">Register</a>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="form-row row">
                                             <div class="col-md-6">
                                                 <label for="review">NIK Terlapor</label>
@@ -174,10 +170,6 @@ $session = session();
                                                 <label for="keterangan">Keterangan</label>
                                                 <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Keterangan" required="" disabled>
                                             </div>
-                                            <div class="col-md-6">
-                                                <label for="review">Nama Perusahaan Penyedia Sewa</label>
-                                                <input type="text" class="form-control" id="review" placeholder="Nama Perusahaan Penyedia Sewa" required="" readonly disabled>
-                                            </div>
                                         </div>
 
                                         <button type="submit" class="btn btn-solid w-auto" disabled>Add</button>
@@ -186,20 +178,9 @@ $session = session();
                             </div>
                             <div class="tab-pane fade" id="add-user-company" role="tabpanel" aria-labelledby="add-user-company-tabs">
                                 <div class="theme-card">
-                                <h3>Form Perusahaan Blacklist</h3>
+                                    <h3>Form Perusahaan Blacklist</h3>
                                     <form action="<?= base_url('createUserPerusahaanBlacklist') ?>" method="post" class="theme-form" enctype="multipart/form-data">
                                         <?= csrf_field(); ?>
-                                        <div class="form-row row">
-                                            <!-- Masukkan pesan di sini -->
-                                            <div class="col-md-12">
-                                                <div id="pesan" style="text-align: center; background-color: #f8d7da; padding: 20px; margin-bottom: 15px; display: none;">
-                                                    <p style="font-size: 18px;">Sebelum anda mengisi form di bawah.</p>
-                                                    <p style="font-size: 18px;">Silahkan login jika anda sudah punya akun, jika anda belum memiliki akun silahkan registrasi terlebih dahulu.</p>
-                                                    <a href="<?= base_url('login') ?>" class="btn btn-orange">Login</a>
-                                                    <a href="<?= base_url('register') ?>" class="btn btn-orange">Register</a>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="form-row row">
                                             <div class="col-md-6">
                                                 <label for="email">NPWP Perusahaan Terlapor</label>
@@ -275,10 +256,6 @@ $session = session();
                                                 <label for="review">Keterangan</label>
                                                 <input type="keterangan" class="form-control" name="keterangan" id="keterangan" placeholder="Keterangan" required="">
                                             </div>
-                                            <div class="col-md-6">
-                                                <label for="review">Nama Perusahaan Penyedia Sewa</label>
-                                                <input type="Nama Perusahaan Penyedia Sewa" class="form-control" id="review" placeholder="Nama Perusahaan Penyedia Sewa" required="" readonly>
-                                            </div>
                                         </div>
 
                                         <button type="submit" class="btn btn-solid w-auto">Add</button>
@@ -294,107 +271,53 @@ $session = session();
 </section>
 <!--Form Input User Perorangan Blacklist -->
 
-<!--Form Input User Perusahaan Blacklist-->
-
-<!--Form Input User Perusahaan Blacklist-->
-
-<!-- user blacklist table -->
-<!-- <div class="container mb-5">
-    <div class="card">
-        <div class="card-header">
-            <form class="form-inline search-form search-box">
-                <div class="form-group">
-                    <input class="form-control-plaintext" type="search" placeholder="Search.." /><span class="d-sm-none mobile-search"><i data-feather="search"></i></span>
-                </div>
-            </form>
-        </div>
-
-        <div class="card-body">
-            <h4>User Blacklist Table</h4>
-            <div class="table-responsive table-desi">
-                <table class="all-package coupon-table table table-striped">
-                    <thead>
-                        <tr>
-                            <th>
-                    <button
-                      type="button"
-                      class="btn btn-primary add-row delete_all"
-                    >
-                      Delete
-                    </button>
-                  </th>
-                            <th>Nama Perusahaan Penyedia Sewa</th>
-                            <th>NIK Terlapor</th>
-                            <th>Nama Terlapor</th>
-                            <th>Jenis Pelanggaran</th>
-                            <th>Merk dan Tipe Alat</th>
-                            <th>No Seri</th>
-                            <th>Durasi Rental</th>
-                            <th>Keterangan</th>
-                            <th>Nominal Kerugian</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <?php foreach ($user as $u) : ?>
-                            <tr>
-                                <td><?= $u['perusahaan'] ?></td>
-                                <td><?= $u['nik'] ?></td>
-                                <td><?= $u['nama'] ?></td>
-                                <td><?= $u['jenis_pelanggaran'] ?></td>
-                                <td><?= $u['merk'] ?> <?= $u['type_alat'] ?></td>
-                                <td><?= $u['no_seri'] ?></td>
-                                <td><?= $u['durasi'] . " Bulan" ?></td>
-                                <td><?= $u['keterangan'] ?></td>
-                                <td><?= $u['nominal_kerugian'] ?></td>
-                            </tr>
-                        <?php endforeach ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div> -->
-<!-- user blacklist table-->
-
-<!-- user perusahaan blacklist table -->
-<div class="container mb-5">
-    <div class="card">
-        <div class="card-header">
-
-        </div>
-
-        <div class="card-body">
-
-        </div>
-    </div>
-</div>
-<!-- user perusahaan blacklist table-->
 
 <script>
     // Cek apakah pengguna telah login atau belum
     var logged_in = <?= ($session->get('logged_in') ? 'true' : 'false') ?>;
 
-    // Jika pengguna belum login, tampilkan pesan di dalam form
-    if (!logged_in) {
-        document.getElementById("messageBox").style.display = "block";
-        document.getElementById("pesan").style.display = "block";
-    } else {
-        // Jika pengguna sudah login, aktifkan elemen formulir
-        var inputElements = document.querySelectorAll('#formPerorangan input, #formPerusahaan input, #formPerusahaan select');
+    // Fungsi untuk menampilkan atau menyembunyikan pesan
+    function toggleMessageBox() {
+        var messageBox = document.getElementById('messageBox');
+        messageBox.style.display = logged_in ? 'none' : 'block';
+    }
+
+    // Fungsi untuk menonaktifkan elemen formulir
+    function disableFormElements(formId) {
+        var form = document.getElementById(formId);
+        var inputElements = form.querySelectorAll('input, select, textarea');
+        for (var i = 0; i < inputElements.length; i++) {
+            inputElements[i].setAttribute('disabled', 'true');
+        }
+
+        var submitButtons = form.querySelectorAll('button[type="submit"]');
+        for (var j = 0; j < submitButtons.length; j++) {
+            submitButtons[j].setAttribute('disabled', 'true');
+        }
+    }
+
+    // Fungsi untuk mengaktifkan elemen formulir
+    function enableFormElements(formId) {
+        var form = document.getElementById(formId);
+        var inputElements = form.querySelectorAll('input, select, textarea');
         for (var i = 0; i < inputElements.length; i++) {
             inputElements[i].removeAttribute('disabled');
         }
 
-        // Aktifkan tombol submit pada kedua form
-        var submitButtons = document.querySelectorAll('#formPerorangan button[type="submit"], #formPerusahaan button[type="submit"]');
+        var submitButtons = form.querySelectorAll('button[type="submit"]');
         for (var j = 0; j < submitButtons.length; j++) {
             submitButtons[j].removeAttribute('disabled');
         }
+    }
 
-        // Aktifkan dropdown jenis pelanggaran pada formulir pertama
-        var dropdownJenisPelanggaran = document.getElementById("jenis_pelanggaran");
-        dropdownJenisPelanggaran.removeAttribute('disabled');
+    // Memeriksa status login saat memuat halaman
+    toggleMessageBox();
+    if (!logged_in) {
+        disableFormElements('formPerorangan');
+        disableFormElements('formPerusahaan');
+    } else {
+        enableFormElements('formPerorangan');
+        enableFormElements('formPerusahaan');
     }
 </script>
 <?= $this->endSection(); ?>

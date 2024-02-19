@@ -47,6 +47,9 @@
                                         <li>
                                             <a href="/alat_hilang/detail">Alat Hilang</a>
                                         </li>
+                                        <li>
+                                            <a href="/calendar_frontend">Kalender</a>
+                                        </li>
                                     </ul>
                                 </nav>
                             </div>

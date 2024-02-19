@@ -30,11 +30,22 @@ class CalendarController extends BaseController
     public function index()
     {
         $data = [
-            'title'        => 'Calendar',
-            'subtitle'     => 'List Data Calendar',
+            'title'        => 'Kalender',
+            'subtitle'     => 'List Data Kalender',
             'list_calendar' => $this->calendarModel->findAll()
         ];
         return view('calendar/index', $data);
+    }
+
+    // ========================= //
+    // FUNCTION INDEX
+    // ========================= //
+    public function indexFront()
+    {
+        $data = [
+            'title'        => 'Kalender',
+        ];
+        return view('calendar/indexFront', $data);
     }
 
 
@@ -117,5 +128,28 @@ class CalendarController extends BaseController
         $this->calendarModel->delete($CalendarData['id']);
         session()->setFlashdata('pesan', 'Data Berhasil Dihapus');
         return redirect()->to(base_url('calendar'));
+    }
+
+    public function calendar_data()
+    {
+        // Instance dari model EventModel untuk mengakses database
+        $model = new CalendarModel();
+
+        // Ambil data acara dari database
+        $events = $model->findAll();
+
+        // Format data dalam bentuk JSON
+        $data = [];
+        foreach ($events as $event) {
+            $data[] = [
+                'id' => $event['id'],
+                'title' => $event['nama_kegiatan'],
+                'start' => $event['tanggal_kegiatan'],
+                'end' => $event['tanggal_kegiatan']
+            ];
+        }
+
+        // Mengembalikan data dalam format JSON
+        return $this->response->setJSON($data);
     }
 }
