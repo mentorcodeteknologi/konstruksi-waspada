@@ -45,8 +45,7 @@
                 </div>
             </div>
         </section>
-        <br>
-        <br><br>
+        <br><br><br>
     <?php } ?>
 
     <!-- Container-fluid starts-->
@@ -120,31 +119,9 @@
                     </div>
                 </div>
             </div>
-
-            <!-- 
-            <div class="col-xl-6 xl-100">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Market Value</h5>
-                        <div class="card-header-right">
-                            <ul class="list-unstyled card-option">
-                                <li><i class="icofont icofont-simple-left"></i></li>
-                                <li><i class="view-html fa fa-code"></i></li>
-                                <li><i class="icofont icofont-maximize full-card"></i></li>
-                                <li><i class="icofont icofont-minus minimize-card"></i></li>
-                                <li><i class="icofont icofont-refresh reload-card"></i></li>
-                                <li><i class="icofont icofont-error close-card"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="market-chart"></div>
-                        <div class="code-box-copy">
-                            <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#example-head" title="Copy"><i class="icofont icofont-copy-alt"></i></button>
-                            <pre><code class="language-html" id="example-head">&lt;!-- Cod Box Copy begin --&gt;
-
         </div>
     </div>
+    <!-- Container-fluid Ends-->
 </div>
 
 <?= $this->endSection(); ?>
