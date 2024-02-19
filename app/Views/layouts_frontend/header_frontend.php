@@ -36,6 +36,7 @@
                                 <!-- Jika pengguna sudah login, tampilkan tombol logout -->
                                 <i class="fa fa-user" aria-hidden="true"></i><?= $session->get('nama'); ?></a>
                                 <ul class="onhover-show-div">
+                                    <li><a href="<?= base_url('dashboard'); ?>">Dashboard</a></li>
                                     <li><a href="<?= base_url('logout') ?>">Logout</a></li>
                                 </ul>
                             <?php else : ?>
