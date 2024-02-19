@@ -23,7 +23,7 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
-<section class="section-b-space blog-page ratio2_3">
+<section class="section-b-space blog-page ratio2_3 bg-white">
     <div class="container">
         <div class="row">
             <div class="col-xl-9 col-lg-8 col-md-7">
@@ -42,8 +42,8 @@
                                     </a>
                                     <ul class="post-social">
                                         <li>Posted By : <?= $a['penulis']; ?></li>
-                                        <li><i class="fa fa-heart"></i> 5 Hits</li>
-                                        <li><i class="fa fa-comments"></i> 10 Comment</li>
+                                        <!-- <li><i class="fa fa-heart"></i> 5 Hits</li>
+                                        <li><i class="fa fa-comments"></i> 10 Comment</li> -->
                                     </ul>
                                     <p><?= $a['isi']; ?></p>
                                 </div>

@@ -1,6 +1,11 @@
 <?= $this->extend('layouts_frontend/main_frontend'); ?>
 
 <?= $this->section('breadcrumb'); ?>
+<?php
+// SESSION UNTUK MENGAMBIL DATA SESSION
+$session = session();
+?>
+
 <!-- breadcrumb start -->
 <div class="breadcrumb-section">
     <div class="container">
@@ -25,146 +30,156 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
-<section class="register-page section-b-space">
+<section class="register-page section-b-space bg-white" id="formPerorangan">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h3>Form Kehilangan Alat</h3>
-                <div class="theme-card">
-                    <form action="" method="post" class="theme-form">
-                        <div class="form-row row">
-                            <div class="col-md-6">
-                                <label for="review">NIK/NPWP</label>
-                                <input type="text" class="form-control" id="nama_pemilik" value="Relasi Field User" readonly="" required="">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="review">Nama Pemilik</label>
-                                <input type="text" class="form-control" id="nama_pemilik" value="Relasi Field User" readonly="" required="">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="review">No Hp</label>
-                                <input type="text" class="form-control" id="nama_terlapor" value="0821543548" readonly="" required="">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="review">Type Alat</label>
-                                <input type="file" class="form-control" id="upload_ktp_terlapor" placeholder="Type Alat" required="">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="review">Serial Number</label>
-                                <input type="text" class="form-control" id="no_hp_terlapor" placeholder="Serial Number" required="">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="review">Upload Foto Alat</label>
-                                <input type="file" class="form-control" id="upload_bukti_surat_perjanjian" placeholder="Upload Foto Alat" required="">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="review">Pembelian Dari</label>
-                                <input type="text" class="form-control" id="merk_dan_tipe_alat" placeholder="Pembelian Dari" required="">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="review">Tanggal Kehilangan</label>
-                                <input type="date" class="form-control" id="durasi_rental" placeholder="Tanggal Kehilangan" required="">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="review">Upload Surat Kepemilikan/Kwetansi</label>
-                                <input type="file" class="form-control" id="upload_bukti_surat_perjanjian" placeholder="Upload Surat Kepemilikan/Kwetansi" required="">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="review">Lokasi Kehilangan</label>
-                                <input type="file" class="form-control" id="foto_alat" placeholder="Foto Alat" required="">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="review">Nominal Kerugian (Rp.)</label>
-                                <input type="number" class="form-control" id="jenis_pelanggaran" placeholder="Jenis Pelanggaran" required="">
-                            </div>
-                            <div class="col-md-12">
-                                <label for="review">Kronologis Kejadian </label>
-                                <textarea name="" id="" cols="30" rows="10" class="form-control">
-                                    </textarea>
-                            </div>
-
+                <h3>Alat Hilang</h3>
+                <!-- Pesan untuk menampilkan sebelum login -->
+                <div id="messageBox" style="text-align: center; background-color: #f8d7da; padding: 20px; margin-bottom: 15px;">
+                    <p style="font-size: 18px;">Sebelum Anda mengisi form di bawah, silakan login jika Anda sudah punya akun. Jika Anda belum memiliki akun, silakan registrasi terlebih dahulu.</p>
+                    <a href="<?= base_url('login') ?>" class="btn btn-orange">Login</a>
+                    <a href="<?= base_url('register') ?>" class="btn btn-orange">Register</a>
+                </div>
+                <!-- Pesan untuk menampilkan sebelum login -->
+                <ul class="nav nav-tabs tab-coupon" id="myTab" role="tablist">
+                    <li class="nav-item"><a class="nav-link active show" id="alathilang-tab" data-bs-toggle="tab" href="#alathilang" role="tab" aria-controls="alathilang" aria-selected="true" data-original-title="" title="">List Alat Hilang</a></li>
+                    <li class="nav-item"><a class="nav-link" id="add-alathilang-tabs" data-bs-toggle="tab" href="#add-alathilang" role="tab" aria-controls="add-alathilang" aria-selected="false" data-original-title="" title="">Add Alat Hilang</a></li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade active show" id="alathilang" role="tabpanel" aria-labelledby="alathilang-tab">
+                        <h4>Alat Hilang Table</h4>
+                        <div class="table-responsive table-desi">
+                            <form class="form-inline search-form search-box mb-3">
+                                <div class="form-group">
+                                    <input class="form-control-plaintext" type="search" placeholder="Search.." /><span class="d-sm-none mobile-search"><i data-feather="search"></i></span>
+                                </div>
+                            </form>
+                            <table class="all-package coupon-table table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>PEMILIK ALAT</th>
+                                        <th>NO HP</th>
+                                        <th>TYPE ALAT DAN MERK</th>
+                                        <th>SERIAL NUMBER</th>
+                                        <th>TANGGAL KEHILANGAN</th>
+                                        <th>LOKASI KEHILANGAN</th>
+                                        <th>KRONOLOGIS KEJADIAN</th>
+                                        <th>STATUS KEPEMILIKAN</th>
+                                    </tr>
+                                </thead>
+    
+                                <tbody>
+                                    <tr>
+    
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <!-- <div class="form-row row">
-                                <div class="col-md-6">
-                                    <label for="review">Durasi Rental</label>
-                                    <input type="date" class="form-control" id="durasi_rental" placeholder="Durasi Rental" required="">
+                    </div>
+                    <div class="tab-pane fade" id="add-alathilang" role="tabpanel" aria-labelledby="add-alathilang-tabs">
+                        <div class="theme-card">
+                            <h3>Form Kehilangan Alat</h3>
+                            <form action="<?= base_url('alat_hilang/createAlatHilang') ?>" method="post" class="theme-form" enctype="multipart/form-data">
+                                <?= csrf_field(); ?>
+                                <div class="form-row row">
+                                    <div class="col-md-6">
+                                        <label for="review">Type Alat</label>
+                                        <input type="file" class="form-control" name="type_alat" id="type_alat" placeholder="Type Alat" required="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="review">Merk</label>
+                                        <input type="file" class="form-control" name="merk" id="merk" placeholder="Merk Alat" required="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="review">Serial Number</label>
+                                        <input type="text" class="form-control" name="serial_number" id="serial_number" placeholder="Serial Number" required="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="review">Upload Foto Alat</label>
+                                        <input type="file" class="form-control" name="foto" id="foto" placeholder="Upload Foto Alat" required="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="review">Pembelian Dari</label>
+                                        <input type="text" class="form-control" name="pembelian_dari" id="pembelian_dari" placeholder="Pembelian Dari" required="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="review">Tanggal Kehilangan</label>
+                                        <input type="date" class="form-control" name="tanggal_kehilangan" id="tanggal_kehilangan" placeholder="Tanggal Kehilangan" required="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="review">Upload Surat Kepemilikan/Kwetansi</label>
+                                        <input type="file" class="form-control" name="surat_kepemilikian" id="surat_kepemilikian" placeholder="Upload Surat Kepemilikan/Kwetansi" required="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="review">Lokasi Kehilangan</label>
+                                        <input type="file" class="form-control" name="surat_kepemilikian" id="surat_kepemilikian" placeholder="Surat Kepemilikan" required="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="review">Nominal Kerugian (Rp.)</label>
+                                        <input type="number" class="form-control" name="nominal_kerugian" id="nominal_kerugian" placeholder="Nominal kerugian" required="">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="review">Kronologis Kejadian </label>
+                                        <textarea name="kronologi" id="kronologi" cols="30" rows="10" class="form-control"></textarea>
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <label for="review">Upload Bukti Lainnya</label>
-                                    <input type="file" class="form-control" id="upload_bukti_lainnya" placeholder="Upload Bukti Lainnya"
-                                        required="">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="review">Nominal Kerugian</label>
-                                    <input type="nominal_kerugian" class="form-control" id="review"
-                                        placeholder="Nominal Kerugian" required="">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="review">Keterangan</label>
-                                    <input type="keterangan" class="form-control" id="review"
-                                        placeholder="Keterangan" required="">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="review">Nama Perusahaan Penyedia Sewa</label>
-                                    <input type="Nama Perusahaan Penyedia Sewa" class="form-control" id="review"
-                                        placeholder="Nama Perusahaan Penyedia Sewa" required="" readonly>
-                                </div>
-                            </div> -->
-                        <a href="#" class="btn btn-solid w-auto mt-3">Add</a>
-                    </form>
+                                <button type="submit" class="btn btn-solid w-auto mt-3">Add</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- view form kehilangan alat -->
-<div class="container mb-5">
-    <div class="card">
-        <div class="card-header">
-            <form class="form-inline search-form search-box">
-                <div class="form-group">
-                    <input class="form-control-plaintext" type="search" placeholder="Search.." /><span class="d-sm-none mobile-search"><i data-feather="search"></i></span>
-                </div>
-            </form>
-        </div>
+<script>
+    // Cek apakah pengguna telah login atau belum
+    var logged_in = <?= ($session->get('logged_in') ? 'true' : 'false') ?>;
 
-        <div class="card-body">
-            <h4>Tabel Kehilangan Alat</h4>
-            <div class="table-responsive table-desi">
-                <table class="all-package coupon-table table table-striped">
-                    <thead>
-                        <tr>
-                            <!-- <th>
-                    <button
-                      type="button"
-                      class="btn btn-primary add-row delete_all"
-                    >
-                      Delete
-                    </button>
-                  </th> -->
-                            <th>PEMILIK ALAT</th>
-                            <th>NO HP</th>
-                            <th>TYPE ALAT DAN MERK</th>
-                            <th>SERIAL NUMBER</th>
-                            <th>TANGGAL KEHILANGAN</th>
-                            <th>LOKASI KEHILANGAN</th>
-                            <th>KRONOLOGIS KEJADIAN</th>
-                            <th>STATUS KEPEMILIKAN</th>
-                        </tr>
-                    </thead>
+    // Fungsi untuk menampilkan atau menyembunyikan pesan
+    function toggleMessageBox() {
+        var messageBox = document.getElementById('messageBox');
+        messageBox.style.display = logged_in ? 'none' : 'block';
+    }
 
-                    <!-- <tbody>
-                        
-                            <tr>
-                                
-                            </tr>
-                        
-                    </tbody> -->
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- view form kehilangan alat -->
+    // Fungsi untuk menonaktifkan elemen formulir
+    function disableFormElements(formId) {
+        var form = document.getElementById(formId);
+        var inputElements = form.querySelectorAll('input, select, textarea');
+        for (var i = 0; i < inputElements.length; i++) {
+            inputElements[i].setAttribute('disabled', 'true');
+        }
+
+        var submitButtons = form.querySelectorAll('button[type="submit"]');
+        for (var j = 0; j < submitButtons.length; j++) {
+            submitButtons[j].setAttribute('disabled', 'true');
+        }
+    }
+
+    // Fungsi untuk mengaktifkan elemen formulir
+    function enableFormElements(formId) {
+        var form = document.getElementById(formId);
+        var inputElements = form.querySelectorAll('input, select, textarea');
+        for (var i = 0; i < inputElements.length; i++) {
+            inputElements[i].removeAttribute('disabled');
+        }
+
+        var submitButtons = form.querySelectorAll('button[type="submit"]');
+        for (var j = 0; j < submitButtons.length; j++) {
+            submitButtons[j].removeAttribute('disabled');
+        }
+    }
+
+    // Memeriksa status login saat memuat halaman
+    toggleMessageBox();
+    if (!logged_in) {
+        disableFormElements('formPerorangan');
+        disableFormElements('formPerusahaan');
+    } else {
+        enableFormElements('formPerorangan');
+        enableFormElements('formPerusahaan');
+    }
+</script>
 <?= $this->endSection(); ?>

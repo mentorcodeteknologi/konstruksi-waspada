@@ -34,18 +34,18 @@
 
 <?= $this->section('content'); ?>
 <!--section start-->
-<section class="register-page section-b-space">
+<section class="register-page section-b-space bg-white">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h3>create account</h3>
+                <h3>Create Account</h3>
                 <div class="theme-card">
                     <form action="<?= base_url('register') ?>" method="post" class="theme-form" enctype="multipart/form-data">
                         <?= csrf_field(); ?>
 
                         <div class="form-row row">
                             <div class="col-md-6">
-                                <label for="email">email</label>
+                                <label for="email">Email</label>
                                 <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
                             </div>
 
@@ -103,7 +103,6 @@
 
             </div>
         </div>
-    </div>
     </div>
 </section>
 <!--Section ends-->

@@ -109,6 +109,12 @@ $perusahaanBlacklistHilangHref = getMenuHref($session, base_url('perusahaan_blac
                         </a>
                     </li>
                     <li>
+                        <a class="sidebar-header" href="<?= base_url('category'); ?>">
+                            <i data-feather="category"></i>
+                            <span>Kategori</span>
+                        </a>
+                    </li>
+                    <li>
                         <a class="sidebar-header" href="<?= base_url('scan_qr'); ?>">
                             <i data-feather="tablet"></i>
                             <span>Scan QR Whatsapp</span>

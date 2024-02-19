@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="page-title">
-                    <h2>customer's login</h2>
+                    <h2>User Login</h2>
                 </div>
             </div>
             <div class="col-sm-6">
@@ -26,7 +26,7 @@
 
 <?= $this->section('content'); ?>
 <!--section start-->
-<section class="login-page section-b-space">
+<section class="login-page section-b-space bg-white">
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
