@@ -63,10 +63,10 @@
                             <th>Foto</th>
                             <th>Pembelian Dari</th>
                             <th>Tanggal Kehilangan</th>
-                            <th>Surat Kehilangan</th>
+                            <th>Surat Kepemilikan</th>
                             <th>Lokasi Kehilangan</th>
-                            <th>Created At</th>
-                            <th>Updated At</th>
+                            <th>Kronologi Kejadian</th>
+                            <th>Nominal Kerugian</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -77,13 +77,19 @@
                         foreach ($list_alat_hilang as $value) { ?>
                             <tr class="text-center">
                                 <td><?= $no++ ?></td>
-                                <td><?= $value['nama_alat'] ?></td>
+                                <td><?= $value['id_card'] ?></td>
+                                <td><?= $value['nama'] ?></td>
+                                <td><?= $value['no_hp'] ?></td>
+                                <td><?= $value['type_alat'] ?></td>
                                 <td><?= $value['merk'] ?></td>
-                                <td><?= $value['deskripsi'] ?></td>
+                                <td><?= $value['serial_number'] ?></td>
                                 <td><img src="<?= base_url('assets/backend/images/alat_hilang/' . $value['foto']) ?>" width="50px" height="50px"></td>
-                                <td><?= $value['slug'] ?></td>
-                                <td><?= $value['created_at'] ?></td>
-                                <td><?= $value['updated_at'] ?></td>
+                                <td><?= $value['pembelian_dari'] ?></td>
+                                <td><?= $value['tanggal_kehilangan'] ?></td>
+                                <td><a href="<?= base_url('assets/backend/images/alat_hilang/' . $value['surat_kepemilikian']) ?>" target="_blank">Lihat Surat Kepemilikan</a></td>
+                                <td><?= $value['lokasi_kehilangan'] ?></td>
+                                <td><?= $value['kronologi'] ?></td>
+                                <td><?= $value['nominal_kerugian'] ?></td>
                                 <td>
                                     <a href="<?= base_url('alat_hilang/update/' . $value['slug']) ?>" class="btn btn-info btn-sm">Edit</a>
                                     <form action="<?= base_url('alat_hilang/delete/' . $value['slug']); ?>" method="post">

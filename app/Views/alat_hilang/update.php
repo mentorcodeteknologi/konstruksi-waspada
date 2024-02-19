@@ -79,7 +79,7 @@
                             </div>
 
                             <div class="form-group">
-                                <a href="<?= base_url('assets/backend/images/alat_hilang/' . $detail_alat_hilang['surat_kepemilikian']) ?>" target="_blank">Lihat Surat Perjanjian</a>
+                                <a href="<?= base_url('assets/backend/images/alat_hilang/' . $detail_alat_hilang['surat_kepemilikian']) ?>" target="_blank">Lihat Surat Kepemilikan</a>
 
                                 <div class="form-group">
                                     <label>Edit Surat Kepemilikan</label>
