@@ -24,7 +24,8 @@ class HomeController extends BaseController
     {
         $data = [
             'title' => 'Blog',
-            'artikel' => $this->artikelModel->findAll()
+            'artikel' => $this->artikelModel->findAll(),
+            'recentArtikel' => $this->artikelModel->getRecentArticles(),
         ];
         return view('home/index', $data);
     }
