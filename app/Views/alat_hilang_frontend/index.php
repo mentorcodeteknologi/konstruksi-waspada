@@ -13,7 +13,7 @@
             <div class="col-sm-6">
                 <nav aria-label="breadcrumb" class="theme-breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('/') ?>">Home</a></li>
                         <li class="breadcrumb-item active">Alat Hilang</li>
                     </ol>
                 </nav>
@@ -31,7 +31,7 @@
             <div class="col-lg-12">
                 <h3>Form Kehilangan Alat</h3>
                 <div class="theme-card">
-                    <form class="theme-form">
+                    <form action="" method="post" class="theme-form">
                         <div class="form-row row">
                             <div class="col-md-6">
                                 <label for="review">NIK/NPWP</label>

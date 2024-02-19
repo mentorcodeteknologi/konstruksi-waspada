@@ -13,7 +13,7 @@
             <div class="col-sm-6">
                 <nav aria-label="breadcrumb" class="theme-breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('/') ?>">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">create account</li>
                     </ol>
                 </nav>

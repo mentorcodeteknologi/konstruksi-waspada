@@ -1,4 +1,8 @@
 <header>
+    <?php
+    // SESSION UNTUK MENGAMBIL DATA SESSION
+    $session = session();
+    ?>
     <div class="mobile-fix-option"></div>
     <div class="top-header">
         <div class="container">
@@ -9,24 +13,38 @@
                 </div>
                 <div class="col-lg-6 text-end">
                     <ul class="header-dropdown">
+                        <?php
+                        // Cek apakah pengguna sudah login atau belum
+                        $logged_in = false;
+                        ?>
                         <li class="onhover-dropdown mobile-account">
-                            <i class="fa fa-user" aria-hidden="true"></i> My Account
-                            <ul class="onhover-show-div">
-                                <li><a href="/login">Login</a></li>
-                                <li><a href="/register">register</a></li>
-                            </ul>
+                            <?php if ($session->get('logged_in')) : ?>
+                                <!-- Jika pengguna sudah login, tampilkan tombol logout -->
+                                <i class="fa fa-user" aria-hidden="true"></i><?= $session->get('nama'); ?></a>
+                                <ul class="onhover-show-div">
+                                    <li><a href="<?= base_url('logout') ?>">Logout</a></li>
+                                </ul>
+                            <?php else : ?>
+                                <!-- Jika pengguna belum login, tampilkan tombol login -->
+                                <i class="fa fa-user" aria-hidden="true"></i> My Account</a>
+                                <ul class="onhover-show-div">
+                                    <li><a href="<?= base_url('login') ?>">Login</a></li>
+                                    <li><a href="<?= base_url('register') ?>">Register</a></li>
+                                </ul>
+                            <?php endif; ?>
                         </li>
+
                         <li class="onhover-dropdown mobile-account">
                             <i class="fa fa-building" aria-hidden="true"></i>User Blacklist
                             <ul class="onhover-show-div">
-                                <li> <a href="/user_blacklist_frontend">User Blacklist</a></li>
+                                <li> <a href="<?= base_url('user_blacklist_frontend') ?>">User Blacklist</a></li>
                             </ul>
                         </li>
                         <li class="onhover-dropdown mobile-account">
                             <i class="fa fa-globe" aria-hidden="true"></i> Blog
                             <ul class="onhover-show-div">
                                 <li>
-                                    <a href="/">Blog</a>
+                                    <a href="<?= base_url('/') ?>">Blog</a>
                                 </li>
                             </ul>
                         </li>
@@ -196,13 +214,13 @@
                                         <div class="mobile-back text-end">Back<i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
                                     </li>
                                     <li>
-                                        <a href="/">Blog</a>
+                                        <a href="<?= base_url('/') ?>">Blog</a>
                                     </li>
                                     <li>
-                                        <a href="/user_blacklist_frontend">User Blacklist</a>
+                                        <a href="<?= base_url('user_blacklist_frontend') ?>">User Blacklist</a>
                                     </li>
                                     <li>
-                                        <a href="/alat_hilang_frontend">Alat Hilang</a>
+                                        <a href="<?= base_url('alat_hilang/detail') ?>">Alat Hilang</a>
                                     </li>
                                 </ul>
                             </nav>

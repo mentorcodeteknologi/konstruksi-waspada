@@ -13,7 +13,7 @@
             <div class="col-sm-6">
                 <nav aria-label="breadcrumb" class="theme-breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="<?= base_url('/') ?>">Home</a></li>
                         <li class="breadcrumb-item active">login</li>
                     </ol>
                 </nav>
@@ -32,7 +32,7 @@
             <div class="col-lg-6">
                 <h3>Login</h3>
                 <div class="theme-card">
-                    <form action="/login" method="post" class="theme-form" enctype="multipart/form-data">
+                    <form action="<?= base_url('login') ?>" method="post" class="theme-form" enctype="multipart/form-data">
                         <?= csrf_field(); ?>
                         <div class="form-group">
                             <label for="email">Email</label>
@@ -52,7 +52,7 @@
                 <div class="theme-card authentication-right">
                     <h6 class="title-font">Create A Account</h6>
                     <p>Sign up for a free account at our store. Registration is quick and easy. It allows you to be
-                        able to order from our shop. To start shopping click register.</p><a href="/register" class="btn btn-solid">Create an Account</a>
+                        able to order from our shop. To start shopping click register.</p><a href="<?= base_url('register') ?>" class="btn btn-solid">Create an Account</a>
                 </div>
             </div>
         </div>
