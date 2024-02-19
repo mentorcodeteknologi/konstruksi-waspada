@@ -86,7 +86,16 @@ $routes->group('artikel', ['filter' => 'auth:users,admin'], function ($routes) {
     $routes->post('delete/(:any)', 'ArtikelController::delete/$1');
 });
 
-// ROUTES ARTIKEL
+// ROUTES KALENDER
+$routes->group('category', ['filter' => 'auth:users,admin'], function ($routes) {
+    $routes->get('', 'CategoryController::index');
+    $routes->get('create', 'CategoryController::create');
+    $routes->post('create', 'CategoryController::createCategory');
+    $routes->get('update/(:any)', 'CategoryController::update/$1');
+    $routes->post('update/(:any)', 'CategoryController::updateCategory/$1');
+    $routes->post('delete/(:any)', 'CategoryController::delete/$1');
+});
+// ROUTES KALENDER
 $routes->group('calendar', ['filter' => 'auth:users,admin'], function ($routes) {
     $routes->get('', 'CalendarController::index');
     $routes->get('create', 'CalendarController::create');
