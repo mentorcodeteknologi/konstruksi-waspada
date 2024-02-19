@@ -72,7 +72,11 @@
                                 <td><?= $no++ ?></td>
                                 <td><?= $value['nama'] ?></td>
                                 <td><?= $value['email'] ?></td>
-                                <td><img src="<?= base_url('assets/backend/images/' . $value['foto']) ?>" width="50px" height="50px"></td>
+                                <?php if ($value['foto'] == "default.png") { ?>
+                                    <td><img src="<?= base_url('assets/backend/images/' . $value['foto']) ?>" width="50px" height="50px"></td>
+                                <?php } else { ?>
+                                    <td><img src="<?= base_url('assets/backend/images/profile/' . $value['encrypt'] . "/" . $value['foto']) ?>" width="50px" height="50px"></td>
+                                <?php } ?>
                                 <td><?= $value['role'] ?></td>
                                 <td><?= $value['status'] ?></td>
                                 <td>
