@@ -43,9 +43,10 @@
 
                         <form action="<?= base_url('alat_hilang/create') ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field(); ?>
+
                             <div class="form-group">
-                                <label>Nama Alat</label>
-                                <input type="text" name="nama_alat" id="nama_alat" class="form-control" placeholder="Nama Alat" required>
+                                <label>Type Alat</label>
+                                <input type="text" name="type_alat" id="type_alat" class="form-control" placeholder="Type Alat" required>
                             </div>
 
                             <div class="form-group">
@@ -54,14 +55,45 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Deskripsi</label>
-                                <input type="text" name="deskripsi" id="deskripsi" class="form-control" placeholder="Deskripsi">
+                                <label>Serial Number</label>
+                                <input type="text" name="serial_number" id="serial_number" class="form-control" placeholder="Serial Number" required>
                             </div>
 
                             <div class="form-group">
                                 <label>Foto</label>
                                 <input type="file" name="foto" id="foto" class="form-control" accept=".jpg,.png,.jpeg" required>
                                 <img src="" id="viewImg" class="img-fluid mt-2" width="200px">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Pembelian Dari</label>
+                                <input type="text" name="pembelian_dari" id="pembelian_dari" class="form-control" placeholder="Pembelian Dari">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Tanggal Kehilangan</label>
+                                <input type="date" name="tanggal_kehilangan" id="tanggal_kehilangan" class="form-control" placeholder="Tanggal Kehilangan" required value="<?= date('Y-m-d') ?>">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Surat Kepemilikan</label>
+                                <input type="file" name="surat_kepemilikian" id="surat_kepemilikian" class="form-control" accept="image/*,.pdf,.doc,.docx,.txt" required>
+                                <img src="" id="viewImg" class="img-fluid mt-2" width="200px">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Lokasi Kehilangan</label>
+                                <input type="text" name="lokasi_kehilangan" id="lokasi_kehilangan" class="form-control" placeholder="Lokasi Kehilangan" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Kronologi Kejadian</label>
+                                <input type="text" name="kronologi" id="kronologi" class="form-control" placeholder="Kronologi kejadian" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Nominal Kerugian</label>
+                                <input type="number" name="nominal_kerugian" id="nominal_kerugian" class="form-control" placeholder="Nominal Kerugian" required>
                             </div>
 
                             <div class="form-group">

@@ -32,7 +32,7 @@ class AlatHilangController extends BaseController
         $data = [
             'title'            => 'Alat Hilang',
             'subtitle'         => 'List Data Alat Hilang',
-            'list_alat_hilang' => $this->alatHilangModel->findAll()
+            'list_alat_hilang' => $this->alatHilangModel->findAllDatas()
         ];
         return view('alat_hilang/index', $data);
     }
@@ -56,26 +56,40 @@ class AlatHilangController extends BaseController
     // ========================= //
     public function createAlatHilang()
     {
-        $helper = new Helpers();
+        $helper  = new Helpers();
+        $session = session();
+        $path    = 'assets/backend/images/alat_hilang/';
 
         // UPLOAD FOTO PROFILE
         $file = $this->request->getFile('foto');
         $foto = 'default.png';
         if ($file && $file->isValid()) {
             $foto = $file->getRandomName();
-            $file->move('assets/backend/images/alat_hilang/', $foto);
+            $file->move($path, $foto);
+        }
+
+        // SURAT KEPEMILIKIAN
+        $suratKepemilikian = $this->request->getFile('surat_kepemilikian');
+        if ($suratKepemilikian && $suratKepemilikian->isValid()) {
+            $surat = $suratKepemilikian->getRandomName();
+            $suratKepemilikian->move($path, $surat);
         }
 
         $data = [
-            'nama_alat'  => $this->request->getVar('nama_alat'),
-            'jenis'      => $this->request->getVar('jenis'),
-            'merk'       => $this->request->getVar('merk'),
-            'warna'      => $this->request->getVar('warna'),
-            'deskripsi'  => $this->request->getVar('deskripsi'),
-            'foto'       => $foto,
-            'slug'       => $helper->generateSlug(),
-            'created_at' => Time::now('Asia/Jakarta', 'en_US'),
-            'updated_at' => Time::now('Asia/Jakarta', 'en_US')
+            'id_user'            => $session->get('id'),
+            'type_alat'          => $this->request->getVar('type_alat'),
+            'merk'               => $this->request->getVar('merk'),
+            'serial_number'      => $this->request->getVar('serial_number'),
+            'foto'               => $foto,
+            'pembelian_dari'     => $this->request->getVar('pembelian_dari'),
+            'tanggal_kehilangan' => $this->request->getVar('tanggal_kehilangan'),
+            'surat_kepemilikian' => $surat,
+            'lokasi_kehilangan'  => $this->request->getVar('lokasi_kehilangan'),
+            'kronologi'          => $this->request->getVar('kronologi'),
+            'nominal_kerugian'   => $this->request->getVar('nominal_kerugian'),
+            'slug'               => $helper->generateSlug(),
+            'created_at'         => Time::now('Asia/Jakarta', 'en_US'),
+            'updated_at'         => Time::now('Asia/Jakarta', 'en_US')
         ];
 
         $this->alatHilangModel->insert($data);
@@ -118,13 +132,26 @@ class AlatHilangController extends BaseController
             $file->move('assets/backend/images/alat_hilang/', $foto);
         }
 
+        $suratKepemilikian = $this->request->getFile('surat_kepemilikian');
+        if ($suratKepemilikian == "") {
+            $surat = $userData['surat_kepemilikian'];
+        } else {
+            unlink('assets/backend/images/alat_hilang/' . $userData['surat_kepemilikian']);
+            $surat = $suratKepemilikian->getRandomName();
+            $suratKepemilikian->move('assets/backend/images/alat_hilang/', $surat);
+        }
+
         $data = [
-            'nama_alat'  => $this->request->getVar('nama_alat'),
-            'jenis'      => $this->request->getVar('jenis'),
-            'merk'       => $this->request->getVar('merk'),
-            'warna'      => $this->request->getVar('warna'),
-            'deskripsi'  => $this->request->getVar('deskripsi'),
-            'foto'       => $foto,
+            'type_alat'          => $this->request->getVar('type_alat'),
+            'merk'               => $this->request->getVar('merk'),
+            'serial_number'      => $this->request->getVar('serial_number'),
+            'foto'               => $foto,
+            'pembelian_dari'     => $this->request->getVar('pembelian_dari'),
+            'tanggal_kehilangan' => $this->request->getVar('tanggal_kehilangan'),
+            'surat_kepemilikian' => $surat,
+            'lokasi_kehilangan'  => $this->request->getVar('lokasi_kehilangan'),
+            'kronologi'          => $this->request->getVar('kronologi'),
+            'nominal_kerugian'   => $this->request->getVar('nominal_kerugian'),
             'updated_at' => Time::now('Asia/Jakarta', 'en_US')
         ];
 
@@ -140,9 +167,8 @@ class AlatHilangController extends BaseController
     public function delete($slug)
     {
         $userData = $this->alatHilangModel->getDataBySlug($slug);
-        if ($userData['foto'] != 'default.png') {
-            unlink('assets/backend/images/alat_hilang/' . $userData['foto']);
-        }
+        unlink('assets/backend/images/alat_hilang/' . $userData['foto']);
+        unlink('assets/backend/images/alat_hilang/' . $userData['surat_kepemilikian']);
 
         $this->alatHilangModel->delete($userData['id']);
         session()->setFlashdata('pesan', 'Data Berhasil Dihapus');

@@ -54,11 +54,17 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama Alat</th>
+                            <th>NIK / NPWP</th>
+                            <th>Nama Pemilik</th>
+                            <th>Nomer Hp</th>
+                            <th>Type</th>
                             <th>Merk</th>
-                            <th>Deskripsi</th>
+                            <th>Serial Number</th>
                             <th>Foto</th>
-                            <th>Slug</th>
+                            <th>Pembelian Dari</th>
+                            <th>Tanggal Kehilangan</th>
+                            <th>Surat Kehilangan</th>
+                            <th>Lokasi Kehilangan</th>
                             <th>Created At</th>
                             <th>Updated At</th>
                             <th>Action</th>

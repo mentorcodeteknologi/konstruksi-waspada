@@ -65,7 +65,7 @@
 
                             <div class="form-group">
                                 <label>Deskripsi</label>
-                                <textarea name="Deskripsi" id="Deskripsi" class="form-control" placeholder="Deskripsi" required> </textarea>
+                                <textarea name="deskripsi" id="deskripsi" class="form-control" placeholder="Deskripsi" required> </textarea>
                             </div>
 
                             <div class="form-group">
