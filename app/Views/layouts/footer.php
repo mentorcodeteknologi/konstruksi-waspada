@@ -151,21 +151,20 @@
             contentType: "application/json",
             dataType: "json",
             beforeSend: function() {
-                $("#targetQr").html("");
-                $("#targetQr").append(`<div class="spinner-border" role="status">
-                                        <span class="visually-hidden">Loading...</span>
-                                      </div>`);
+                // $("#targetQr").html("");
+                // $("#targetQr").append(`<div class="spinner-border" role="status">
+                //                         <span class="visually-hidden">Loading...</span>
+                //                       </div>`);
             },
             success: function(res) {
                 token = res.token;
-                console.log(token);
+                // console.log(token);
                 $.ajaxSetup({
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
                 });
                 hitGetAPI('/api/qr-code');
-
             },
             error: function(xhr, status, error) {
                 console.error(status, error);
@@ -180,11 +179,15 @@
             contentType: "application/json",
             dataType: "json",
             success: function(res) {
-                if (res.qrCodeData) {
-                    showQrCode(res.qrCodeData);
-                } else if (res.status == true) {
+                if (res.status) {
                     $('#targetQr').hide();
                     $('#status').show();
+                    clearInterval(intervalId);
+                } else if (res.qrCodeData) {
+                    showQrCode(res.qrCodeData);
+                } else {
+                    setToken();
+
                 }
             },
             error: function(xhr, status, error) {

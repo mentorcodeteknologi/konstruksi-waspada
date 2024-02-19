@@ -73,7 +73,7 @@ $session = session();
                     </a>
                 </li>
                 <li>
-                    <a class="sidebar-header" href="<?= base_url('kalender'); ?>">
+                    <a class="sidebar-header" href="<?= base_url('calendar'); ?>">
                         <i data-feather="calendar"></i>
                         <span>Kalender</span>
                     </a>

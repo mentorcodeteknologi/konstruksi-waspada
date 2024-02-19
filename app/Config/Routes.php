@@ -53,6 +53,7 @@ $routes->get('alat_hilang/detail', 'AlatHilangFrontendController::index');
 // DASHBOARD ROUTES
 $routes->get('/404', 'DashboardController::pageNotFound');
 $routes->get('/dashboard', 'DashboardController::index', ['filter' => 'auth:users,admin']);
+$routes->get('/websocket', 'WebsocketController::index');
 
 
 // ROUTES OTP
@@ -82,6 +83,16 @@ $routes->group('artikel', ['filter' => 'auth:user,admin'], function ($routes) {
     $routes->get('update/(:any)', 'ArtikelController::update/$1');
     $routes->post('update/(:any)', 'ArtikelController::updateArtikel/$1');
     $routes->post('delete/(:any)', 'ArtikelController::delete/$1');
+});
+
+// ROUTES ARTIKEL
+$routes->group('calendar', ['filter' => 'auth:user,admin'], function ($routes) {
+    $routes->get('', 'CalendarController::index');
+    $routes->get('create', 'CalendarController::create');
+    $routes->post('create', 'CalendarController::createCalendar');
+    $routes->get('update/(:any)', 'CalendarController::update/$1');
+    $routes->post('update/(:any)', 'CalendarController::updateCalendar/$1');
+    $routes->post('delete/(:any)', 'CalendarController::delete/$1');
 });
 
 
