@@ -30,106 +30,102 @@ $session = session();
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
-<section class="register-page section-b-space" id="formPerorangan">
+<section class="register-page section-b-space bg-white" id="formPerorangan">
     <div class="container">
         <div class="row">
-            <div class="card">
-                <div class="card-body">
-                    <div class="col-lg-12">
-                        <h3>Alat Hilang</h3>
-                        <!-- Pesan untuk menampilkan sebelum login -->
-                        <div id="messageBox" style="text-align: center; background-color: #f8d7da; padding: 20px; margin-bottom: 15px;">
-                            <p style="font-size: 18px;">Sebelum Anda mengisi form di bawah, silakan login jika Anda sudah punya akun. Jika Anda belum memiliki akun, silakan registrasi terlebih dahulu.</p>
-                            <a href="<?= base_url('login') ?>" class="btn btn-orange">Login</a>
-                            <a href="<?= base_url('register') ?>" class="btn btn-orange">Register</a>
+            <div class="col-lg-12">
+                <h3>Alat Hilang</h3>
+                <!-- Pesan untuk menampilkan sebelum login -->
+                <div id="messageBox" style="text-align: center; background-color: #f8d7da; padding: 20px; margin-bottom: 15px;">
+                    <p style="font-size: 18px;">Sebelum Anda mengisi form di bawah, silakan login jika Anda sudah punya akun. Jika Anda belum memiliki akun, silakan registrasi terlebih dahulu.</p>
+                    <a href="<?= base_url('login') ?>" class="btn btn-orange">Login</a>
+                    <a href="<?= base_url('register') ?>" class="btn btn-orange">Register</a>
+                </div>
+                <!-- Pesan untuk menampilkan sebelum login -->
+                <ul class="nav nav-tabs tab-coupon" id="myTab" role="tablist">
+                    <li class="nav-item"><a class="nav-link active show" id="alathilang-tab" data-bs-toggle="tab" href="#alathilang" role="tab" aria-controls="alathilang" aria-selected="true" data-original-title="" title="">List Alat Hilang</a></li>
+                    <li class="nav-item"><a class="nav-link" id="add-alathilang-tabs" data-bs-toggle="tab" href="#add-alathilang" role="tab" aria-controls="add-alathilang" aria-selected="false" data-original-title="" title="">Add Alat Hilang</a></li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade active show" id="alathilang" role="tabpanel" aria-labelledby="alathilang-tab">
+                        <h4>Alat Hilang Table</h4>
+                        <div class="table-responsive table-desi">
+                            <form class="form-inline search-form search-box mb-3">
+                                <div class="form-group">
+                                    <input class="form-control-plaintext" type="search" placeholder="Search.." /><span class="d-sm-none mobile-search"><i data-feather="search"></i></span>
+                                </div>
+                            </form>
+                            <table class="all-package coupon-table table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>PEMILIK ALAT</th>
+                                        <th>NO HP</th>
+                                        <th>TYPE ALAT DAN MERK</th>
+                                        <th>SERIAL NUMBER</th>
+                                        <th>TANGGAL KEHILANGAN</th>
+                                        <th>LOKASI KEHILANGAN</th>
+                                        <th>KRONOLOGIS KEJADIAN</th>
+                                        <th>STATUS KEPEMILIKAN</th>
+                                    </tr>
+                                </thead>
+    
+                                <tbody>
+                                    <tr>
+    
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <!-- Pesan untuk menampilkan sebelum login -->
-                        <ul class="nav nav-tabs tab-coupon" id="myTab" role="tablist">
-                            <li class="nav-item"><a class="nav-link active show" id="alathilang-tab" data-bs-toggle="tab" href="#alathilang" role="tab" aria-controls="alathilang" aria-selected="true" data-original-title="" title="">List Alat Hilang</a></li>
-                            <li class="nav-item"><a class="nav-link" id="add-alathilang-tabs" data-bs-toggle="tab" href="#add-alathilang" role="tab" aria-controls="add-alathilang" aria-selected="false" data-original-title="" title="">Add Alat Hilang</a></li>
-                        </ul>
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade active show" id="alathilang" role="tabpanel" aria-labelledby="alathilang-tab">
-                                <h4>Alat Hilang Table</h4>
-                                <div class="table-responsive table-desi">
-                                    <form class="form-inline search-form search-box mb-3">
-                                        <div class="form-group">
-                                            <input class="form-control-plaintext" type="search" placeholder="Search.." /><span class="d-sm-none mobile-search"><i data-feather="search"></i></span>
-                                        </div>
-                                    </form>
-                                    <table class="all-package coupon-table table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>PEMILIK ALAT</th>
-                                                <th>NO HP</th>
-                                                <th>TYPE ALAT DAN MERK</th>
-                                                <th>SERIAL NUMBER</th>
-                                                <th>TANGGAL KEHILANGAN</th>
-                                                <th>LOKASI KEHILANGAN</th>
-                                                <th>KRONOLOGIS KEJADIAN</th>
-                                                <th>STATUS KEPEMILIKAN</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <tr>
-
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                    </div>
+                    <div class="tab-pane fade" id="add-alathilang" role="tabpanel" aria-labelledby="add-alathilang-tabs">
+                        <div class="theme-card">
+                            <h3>Form Kehilangan Alat</h3>
+                            <form action="<?= base_url('alat_hilang/createAlatHilang') ?>" method="post" class="theme-form" enctype="multipart/form-data">
+                                <?= csrf_field(); ?>
+                                <div class="form-row row">
+                                    <div class="col-md-6">
+                                        <label for="review">Type Alat</label>
+                                        <input type="file" class="form-control" name="type_alat" id="type_alat" placeholder="Type Alat" required="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="review">Merk</label>
+                                        <input type="file" class="form-control" name="merk" id="merk" placeholder="Merk Alat" required="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="review">Serial Number</label>
+                                        <input type="text" class="form-control" name="serial_number" id="serial_number" placeholder="Serial Number" required="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="review">Upload Foto Alat</label>
+                                        <input type="file" class="form-control" name="foto" id="foto" placeholder="Upload Foto Alat" required="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="review">Pembelian Dari</label>
+                                        <input type="text" class="form-control" name="pembelian_dari" id="pembelian_dari" placeholder="Pembelian Dari" required="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="review">Tanggal Kehilangan</label>
+                                        <input type="date" class="form-control" name="tanggal_kehilangan" id="tanggal_kehilangan" placeholder="Tanggal Kehilangan" required="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="review">Upload Surat Kepemilikan/Kwetansi</label>
+                                        <input type="file" class="form-control" name="surat_kepemilikian" id="surat_kepemilikian" placeholder="Upload Surat Kepemilikan/Kwetansi" required="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="review">Lokasi Kehilangan</label>
+                                        <input type="file" class="form-control" name="surat_kepemilikian" id="surat_kepemilikian" placeholder="Surat Kepemilikan" required="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="review">Nominal Kerugian (Rp.)</label>
+                                        <input type="number" class="form-control" name="nominal_kerugian" id="nominal_kerugian" placeholder="Nominal kerugian" required="">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="review">Kronologis Kejadian </label>
+                                        <textarea name="kronologi" id="kronologi" cols="30" rows="10" class="form-control"></textarea>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="tab-pane fade" id="add-alathilang" role="tabpanel" aria-labelledby="add-alathilang-tabs">
-                                <div class="theme-card">
-                                    <h3>Form Kehilangan Alat</h3>
-                                    <form action="<?= base_url('alat_hilang/createAlatHilang') ?>" method="post" class="theme-form" enctype="multipart/form-data">
-                                        <?= csrf_field(); ?>
-                                        <div class="form-row row">
-                                            <div class="col-md-6">
-                                                <label for="review">Type Alat</label>
-                                                <input type="file" class="form-control" name="type_alat" id="type_alat" placeholder="Type Alat" required="">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="review">Merk</label>
-                                                <input type="file" class="form-control" name="merk" id="merk" placeholder="Merk Alat" required="">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="review">Serial Number</label>
-                                                <input type="text" class="form-control" name="serial_number" id="serial_number" placeholder="Serial Number" required="">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="review">Upload Foto Alat</label>
-                                                <input type="file" class="form-control" name="foto" id="foto" placeholder="Upload Foto Alat" required="">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="review">Pembelian Dari</label>
-                                                <input type="text" class="form-control" name="pembelian_dari" id="pembelian_dari" placeholder="Pembelian Dari" required="">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="review">Tanggal Kehilangan</label>
-                                                <input type="date" class="form-control" name="tanggal_kehilangan" id="tanggal_kehilangan" placeholder="Tanggal Kehilangan" required="">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="review">Upload Surat Kepemilikan/Kwetansi</label>
-                                                <input type="file" class="form-control" name="surat_kepemilikian" id="surat_kepemilikian" placeholder="Upload Surat Kepemilikan/Kwetansi" required="">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="review">Lokasi Kehilangan</label>
-                                                <input type="file" class="form-control" name="surat_kepemilikian" id="surat_kepemilikian" placeholder="Surat Kepemilikan" required="">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="review">Nominal Kerugian (Rp.)</label>
-                                                <input type="number" class="form-control" name="nominal_kerugian" id="nominal_kerugian" placeholder="Nominal kerugian" required="">
-                                            </div>
-                                            <div class="col-md-12">
-                                                <label for="review">Kronologis Kejadian </label>
-                                                <textarea name="kronologi" id="kronologi" cols="30" rows="10" class="form-control"></textarea>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-solid w-auto mt-3">Add</button>
-                                    </form>
-                                </div>
-                            </div>
+                                <button type="submit" class="btn btn-solid w-auto mt-3">Add</button>
+                            </form>
                         </div>
                     </div>
                 </div>
