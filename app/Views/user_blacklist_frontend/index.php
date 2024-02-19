@@ -36,7 +36,7 @@ $session = session();
             <div class="card">
                 <div class="card-body">
                     <div class="col-lg-12">
-                        <h3>Form Input User Perorangan Blacklist</h3>
+                        <h3>User Blacklist</h3>
                         <ul class="nav nav-tabs tab-coupon" id="myTab" role="tablist">
                             <li class="nav-item"><a class="nav-link active show" id="user-tab" data-bs-toggle="tab" href="#user" role="tab" aria-controls="user" aria-selected="true" data-original-title="" title="">List Blacklist</a></li>
                             <li class="nav-item"><a class="nav-link" id="add-user-tabs" data-bs-toggle="tab" href="#add-user" role="tab" aria-controls="add-user" aria-selected="false" data-original-title="" title="">Add User Blacklist</a></li>
