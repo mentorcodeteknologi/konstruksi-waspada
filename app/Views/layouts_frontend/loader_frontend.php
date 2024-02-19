@@ -10,13 +10,13 @@
                     <div class="col-lg-6 text-end">
                         <ul class="header-dropdown">
                             <li class="onhover-dropdown mobile-account">
-                                <i class="fa fa-user" aria-hidden="true"></i> My Account
+                                <i class="fa fa-globe" aria-hidden="true"></i> Blog
                             </li>
                             <li class="onhover-dropdown mobile-account">
                                 <i class="fa fa-building" aria-hidden="true"></i>User Blacklist
                             </li>
                             <li class="onhover-dropdown mobile-account">
-                                <i class="fa fa-globe" aria-hidden="true"></i> Blog
+                                <i class="fa fa-user" aria-hidden="true"></i> My Account
                             </li>
                         </ul>
                     </div>
