@@ -76,7 +76,7 @@ $routes->group('users', ['filter' => 'auth:admin'], function ($routes) {
 
 
 // ROUTES ARTIKEL
-$routes->group('artikel', ['filter' => 'auth:user,admin'], function ($routes) {
+$routes->group('artikel', ['filter' => 'auth:users,admin'], function ($routes) {
     $routes->get('', 'ArtikelController::index');
     $routes->get('create', 'ArtikelController::create');
     $routes->post('create', 'ArtikelController::createArtikel');
@@ -86,7 +86,7 @@ $routes->group('artikel', ['filter' => 'auth:user,admin'], function ($routes) {
 });
 
 // ROUTES ARTIKEL
-$routes->group('calendar', ['filter' => 'auth:user,admin'], function ($routes) {
+$routes->group('calendar', ['filter' => 'auth:users,admin'], function ($routes) {
     $routes->get('', 'CalendarController::index');
     $routes->get('create', 'CalendarController::create');
     $routes->post('create', 'CalendarController::createCalendar');
@@ -97,7 +97,7 @@ $routes->group('calendar', ['filter' => 'auth:user,admin'], function ($routes) {
 
 
 // ROUTES ALAT HILANG
-$routes->group('alat_hilang', ['filter' => 'auth:user,admin'], function ($routes) {
+$routes->group('alat_hilang', ['filter' => 'auth:users,admin'], function ($routes) {
     $routes->get('', 'AlatHilangController::index');
     $routes->get('create', 'AlatHilangController::create');
     $routes->post('create', 'AlatHilangController::createAlatHilang');
@@ -108,7 +108,7 @@ $routes->group('alat_hilang', ['filter' => 'auth:user,admin'], function ($routes
 
 
 // ROUTES USER BLACKLIST
-$routes->group('user_blacklist', ['filter' => 'auth:user,admin'], function ($routes) {
+$routes->group('user_blacklist', ['filter' => 'auth:users,admin'], function ($routes) {
     $routes->get('', 'UserBlacklistController::index');
     $routes->get('create', 'UserBlacklistController::create');
     $routes->post('create', 'UserBlacklistController::createUserBlacklist');
@@ -121,7 +121,7 @@ $routes->group('user_blacklist', ['filter' => 'auth:user,admin'], function ($rou
 
 
 // ROUTES PERUSAHAAN BLACKLIST
-$routes->group('perusahaan_blacklist', ['filter' => 'auth:user,admin'], function ($routes) {
+$routes->group('perusahaan_blacklist', ['filter' => 'auth:users,admin'], function ($routes) {
     $routes->get('', 'PerusahaanBlacklistController::index');
     $routes->get('create', 'PerusahaanBlacklistController::create');
     $routes->post('create', 'PerusahaanBlacklistController::createPerusahaanBlacklist');
@@ -134,11 +134,11 @@ $routes->group('perusahaan_blacklist', ['filter' => 'auth:user,admin'], function
 
 
 // ROUTES WHATSAPP SCAN QR
-$routes->get('/scan_qr', 'WhatsappController::index');
+$routes->get('/scan_qr', 'WhatsappController::index', ['filter' => 'auth:admin']);
 
 
 // ROUTES PEMBAYARAN
-$routes->group('pembayaran', ['filter' => 'auth:admin'], function ($routes) {
+$routes->group('pembayaran', ['filter' => 'auth:users,admin'], function ($routes) {
     $routes->get('', 'PembayaranController::index');
     $routes->get('create', 'PembayaranController::create');
     $routes->post('create', 'PembayaranController::createPembayaran');

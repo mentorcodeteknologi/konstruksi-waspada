@@ -44,11 +44,12 @@
             }
             ?>
 
-            <form action="<?= base_url('pembayaran/create') ?>">
-                <button type="submit" class="btn btn-primary">+ Tambah Data Pembayaran</button>
-            </form>
-            <br><br><br>
-
+            <?php if ($session->get('role') == "users") { ?>
+                <form action="<?= base_url('pembayaran/create') ?>">
+                    <button type="submit" class="btn btn-primary">+ Tambah Data Pembayaran</button>
+                </form>
+                <br><br><br>
+            <?php } ?>
 
             <div class="table-responsive table-desi">
                 <table class="all-package coupon-table table table-striped">
@@ -58,8 +59,9 @@
                             <th>Nama User</th>
                             <th>Jumlah Pembayaran</th>
                             <th>Bukti Pembayaran</th>
-                            <th>Slug</th>
-                            <th>Action</th>
+                            <?php if ($session->get('role') != "users") { ?>
+                                <th>Action</th>
+                            <?php } ?>
                         </tr>
                     </thead>
 
@@ -71,11 +73,12 @@
                                 <td><?= $no++ ?></td>
                                 <td><?= $value['nama_user'] ?></td>
                                 <td><?= $value['jumlah_pembayaran'] ?></td>
-                                <td><img src="<?= base_url('assets/backend/images/pembayaran' . $value['bukti_pembayaran']) ?>" width="50px" height="50px"></td>
-                                <td><?= $value['slug'] ?></td>
-                                <td>
-                                    <a href="<?= base_url('pembayaran/validasi/' . $value['slug']) ?>" class="btn btn-primary btn-sm">Validasi Pembayaran</a>
-                                </td>
+                                <td><img src="<?= base_url('assets/backend/images/pembayaran/' . $value['bukti_pembayaran']) ?>" width="50px" height="50px"></td>
+                                <?php if ($session->get('role') != "users") { ?>
+                                    <td>
+                                        <a href="<?= base_url('pembayaran/validasi/' . $value['slug']) ?>" class="btn btn-primary btn-sm">Validasi Pembayaran</a>
+                                    </td>
+                                <?php } ?>
 
                             </tr>
                         <?php } ?>

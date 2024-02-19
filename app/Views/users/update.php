@@ -108,7 +108,11 @@
                             </div>
 
                             <div class="form-group">
-                                <img src="<?= base_url('assets/backend/images/' . $detail_user['foto']) ?>" width="100px" height="100px" class="center">
+                                <?php if ($detail_user['foto'] == "default.png") { ?>
+                                    <img src="<?= base_url('assets/backend/images/' . $detail_user['foto']) ?>" width="100px" height="100px" class="center">
+                                <?php } else { ?>
+                                    <img src="<?= base_url('assets/backend/images/profile/' . $detail_user['encrypt'] . "/" . $detail_user['foto']) ?>" width="100px" height="100px" class="center">
+                                <?php } ?>
 
                                 <div class="form-group">
                                     <label>Edit Foto</label>

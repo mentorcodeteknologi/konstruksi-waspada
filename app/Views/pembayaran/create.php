@@ -45,12 +45,12 @@
                             <?= csrf_field(); ?>
                             <div class="form-group">
                                 <label>Nama</label>
-                                <input type="text" name="id_user" id="id_user" class="form-control" placeholder="Nama User" required readonly>
+                                <input type="text" class="form-control" placeholder="Nama User" value="<?= $session->get('nama'); ?>" required readonly>
                             </div>
 
                             <div class="form-group">
                                 <label>Jumlah Pembayaran</label>
-                                <input type="jumlah_pembayaran" name="jumlah_pembayaran" id="jumlah_pembayaran" class="form-control" placeholder="Jumlah Pembayaran" required>
+                                <input type="number" name="jumlah_pembayaran" id="jumlah_pembayaran" class="form-control" placeholder="Jumlah Pembayaran" required>
                             </div>
 
                             <div class="form-group">

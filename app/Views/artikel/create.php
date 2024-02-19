@@ -54,18 +54,18 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Pemulis</label>
+                                <label>Penulis</label>
                                 <input type="text" name="penulis" id="penulis" class="form-control" placeholder="Penulis" required>
                             </div>
 
                             <div class="form-group">
                                 <label>URL Youtube</label>
-                                <input type="text" name="url" id="url" class="form-control" placeholder="Url Youtube" required>
+                                <input type="text" name="url" id="url" class="form-control" placeholder="Url Youtube">
                             </div>
 
                             <div class="form-group">
                                 <label>Deskripsi</label>
-                                <input type="text" name="Deskripsi" id="Deskripsi" class="form-control" placeholder="Deskripsi" required>
+                                <textarea name="Deskripsi" id="Deskripsi" class="form-control" placeholder="Deskripsi" required> </textarea>
                             </div>
 
                             <div class="form-group">

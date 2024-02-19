@@ -13,6 +13,10 @@ class DashboardController extends BaseController
 
     public function pageNotFound()
     {
-        return view('dashboard/page_not_found');
+        $data = [
+            'title'    => 'Page Not Found',
+            'subtitle' => '404'
+        ];
+        return view('dashboard/page_not_found', $data);
     }
 }

@@ -48,4 +48,15 @@ class PembayaranModel extends Model
     {
         return $this->select('*')->where('slug', $slug)->get()->getRowArray();
     }
+
+    // ========================= //
+    // FUNCTION FIND ALL DATAS
+    // ========================= //
+    public function findAllDatas()
+    {
+        $builder = $this->db->table('pembayaran');
+        $builder->select('pembayaran.*, users.nama as nama_user');
+        $builder->join('users', 'users.id = pembayaran.id_user');
+        return $builder->get()->getResultArray();
+    }
 }

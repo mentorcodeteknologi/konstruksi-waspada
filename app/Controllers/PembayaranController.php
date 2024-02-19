@@ -30,7 +30,7 @@ class PembayaranController extends BaseController
         $data = [
             'title'           => 'Pembayaran',
             'subtitle'        => 'List Data Pembayaran',
-            'list_pembayaran' => $this->pembayaranModel->findAll()
+            'list_pembayaran' => $this->pembayaranModel->findAllDatas()
         ];
         return view('pembayaran/index', $data);
     }
@@ -54,7 +54,8 @@ class PembayaranController extends BaseController
     // ============================= //
     public function createPembayaran()
     {
-        $helper = new Helpers();
+        $helper  = new Helpers();
+        $session = session();
 
         // CEK FOLDER PEMBAYARAN
         $path = 'assets/backend/images/pembayaran/';
@@ -62,10 +63,17 @@ class PembayaranController extends BaseController
             mkdir($path, 0777, true);
         }
 
+        // UPLOAD FOTO PROFILE
+        $file = $this->request->getFile('bukti_pembayaran');
+        if ($file && $file->isValid()) {
+            $buktiPembayaran = $file->getRandomName() . '-' . $session->get('encrypt');
+            $file->move($path, $buktiPembayaran);
+        }
+
         $data = [
-            'id_user'                => $this->request->getVar('id_user'),
+            'id_user'                => $session->get('id'),
             'jumlah_pembayaran'      => $this->request->getVar('jumlah_pembayaran'),
-            'bukti_pembayaran'       => $this->request->getVar('bukti_pembayaran'),
+            'bukti_pembayaran'       => $buktiPembayaran,
             'slug'                   => $helper->generateSlug(),
             'created_at'             => Time::now('Asia/Jakarta', 'en_US'),
             'updated_at'             => Time::now('Asia/Jakarta', 'en_US')
