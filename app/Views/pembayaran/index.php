@@ -58,6 +58,7 @@
                             <th>No</th>
                             <th>Nama User</th>
                             <th>Jumlah Pembayaran</th>
+                            <th>Status</th>
                             <th>Bukti Pembayaran</th>
                             <?php if ($session->get('role') != "users") { ?>
                                 <th>Action</th>
@@ -73,6 +74,11 @@
                                 <td><?= $no++ ?></td>
                                 <td><?= $value['nama_user'] ?></td>
                                 <td><?= $value['jumlah_pembayaran'] ?></td>
+                                <?php if ($value['validasi_pembayaran'] == 0) {  ?>
+                                    <td>Masih Dalam Proses</td>
+                                <?php } else { ?>
+                                    <td>Valid</td>
+                                <?php } ?>
                                 <td><img src="<?= base_url('assets/backend/images/pembayaran/' . $value['bukti_pembayaran']) ?>" width="50px" height="50px"></td>
                                 <?php if ($session->get('role') != "users") { ?>
                                     <td>

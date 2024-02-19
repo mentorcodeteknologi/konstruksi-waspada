@@ -1,6 +1,22 @@
 <?php
 // SESSION UNTUK MENGAMBIL DATA SESSION
 $session = session();
+
+function getMenuHref($session, $activeUrl, $inactiveUrl)
+{
+    if ($session->get('status') == "nonactive") {
+        return $inactiveUrl;
+    } else {
+        return $activeUrl;
+    }
+}
+
+// Define menu item URLs
+$artikelHref                   = getMenuHref($session, base_url('artikel'), 'javascript:void(0)');
+$alatHilangHref                = getMenuHref($session, base_url('alat_hilang'), 'javascript:void(0)');
+$userBlackListHilangHref       = getMenuHref($session, base_url('user_blacklist'), 'javascript:void(0)');
+$perusahaanBlacklistHilangHref = getMenuHref($session, base_url('perusahaan_blacklist'), 'javascript:void(0)');
+
 ?>
 
 
@@ -26,10 +42,18 @@ $session = session();
                 </div>
             </div>
             <ul class="sidebar-menu">
+
                 <li>
                     <a class="sidebar-header" href="<?= base_url('dashboard'); ?>">
                         <i data-feather="home"></i>
                         <span>Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="sidebar-header" href="<?= base_url('/'); ?>">
+                        <i data-feather="arrow-left-circle"></i>
+                        <span>Back To Home</span>
                     </a>
                 </li>
 
@@ -48,42 +72,50 @@ $session = session();
                         <span>Pembayaran</span>
                     </a>
                 </li>
+
                 <li>
-                    <a class="sidebar-header" href="<?= base_url('artikel'); ?>">
+                    <a class="sidebar-header" href="<?= $artikelHref ?>">
                         <i data-feather="camera"></i>
                         <span>Artikel</span>
                     </a>
                 </li>
+
                 <li>
-                    <a class="sidebar-header" href="<?= base_url('alat_hilang'); ?>">
+                    <a class="sidebar-header" href="<?= $alatHilangHref ?>">
                         <i data-feather="tool"></i>
                         <span>Alat Hilang</span>
                     </a>
                 </li>
+
                 <li>
-                    <a class="sidebar-header" href="<?= base_url('user_blacklist'); ?>">
+                    <a class="sidebar-header" href="<?= $userBlackListHilangHref ?>">
                         <i data-feather="users"></i>
                         <span>User Blacklist</span>
                     </a>
                 </li>
                 <li>
-                    <a class="sidebar-header" href="<?= base_url('perusahaan_blacklist'); ?>">
+                    <a class="sidebar-header" href="<?= $perusahaanBlacklistHilangHref ?>">
                         <i data-feather="users"></i>
                         <span>Perusahaan Blacklist</span>
                     </a>
                 </li>
-                <li>
-                    <a class="sidebar-header" href="<?= base_url('calendar'); ?>">
-                        <i data-feather="calendar"></i>
-                        <span>Kalender</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="sidebar-header" href="<?= base_url('scan_qr'); ?>">
-                        <i data-feather="tablet"></i>
-                        <span>Scan QR Whatsapp</span>
-                    </a>
-                </li>
+
+                <!-- HALAMAN KELOLA USER KHUSUS ROLE ADMIN -->
+                <?php if ($session->get('role') == 'admin') { ?>
+                    <li>
+                        <a class="sidebar-header" href="<?= base_url('calendar'); ?>">
+                            <i data-feather="calendar"></i>
+                            <span>Kalender</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="sidebar-header" href="<?= base_url('scan_qr'); ?>">
+                            <i data-feather="tablet"></i>
+                            <span>Scan QR Whatsapp</span>
+                        </a>
+                    </li>
+                <?php } ?>
+
                 <li>
                     <a class="sidebar-header" href="<?= base_url('logout'); ?>">
                         <i data-feather="log-out"></i>
