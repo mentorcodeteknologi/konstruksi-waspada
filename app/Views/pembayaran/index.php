@@ -32,54 +32,56 @@
         </div>
     </div>
 
-    <div class="card-body">
+    <div class="card">
+        <div class="card-body">
 
-        <?php
+            <?php
 
-        // NOTIFIKASI BERHASIL SIMPAN DATA
-        if (session()->getFlashdata('pesan')) {
-            echo '<div class="alert alert-success alert-dismissible">
-             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . session()->getFlashdata('pesan') . '</div>';
-        }
-        ?>
+            // NOTIFIKASI BERHASIL SIMPAN DATA
+            if (session()->getFlashdata('pesan')) {
+                echo '<div class="alert alert-success alert-dismissible">
+             ' . session()->getFlashdata('pesan') . '</div>';
+            }
+            ?>
 
-        <form action="<?= base_url('pembayaran/create') ?>">
-            <button type="submit" class="btn btn-primary">+ Tambah Data Pembayaran</button>
-        </form>
-        <br><br><br>
+            <form action="<?= base_url('pembayaran/create') ?>">
+                <button type="submit" class="btn btn-primary">+ Tambah Data Pembayaran</button>
+            </form>
+            <br><br><br>
 
 
-        <div class="table-responsive table-desi">
-            <table class="all-package coupon-table table table-striped">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama User</th>
-                        <th>Jumlah Pembayaran</th>
-                        <th>Bukti Pembayaran</th>
-                        <th>Slug</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <?php
-                    $no = 1;
-                    foreach ($list_pembayaran as $value) { ?>
-                        <tr class="text-center">
-                            <td><?= $no++ ?></td>
-                            <td><?= $value['nama_user'] ?></td>
-                            <td><?= $value['jumlah_pembayaran'] ?></td>
-                            <td><img src="<?= base_url('assets/backend/images/pembayaran' . $value['bukti_pembayaran']) ?>" width="50px" height="50px"></td>
-                            <td><?= $value['slug'] ?></td>
-                            <td>
-                                <a href="<?= base_url('pembayaran/validasi/' . $value['slug']) ?>" class="btn btn-primary btn-sm">Validasi Pembayaran</a>
-                            </td>
-
+            <div class="table-responsive table-desi">
+                <table class="all-package coupon-table table table-striped">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama User</th>
+                            <th>Jumlah Pembayaran</th>
+                            <th>Bukti Pembayaran</th>
+                            <th>Slug</th>
+                            <th>Action</th>
                         </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
+                    </thead>
+
+                    <tbody>
+                        <?php
+                        $no = 1;
+                        foreach ($list_pembayaran as $value) { ?>
+                            <tr class="text-center">
+                                <td><?= $no++ ?></td>
+                                <td><?= $value['nama_user'] ?></td>
+                                <td><?= $value['jumlah_pembayaran'] ?></td>
+                                <td><img src="<?= base_url('assets/backend/images/pembayaran' . $value['bukti_pembayaran']) ?>" width="50px" height="50px"></td>
+                                <td><?= $value['slug'] ?></td>
+                                <td>
+                                    <a href="<?= base_url('pembayaran/validasi/' . $value['slug']) ?>" class="btn btn-primary btn-sm">Validasi Pembayaran</a>
+                                </td>
+
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 

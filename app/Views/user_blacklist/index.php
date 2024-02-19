@@ -31,79 +31,81 @@
             </div>
         </div>
     </div>
+    <div class="card">
+        <div class="card-body">
 
-    <div class="card-body">
+            <?php
 
-        <?php
+            // NOTIFIKASI BERHASIL SIMPAN DATA
+            if (session()->getFlashdata('pesan')) {
+                echo '<div class="alert alert-success alert-dismissible">
+             ' . session()->getFlashdata('pesan') . '</div>';
+            }
+            ?>
 
-        // NOTIFIKASI BERHASIL SIMPAN DATA
-        if (session()->getFlashdata('pesan')) {
-            echo '<div class="alert alert-success alert-dismissible">
-             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . session()->getFlashdata('pesan') . '</div>';
-        }
-        ?>
-
-        <form action="<?= base_url('user_blacklist/create') ?>">
-            <button type="submit" class="btn btn-primary">+ Tambah Data User blacklist</button>
-        </form>
-        <br><br><br>
+            <form action="<?= base_url('user_blacklist/create') ?>">
+                <button type="submit" class="btn btn-primary">+ Tambah Data User blacklist</button>
+            </form>
+            <br><br><br>
 
 
-        <div class="table-responsive table-desi">
-            <table class="all-package coupon-table table table-striped">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Perusahaan Penyedia Sewa</th>
-                        <th>NIK Terlapor</th>
-                        <th>Nama Terlapor</th>
-                        <th>Jenis Pelanggaran</th>
-                        <th>merk</th>
-                        <th>Type Alat</th>
-                        <th>No Seri</th>
-                        <th>Durasi</th>
-                        <th>Keterangan</th>
-                        <th>Nominal Kerugian</th>
-                        <th>Created At</th>
-                        <th>Updated At</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <?php
-                    $no = 1;
-                    foreach ($list_user_blacklist as $value) { ?>
-                        <tr class="text-center">
-                            <td><?= $no++ ?></td>
-                            <td><?= $value['perusahaan'] ?></td>
-                            <td><?= $value['nik'] ?></td>
-                            <td><?= $value['nama'] ?></td>
-                            <td><?= $value['valid'] ?></td>
-                            <td><?= $value['jenis_pelanggaran'] ?></td>
-                            <td><?= $value['merk'] ?></td>
-                            <td><?= $value['type_alat'] ?></td>
-                            <td><?= $value['no_seri'] ?></td>
-                            <td><?= $value['durasi'] . " Bulan" ?></td>
-                            <td><?= $value['keterangan'] ?></td>
-                            <td><?= $value['nominal_kerugian'] ?></td>
-                            <td><?= $value['created_at'] ?></td>
-                            <td><?= $value['updated_at'] ?></td>
-                            <td>
-                                <a href="<?= base_url('user_blacklist/update/' . $value['slug']) ?>" class="btn btn-info btn-sm">Edit</a>
-                                <a href="<?= base_url('user_blacklist/detail/' . $value['slug']) ?>" class="btn btn-success btn-sm">Detail</a>
-                                <form action="<?= base_url('user_blacklist/validation/' . $value['slug']); ?>" method="post">
-                                    <button type="submit" class="btn btn-primary btn-sm" onclick="return confirm('Apakah Anda yakin ingin validasi data ini?')">Validation</button>
-                                </form>
-                                <form action="<?= base_url('user_blacklist/delete/' . $value['slug']); ?>" method="post">
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
-                                </form>
-                            </td>
-
+            <div class="table-responsive table-desi">
+                <table class="all-package coupon-table table table-striped">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Perusahaan Penyedia Sewa</th>
+                            <th>NIK Terlapor</th>
+                            <th>Nama Terlapor</th>
+                            <th>Valid</th>
+                            <th>Jenis Pelanggaran</th>
+                            <th>merk</th>
+                            <th>Type Alat</th>
+                            <th>No Seri</th>
+                            <th>Durasi</th>
+                            <th>Keterangan</th>
+                            <th>Nominal Kerugian</th>
+                            <th>Created At</th>
+                            <th>Updated At</th>
+                            <th>Action</th>
                         </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
+                    </thead>
+
+                    <tbody>
+                        <?php
+                        $no = 1;
+                        foreach ($list_user_blacklist as $value) { ?>
+                            <tr class="text-center">
+                                <td><?= $no++ ?></td>
+                                <td><?= $value['perusahaan'] ?></td>
+                                <td><?= $value['nik'] ?></td>
+                                <td><?= $value['nama'] ?></td>
+                                <td><?= $value['valid'] ?></td>
+                                <td><?= $value['jenis_pelanggaran'] ?></td>
+                                <td><?= $value['merk'] ?></td>
+                                <td><?= $value['type_alat'] ?></td>
+                                <td><?= $value['no_seri'] ?></td>
+                                <td><?= $value['durasi'] . " Bulan" ?></td>
+                                <td><?= $value['keterangan'] ?></td>
+                                <td><?= $value['nominal_kerugian'] ?></td>
+                                <td><?= $value['created_at'] ?></td>
+                                <td><?= $value['updated_at'] ?></td>
+                                <td>
+                                    <a href="<?= base_url('user_blacklist/update/' . $value['slug']) ?>" class="btn btn-info btn-sm">Edit</a>
+                                    <a href="<?= base_url('user_blacklist/detail/' . $value['slug']) ?>" class="btn btn-success btn-sm">Detail</a>
+                                    <form action="<?= base_url('user_blacklist/validation/' . $value['slug']); ?>" method="post">
+                                        <button type="submit" class="btn btn-primary btn-sm" onclick="return confirm('Apakah Anda yakin ingin validasi data ini?')">Validation</button>
+                                    </form>
+                                    <form action="<?= base_url('user_blacklist/delete/' . $value['slug']); ?>" method="post">
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
+                                    </form>
+                                </td>
+
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
