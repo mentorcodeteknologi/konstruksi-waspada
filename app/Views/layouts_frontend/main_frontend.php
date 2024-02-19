@@ -35,6 +35,7 @@
 
     <!-- Theme css -->
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/frontend') ?>/css/style.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/backend') ?>/css/style.css">
 </head>
 
 <body class="theme-color-1">
