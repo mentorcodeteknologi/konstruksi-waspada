@@ -129,7 +129,8 @@ class ArtikelController extends BaseController
             'url'           => $this->request->getVar('url'),
             'deskripsi'     => $this->request->getVar('deskripsi'),
             'gambar'        => $foto,
-            'penulis'       => $this->request->getVar('penulis'),
+            'penulis'       => session('id'),
+            // 'penulis'       => $this->request->getVar('penulis'),
             'updated_at'    => Time::now('Asia/Jakarta', 'en_US')
         ];
 
@@ -154,5 +155,33 @@ class ArtikelController extends BaseController
         $this->artikelModel->delete($artikelData['id']);
         session()->setFlashdata('pesan', 'Data Berhasil Dihapus');
         return redirect()->to(base_url('artikel'));
+    }
+
+    public function updateLikes()
+    {
+        $slug = $this->request->getVar('slug');
+        $times = $this->request->getVar('times');
+        try {
+            $separator = $times == 0 ? null : $times;
+            $count = $this->artikelModel->updatePopularity($slug, 'likes', $separator, true);
+            $data = [
+                'succces' => true,
+                'code' => 200,
+                'message' => 'Likes updated!',
+                'separator' => $separator,
+                'count' => $count,
+            ];
+            return $this->response->setJSON($data);
+        } catch (\Throwable $th) {
+            $data = [
+                'succces' => false,
+                'message' => $th->getMessage()
+            ];
+            return $this->response->setJSON($data);
+            //throw $th;
+        }
+
+
+        // Mengembalikan data dalam format JSON
     }
 }

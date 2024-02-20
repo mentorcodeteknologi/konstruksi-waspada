@@ -41,11 +41,11 @@
                                         <h4><?= $a['judul']; ?></h4>
                                     </a>
                                     <ul class="post-social">
-                                        <li>Posted By : <?= $a['penulis']; ?></li>
-                                        <!-- <li><i class="fa fa-heart"></i> 5 Hits</li>
-                                        <li><i class="fa fa-comments"></i> 10 Comment</li> -->
+                                        <li>Posted By : <?= $a['author']; ?></li>
+                                        <li><i class="fa fa-heart"></i> <?= $a['likes']; ?> Likes</li>
+                                        <li><i class="fa fa-eye"></i> <?= $a['views']; ?> Views</li>
                                     </ul>
-                                    <p><?= $a['isi']; ?></p>
+                                    <p><?= substr($a['isi'], 0, 150); ?></p>
                                 </div>
                             </div>
                         </div>
@@ -142,88 +142,28 @@
                                     <div class="media"> <img class="img-fluid blur-up lazyload" src="<?= base_url('assets/backend/images/artikel/' . $ra['gambar']) ?>" alt="Generic placeholder image">
                                         <div class="media-body align-self-center">
                                             <h6><?= date('d-m-Y', strtotime($a['created_at'])); ?></h6>
-                                            <p>0 hits</p>
+                                            <p> <?= $ra['likes']; ?> Likes</p>
                                         </div>
                                     </div>
                                 </li>
                             <?php endforeach ?>
-                            <!-- <li>
-                                <div class="media"> <img class="img-fluid blur-up lazyload" src="<?= base_url('assets/frontend') ?>/images/blog/2.jpg" alt="Generic placeholder image">
-                                    <div class="media-body align-self-center">
-                                        <h6>25 Dec 2018</h6>
-                                        <p>0 hits</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="media"> <img class="img-fluid blur-up lazyload" src="<?= base_url('assets/frontend') ?>/images/blog/3.jpg" alt="Generic placeholder image">
-                                    <div class="media-body align-self-center">
-                                        <h6>25 Dec 2018</h6>
-                                        <p>0 hits</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="media"> <img class="img-fluid blur-up lazyload" src="<?= base_url('assets/frontend') ?>/images/blog/4.jpg" alt="Generic placeholder image">
-                                    <div class="media-body align-self-center">
-                                        <h6>25 Dec 2018</h6>
-                                        <p>0 hits</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="media"> <img class="img-fluid blur-up lazyload" src="<?= base_url('assets/frontend') ?>/images/blog/5.jpg" alt="Generic placeholder image">
-                                    <div class="media-body align-self-center">
-                                        <h6>25 Dec 2018</h6>
-                                        <p>0 hits</p>
-                                    </div>
-                                </div>
-                            </li> -->
                         </ul>
                     </div>
                     <div class="theme-card">
                         <h4>Popular Blog</h4>
                         <ul class="popular-blog">
-                            <li>
-                                <div class="media">
-                                    <div class="blog-date"><span>03 </span><span>may</span></div>
-                                    <div class="media-body align-self-center">
-                                        <h6>Injected humour the like</h6>
-                                        <p>0 hits</p>
+                            <?php foreach ($popularArtikel as $pa) : ?>
+                                <li>
+                                    <div class="media">
+                                        <div class="blog-date"><span><?= date('d', strtotime($pa['created_at'])); ?></span><span><?= date('M', strtotime($pa['created_at'])); ?></span></div>
+                                        <div class="media-body align-self-center">
+                                            <h6><?= $pa['judul']; ?></h6>
+                                            <p> <?= $ra['views']; ?> Views</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <p>it look like readable English. Many desktop publishing text.</p>
-                            </li>
-                            <li>
-                                <div class="media">
-                                    <div class="blog-date"><span>03 </span><span>may</span></div>
-                                    <div class="media-body align-self-center">
-                                        <h6>Injected humour the like</h6>
-                                        <p>0 hits</p>
-                                    </div>
-                                </div>
-                                <p>it look like readable English. Many desktop publishing text.</p>
-                            </li>
-                            <li>
-                                <div class="media">
-                                    <div class="blog-date"><span>03 </span><span>may</span></div>
-                                    <div class="media-body align-self-center">
-                                        <h6>Injected humour the like</h6>
-                                        <p>0 hits</p>
-                                    </div>
-                                </div>
-                                <p>it look like readable English. Many desktop publishing text.</p>
-                            </li>
-                            <li>
-                                <div class="media">
-                                    <div class="blog-date"><span>03 </span><span>may</span></div>
-                                    <div class="media-body align-self-center">
-                                        <h6>Injected humour the like</h6>
-                                        <p>0 hits</p>
-                                    </div>
-                                </div>
-                                <p>it look like readable English. Many desktop publishing text.</p>
-                            </li>
+                                    <p><?= substr($a['isi'], 0, 20); ?></p>
+                                </li>
+                            <?php endforeach ?>
                         </ul>
                     </div>
                 </div>
