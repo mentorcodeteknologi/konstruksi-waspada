@@ -13,7 +13,7 @@ function getMenuHref($session, $activeUrl, $inactiveUrl)
 
 // Define menu item URLs
 $artikelHref                   = getMenuHref($session, base_url('artikel'), 'javascript:void(0)');
-$categoryHref                   = getMenuHref($session, base_url('category'), 'javascript:void(0)');
+$categoryHref                  = getMenuHref($session, base_url('category'), 'javascript:void(0)');
 $alatHilangHref                = getMenuHref($session, base_url('alat_hilang'), 'javascript:void(0)');
 $userBlackListHilangHref       = getMenuHref($session, base_url('user_blacklist'), 'javascript:void(0)');
 $perusahaanBlacklistHilangHref = getMenuHref($session, base_url('perusahaan_blacklist'), 'javascript:void(0)');
@@ -73,13 +73,14 @@ $perusahaanBlacklistHilangHref = getMenuHref($session, base_url('perusahaan_blac
                         <span>Pembayaran</span>
                     </a>
                 </li>
-
-                <li>
-                    <a class="sidebar-header" href="<?= $categoryHref ?>">
-                        <i data-feather="layout"></i>
-                        <span>Kategori</span>
-                    </a>
-                </li>
+                <?php if ($session->get('role') == 'admin') { ?>
+                    <li>
+                        <a class="sidebar-header" href="<?= $categoryHref ?>">
+                            <i data-feather="layout"></i>
+                            <span>Kategori</span>
+                        </a>
+                    </li>
+                <?php } ?>
 
                 <li>
                     <a class="sidebar-header" href="<?= $artikelHref ?>">
