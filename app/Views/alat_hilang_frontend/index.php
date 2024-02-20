@@ -57,42 +57,45 @@ if (session()->getFlashdata('pesan')) {
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade active show" id="alathilang" role="tabpanel" aria-labelledby="alathilang-tab">
                         <h4>Alat Hilang Table</h4>
-                        <div class="table-responsive table-desi">
-                            <form class="form-inline search-form search-box mb-3">
-                                <div class="form-group">
-                                    <input class="form-control-plaintext" type="search" placeholder="Search.." /><span class="d-sm-none mobile-search"><i data-feather="search"></i></span>
-                                </div>
-                            </form>
-                            <table class="all-package coupon-table table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>PEMILIK ALAT</th>
-                                        <th>NO HP</th>
-                                        <th>TYPE ALAT DAN MERK</th>
-                                        <th>SERIAL NUMBER</th>
-                                        <th>TANGGAL KEHILANGAN</th>
-                                        <th>LOKASI KEHILANGAN</th>
-                                        <th>KRONOLOGIS KEJADIAN</th>
-                                        <th>STATUS KEPEMILIKAN</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    <?php foreach ($list_alat_hilang as $value) : ?>
+                        <?php if ($session->get('logged_in')) : ?>
+                            <div class="table-responsive table-desi">
+                                <form class="form-inline search-form search-box mb-3">
+                                    <div class="form-group">
+                                        <input class="form-control-plaintext" type="search" placeholder="Search.." /><span class="d-sm-none mobile-search"><i data-feather="search"></i></span>
+                                    </div>
+                                </form>
+                                <table class="all-package coupon-table table table-striped">
+                                    <thead>
                                         <tr>
-                                            <td><?= $value['nama'] ?></td>
-                                            <td><?= $value['no_hp'] ?></td>
-                                            <td><?= $value['type_alat'] ?> <?= $value['merk'] ?></td>
-                                            <td><?= $value['serial_number'] ?></td>
-                                            <td><?= $value['tanggal_kehilangan'] ?></td>
-                                            <td><?= $value['lokasi_kehilangan'] ?></td>
-                                            <td><?= $value['kronologi'] ?></td>
-                                            <td></td>
+                                            <th>PEMILIK ALAT</th>
+                                            <th>NO HP</th>
+                                            <th>TYPE ALAT DAN MERK</th>
+                                            <th>SERIAL NUMBER</th>
+                                            <th>TANGGAL KEHILANGAN</th>
+                                            <th>LOKASI KEHILANGAN</th>
+                                            <th>KRONOLOGIS KEJADIAN</th>
+                                            <th>STATUS KEPEMILIKAN</th>
                                         </tr>
-                                    <?php endforeach ?>
-                                </tbody>
-                            </table>
-                        </div>
+                                    </thead>
+
+                                    <tbody>
+                                        <?php
+                                        foreach ($list_alat_hilang as $value) { ?>
+                                            <tr>
+                                                <td><?= $value['nama'] ?></td>
+                                                <td><?= $value['no_hp'] ?></td>
+                                                <td><?= $value['type_alat'] ?> <?= $value['merk'] ?></td>
+                                                <td><?= $value['serial_number'] ?></td>
+                                                <td><?= $value['tanggal_kehilangan'] ?></td>
+                                                <td><?= $value['lokasi_kehilangan'] ?></td>
+                                                <td><?= $value['kronologi'] ?></td>
+                                                <td><?= $value['valid'] ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <?php endif; ?>
                     </div>
                     <div class="tab-pane fade" id="add-alathilang" role="tabpanel" aria-labelledby="add-alathilang-tabs">
                         <div class="theme-card">
