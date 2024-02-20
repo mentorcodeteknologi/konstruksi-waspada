@@ -29,6 +29,14 @@ $session = session();
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
+<?php
+
+// NOTIFIKASI BERHASIL SIMPAN DATA
+if (session()->getFlashdata('pesan')) {
+    echo '<div class="alert alert-success alert-dismissible">
+                    ' . session()->getFlashdata('pesan') . '</div>';
+}
+?>
 <!--Form Input User Perorangan Blacklist -->
 <section class="register-page section-b-space bg-white" id="formPerorangan">
     <div class="container">
