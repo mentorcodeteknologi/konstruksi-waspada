@@ -99,10 +99,11 @@ class AuthController extends BaseController
             'created_at' => Time::now('Asia/Jakarta', 'en_US'),
             'updated_at' => Time::now('Asia/Jakarta', 'en_US')
         ]);
-
+        $helper  = new Helpers();
+        $helper->sendDataToApi();
         $session->set($session_data);
-        $session->setFlashdata('pesan', 'Silahkan masukkan kode OTP yang dikirim ke email anda');
-        return redirect()->to(base_url('dashboard'));
+        $session->setFlashdata('success', 'Silahkan masukkan kode OTP yang dikirim ke Whatsapp yang didaftarkan!');
+        return redirect()->to(base_url('otp'));
     }
 
 

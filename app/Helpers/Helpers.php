@@ -3,10 +3,11 @@
 namespace App\Helpers;
 
 use CodeIgniter\Email\Email;
+use CodeIgniter\API\ResponseTrait;
 
 class Helpers
 {
-
+    use ResponseTrait;
     // ================================= //
     // FUNCTION GENERATE RANDOM STRING
     // ================================= //
@@ -90,7 +91,7 @@ class Helpers
 
         // Menyisipkan pesan dengan tautan
         $pesan = 'Klik link untuk verifikasi email\\n';
-        $pesan .= '<a href="' . base_url('verifyEmail/' . $encrypt) . '">'.base_url('verifyEmail/' . $encrypt).'</a>';
+        $pesan .= '<a href="' . base_url('verifyEmail/' . $encrypt) . '">' . base_url('verifyEmail/' . $encrypt) . '</a>';
 
         $email->setMessage($pesan);
 
@@ -100,6 +101,59 @@ class Helpers
         } else {
             $data = $email->printDebugger(['headers']);
             print_r($data);
+        }
+    }
+
+    public function sendDataToApi($number, $message, $url)
+    {
+        $client = \Config\Services::curlrequest();
+
+        // Data yang akan dikirim ke API
+        $dataToSend = [
+            'number' => $number,
+            'message' => $message,
+            // Tambahkan data lainnya sesuai kebutuhan
+        ];
+
+        $jwt = $this->getToken();
+
+        // Ganti URL_API dengan URL API yang sesuai
+        $response = $client->request('POST', $url, [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $jwt->token,
+                'Content-Type' => 'application/json',
+            ],
+            'json' => $dataToSend,
+        ]);
+
+        if ($response->getStatusCode() == 200) {
+            $responseData = $response->getBody();
+            return $this->respond($responseData, 200);
+        } else {
+            return $this->fail('Failed to send data to API.', 500);
+        }
+    }
+
+    public function getToken()
+    {
+        $client = \Config\Services::curlrequest();
+        // Data yang akan dikirim ke API
+        $dataToSend = [
+            'username' => "user",
+            'password' => "password",
+            // Tambahkan data lainnya sesuai kebutuhan
+        ];
+        $response = $client->request('POST', 'http://localhost:3000/api/login', [
+            'headers' => [
+                'Content-Type' => 'application/json',
+            ],
+            'json' => $dataToSend,
+        ]);
+        if ($response->getStatusCode() == 200) {
+            $responseData = $response->getBody();
+            return $this->respond($responseData, 200);
+        } else {
+            return $this->fail('Failed to send data to API.', 500);
         }
     }
 }
