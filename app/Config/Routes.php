@@ -86,6 +86,7 @@ $routes->group('artikel', ['filter' => 'auth:users,admin'], function ($routes) {
     $routes->post('update/(:any)', 'ArtikelController::updateArtikel/$1');
     $routes->post('delete/(:any)', 'ArtikelController::delete/$1');
 });
+$routes->get('updateLikes', 'ArtikelController::updateLikes');
 
 // ROUTES KALENDER
 $routes->group('category', ['filter' => 'auth:users,admin'], function ($routes) {
@@ -117,6 +118,7 @@ $routes->group('alat_hilang', ['filter' => 'auth:users,admin'], function ($route
     $routes->get('update/(:any)', 'AlatHilangController::update/$1');
     $routes->post('update/(:any)', 'AlatHilangController::updateAlatHilang/$1');
     $routes->post('delete/(:any)', 'AlatHilangController::delete/$1');
+    $routes->post('validation/(:any)', 'AlatHilangController::validation/$1');
 });
 
 

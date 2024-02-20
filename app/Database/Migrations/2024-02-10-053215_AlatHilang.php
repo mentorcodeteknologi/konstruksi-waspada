@@ -14,6 +14,11 @@ class AlatHilang extends Migration
                 'constraint'     => 11,
                 'auto_increment' => true
             ],
+            'valid'              => [
+                'type'           => 'ENUM',
+                'constraint'     => ['0', '1'],
+                'default'        => '0'
+            ],
             'id_user'            => [
                 'type'           => 'INT',
                 'constraint'     => 11

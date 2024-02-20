@@ -685,7 +685,9 @@
     <!-- Theme js-->
     <script src="<?= base_url('assets/frontend') ?>/js/theme-setting.js"></script>
     <script src="<?= base_url('assets/frontend') ?>/js/script.js"></script>
-
+    <!-- section start -->
+    <?= $this->renderSection('scripts'); ?>
+    <!-- Section ends -->
     <script>
         function openSearch() {
             document.getElementById("search-overlay").style.display = "block";

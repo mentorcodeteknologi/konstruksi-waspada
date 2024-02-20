@@ -63,10 +63,10 @@
                                 <textarea name="isi" id="isi" class="form-control" placeholder="Isi Artikel" required> </textarea>
                             </div>
 
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label>Penulis</label>
                                 <input type="text" name="penulis" id="penulis" class="form-control" placeholder="Penulis" required>
-                            </div>
+                            </div> -->
 
                             <div class="form-group">
                                 <label>URL Youtube</label>

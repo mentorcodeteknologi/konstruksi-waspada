@@ -12,7 +12,7 @@ class ArtikelModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['judul', 'isi', 'gambar', 'url', 'deskripsi', 'slug', 'penulis', 'id_categories', 'created_at', 'updated_at'];
+    protected $allowedFields    = ['judul', 'isi', 'gambar', 'url', 'deskripsi', 'slug', 'penulis', 'id_categories', 'likes', 'views','created_at', 'updated_at'];
 
     protected bool $allowEmptyInserts = false;
 
@@ -46,8 +46,9 @@ class ArtikelModel extends Model
     public function findAllData($slug = null)
     {
         $builder = $this->db->table('artikel');
-        $builder->select('artikel.*, categories.category as category_name');
+        $builder->select('artikel.*, categories.category as category_name, users.nama author');
         $builder->join('categories', 'categories.id = artikel.id_categories');
+        $builder->join('users', 'artikel.penulis = users.id');
         if ($slug != null) {
             $builder->where('artikel.slug', $slug);
             return $builder->get()->getRowArray();
@@ -61,21 +62,40 @@ class ArtikelModel extends Model
     public function getDataBySlug($slug)
     {
         $builder = $this->db->table('artikel');
-        $builder->select('artikel.*, categories.category as category_name');
+        $builder->select('artikel.*, categories.category as category_name, users.nama author');
         $builder->join('categories', 'categories.id = artikel.id_categories');
+        $builder->join('users', 'artikel.penulis = users.id');
         $builder->where('artikel.slug', $slug);
+        $this->updatePopularity($slug, 'views');
         return $builder->get()->getRowArray();
     }
 
     // ============================= //
     // FUNCTION GET ARTIKEL DI FRONTEND
     // ============================= //
-    public function getRecentArticles($limit = 10)
+    public function getOrderArticle($col, $sort, $limit = 10)
     {
         return $this->select('*')
-            ->orderBy('created_at', 'desc')
+            ->orderBy($col, $sort)
             ->limit($limit)
             ->get()
             ->getResultArray();
+    }
+
+    // ============================= //
+    // FUNCTION UPDATE VIEWS & LIKES
+    // ============================= //
+    public function updatePopularity($slug, $col, $separator = null, $count = false)
+    {
+        $artikel = $this->where('slug', $slug)->get()->getRowArray();
+        $update = [
+            $col => $separator ? $artikel[$col] - 1 : $artikel[$col] + 1,
+        ];
+        if ($count) {
+            $this->update($artikel['id'], $update);
+            return $this->select($col)->where('slug', $slug)->get()->getRowArray();
+        } else {
+            return $this->update($artikel['id'], $update);
+        }
     }
 }

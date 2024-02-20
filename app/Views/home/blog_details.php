@@ -24,7 +24,7 @@
 
 <?= $this->section('content'); ?>
 <!--section start-->
-<section class="blog-detail-page section-b-space ratio2_3">
+<section class="blog-detail-page section-b-space ratio2_3 bg-white">
     <div class="container">
         <div class="row">
             <div class="col-sm-12 blog-detail">
@@ -34,9 +34,10 @@
                 <h3><?= $detail_artikel['judul']; ?></h3>
                 <ul class="post-social">
                     <li><?= $detail_artikel['created_at']; ?></li>
-                    <li>Posted By : <?= $detail_artikel['penulis']; ?></li>
-                    <li><i class="fa fa-heart"></i> 5 Hits</li>
-                    <li><i class="fa fa-comments"></i> 10 Comment</li>
+                    <li>Posted By : <?= $detail_artikel['author']; ?></li>
+                    <li><a href="javascript:void(0)" onclick="updateLikes()"><i class="fa fa-heart"></i> <span id="targetLikes"><?= $detail_artikel['likes']; ?></span> Likes</a></li>
+                    <li><i class="fa fa-eye"></i> <?= $detail_artikel['views']; ?> Views</li>
+                    <!-- <li><i class="fa fa-comments"></i>  Comment</li> -->
                 </ul>
                 <p><?= $detail_artikel['isi']; ?></p>
             </div>
@@ -89,7 +90,7 @@
             </div>
             <div class="col">
                 <h4>Description :</h4>
-                <p><?= $detail_artikel['deskripsi']; ?></p>
+                <textarea class="form-control" disabled rows="12" style="border: none;"><?= $detail_artikel['deskripsi']; ?></textarea>
             </div>
         </div>
 
@@ -139,3 +140,30 @@
 </section>
 <!--Section ends-->
 <?= $this->endSection(); ?>
+<?= $this->section('scripts') ?>
+<script>
+    let times = 0;
+    let slug = "<?= $detail_artikel['slug']?>";
+    function updateLikes() {
+        $.ajax({
+            url: '<?= base_url("updateLikes")?>',
+            method: 'GET',
+            data: {
+                "slug" : slug,
+                "times" : times,
+            },
+            contentType: "application/json",
+            dataType: "json",
+            success: function(res) {
+               times = !res.separator ? times + 1 : 0;
+               $("#targetLikes").html("");
+               $("#targetLikes").append(res.count.likes);
+               
+            },
+            error: function(xhr, status, error) {
+                console.error(status, error);
+            }
+        });
+    }
+</script>
+<?= $this->endSection() ?>

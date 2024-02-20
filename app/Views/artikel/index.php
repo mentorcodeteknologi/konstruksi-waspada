@@ -77,10 +77,10 @@
                                 <td><?= $value['judul'] ?></td>
                                 <td><?= $value['category_name'] ?></td>
                                 <td><img src="<?= base_url('assets/backend/images/artikel/' . $value['gambar']) ?>" width="100px" height="100px"></td>
-                                <td><?= $value['isi'] ?></td>
+                                <td><?= substr($value['isi'] , 0, 30)?></td>
                                 <td><?= $value['url'] ?></td>
-                                <td><?= $value['deskripsi'] ?></td>
-                                <td><?= $value['penulis'] ?></td>
+                                <td><?= substr($value['deskripsi'] , 0, 30)?></td>
+                                <td><?= $value['author'] ?></td>
                                 <td><?= $value['created_at'] ?></td>
                                 <td><?= $value['updated_at'] ?></td>
                                 <td>
