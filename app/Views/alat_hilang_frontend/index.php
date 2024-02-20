@@ -89,7 +89,15 @@ if (session()->getFlashdata('pesan')) {
                                                 <td><?= $value['tanggal_kehilangan'] ?></td>
                                                 <td><?= $value['lokasi_kehilangan'] ?></td>
                                                 <td><?= $value['kronologi'] ?></td>
-                                                <td><?= $value['valid'] ?></td>
+                                                <td><?php
+                                                    if ($value['valid'] == null) {
+                                                        echo "Menunggu Validasi";
+                                                    } else if ($value['valid'] == 0) {
+                                                        echo "Tidak Valid";
+                                                    } else {
+                                                        echo "Valid";
+                                                    }
+                                                    ?></td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>

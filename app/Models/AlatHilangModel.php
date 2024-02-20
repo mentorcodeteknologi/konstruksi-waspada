@@ -72,6 +72,6 @@ class AlatHilangModel extends Model
         if ($id != null) {
             $builder->where('alat_hilang.id', $id);
         }
-        return $builder->get()->getRowArray();
+        return $builder->get()->getResultArray();
     }
 }
