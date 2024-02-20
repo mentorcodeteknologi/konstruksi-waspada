@@ -79,7 +79,7 @@
                                 <td><img src="<?= base_url('assets/backend/images/artikel/' . $value['gambar']) ?>" width="100px" height="100px"></td>
                                 <td><?= substr($value['isi'] , 0, 30)?></td>
                                 <td><?= $value['url'] ?></td>
-                                <td><?= $value['deskripsi'] ?></td>
+                                <td><?= substr($value['deskripsi'] , 0, 30)?></td>
                                 <td><?= $value['author'] ?></td>
                                 <td><?= $value['created_at'] ?></td>
                                 <td><?= $value['updated_at'] ?></td>

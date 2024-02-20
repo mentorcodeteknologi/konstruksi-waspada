@@ -78,7 +78,7 @@ class ArtikelController extends BaseController
             'deskripsi'     => $this->request->getVar('deskripsi'),
             'gambar'        => $foto,
             'slug'          => $helper->generateSlug(),
-            'penulis'       => $this->request->getVar('penulis'),
+            'penulis'       => session('id'),
             'created_at'    => Time::now('Asia/Jakarta', 'en_US'),
             'updated_at'    => Time::now('Asia/Jakarta', 'en_US')
         ];
@@ -129,7 +129,7 @@ class ArtikelController extends BaseController
             'url'           => $this->request->getVar('url'),
             'deskripsi'     => $this->request->getVar('deskripsi'),
             'gambar'        => $foto,
-            'penulis'       => session('id'),
+            // 'penulis'       => session('id'),
             // 'penulis'       => $this->request->getVar('penulis'),
             'updated_at'    => Time::now('Asia/Jakarta', 'en_US')
         ];

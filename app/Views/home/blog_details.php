@@ -90,7 +90,7 @@
             </div>
             <div class="col">
                 <h4>Description :</h4>
-                <p><?= $detail_artikel['deskripsi']; ?></p>
+                <textarea class="form-control" disabled rows="12" style="border: none;"><?= $detail_artikel['deskripsi']; ?></textarea>
             </div>
         </div>
 
