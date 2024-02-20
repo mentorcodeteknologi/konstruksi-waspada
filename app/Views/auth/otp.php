@@ -49,8 +49,8 @@
                     <form action="<?= base_url('otp/'. session('encrypt')) ?>" method="post" class="theme-form" enctype="multipart/form-data">
                         <?= csrf_field(); ?>
                         <div class="form-group">
-                            <label for="otp">OTP Whatsapp</label>
-                            <input type="text" class="form-control" name="otp" id="otp" placeholder="Enter your OTP Code" required autofocus>
+                            <label for="kode">OTP Whatsapp</label>
+                            <input type="text" class="form-control" name="kode" id="kode" placeholder="Enter your OTP Code" required autofocus>
                         </div>
                         <button type="submit" class="btn btn-solid">Login</button>
                     </form>

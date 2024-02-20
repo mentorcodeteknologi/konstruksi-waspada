@@ -108,16 +108,13 @@ class Helpers
     {
         $client = \Config\Services::curlrequest();
 
-        // Data yang akan dikirim ke API
         $dataToSend = [
             'number' => $number,
             'message' => $message,
-            // Tambahkan data lainnya sesuai kebutuhan
         ];
 
         $jwt = $this->getToken();
 
-        // Ganti URL_API dengan URL API yang sesuai
         $response = $client->request('POST', $url, [
             'headers' => [
                 'Authorization' => 'Bearer ' . $jwt->token,
@@ -128,32 +125,33 @@ class Helpers
 
         if ($response->getStatusCode() == 200) {
             $responseData = $response->getBody();
-            return $this->respond($responseData, 200);
+            return $responseData;
         } else {
-            return $this->fail('Failed to send data to API.', 500);
+            return 'Failed to send data to API.';
         }
     }
 
     public function getToken()
     {
         $client = \Config\Services::curlrequest();
-        // Data yang akan dikirim ke API
+
         $dataToSend = [
             'username' => "user",
             'password' => "password",
-            // Tambahkan data lainnya sesuai kebutuhan
         ];
+
         $response = $client->request('POST', 'http://localhost:3000/api/login', [
             'headers' => [
                 'Content-Type' => 'application/json',
             ],
             'json' => $dataToSend,
         ]);
+
         if ($response->getStatusCode() == 200) {
             $responseData = $response->getBody();
-            return $this->respond($responseData, 200);
+            return json_decode($responseData);
         } else {
-            return $this->fail('Failed to send data to API.', 500);
+            return 'Failed to get token from API.';
         }
     }
 }

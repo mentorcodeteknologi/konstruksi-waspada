@@ -88,8 +88,7 @@ class AuthController extends BaseController
         $code = rand(100000, 999999);
 
         $datePlus = date("c", strtotime('now +5 minutes'));
-        $exp      = strtotime($datePlus);
-
+        $exp      = date("Y-m-d H:i:s", strtotime($datePlus));
         // INSERT OTP
         $this->otpModel->insert([
             'kode'       => $code,
@@ -100,7 +99,7 @@ class AuthController extends BaseController
             'updated_at' => Time::now('Asia/Jakarta', 'en_US')
         ]);
         $helper  = new Helpers();
-        $helper->sendDataToApi();
+        $helper->sendDataToApi($userDatas['no_hp'], "Masukan OTP : $code", 'http://localhost:3000/api/send-message');
         $session->set($session_data);
         $session->setFlashdata('success', 'Silahkan masukkan kode OTP yang dikirim ke Whatsapp yang didaftarkan!');
         return redirect()->to(base_url('otp'));
@@ -124,21 +123,24 @@ class AuthController extends BaseController
     // ========================= //
     public function verifyOtpLogin($encrypt)
     {
+        $session = session();
         // VALIDATION ENCRYPT USER
         $userData = $this->usersModel->getDataByEncrypt($encrypt);
         if (empty($userData)) {
             return redirect()->to(base_url('login'));
         }
-
+        
         // VALIDATION KODE
         $kode          = $this->request->getVar('kode');
-        $validationOtp = $this->otpModel->validationOtp($encrypt, $kode);
+        $validationOtp = $this->otpModel->validationOtp($userData['id'], $kode);
         if (empty($validationOtp)) {
+            $session->setFlashdata('pesan', 'OTP Expired silahkan login kembali!');
             return redirect()->to(base_url('login'));
         }
 
         // DELETE OTP ON DATABASE
         $this->otpModel->delete($validationOtp['id']);
+        return redirect()->to(base_url('dashboard'));
     }
 
     // ========================= //
