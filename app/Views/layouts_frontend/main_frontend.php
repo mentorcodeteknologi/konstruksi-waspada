@@ -710,13 +710,13 @@
             // Menghapus karakter selain angka
             inputValue = inputValue.replace(/\D/g, '');
 
-            // Memastikan bahwa karakter pertama adalah "+62"
+            // Memastikan bahwa karakter pertama adalah "62"
             if (!inputValue.startsWith("62")) {
                 inputValue = "62" + inputValue;
             }
 
-            // Mengatur nilai input dengan karakter "+62" dan nomor HP yang dimasukkan oleh pengguna
-            this.value = "+" + inputValue.substring(0, 2) + inputValue.substring(2);
+            // Mengatur nilai input dengan karakter "62" dan nomor HP yang dimasukkan oleh pengguna
+            this.value = inputValue.substring(0, 2) + inputValue.substring(2);
         });
 
         // Menangani kasus ketika semua input dihapus

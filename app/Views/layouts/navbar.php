@@ -41,7 +41,10 @@ $session = session();
 
                 <li class="onhover-dropdown">
                     <div class="media align-items-center">
-                        <img class="align-self-center pull-right img-50 blur-up lazyloaded" src="<?= base_url('assets/backend/images/') . $session->get('foto') ?>" alt="header-user">
+                        <?php
+                        $foto = ($session->get('foto') == 'default.png') ? base_url('assets/backend/images/') . $session->get('foto') : base_url('assets/backend/images/profile/') . $session->get('encrypt') . "/" . $session->get('foto');
+                        ?>
+                        <img class="align-self-center pull-right img-50 blur-up lazyloaded" src="<?= $foto; ?>" alt="header-user">
                         <div class="dotted-animation">
                             <span class="animate-circle"></span>
                             <span class="main-circle"></span>

@@ -70,7 +70,7 @@
                         <div class="form-row row">
                             <div class="col-md-6">
                                 <label>No Whatsapp</label>
-                                <input type="text" name="no_hp" id="no_hp" class="form-control" value="+62" placeholder="No Whatsapp" required>
+                                <input type="text" name="no_hp" id="no_hp" class="form-control" value="62" placeholder="No Whatsapp" required>
                             </div>
 
                             <div class="col-md-6">

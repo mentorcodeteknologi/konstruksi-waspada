@@ -15,9 +15,8 @@ class AlatHilang extends Migration
                 'auto_increment' => true
             ],
             'valid'              => [
-                'type'           => 'ENUM',
-                'constraint'     => ['0', '1'],
-                'default'        => '0'
+                'type'           => 'BOOLEAN',
+                'default'        => false
             ],
             'id_user'            => [
                 'type'           => 'INT',

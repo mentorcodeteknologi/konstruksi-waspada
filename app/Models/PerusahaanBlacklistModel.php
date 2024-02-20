@@ -44,12 +44,15 @@ class PerusahaanBlacklistModel extends Model
     // ============================ //
     // FUNCTION FIND ALL DATAS
     // ============================ //
-    public function findAllDatas()
+    public function findAllDatas($valid = null)
     {
         $builder = $this->db->table('perusahaan_blacklist');
         $builder->select('perusahaan_blacklist.*, users.perusahaan');
         $builder->join('users', 'users.id = perusahaan_blacklist.id_user');
         $builder->orderBy('perusahaan_blacklist.created_at', 'DESC');
+        if ($valid != null) {
+            $builder->where('perusahaan_blacklist.valid = 1');
+        }
         return $builder->get()->getResultArray();
     }
 }

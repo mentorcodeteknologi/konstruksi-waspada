@@ -91,16 +91,24 @@
                                 <td><?= $value['lokasi_kehilangan'] ?></td>
                                 <td><?= $value['kronologi'] ?></td>
                                 <td><?= $value['nominal_kerugian'] ?></td>
-                                <td><?= $value['valid'] == 0 ? "Menunggu Validasi" : "Publish" ?></td>
+                                <td><?= $value['valid'] == null ? "Menunggu Validasi" : "Publish" ?></td>
                                 <td>
                                     <a href="<?= base_url('alat_hilang/update/' . $value['slug']) ?>" class="btn btn-info btn-sm">Edit</a>
                                     <form action="<?= base_url('alat_hilang/delete/' . $value['slug']); ?>" method="post">
                                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
                                     </form>
                                     <?php if ($session->get('role') == "admin") { ?>
-                                        <form action="<?= base_url('alat_hilang/validasi/' . $value['slug']); ?>" method="post">
-                                            <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Apakah Anda yakin ingin memvalidasi data ini?')">Validasi</button>
+                                        <?php if ($value['valid'] == null) { ?>
+                                            <form action="<?= base_url('alat_hilang/validation/' . $value['slug']); ?>" method="post">
+                                                <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Apakah Anda yakin ingin memvalidasi data ini?')">Validasi</button>
+                                            </form>
+                                            <form action="<?= base_url('alat_hilang/notvalid/' . $value['slug']); ?>" method="post">
+                                                <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Apakah Anda yakin ingin bahwa data ini tidak valid?')">Tidak Valid</button>
+                                            </form>
+                                        <?php } else { ?>
+                                            <p><?= $value['valid'] == 0 ? "Tidak Valid" : "Valid" ?></p>
                                         <?php } ?>
+                                    <?php } ?>
                                 </td>
 
                             </tr>
