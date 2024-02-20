@@ -109,7 +109,7 @@ $session = session();
                                     </div>
                                     <div class="col-md-6">
                                         <label for="review">No HP Terlapor</label>
-                                        <input type="text" class="form-control" name="no_hp" id="no_hp" value="+62" placeholder="No HP Terlapor" required="" disabled>
+                                        <input type="text" class="form-control" name="no_hp" id="no_hp" value="62" placeholder="No HP Terlapor" required="" disabled>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="review">Merk</label>
@@ -195,7 +195,7 @@ $session = session();
                                     </div>
                                     <div class="col-md-6">
                                         <label for="review">No HP Perusahaan Terlapor</label>
-                                        <input type="text" class="form-control" name="no_hp" id="no_hp" value="+62" placeholder="No HP Perusahaan Terlapor" required="">
+                                        <input type="text" class="form-control" name="no_hp" id="no_hp" value="62" placeholder="No HP Perusahaan Terlapor" required="">
                                     </div>
                                     <div class="col-md-6">
                                         <label for="review">Merk</label>

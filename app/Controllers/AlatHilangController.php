@@ -189,4 +189,20 @@ class AlatHilangController extends BaseController
         session()->setFlashdata('pesan', 'Data Berhasil Divalidasi');
         return redirect()->to(base_url('alat_hilang'));
     }
+
+
+    // ========================= //
+    // FUNCTION TIDAK VALIDASI
+    // ========================= //
+    public function notValid($slug)
+    {
+        $userData = $this->alatHilangModel->getDataBySlug($slug);
+        $data = [
+            'valid' => 0
+        ];
+
+        $this->alatHilangModel->update($userData['id'], $data);
+        session()->setFlashdata('pesan', 'Data Berhasil Divalidasi');
+        return redirect()->to(base_url('alat_hilang'));
+    }
 }

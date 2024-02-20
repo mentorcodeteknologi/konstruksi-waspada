@@ -55,7 +55,7 @@
 
                             <div class="form-group">
                                 <label>No Whatsapp</label>
-                                <input type="text" name="no_hp" id="no_hp" class="form-control" value="+62" placeholder="No Whatsapp" required>
+                                <input type="text" name="no_hp" id="no_hp" class="form-control" value="62" placeholder="No Whatsapp" required>
                             </div>
 
                             <div class="form-group">

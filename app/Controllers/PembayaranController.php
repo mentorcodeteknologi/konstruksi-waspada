@@ -114,4 +114,25 @@ class PembayaranController extends BaseController
         session()->setFlashdata('pesan', 'Data berhasil divalidasi');
         return redirect()->to(base_url('pembayaran'));
     }
+
+
+    // ========================= //
+    // FUNCTION TIDAK VALIDASI
+    // ========================= //
+    public function tidakValidasiPembayaran($slug)
+    {
+        $datas  = $this->pembayaranModel->getDataBySlug($slug);
+        $update = [
+            'validasi_pembayaran' => 0,
+            'updated_at'          => Time::now('Asia/Jakarta', 'en_US')
+        ];
+
+        // UPDATE DATA ON TABLE PEMBAYARAN
+        $this->pembayaranModel->update($datas['id'], $update);
+
+        // UPDATE DATA ON TABLE USERS
+        $this->usersModel->update($datas['id_user'], ['status' => "nonactive"]);
+        session()->setFlashdata('pesan', 'Data berhasil divalidasi');
+        return redirect()->to(base_url('pembayaran'));
+    }
 }

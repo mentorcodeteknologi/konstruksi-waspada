@@ -32,7 +32,19 @@ class Pembayaran extends Migration
             ],
             'validasi_pembayaran' => [
                 'type'            => 'BOOLEAN',
-                'default'         => false
+                'null'            => true
+            ],
+            'start_date'          => [
+                'type'            => 'DATE'
+            ],
+            'end_date'            => [
+                'type'            => 'DATE'
+            ],
+            'created_at'          => [
+                'type'            => 'DATETIME'
+            ],
+            'updated_at'          => [
+                'type'            => 'DATETIME'
             ],
         ]);
         $this->forge->addKey('id', true);

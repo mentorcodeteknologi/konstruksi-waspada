@@ -61,7 +61,7 @@
 
                             <div class="form-group">
                                 <label>No HP</label>
-                                <input type="text" name="no_hp" id="no_hp" class="form-control" value="+62" placeholder="No HP" required>
+                                <input type="text" name="no_hp" id="no_hp" class="form-control" value="62" placeholder="No HP" required>
                             </div>
 
                             <div class="form-group">
