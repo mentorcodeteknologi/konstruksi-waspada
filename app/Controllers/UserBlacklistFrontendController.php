@@ -26,7 +26,7 @@ class UserBlacklistFrontendController extends BaseController
     {
         $data = [
             'title' => 'User Blacklist',
-            'user' =>  $this->userBlacklistModel->findAllDatas(),
+            'list_user_blacklist' =>  $this->userBlacklistModel->findAllDatas(),
             'list_perusahan_blacklist' => $this->perusahaanBlacklistModel->findAllDatas()
         ];
         return view('user_blacklist_frontend/index', $data);
