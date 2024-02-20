@@ -8,7 +8,7 @@ class UsersModel extends Model
 {
     protected $table            = 'users';
     protected $primaryKey       = 'id';
-    protected $allowedFields    = ['nama', 'id_card', 'no_hp', 'email', 'password', 'alamat', 'role', 'encrypt', 'perusahaan', 'jabatan', 'foto', 'status', 'created_at', 'updated_at'];
+    protected $allowedFields    = ['nama', 'id_card', 'no_hp', 'email', 'password', 'alamat', 'role', 'encrypt', 'perusahaan', 'jabatan', 'foto', 'status', 'created_at', 'updated_at', 'is_veryfied_email'];
 
     // ============================= //
     // FUNCTION GET DATA BY ENCRYPT

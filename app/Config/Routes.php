@@ -39,6 +39,7 @@ $routes->post('/blog_details/(:any)', 'HomeController::blog_comment/$1', ['filte
 $routes->get('/login', 'AuthController::indexLogin');
 $routes->post('/login', 'AuthController::login'); //proses form login
 $routes->get('/register', 'AuthController::indexRegister');
+$routes->get('/verifyEmail/(:any)', 'AuthController::verifyEmail/$1');
 $routes->post('/register', 'AuthController::register'); //proses form register
 $routes->get('/logout', 'AuthController::logout');
 

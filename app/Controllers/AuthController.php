@@ -67,6 +67,12 @@ class AuthController extends BaseController
             return redirect()->to(base_url('login'));
         }
 
+        // CHECK VERIFIKASI EMAIL
+        if ($userDatas['is_veryfied_email'] == '0') {
+            $session->setFlashdata('pesan', 'Email belum terverifikasi, Silahkan periksa kotak masuk pada email yang di daftarkan!');
+            return redirect()->to(base_url('login'));
+        }
+
         $session_data = [
             'id'                => $userDatas['id'],
             'nama'              => $userDatas['nama'],
@@ -134,6 +140,36 @@ class AuthController extends BaseController
         $this->otpModel->delete($validationOtp['id']);
     }
 
+    // ========================= //
+    // FUNCTION VERIFY OTP LOGIN
+    // ========================= //
+    public function verifyEmail($encrypt)
+    {
+        $session   = session();
+        // VALIDATION ENCRYPT USER
+        $userData = $this->usersModel->getDataByEncrypt($encrypt);
+        if (empty($userData)) {
+            $session->setFlashdata('pesan', 'Email verifikasi tidak ditemukan');
+            return redirect()->to(base_url('login'));
+        }
+
+        if ($userData['is_veryfied_email'] == '1') {
+            $session->setFlashdata('pesan', 'Email sudah terverifikasi, Silahkan Login');
+            return redirect()->to(base_url('login'));
+        }
+        try {
+            $data = ['is_veryfied_email' => true];
+            
+            $this->usersModel->update($userData['id'],$data);
+            $session->setFlashdata('success', 'Email berhasil diverifikasi!, Silahkan login kembali');
+            return redirect()->to(base_url('login'));
+        } catch (\Throwable $th) {
+            //throw $th;
+            $session->setFlashdata('pesan', $th->getMessage());
+            return redirect()->to(base_url('login'));
+        }
+    }
+
 
     // ========================= //
     // FUNCTION AUTH REGISTER
@@ -157,12 +193,12 @@ class AuthController extends BaseController
 
             $file->move($path, $foto);
         }
-
+        $email = $this->request->getVar('email');
         $data = [
             'nama'       => $this->request->getVar('nama'),
             'id_card'    => $this->request->getVar('id_card'),
             'no_hp'      => $this->request->getVar('no_hp'),
-            'email'      => $this->request->getVar('email'),
+            'email'      => $email,
             'password'   => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
             'alamat'     => $this->request->getVar('alamat'),
             'role'       => 'users',
@@ -176,7 +212,8 @@ class AuthController extends BaseController
         ];
 
         $this->usersModel->insert($data);
-        return redirect()->to(base_url('dashboard'));
+        $helper->sendMail($email, $encrypt);
+        return redirect()->to(base_url('login'))->with('success', 'Silahkan lakukan verifikasi email!, Periksa pada kotak masuk pada email yang didaftarkan!');
     }
 
 

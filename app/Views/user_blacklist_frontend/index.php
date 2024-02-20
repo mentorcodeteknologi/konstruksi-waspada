@@ -50,44 +50,46 @@ $session = session();
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade active show" id="user" role="tabpanel" aria-labelledby="user-tab">
                         <h4>Blacklist Table</h4>
-                        <div class="table-responsive table-desi">
-                            <form class="form-inline search-form search-box mb-3">
-                                <div class="form-group">
-                                    <input class="form-control-plaintext" type="search" placeholder="Search.." /><span class="d-sm-none mobile-search"><i data-feather="search"></i></span>
-                                </div>
-                            </form>
-                            <table class="all-package coupon-table table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Nama Perusahaan Penyedia Sewa</th>
-                                        <th>NIK Terlapor</th>
-                                        <th>Nama Terlapor</th>
-                                        <th>Jenis Pelanggaran</th>
-                                        <th>Merk dan Tipe Alat</th>
-                                        <th>No Seri</th>
-                                        <th>Durasi Rental</th>
-                                        <th>Keterangan</th>
-                                        <th>Nominal Kerugian</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    <?php foreach ($list_user_blacklist as $value) : ?>
+                        <?php if ($session->get('logged_in')) : ?>
+                            <div class="table-responsive table-desi">
+                                <form class="form-inline search-form search-box mb-3">
+                                    <div class="form-group">
+                                        <input class="form-control-plaintext" type="search" placeholder="Search.." /><span class="d-sm-none mobile-search"><i data-feather="search"></i></span>
+                                    </div>
+                                </form>
+                                <table class="all-package coupon-table table table-striped">
+                                    <thead>
                                         <tr>
-                                            <td><?= $value['perusahaan'] ?></td>
-                                            <td><?= $value['nik'] ?></td>
-                                            <td><?= $value['nama'] ?></td>
-                                            <td><?= $value['jenis_pelanggaran'] ?></td>
-                                            <td><?= $value['merk'] ?> <?= $value['type_alat'] ?></td>
-                                            <td><?= $value['no_seri'] ?></td>
-                                            <td><?= $value['durasi'] . " Bulan" ?></td>
-                                            <td><?= $value['keterangan'] ?></td>
-                                            <td><?= $value['nominal_kerugian'] ?></td>
+                                            <th>Nama Perusahaan Penyedia Sewa</th>
+                                            <th>NIK Terlapor</th>
+                                            <th>Nama Terlapor</th>
+                                            <th>Jenis Pelanggaran</th>
+                                            <th>Merk dan Tipe Alat</th>
+                                            <th>No Seri</th>
+                                            <th>Durasi Rental</th>
+                                            <th>Keterangan</th>
+                                            <th>Nominal Kerugian</th>
                                         </tr>
-                                    <?php endforeach ?>
-                                </tbody>
-                            </table>
-                        </div>
+                                    </thead>
+
+                                    <tbody>
+                                        <?php foreach ($list_user_blacklist as $value) : ?>
+                                            <tr>
+                                                <td><?= $value['perusahaan'] ?></td>
+                                                <td><?= $value['nik'] ?></td>
+                                                <td><?= $value['nama'] ?></td>
+                                                <td><?= $value['jenis_pelanggaran'] ?></td>
+                                                <td><?= $value['merk'] ?> <?= $value['type_alat'] ?></td>
+                                                <td><?= $value['no_seri'] ?></td>
+                                                <td><?= $value['durasi'] . " Bulan" ?></td>
+                                                <td><?= $value['keterangan'] ?></td>
+                                                <td><?= $value['nominal_kerugian'] ?></td>
+                                            </tr>
+                                        <?php endforeach ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <?php endif; ?>
                     </div>
                     <div class="tab-pane fade" id="add-user" role="tabpanel" aria-labelledby="add-user-tabs">
                         <div class="theme-card">
