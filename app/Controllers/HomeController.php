@@ -28,8 +28,9 @@ class HomeController extends BaseController
     {
         $data = [
             'title' => 'Blog',
-            'artikel' => $this->artikelModel->findAll(),
-            'recentArtikel' => $this->artikelModel->getRecentArticles(),
+            'artikel' => $this->artikelModel->findAllData(),
+            'recentArtikel' => $this->artikelModel->getOrderArticle('created_at', 'desc'),
+            'popularArtikel' => $this->artikelModel->getOrderArticle('views', 'desc'),
         ];
         return view('home/index', $data);
     }
@@ -37,7 +38,7 @@ class HomeController extends BaseController
     //Blog Details
     public function blog_details($slug)
     {
-        $article =
+
         $data = [
             'title' => 'Blog Detail',
             'detail_artikel' => $this->artikelModel->getDataBySlug($slug),

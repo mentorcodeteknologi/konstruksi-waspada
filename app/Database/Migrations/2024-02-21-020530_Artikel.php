@@ -45,6 +45,16 @@ class Artikel extends Migration
                 'type'       => 'INT',
                 'constraint' => 11,
             ],
+            'views' => [
+                'type'       => 'INT',
+                'constraint' => 11,
+                'default'    => 0  
+            ],
+            'likes' => [
+                'type'       => 'INT',
+                'constraint' => 11,
+                'default'    => 0  
+            ],
             'created_at'     => [
                 'type'       => 'DATETIME',
             ],

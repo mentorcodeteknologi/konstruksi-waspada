@@ -8,8 +8,8 @@
                     </div>
                     <div class="footer-contant">
                         <div class="footer-logo"><img src="<?= base_url('assets/frontend') ?>/images/icon/logo.png" alt=""></div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+                        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p> -->
                         <div class="footer-social">
                             <ul>
                                 <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>

@@ -3,7 +3,7 @@
     // SESSION UNTUK MENGAMBIL DATA SESSION
     $session = session();
     ?>
-    <div class="mobile-fix-option"></div>
+    <!-- <div class="mobile-fix-option"></div> -->
     <div class="top-header">
         <div class="container">
             <div class="row">
