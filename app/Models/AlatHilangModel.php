@@ -12,7 +12,7 @@ class AlatHilangModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_user', 'merk', 'type_alat', 'serial_number', 'foto', 'pembelian_dari', 'tanggal_kehilangan', 'surat_kepemilikian', 'lokasi_kehilangan', 'kronologi', 'nominal_kerugian', 'slug', 'created_at', 'updated_at'];
+    protected $allowedFields    = ['id_user', 'valid', 'merk', 'type_alat', 'serial_number', 'foto', 'pembelian_dari', 'tanggal_kehilangan', 'surat_kepemilikian', 'lokasi_kehilangan', 'kronologi', 'nominal_kerugian', 'slug', 'created_at', 'updated_at'];
 
     protected bool $allowEmptyInserts = false;
 
@@ -54,9 +54,25 @@ class AlatHilangModel extends Model
         $builder = $this->db->table('alat_hilang');
         $builder->select('alat_hilang.*, users.id_card, users.no_hp, users.nama');
         $builder->join('users', 'users.id = alat_hilang.id_user');
+        $builder->where('alat_hilang.valid', 1);
         if ($id != null) {
             $builder->where('alat_hilang.id', $id);
         }
         return $builder->get()->getResultArray();
+    }
+
+    // ===================================== //
+    // FUNCTION GET DATA VALID ALAT HILANG
+    // ===================================== //
+    public function getDataValidAlatHilang($id = null)
+    {
+        $builder = $this->db->table('alat_hilang');
+        $builder->select('alat_hilang.*, users.id_card, users.no_hp, users.nama');
+        $builder->join('users', 'users.id = alat_hilang.id_user');
+        $builder->where('alat_hilang.valid', 1);
+        if ($id != null) {
+            $builder->where('alat_hilang.id', $id);
+        }
+        return $builder->get()->getRowArray();
     }
 }

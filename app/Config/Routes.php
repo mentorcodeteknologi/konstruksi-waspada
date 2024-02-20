@@ -117,6 +117,7 @@ $routes->group('alat_hilang', ['filter' => 'auth:users,admin'], function ($route
     $routes->get('update/(:any)', 'AlatHilangController::update/$1');
     $routes->post('update/(:any)', 'AlatHilangController::updateAlatHilang/$1');
     $routes->post('delete/(:any)', 'AlatHilangController::delete/$1');
+    $routes->post('validation/(:any)', 'AlatHilangController::validation/$1');
 });
 
 

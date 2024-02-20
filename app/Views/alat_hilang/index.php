@@ -39,7 +39,7 @@
             // NOTIFIKASI BERHASIL SIMPAN DATA
             if (session()->getFlashdata('pesan')) {
                 echo '<div class="alert alert-success alert-dismissible">
-             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . session()->getFlashdata('pesan') . '</div>';
+             ' . session()->getFlashdata('pesan') . '</div>';
             }
             ?>
 
@@ -67,6 +67,7 @@
                             <th>Lokasi Kehilangan</th>
                             <th>Kronologi Kejadian</th>
                             <th>Nominal Kerugian</th>
+                            <th>Status Publish</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -90,11 +91,16 @@
                                 <td><?= $value['lokasi_kehilangan'] ?></td>
                                 <td><?= $value['kronologi'] ?></td>
                                 <td><?= $value['nominal_kerugian'] ?></td>
+                                <td><?= $value['valid'] == 0 ? "Menunggu Validasi" : "Publish" ?></td>
                                 <td>
                                     <a href="<?= base_url('alat_hilang/update/' . $value['slug']) ?>" class="btn btn-info btn-sm">Edit</a>
                                     <form action="<?= base_url('alat_hilang/delete/' . $value['slug']); ?>" method="post">
                                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
                                     </form>
+                                    <?php if ($session->get('role') == "admin") { ?>
+                                        <form action="<?= base_url('alat_hilang/validasi/' . $value['slug']); ?>" method="post">
+                                            <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Apakah Anda yakin ingin memvalidasi data ini?')">Validasi</button>
+                                        <?php } ?>
                                 </td>
 
                             </tr>
