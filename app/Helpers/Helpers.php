@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use CodeIgniter\Email\Email;
 
 class Helpers
 {
@@ -71,6 +72,34 @@ class Helpers
             return true;
         } else {
             return false;
+        }
+    }
+
+    // ================================= //
+    // FUNCTION SEND EMAIL
+    // ================================= //
+    public function sendMail($recipientEmail, $encrypt)
+    {
+        // Mendapatkan instance Email
+        $email = service('email');
+
+        // Konfigurasi email
+        $email->setFrom('test@ci4.com', 'Konstruksi Waspada');
+        $email->setTo($recipientEmail);
+        $email->setSubject('Email Verifikasi Konstruksi Waspada');
+
+        // Menyisipkan pesan dengan tautan
+        $pesan = 'Klik link untuk verifikasi email\\n';
+        $pesan .= '<a href="' . base_url('verifyEmail/' . $encrypt) . '">'.base_url('verifyEmail/' . $encrypt).'</a>';
+
+        $email->setMessage($pesan);
+
+        // Kirim email
+        if ($email->send()) {
+            echo 'Email berhasil dikirim.';
+        } else {
+            $data = $email->printDebugger(['headers']);
+            print_r($data);
         }
     }
 }

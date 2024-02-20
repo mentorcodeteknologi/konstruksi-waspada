@@ -36,6 +36,13 @@
                 ' . session()->getFlashdata('pesan') . '</div>';
             }
             ?>
+            <?php
+            // NOTIFIKASI BERHASIL SIMPAN DATA
+            if (session()->getFlashdata('success')) {
+                echo '<div class="alert alert-success alert-dismissible">
+                ' . session()->getFlashdata('success') . '</div>';
+            }
+            ?>
             <div class="col-lg-6">
                 <h3>Login</h3>
                 <div class="theme-card">
