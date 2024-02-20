@@ -36,7 +36,10 @@ $perusahaanBlacklistHilangHref = getMenuHref($session, base_url('perusahaan_blac
         <div class="sidebar custom-scrollbar">
             <a href="javascript:void(0)" class="sidebar-back d-lg-none d-block"><i class="fa fa-times" aria-hidden="true"></i></a>
             <div class="sidebar-user">
-                <img class="img-60" src="<?= base_url('assets/backend/images/') . $session->get('foto') ?>" alt=" #">
+                <?php
+                $foto = ($session->get('foto') == 'default.png') ? base_url('assets/backend/images/') . $session->get('foto') : base_url('assets/backend/images/profile/') . $session->get('encrypt') . "/" . $session->get('foto');
+                ?>
+                <img class="img-60" src="<?= $foto ?>">
                 <div>
                     <h6 class="f-14"><?= $session->get('nama'); ?></h6>
                     <p><?= $session->get('role'); ?></p>

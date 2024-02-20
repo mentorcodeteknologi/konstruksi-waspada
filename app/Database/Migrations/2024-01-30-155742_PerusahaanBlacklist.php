@@ -93,7 +93,7 @@ class PerusahaanBlacklist extends Migration
             ],
             'valid'                    => [
                 'type'                 => 'BOOLEAN',
-                'default'              => false,
+                'null'                 => true,
             ],
             'created_at'               => [
                 'type'                 => 'DATETIME',

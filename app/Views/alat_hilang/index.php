@@ -91,7 +91,17 @@
                                 <td><?= $value['lokasi_kehilangan'] ?></td>
                                 <td><?= $value['kronologi'] ?></td>
                                 <td><?= $value['nominal_kerugian'] ?></td>
-                                <td><?= $value['valid'] == null ? "Menunggu Validasi" : "Publish" ?></td>
+                                <td>
+                                    <?php
+                                    if ($value['valid'] == null) {
+                                        echo "Menunggu Validasi";
+                                    } else if ($value['valid'] == 0) {
+                                        echo "Tidak Valid";
+                                    } else {
+                                        echo "Valid";
+                                    }
+                                    ?>
+                                </td>
                                 <td>
                                     <a href="<?= base_url('alat_hilang/update/' . $value['slug']) ?>" class="btn btn-info btn-sm">Edit</a>
                                     <form action="<?= base_url('alat_hilang/delete/' . $value['slug']); ?>" method="post">
@@ -105,8 +115,6 @@
                                             <form action="<?= base_url('alat_hilang/notvalid/' . $value['slug']); ?>" method="post">
                                                 <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Apakah Anda yakin ingin bahwa data ini tidak valid?')">Tidak Valid</button>
                                             </form>
-                                        <?php } else { ?>
-                                            <p><?= $value['valid'] == 0 ? "Tidak Valid" : "Valid" ?></p>
                                         <?php } ?>
                                     <?php } ?>
                                 </td>

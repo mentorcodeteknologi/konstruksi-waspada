@@ -51,7 +51,7 @@
 
                             <div class="form-group">
                                 <label>Merk</label>
-                                <input type="text" name="merk" id="merk" class="form-control" placeholder="merk" required>
+                                <input type="text" name="merk" id="merk" class="form-control" placeholder="Merk" required>
                             </div>
 
                             <div class="form-group">
@@ -61,7 +61,7 @@
 
                             <div class="form-group">
                                 <label>Foto</label>
-                                <input type="file" name="foto" id="foto" class="form-control" accept=".jpg,.png,.jpeg" required>
+                                <input type="file" name="foto" id="foto" class="form-control" accept="image/*,.pdf,.doc,.docx,.txt" required>
                                 <img src="" id="viewImg" class="img-fluid mt-2" width="200px">
                             </div>
 

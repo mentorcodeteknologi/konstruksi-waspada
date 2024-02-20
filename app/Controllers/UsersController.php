@@ -75,20 +75,21 @@ class UsersController extends BaseController
         }
 
         $data = [
-            'nama'       => $this->request->getVar('nama'),
-            'id_card'    => $this->request->getVar('id_card'),
-            'no_hp'      => $this->request->getVar('no_hp'),
-            'email'      => $this->request->getVar('email'),
-            'password'   => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
-            'alamat'     => $this->request->getVar('alamat'),
-            'role'       => $this->request->getVar('role'),
-            'encrypt'    => $encrypt,
-            'perusahaan' => $this->request->getVar('perusahaan'),
-            'jabatan'    => $this->request->getVar('jabatan'),
-            'foto'       => $foto,
-            'status'     => 'active',
-            'created_at' => Time::now('Asia/Jakarta', 'en_US'),
-            'updated_at' => Time::now('Asia/Jakarta', 'en_US')
+            'nama'                => $this->request->getVar('nama'),
+            'id_card'             => $this->request->getVar('id_card'),
+            'no_hp'               => $this->request->getVar('no_hp'),
+            'email'               => $this->request->getVar('email'),
+            'password'            => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+            'alamat'              => $this->request->getVar('alamat'),
+            'role'                => $this->request->getVar('role'),
+            'encrypt'             => $encrypt,
+            'perusahaan'          => $this->request->getVar('perusahaan'),
+            'jabatan'             => $this->request->getVar('jabatan'),
+            'foto'                => $foto,
+            'status'              => 'active',
+            ' is_veryfied_email ' => 1,
+            'created_at'          => Time::now('Asia/Jakarta', 'en_US'),
+            'updated_at'          => Time::now('Asia/Jakarta', 'en_US')
         ];
 
         $this->usersModel->insert($data);

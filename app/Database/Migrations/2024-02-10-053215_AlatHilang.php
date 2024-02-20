@@ -16,7 +16,7 @@ class AlatHilang extends Migration
             ],
             'valid'              => [
                 'type'           => 'BOOLEAN',
-                'default'        => false
+                'null'           => true,
             ],
             'id_user'            => [
                 'type'           => 'INT',
