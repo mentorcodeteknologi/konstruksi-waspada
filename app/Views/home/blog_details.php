@@ -24,7 +24,7 @@
 
 <?= $this->section('content'); ?>
 <!--section start-->
-<section class="blog-detail-page section-b-space ratio2_3">
+<section class="blog-detail-page section-b-space ratio2_3 bg-white">
     <div class="container">
         <div class="row">
             <div class="col-sm-12 blog-detail">
