@@ -28,6 +28,14 @@ $session = session();
 </div>
 <!-- breadcrumb End -->
 <?= $this->endSection(); ?>
+<?php
+
+// NOTIFIKASI BERHASIL SIMPAN DATA
+if (session()->getFlashdata('pesan')) {
+    echo '<div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . session()->getFlashdata('pesan') . '</div>';
+}
+?>
 
 <?= $this->section('content'); ?>
 <section class="register-page section-b-space bg-white" id="formPerorangan">
@@ -68,11 +76,20 @@ $session = session();
                                         <th>STATUS KEPEMILIKAN</th>
                                     </tr>
                                 </thead>
-    
+
                                 <tbody>
-                                    <tr>
-    
-                                    </tr>
+                                    <?php foreach ($list_alat_hilang as $value) : ?>
+                                        <tr>
+                                            <td><?= $value['nama'] ?></td>
+                                            <td><?= $value['no_hp'] ?></td>
+                                            <td><?= $value['type_alat'] ?> <?= $value['merk'] ?></td>
+                                            <td><?= $value['serial_number'] ?></td>
+                                            <td><?= $value['tanggal_kehilangan'] ?></td>
+                                            <td><?= $value['lokasi_kehilangan'] ?></td>
+                                            <td><?= $value['kronologi'] ?></td>
+                                            <td></td>
+                                        </tr>
+                                    <?php endforeach ?>
                                 </tbody>
                             </table>
                         </div>
@@ -85,15 +102,15 @@ $session = session();
                                 <div class="form-row row">
                                     <div class="col-md-6">
                                         <label for="review">Type Alat</label>
-                                        <input type="file" class="form-control" name="type_alat" id="type_alat" placeholder="Type Alat" required="">
+                                        <input type="text" name="type_alat" id="type_alat" class="form-control" placeholder="Type Alat" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="review">Merk</label>
-                                        <input type="file" class="form-control" name="merk" id="merk" placeholder="Merk Alat" required="">
+                                        <input type="text" name="merk" id="merk" class="form-control" placeholder="Merk" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="review">Serial Number</label>
-                                        <input type="text" class="form-control" name="serial_number" id="serial_number" placeholder="Serial Number" required="">
+                                        <input type="text" name="serial_number" id="serial_number" class="form-control" placeholder="Serial Number" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="review">Upload Foto Alat</label>
@@ -113,7 +130,7 @@ $session = session();
                                     </div>
                                     <div class="col-md-6">
                                         <label for="review">Lokasi Kehilangan</label>
-                                        <input type="file" class="form-control" name="surat_kepemilikian" id="surat_kepemilikian" placeholder="Surat Kepemilikan" required="">
+                                        <input type="text" name="lokasi_kehilangan" id="lokasi_kehilangan" class="form-control" placeholder="Lokasi Kehilangan" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="review">Nominal Kerugian (Rp.)</label>

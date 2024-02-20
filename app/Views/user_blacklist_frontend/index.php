@@ -72,16 +72,13 @@ $session = session();
                                 </thead>
 
                                 <tbody>
-                                    <?php foreach ($list_perusahan_blacklist as $value) : ?>
+                                    <?php foreach ($list_user_blacklist as $value) : ?>
                                         <tr>
                                             <td><?= $value['perusahaan'] ?></td>
-                                            <td><?= $value['npwp'] ?></td>
+                                            <td><?= $value['nik'] ?></td>
                                             <td><?= $value['nama'] ?></td>
-                                            <td><?= $value['nama_penanggung_jawab'] ?></td>
-                                            <td><?= $value['valid'] ?></td>
                                             <td><?= $value['jenis_pelanggaran'] ?></td>
-                                            <td><?= $value['merk'] ?></td>
-                                            <td><?= $value['type_alat'] ?></td>
+                                            <td><?= $value['merk'] ?> <?= $value['type_alat'] ?></td>
                                             <td><?= $value['no_seri'] ?></td>
                                             <td><?= $value['durasi'] . " Bulan" ?></td>
                                             <td><?= $value['keterangan'] ?></td>
@@ -262,7 +259,7 @@ $session = session();
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </section>

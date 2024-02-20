@@ -5,6 +5,7 @@ namespace App\Controllers;
 use CodeIgniter\I18n\Time;
 use App\Controllers\BaseController;
 use App\Models\PembayaranModel;
+use App\Models\UsersModel;
 use App\Helpers\Helpers;
 
 class PembayaranController extends BaseController
@@ -12,6 +13,7 @@ class PembayaranController extends BaseController
 
     // DEKLARASI MODEL
     protected $pembayaranModel;
+    protected $usersModel;
 
     // ========================= //
     // FUNCTION CONSTRUCTOR
@@ -19,6 +21,7 @@ class PembayaranController extends BaseController
     public function __construct()
     {
         $this->pembayaranModel = new PembayaranModel();
+        $this->usersModel      = new UsersModel();
     }
 
 
@@ -102,7 +105,12 @@ class PembayaranController extends BaseController
             'validasi_pembayaran' => 1,
             'updated_at'          => Time::now('Asia/Jakarta', 'en_US')
         ];
+
+        // UPDATE DATA ON TABLE PEMBAYARAN
         $this->pembayaranModel->update($datas['id'], $update);
+
+        // UPDATE DATA ON TABLE USERS
+        $this->usersModel->update($datas['id_user'], ['status' => "active"]);
         session()->setFlashdata('pesan', 'Data berhasil divalidasi');
         return redirect()->to(base_url('pembayaran'));
     }
