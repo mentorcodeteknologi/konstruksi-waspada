@@ -12,7 +12,7 @@ class ArtikelModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['judul', 'isi', 'gambar', 'slug', 'url', 'deskripsi', 'penulis', 'created_at', 'updated_at'];
+    protected $allowedFields    = ['judul', 'isi', 'gambar', 'url', 'deskripsi', 'slug', 'penulis', 'id_categories', 'created_at', 'updated_at'];
 
     protected bool $allowEmptyInserts = false;
 
@@ -40,13 +40,31 @@ class ArtikelModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+    // ============================= //
+    // FUNCTION FIND ALL DATA
+    // ============================= //
+    public function findAllData($slug = null)
+    {
+        $builder = $this->db->table('artikel');
+        $builder->select('artikel.*, categories.category as category_name');
+        $builder->join('categories', 'categories.id = artikel.id_categories');
+        if ($slug != null) {
+            $builder->where('artikel.slug', $slug);
+            return $builder->get()->getRowArray();
+        }
+        return $builder->get()->getResultArray();
+    }
 
     // ============================= //
     // FUNCTION GET DATA BY SLUG
     // ============================= //
     public function getDataBySlug($slug)
     {
-        return $this->select('*')->where('slug', $slug)->get()->getRowArray();
+        $builder = $this->db->table('artikel');
+        $builder->select('artikel.*, categories.category as category_name');
+        $builder->join('categories', 'categories.id = artikel.id_categories');
+        $builder->where('artikel.slug', $slug);
+        return $builder->get()->getRowArray();
     }
 
     // ============================= //

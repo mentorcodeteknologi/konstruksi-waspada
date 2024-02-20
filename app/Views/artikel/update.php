@@ -48,6 +48,16 @@
                                 <input type="text" name="judul" id="judul" class="form-control" placeholder="Judul" value="<?= $detail_artikel['judul'] ?>" required>
                             </div>
 
+                            <div class="form-group"></div>
+                            <label>Kategori</label>
+                            <select name="id_categories" id="id_categories" class="form-control" required>
+                                <option value="">Pilih Kategori</option>
+                                <?php foreach ($category as $row) { ?>
+                                    <option value="<?= $row['id'] ?>" <?= ($row['id'] == $detail_artikel['id_categories']) ? 'selected' : '' ?>><?= $row['category'] ?></option>
+                                <?php } ?>
+                            </select>
+
+
                             <div class="form-group">
                                 <label>Isi</label>
                                 <textarea name="isi" id="isi" class="form-control" placeholder="Isi Artikel" required><?= $detail_artikel['isi'] ?></textarea>

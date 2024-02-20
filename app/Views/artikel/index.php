@@ -56,6 +56,7 @@
                         <tr>
                             <th>No</th>
                             <th>Judul</th>
+                            <th>kategori</th>
                             <th>Gambar</th>
                             <th>Isi</th>
                             <th>Url</th>
@@ -74,6 +75,7 @@
                             <tr class="text-center">
                                 <td><?= $no++ ?></td>
                                 <td><?= $value['judul'] ?></td>
+                                <td><?= $value['category_name'] ?></td>
                                 <td><img src="<?= base_url('assets/backend/images/artikel/' . $value['gambar']) ?>" width="100px" height="100px"></td>
                                 <td><?= $value['isi'] ?></td>
                                 <td><?= $value['url'] ?></td>
