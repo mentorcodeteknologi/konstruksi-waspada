@@ -97,71 +97,39 @@
             <h2>Comments</h2>
             <div class="col-sm-12">
                 <ul class="comment-section">
-                    <li>
-                        <div class="media"><img src="assets/images/avtar.jpg" alt="Generic placeholder image">
+                    <?php foreach ($comments as $c) {?>
+                        <li>
+                        <div class="media">
                             <div class="media-body">
-                                <h6>Mark Jecno <span>( 12 Jannuary 2018 at 1:30AM )</span></h6>
-                                <p>Donec rhoncus massa quis nibh imperdiet dictum. Vestibulum id est sit amet felis
-                                    fringilla bibendum at at leo. Proin molestie ac nisi eu laoreet. Integer
-                                    faucibus enim nec ullamcorper tempor. Aenean nec felis dui. Integer tristique
-                                    odio mi, in volutpat metus posuere eu. Aenean suscipit ipsum nunc, id volutpat
-                                    lorem hendrerit ac. Sed id elit quam. In ac mauris arcu. Praesent eget lectus
-                                    sit amet diam vestibulum varius. Suspendisse dignissim mattis leo, nec facilisis
-                                    erat tempor quis. Vestibulum eu vestibulum ex.</p>
+                                <h6><?= $c['nama']; ?><span>( <?= $c['created_at']?> )</span></h6>
+                                <p><?= $c['comment']?></p>
                             </div>
                         </div>
                     </li>
-                    <li>
-                        <div class="media"><img src="assets/images/2.jpg" alt="Generic placeholder image">
-                            <div class="media-body">
-                                <h6>Mark Jecno <span>( 12 Jannuary 2018 at 1:30AM )</span></h6>
-                                <p>Donec rhoncus massa quis nibh imperdiet dictum. Vestibulum id est sit amet felis
-                                    fringilla bibendum at at leo. Proin molestie ac nisi eu laoreet. Integer
-                                    faucibus enim nec ullamcorper tempor. Aenean nec felis dui. Integer tristique
-                                    odio mi, in volutpat metus posuere eu. Aenean suscipit ipsum nunc, id volutpat
-                                    lorem hendrerit ac. Sed id elit quam. In ac mauris arcu. Praesent eget lectus
-                                    sit amet diam vestibulum varius. Suspendisse dignissim mattis leo, nec facilisis
-                                    erat tempor quis. Vestibulum eu vestibulum ex.</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="media"><img src="assets/images/20.jpg" alt="Generic placeholder image">
-                            <div class="media-body">
-                                <h6>Mark Jecno <span>( 12 Jannuary 2018 at 1:30AM )</span></h6>
-                                <p>Donec rhoncus massa quis nibh imperdiet dictum. Vestibulum id est sit amet felis
-                                    fringilla bibendum at at leo. Proin molestie ac nisi eu laoreet. Integer
-                                    faucibus enim nec ullamcorper tempor. Aenean nec felis dui. Integer tristique
-                                    odio mi, in volutpat metus posuere eu. Aenean suscipit ipsum nunc, id volutpat
-                                    lorem hendrerit ac. Sed id elit quam. In ac mauris arcu. Praesent eget lectus
-                                    sit amet diam vestibulum varius. Suspendisse dignissim mattis leo, nec facilisis
-                                    erat tempor quis. Vestibulum eu vestibulum ex.</p>
-                            </div>
-                        </div>
-                    </li>
+                    <?php } ?>
                 </ul>
             </div>
         </div>
         <div class="row blog-contact">
             <div class="col-sm-12">
-                <h2>Leave Your Comment</h2>
-                <form action="" method="post" class="theme-form">
+                <h2><?= session('id') ? 'Leave Your Comment' : 'Please Login First!'?></h2>
+                <form action="<?= base_url("blog_details/" . $detail_artikel['slug'])?>" method="post" class="theme-form">
                     <?= csrf_field(); ?>
                     <div class="form-row row">
-                        <div class="col-md-12">
+                        <!-- <div class="col-md-12">
                             <label for="name">Name</label>
                             <input type="text" class="form-control" name="" id="name" placeholder="Enter Your name" required="">
                         </div>
                         <div class="col-md-12">
                             <label for="email">Email</label>
                             <input type="text" class="form-control" name="" id="email" placeholder="Email" required="">
-                        </div>
+                        </div> -->
                         <div class="col-md-12">
                             <label for="exampleFormControlTextarea1">Comment</label>
-                            <textarea class="form-control" name="" placeholder="Write Your Comment" id="exampleFormControlTextarea1" rows="6"></textarea>
+                            <textarea class="form-control" name="comment" placeholder="Write Your Comment" id="exampleFormControlTextarea1" rows="6" <?= session('id') ? 'required' : 'disabled'?>></textarea>
                         </div>
                         <div class="col-md-12">
-                            <button class="btn btn-solid" type="submit">Post Comment</button>
+                            <button class="btn btn-solid" type="submit" <?= session('id') ? 'required' : 'disabled'?>>Post Comment</button>
                         </div>
                     </div>
                 </form>

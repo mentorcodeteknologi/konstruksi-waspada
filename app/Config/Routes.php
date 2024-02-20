@@ -33,6 +33,7 @@ $routes->set404Override();
 // HOME ROUTES
 $routes->get('/', 'HomeController::index');
 $routes->get('/blog_details/(:any)', 'HomeController::blog_details/$1');
+$routes->post('/blog_details/(:any)', 'HomeController::blog_comment/$1', ['filter' => 'auth:users,admin']);
 
 // AUTH ROUTES
 $routes->get('/login', 'AuthController::indexLogin');
