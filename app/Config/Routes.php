@@ -155,7 +155,7 @@ $routes->group('pembayaran', ['filter' => 'auth:users,admin'], function ($routes
     $routes->get('', 'PembayaranController::index');
     $routes->get('create', 'PembayaranController::create');
     $routes->post('create', 'PembayaranController::createPembayaran');
-    $routes->post('validasi', 'PembayaranController::validasiPembayaran');
+    $routes->post('validasi/(:any)', 'PembayaranController::validasiPembayaran/$1');
     // $routes->get('update/(:any)', 'PembayaranController::update/$1');
     // $routes->post('update/(:any)', 'PembayaranController::updatePembayaran/$1');
     // $routes->post('delete/(:any)', 'PembayaranController::delete/$1');

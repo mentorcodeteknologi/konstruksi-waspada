@@ -58,8 +58,8 @@
                             <th>No</th>
                             <th>Nama User</th>
                             <th>Jumlah Pembayaran</th>
-                            <th>Status</th>
                             <th>Bukti Pembayaran</th>
+                            <th>Status</th>
                             <?php if ($session->get('role') != "users") { ?>
                                 <th>Action</th>
                             <?php } ?>
@@ -74,15 +74,27 @@
                                 <td><?= $no++ ?></td>
                                 <td><?= $value['nama_user'] ?></td>
                                 <td><?= $value['jumlah_pembayaran'] ?></td>
+
+
+                                <td>
+                                    <a href="<?= base_url('assets/backend/images/pembayaran/' . $value['bukti_pembayaran']) ?>" target="_blank">Lihat Bukti Pembayaran</a>
+                                </td>
+
                                 <?php if ($value['validasi_pembayaran'] == 0) {  ?>
                                     <td>Masih Dalam Proses</td>
                                 <?php } else { ?>
                                     <td>Valid</td>
                                 <?php } ?>
-                                <td><img src="<?= base_url('assets/backend/images/pembayaran/' . $value['bukti_pembayaran']) ?>" width="50px" height="50px"></td>
+
                                 <?php if ($session->get('role') != "users") { ?>
                                     <td>
-                                        <a href="<?= base_url('pembayaran/validasi/' . $value['slug']) ?>" class="btn btn-primary btn-sm">Validasi Pembayaran</a>
+                                        <?php if ($value['validasi_pembayaran'] == 0) { ?>
+                                            <form action="<?= base_url('pembayaran/validasi/' . $value['slug']); ?>" method="post">
+                                                <button type="submit" class="btn btn-primary btn-sm" onclick="return confirm('Apakah Anda yakin validasi data ini?')">Validasi Pembayaran</button>
+                                            </form>
+                                        <?php } else { ?>
+                                            Sudah Divalidasi
+                                        <?php } ?>
                                     </td>
                                 <?php } ?>
 

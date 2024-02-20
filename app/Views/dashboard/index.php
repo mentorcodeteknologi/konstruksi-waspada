@@ -33,7 +33,8 @@
     </div>
     <!-- Container-fluid Ends-->
 
-    <?php if ($session->get('role') != "admin") { ?>
+    <!-- KONDISI JIKA ROLE BUKAN ADMIN ATAU STATUS TIDAK AKTIF -->
+    <?php if ($session->get('role') != "admin" || $session->get('status') != "active") { ?>
         <section class="p-0" style="display: flex; justify-content: center; align-items: center;">
             <div class="container">
                 <div class="row">
