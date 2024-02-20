@@ -80,13 +80,18 @@ class PembayaranController extends BaseController
             $file->move($path, $buktiPembayaran);
         }
 
+        $currentDate = date('Y-m-d');
+        $endDate     = date('Y-m-d', strtotime('+1 month', strtotime($currentDate)));
+
         $data = [
-            'id_user'                => $session->get('id'),
-            'jumlah_pembayaran'      => $this->request->getVar('jumlah_pembayaran'),
-            'bukti_pembayaran'       => $buktiPembayaran,
-            'slug'                   => $helper->generateSlug(),
-            'created_at'             => Time::now('Asia/Jakarta', 'en_US'),
-            'updated_at'             => Time::now('Asia/Jakarta', 'en_US')
+            'id_user'           => $session->get('id'),
+            'jumlah_pembayaran' => $this->request->getVar('jumlah_pembayaran'),
+            'bukti_pembayaran'  => $buktiPembayaran,
+            'start_date'        => $currentDate,
+            'end_date'          => $endDate,
+            'slug'              => $helper->generateSlug(),
+            'created_at'        => Time::now('Asia/Jakarta', 'en_US'),
+            'updated_at'        => Time::now('Asia/Jakarta', 'en_US')
         ];
 
         $this->pembayaranModel->insert($data);
@@ -119,7 +124,7 @@ class PembayaranController extends BaseController
     // ========================= //
     // FUNCTION TIDAK VALIDASI
     // ========================= //
-    public function tidakValidasiPembayaran($slug)
+    public function tidakValid($slug)
     {
         $datas  = $this->pembayaranModel->getDataBySlug($slug);
         $update = [

@@ -75,26 +75,32 @@
                                 <td><?= $value['nama_user'] ?></td>
                                 <td><?= $value['jumlah_pembayaran'] ?></td>
 
-
                                 <td>
                                     <a href="<?= base_url('assets/backend/images/pembayaran/' . $value['bukti_pembayaran']) ?>" target="_blank">Lihat Bukti Pembayaran</a>
                                 </td>
-
-                                <?php if ($value['validasi_pembayaran'] == 0) {  ?>
-                                    <td>Masih Dalam Proses</td>
-                                <?php } else { ?>
-                                    <td>Valid</td>
-                                <?php } ?>
+                                <td>
+                                    <?php
+                                    if ($value['validasi_pembayaran'] == null) {
+                                        echo "Masih Dalam Proses";
+                                    } else if ($value['validasi_pembayaran'] == 0) {
+                                        echo "Tidak Valid";
+                                    } else {
+                                        echo "Valid";
+                                    }
+                                    ?>
+                                </td>
 
                                 <?php if ($session->get('role') != "users") { ?>
                                     <td>
-                                        <?php if ($value['validasi_pembayaran'] == 0) { ?>
+                                        <?php if ($value['validasi_pembayaran'] == null) { ?>
                                             <form action="<?= base_url('pembayaran/validasi/' . $value['slug']); ?>" method="post">
                                                 <button type="submit" class="btn btn-primary btn-sm" onclick="return confirm('Apakah Anda yakin validasi data ini?')">Validasi Pembayaran</button>
                                             </form>
-                                        <?php } else { ?>
-                                            Sudah Divalidasi
-                                        <?php } ?>
+                                            <form action="<?= base_url('pembayaran/tidakvalid/' . $value['slug']); ?>" method="post">
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin data ini tidak valid?')">Tidak Valid</button>
+                                            <?php } else { ?>
+                                                -
+                                            <?php } ?>
                                     </td>
                                 <?php } ?>
 
