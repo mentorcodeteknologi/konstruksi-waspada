@@ -148,6 +148,7 @@ $routes->group('perusahaan_blacklist', ['filter' => 'auth:users,admin'], functio
     $routes->post('delete/(:any)', 'PerusahaanBlacklistController::delete/$1');
     $routes->get('detail/(:any)', 'PerusahaanBlacklistController::detail/$1');
     $routes->post('validation/(:any)', 'PerusahaanBlacklistController::validation/$1');
+    $routes->post('tidakvalid/(:any)', 'PerusahaanBlacklistController::tidakValid/$1');
 });
 
 

@@ -257,6 +257,19 @@ class PerusahaanBlacklistController extends BaseController
 
 
     // ========================= //
+    // FUNCTION NOT VALID
+    // ========================= //
+    public function tidakValid($slug)
+    {
+        $datas = $this->perusahaanBlacklistModel->getDataBySlug($slug);
+
+        $this->perusahaanBlacklistModel->update($datas['id'], ['valid' => false]);
+        session()->setFlashdata('pesan', 'Data tidak valid');
+        return redirect()->to(base_url('user_blacklist'));
+    }
+
+
+    // ========================= //
     // FUNCTION DELETE
     // ========================= //
     public function delete($slug)
