@@ -3,10 +3,11 @@
 namespace App\Helpers;
 
 use CodeIgniter\Email\Email;
+use CodeIgniter\API\ResponseTrait;
 
 class Helpers
 {
-
+    use ResponseTrait;
     // ================================= //
     // FUNCTION GENERATE RANDOM STRING
     // ================================= //
@@ -90,7 +91,7 @@ class Helpers
 
         // Menyisipkan pesan dengan tautan
         $pesan = 'Klik link untuk verifikasi email\\n';
-        $pesan .= '<a href="' . base_url('verifyEmail/' . $encrypt) . '">'.base_url('verifyEmail/' . $encrypt).'</a>';
+        $pesan .= '<a href="' . base_url('verifyEmail/' . $encrypt) . '">' . base_url('verifyEmail/' . $encrypt) . '</a>';
 
         $email->setMessage($pesan);
 
@@ -100,6 +101,57 @@ class Helpers
         } else {
             $data = $email->printDebugger(['headers']);
             print_r($data);
+        }
+    }
+
+    public function sendDataToApi($number, $message, $url)
+    {
+        $client = \Config\Services::curlrequest();
+
+        $dataToSend = [
+            'number' => $number,
+            'message' => $message,
+        ];
+
+        $jwt = $this->getToken();
+
+        $response = $client->request('POST', $url, [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $jwt->token,
+                'Content-Type' => 'application/json',
+            ],
+            'json' => $dataToSend,
+        ]);
+
+        if ($response->getStatusCode() == 200) {
+            $responseData = $response->getBody();
+            return $responseData;
+        } else {
+            return 'Failed to send data to API.';
+        }
+    }
+
+    public function getToken()
+    {
+        $client = \Config\Services::curlrequest();
+
+        $dataToSend = [
+            'username' => "user",
+            'password' => "password",
+        ];
+
+        $response = $client->request('POST', 'http://localhost:3000/api/login', [
+            'headers' => [
+                'Content-Type' => 'application/json',
+            ],
+            'json' => $dataToSend,
+        ]);
+
+        if ($response->getStatusCode() == 200) {
+            $responseData = $response->getBody();
+            return json_decode($responseData);
+        } else {
+            return 'Failed to get token from API.';
         }
     }
 }

@@ -62,7 +62,7 @@ $routes->get('/websocket', 'WebsocketController::index');
 // ROUTES OTP
 $routes->group('otp', ['filter' => 'auth:users,admin'], function ($routes) {
     $routes->get('', 'AuthController::otp');
-    $routes->post('', 'AuthController::verifyOtpLogin');
+    $routes->post('(:any)', 'AuthController::verifyOtpLogin/$1');
 });
 
 
