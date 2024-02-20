@@ -41,6 +41,10 @@ class Artikel extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => 100,
             ],
+            'id_categories'  => [
+                'type'       => 'INT',
+                'constraint' => 11,
+            ],
             'created_at'     => [
                 'type'       => 'DATETIME',
             ],
@@ -49,6 +53,7 @@ class Artikel extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
+        $this->forge->addForeignKey('id_categories', 'categories', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('artikel');
     }
 

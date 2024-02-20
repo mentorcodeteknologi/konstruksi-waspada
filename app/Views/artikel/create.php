@@ -49,6 +49,16 @@
                             </div>
 
                             <div class="form-group">
+                                <label>Kategori</label>
+                                <select name="id_categories" id="id_categories" class="form-control" required>
+                                    <option value="">Pilih Kategori</option>
+                                    <?php foreach ($category as $row) { ?>
+                                        <option value="<?= $row['id'] ?>"><?= $row['category'] ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
                                 <label>Isi</label>
                                 <textarea name="isi" id="isi" class="form-control" placeholder="Isi Artikel" required> </textarea>
                             </div>

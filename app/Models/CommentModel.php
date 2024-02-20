@@ -4,15 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class AlatHilangModel extends Model
+class CommentModel extends Model
 {
-    protected $table            = 'alat_hilang';
+    protected $table            = 'comments';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_user', 'merk', 'type_alat', 'serial_number', 'foto', 'pembelian_dari', 'tanggal_kehilangan', 'surat_kepemilikian', 'lokasi_kehilangan', 'kronologi', 'nominal_kerugian', 'slug', 'created_at', 'updated_at'];
+    protected $allowedFields    = ['id', 'id_user', 'slug', 'comment', 'created_at', 'updated_at'];
 
     protected bool $allowEmptyInserts = false;
 
@@ -40,23 +40,13 @@ class AlatHilangModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+
+    // ============================= //
+    // FUNCTION GET DATA BY SLUG
+    // ============================= //
     public function getDataBySlug($slug)
     {
-        return $this->select('*')->where('slug', $slug)->get()->getRowArray();
-    }
-
-
-    // ========================= //
-    // FUNCTION FIND ALL DATAS
-    // ========================= //
-    public function findAllDatas($id = null)
-    {
-        $builder = $this->db->table('alat_hilang');
-        $builder->select('alat_hilang.*, users.id_card, users.no_hp, users.nama');
-        $builder->join('users', 'users.id = alat_hilang.id_user');
-        if ($id != null) {
-            $builder->where('alat_hilang.id', $id);
-        }
-        return $builder->get()->getResultArray();
+        return $this->select($this->table.'.*, a.nama')
+        ->join('users a', $this->table.'.id_user = a.id')->where('slug', $slug)->get()->getResultArray();
     }
 }

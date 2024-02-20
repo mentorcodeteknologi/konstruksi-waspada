@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\I18n\Time;
 use App\Controllers\BaseController;
+use App\Models\CategoryModel;
 use App\Models\ArtikelModel;
 use App\Helpers\Helpers;
 
@@ -13,6 +14,7 @@ class ArtikelController extends BaseController
 
     // DEKLARASI MODEL
     protected $artikelModel;
+    protected $categoryModel;
 
 
     // ========================= //
@@ -20,7 +22,8 @@ class ArtikelController extends BaseController
     // ========================= //
     public function __construct()
     {
-        $this->artikelModel = new ArtikelModel();
+        $this->artikelModel  = new ArtikelModel();
+        $this->categoryModel = new CategoryModel();
     }
 
 
@@ -32,7 +35,7 @@ class ArtikelController extends BaseController
         $data = [
             'title'        => 'Artikel',
             'subtitle'     => 'List Data Artikel',
-            'list_artikel' => $this->artikelModel->findAll()
+            'list_artikel' => $this->artikelModel->findAllData()
         ];
         return view('artikel/index', $data);
     }
@@ -45,7 +48,8 @@ class ArtikelController extends BaseController
     {
         $data = [
             'title'    => 'Artikel',
-            'subtitle' => 'Tambah Data Artikel'
+            'subtitle' => 'Tambah Data Artikel',
+            'category' => $this->categoryModel->findAll(),
         ];
         return view('artikel/create', $data);
     }
@@ -67,15 +71,16 @@ class ArtikelController extends BaseController
         }
 
         $data = [
-            'judul'      => $this->request->getVar('judul'),
-            'isi'        => $this->request->getVar('isi'),
-            'url'        => $this->request->getVar('url'),
-            'deskripsi'  => $this->request->getVar('deskripsi'),
-            'gambar'     => $foto,
-            'slug'       => $helper->generateSlug(),
-            'penulis'    => $this->request->getVar('penulis'),
-            'created_at' => Time::now('Asia/Jakarta', 'en_US'),
-            'updated_at' => Time::now('Asia/Jakarta', 'en_US')
+            'judul'         => $this->request->getVar('judul'),
+            'id_categories' => $this->request->getVar('id_categories'),
+            'isi'           => $this->request->getVar('isi'),
+            'url'           => $this->request->getVar('url'),
+            'deskripsi'     => $this->request->getVar('deskripsi'),
+            'gambar'        => $foto,
+            'slug'          => $helper->generateSlug(),
+            'penulis'       => $this->request->getVar('penulis'),
+            'created_at'    => Time::now('Asia/Jakarta', 'en_US'),
+            'updated_at'    => Time::now('Asia/Jakarta', 'en_US')
         ];
 
         $this->artikelModel->insert($data);
@@ -92,7 +97,8 @@ class ArtikelController extends BaseController
         $data = [
             'title'          => 'Artikel',
             'subtitle'       => 'Edit Data Artikel',
-            'detail_artikel' => $this->artikelModel->getDataBySlug($slug)
+            'detail_artikel' => $this->artikelModel->findAllData($slug),
+            'category'       => $this->categoryModel->findAll(),
         ];
         return view('artikel/update', $data);
     }
@@ -103,7 +109,7 @@ class ArtikelController extends BaseController
     // ========================= //
     public function updateArtikel($slug)
     {
-        $artikelData = $this->artikelModel->getDataBySlug($slug);
+        $artikelData = $this->artikelModel->findAllData($slug);
         $file        = $this->request->getFile('gambar');
 
         // Cek apakah ada file yang diupload
@@ -117,13 +123,14 @@ class ArtikelController extends BaseController
         }
 
         $data = [
-            'judul'      => $this->request->getVar('judul'),
-            'isi'        => $this->request->getVar('isi'),
-            'url'        => $this->request->getVar('url'),
-            'deskripsi'  => $this->request->getVar('deskripsi'),
-            'gambar'     => $foto,
-            'penulis'    => $this->request->getVar('penulis'),
-            'updated_at' => Time::now('Asia/Jakarta', 'en_US')
+            'judul'         => $this->request->getVar('judul'),
+            'id_categories' => $this->request->getVar('id_categories'),
+            'isi'           => $this->request->getVar('isi'),
+            'url'           => $this->request->getVar('url'),
+            'deskripsi'     => $this->request->getVar('deskripsi'),
+            'gambar'        => $foto,
+            'penulis'       => $this->request->getVar('penulis'),
+            'updated_at'    => Time::now('Asia/Jakarta', 'en_US')
         ];
 
         $this->artikelModel->update($artikelData['id'], $data);

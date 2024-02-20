@@ -97,9 +97,12 @@ class PembayaranController extends BaseController
     // ========================= //
     public function validasiPembayaran($slug)
     {
-        $datas = $this->pembayaranModel->getDataBySlug($slug);
-
-        $this->pembayaranModel->update($datas['id'], 'validasi_pembayaran', true);
+        $datas  = $this->pembayaranModel->getDataBySlug($slug);
+        $update = [
+            'validasi_pembayaran' => 1,
+            'updated_at'          => Time::now('Asia/Jakarta', 'en_US')
+        ];
+        $this->pembayaranModel->update($datas['id'], $update);
         session()->setFlashdata('pesan', 'Data berhasil divalidasi');
         return redirect()->to(base_url('pembayaran'));
     }
