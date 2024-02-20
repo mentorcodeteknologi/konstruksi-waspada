@@ -134,6 +134,7 @@ $routes->group('user_blacklist', ['filter' => 'auth:users,admin'], function ($ro
     $routes->post('delete/(:any)', 'UserBlacklistController::delete/$1');
     $routes->get('detail/(:any)', 'UserBlacklistController::detail/$1');
     $routes->post('validation/(:any)', 'UserBlacklistController::validation/$1');
+    $routes->post('tidakvalid/(:any)', 'UserBlacklistController::tidakValid/$1');
 });
 
 

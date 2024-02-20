@@ -85,23 +85,23 @@ class AuthController extends BaseController
             'logged_in'         => true
         ];
 
-        $code = rand(100000, 999999);
+        // $code = rand(100000, 999999);
 
-        $datePlus = date("c", strtotime('now +5 minutes'));
-        $exp      = date("Y-m-d H:i:s", strtotime($datePlus));
-        // INSERT OTP
-        $this->otpModel->insert([
-            'kode'       => $code,
-            'type'       => 'login',
-            'expired_at' => $exp,
-            'id_user'    => $userDatas['id'],
-            'created_at' => Time::now('Asia/Jakarta', 'en_US'),
-            'updated_at' => Time::now('Asia/Jakarta', 'en_US')
-        ]);
-        $helper  = new Helpers();
-        $helper->sendDataToApi($userDatas['no_hp'], "Masukan OTP : $code", 'http://localhost:3000/api/send-message');
+        // $datePlus = date("c", strtotime('now +5 minutes'));
+        // $exp      = date("Y-m-d H:i:s", strtotime($datePlus));
+        // // INSERT OTP
+        // $this->otpModel->insert([
+        //     'kode'       => $code,
+        //     'type'       => 'login',
+        //     'expired_at' => $exp,
+        //     'id_user'    => $userDatas['id'],
+        //     'created_at' => Time::now('Asia/Jakarta', 'en_US'),
+        //     'updated_at' => Time::now('Asia/Jakarta', 'en_US')
+        // ]);
+        // $helper  = new Helpers();
+        // $helper->sendDataToApi($userDatas['no_hp'], "Masukan OTP : $code", 'http://localhost:3000/api/send-message');
         $session->set($session_data);
-        $session->setFlashdata('success', 'Silahkan masukkan kode OTP yang dikirim ke Whatsapp yang didaftarkan!');
+        // $session->setFlashdata('success', 'Silahkan masukkan kode OTP yang dikirim ke Whatsapp yang didaftarkan!');
         return redirect()->to(base_url('otp'));
     }
 

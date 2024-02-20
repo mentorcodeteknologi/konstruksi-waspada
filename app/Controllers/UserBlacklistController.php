@@ -256,6 +256,18 @@ class UserBlacklistController extends BaseController
 
 
     // ========================= //
+    // FUNCTION UNVALIDATE
+    // ========================= //
+    public function tidakValid($slug)
+    {
+        $datas = $this->userBlacklistModel->getDataBySlug($slug);
+
+        $this->userBlacklistModel->update($datas['id'], ['valid' => false]);
+        session()->setFlashdata('pesan', 'Data berhasil diunvalidasi');
+        return redirect()->to(base_url('user_blacklist'));
+    }
+
+    // ========================= //
     // FUNCTION DELETE
     // ========================= //
     public function delete($slug)
