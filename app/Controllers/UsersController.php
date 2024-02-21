@@ -56,45 +56,52 @@ class UsersController extends BaseController
     // ========================= //
     public function createUser()
     {
-        $helper  = new Helpers();
-        $encrypt = $helper->generateRandomString(12, 'ec');
-        $path    = 'assets/backend/images/profile/' . $encrypt . "/";
+        try {
+            $helper  = new Helpers();
+            $encrypt = $helper->generateRandomString(12, 'ec');
+            $path    = 'assets/backend/images/profile/' . $encrypt . "/";
 
-        // UPLOAD FOTO PROFILE
-        $file = $this->request->getFile('foto');
-        $foto = 'default.png';
-        if ($file && $file->isValid()) {
-            $foto = $file->getRandomName();
+            // UPLOAD FOTO PROFILE
+            $file = $this->request->getFile('foto');
+            $foto = 'default.png';
+            if ($file && $file->isValid()) {
+                $foto = $file->getRandomName();
 
-            // CEK FOLDER USER BLACKLIST
-            if (!file_exists($path)) {
-                mkdir($path, 0777, true);
+                // CEK FOLDER USER BLACKLIST
+                if (!file_exists($path)) {
+                    mkdir($path, 0777, true);
+                }
+
+                $file->move($path, $foto);
             }
 
-            $file->move($path, $foto);
+            $data = [
+                'nama'                => $this->request->getVar('nama'),
+                'id_card'             => $this->request->getVar('id_card'),
+                'no_hp'               => $this->request->getVar('no_hp'),
+                'email'               => $this->request->getVar('email'),
+                'password'            => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
+                'alamat'              => $this->request->getVar('alamat'),
+                'role'                => $this->request->getVar('role'),
+                'encrypt'             => $encrypt,
+                'perusahaan'          => $this->request->getVar('perusahaan'),
+                'jabatan'             => $this->request->getVar('jabatan'),
+                'foto'                => $foto,
+                'status'              => 'active',
+                ' is_veryfied_email ' => 1,
+                'created_at'          => Time::now('Asia/Jakarta', 'en_US'),
+                'updated_at'          => Time::now('Asia/Jakarta', 'en_US')
+            ];
+
+            $this->usersModel->insert($data);
+            $this->customHelpers->sendMail($data['email'], $encrypt);
+            session()->setFlashdata('pesan', 'Data Berhasil Disimpan');
+            return redirect()->to(base_url('users'));
+        } catch (\Throwable $th) {
+            //throw $th;
+            session()->setFlashdata('pesan', $th->getMessage());
+            return redirect()->to(base_url('users'));
         }
-
-        $data = [
-            'nama'                => $this->request->getVar('nama'),
-            'id_card'             => $this->request->getVar('id_card'),
-            'no_hp'               => $this->request->getVar('no_hp'),
-            'email'               => $this->request->getVar('email'),
-            'password'            => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
-            'alamat'              => $this->request->getVar('alamat'),
-            'role'                => $this->request->getVar('role'),
-            'encrypt'             => $encrypt,
-            'perusahaan'          => $this->request->getVar('perusahaan'),
-            'jabatan'             => $this->request->getVar('jabatan'),
-            'foto'                => $foto,
-            'status'              => 'active',
-            ' is_veryfied_email ' => 1,
-            'created_at'          => Time::now('Asia/Jakarta', 'en_US'),
-            'updated_at'          => Time::now('Asia/Jakarta', 'en_US')
-        ];
-
-        $this->usersModel->insert($data);
-        session()->setFlashdata('pesan', 'Data Berhasil Disimpan');
-        return redirect()->to(base_url('users'));
     }
 
 

@@ -60,19 +60,18 @@ class AuthController extends BaseController
         $email     = $this->request->getVar('email');
         $password  = $this->request->getVar('password');
         $userDatas = $this->usersModel->checkLogin($email, $password);
-
         // CHECK LOGIN GAGAL
         if (!$userDatas) {
             $session->setFlashdata('pesan', 'Email dan password salah');
             return redirect()->to(base_url('login'));
         }
-
+        
         // CHECK VERIFIKASI EMAIL
         if ($userDatas['is_veryfied_email'] == '0') {
             $session->setFlashdata('pesan', 'Email belum terverifikasi, Silahkan periksa kotak masuk pada email yang di daftarkan!');
             return redirect()->to(base_url('login'));
         }
-
+        
         $session_data = [
             'id'                => $userDatas['id'],
             'nama'              => $userDatas['nama'],
@@ -85,6 +84,10 @@ class AuthController extends BaseController
             'logged_in'         => true
         ];
 
+        if ($userDatas['role'] == "admin") {
+            $session->set($session_data);
+            return redirect()->to(base_url('dashboard'));
+        }
         $code = rand(100000, 999999);
 
         $datePlus = date("c", strtotime('now +5 minutes'));

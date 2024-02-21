@@ -12,20 +12,21 @@ class UsersSeeder extends Seeder
         // DEKLARASI DATA
         $data = [
             [
-                'nama'       => 'admin',
-                'id_card'    => '1234567890',
-                'no_hp'      => '081234567890',
-                'email'      => 'admin@gmail.com',
-                'password'   => password_hash('admin', PASSWORD_DEFAULT),
-                'alamat'     => 'Jl. Admin No. 1, Jakarta',
-                'role'       => 'admin',
-                'encrypt'    => 'ec1ptA1Dm1n12e',
-                'perusahaan' => 'PT. Admin',
-                'jabatan'    => 'Admin',
-                'foto'       => 'default.png',
-                'status'     => 'active',
-                'created_at' => Time::now(),
-                'updated_at' => Time::now()
+                'nama'                => 'admin',
+                'id_card'             => '1234567890',
+                'no_hp'               => '081234567890',
+                'email'               => 'admin@gmail.com',
+                'password'            => password_hash('admin', PASSWORD_DEFAULT),
+                'alamat'              => 'Jl. Admin No. 1, Jakarta',
+                'role'                => 'admin',
+                'encrypt'             => 'ec1ptA1Dm1n12e',
+                'perusahaan'          => 'PT. Admin',
+                'jabatan'             => 'Admin',
+                'foto'                => 'default.png',
+                'status'              => 'active',
+                'is_verified_email'   => true,
+                'created_at'          => Time::now(),
+                'updated_at'          => Time::now()
             ],
             [
                 'nama'       => 'user',

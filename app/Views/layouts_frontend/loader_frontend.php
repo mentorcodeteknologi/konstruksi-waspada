@@ -4,10 +4,6 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
-                        <div class="header-contact">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 text-end">
                         <ul class="header-dropdown">
                             <li class="onhover-dropdown mobile-account">
                                 <i class="fa fa-globe" aria-hidden="true"></i>
@@ -25,6 +21,9 @@
                                 <i class="fa fa-user" aria-hidden="true"></i>
                             </li>
                         </ul>
+                    </div>
+                    <div class="col-lg-6 text-end">
+
                     </div>
                 </div>
             </div>

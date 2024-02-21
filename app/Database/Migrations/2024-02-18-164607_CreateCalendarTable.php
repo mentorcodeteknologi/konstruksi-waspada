@@ -22,7 +22,10 @@ class CreateCalendarTable extends Migration
                 'type'           => 'VARCHAR',
                 'constraint'     => 255,
             ],
-            'tanggal_kegiatan'   => [
+            'tanggal_mulai'   => [
+                'type'           => 'DATE',
+            ],
+            'tanggal_selesai'   => [
                 'type'           => 'DATE',
             ],
             'created_at'         => [

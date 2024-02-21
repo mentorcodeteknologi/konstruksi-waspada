@@ -8,6 +8,7 @@ use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
+use App\Helpers\Helpers;
 
 /**
  * Class BaseController
@@ -36,6 +37,15 @@ abstract class BaseController extends Controller
      * @var array
      */
     protected $helpers = [];
+
+
+    protected $customHelpers;
+
+    public function __construct()
+    {
+        // Memuat Helper Anda
+        $this->customHelpers = new Helpers();
+    }
 
     /**
      * Be sure to declare properties for any property fetch you initialized.

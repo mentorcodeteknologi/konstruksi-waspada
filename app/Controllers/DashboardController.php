@@ -8,7 +8,11 @@ class DashboardController extends BaseController
 {
     public function index()
     {
-        return view('dashboard/index');
+        $data = [
+            'title'    => 'Dashboard',
+            'subtitle' => '404'
+        ];
+        return view('dashboard/index', $data);
     }
 
     public function pageNotFound()

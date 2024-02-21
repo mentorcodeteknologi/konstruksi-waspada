@@ -3,15 +3,13 @@
     // SESSION UNTUK MENGAMBIL DATA SESSION
     $session = session();
     ?>
-    <!-- <div class="mobile-fix-option"></div> -->
+    <div class="mobile-fix-option"></div>
     <div class="top-header">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="header-contact">
-                    </div>
-                </div>
-                <div class="col-lg-6 text-end">
+            <div class="row ">
+                <div class="col-lg-12">
+                    <!-- <div class="header-contact">
+                    </div> -->
                     <ul class="header-dropdown">
                         <li class="onhover-dropdown mobile-account">
                             <i class="fa fa-globe" aria-hidden="true"></i>
@@ -62,6 +60,9 @@
                         </li>
                     </ul>
                 </div>
+                <!-- <div class="col-lg-6 text-end">
+                    
+                </div> -->
             </div>
         </div>
     </div>
