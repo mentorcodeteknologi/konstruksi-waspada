@@ -71,7 +71,7 @@
                                 <td><?= $value['created_at'] ?></td>
                                 <td><?= $value['updated_at'] ?></td>
                                 <td>
-                                    <a href="<?= base_url('category/update/' . base64_encode($value['id'])) ?>" class="btn btn-info btn-sm">Edit</a>
+                                    <a href="<?= base_url('category/update/' . base64_encode($value['id'])) ?>" class="btn btn-info btn-sm mb-2">Edit</a>
                                     <form action="<?= base_url('category/delete/' . base64_encode($value['id'])); ?>" method="post">
                                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
                                     </form>
