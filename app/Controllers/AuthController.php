@@ -33,7 +33,8 @@ class AuthController extends BaseController
     public function indexLogin()
     {
         $data = [
-            'title' => 'Login'
+            'title' => 'Login',
+            'footerPopularArtikel' => $this->getPopularArticles(5),
         ];
         return view('auth/login', $data);
     }
@@ -45,7 +46,8 @@ class AuthController extends BaseController
     public function indexRegister()
     {
         $data = [
-            'title' => 'Register'
+            'title' => 'Register',
+            'footerPopularArtikel' => $this->getPopularArticles(5),
         ];
         return view('auth/register', $data);
     }
@@ -65,13 +67,13 @@ class AuthController extends BaseController
             $session->setFlashdata('pesan', 'Email dan password salah');
             return redirect()->to(base_url('login'));
         }
-        
+
         // CHECK VERIFIKASI EMAIL
         if ($userDatas['is_veryfied_email'] == '0') {
             $session->setFlashdata('pesan', 'Email belum terverifikasi, Silahkan periksa kotak masuk pada email yang di daftarkan!');
             return redirect()->to(base_url('login'));
         }
-        
+
         $session_data = [
             'id'                => $userDatas['id'],
             'nama'              => $userDatas['nama'],

@@ -44,11 +44,9 @@
                         </div>
                         <div class="footer-contant">
                             <ul>
-                                <li><a href="#">shipping & return</a></li>
-                                <li><a href="#">secure shopping</a></li>
-                                <li><a href="#">gallary</a></li>
-                                <li><a href="#">affiliates</a></li>
-                                <li><a href="#">contacts</a></li>
+                                <?php foreach ($footerPopularArtikel as $fpa) : ?>
+                                    <li><a href="<?= base_url('blog_details/' . $fpa['slug']) ?>"><?= $fpa['judul'] ?></a></li>
+                                <?php endforeach; ?>
                             </ul>
                         </div>
                     </div>

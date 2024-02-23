@@ -32,7 +32,7 @@ class CalendarController extends BaseController
         $data = [
             'title'        => 'Kalender',
             'subtitle'     => 'List Data Kalender',
-            'list_calendar' => $this->calendarModel->findAll()
+            'list_calendar' => $this->calendarModel->findAll(),
         ];
         return view('calendar/index', $data);
     }
@@ -44,6 +44,7 @@ class CalendarController extends BaseController
     {
         $data = [
             'title'        => 'Kalender',
+            'footerPopularArtikel' => $this->getPopularArticles(5),
         ];
         return view('calendar/indexFront', $data);
     }

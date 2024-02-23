@@ -31,7 +31,8 @@ class AlatHilangFrontendController extends BaseController
     {
         $data = [
             'title' => 'Alat Hilang',
-            'list_alat_hilang' => $this->alatHilangModel->getDataValidAlatHilang()
+            'list_alat_hilang' => $this->alatHilangModel->getDataValidAlatHilang(),
+            'footerPopularArtikel' => $this->getPopularArticles(5),
         ];
         return view('alat_hilang_frontend/index', $data);
     }

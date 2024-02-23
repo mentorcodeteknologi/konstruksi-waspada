@@ -9,6 +9,7 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use App\Helpers\Helpers;
+use App\Models\ArtikelModel;
 
 /**
  * Class BaseController
@@ -64,5 +65,11 @@ abstract class BaseController extends Controller
         // Preload any models, libraries, etc, here.
 
         // E.g.: $this->session = \Config\Services::session();
+    }
+
+    public function getPopularArticles($limit = 5)
+    {
+        $artikelModel = new ArtikelModel();
+        return $artikelModel->getPopularArticles($limit);
     }
 }

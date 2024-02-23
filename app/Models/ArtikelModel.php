@@ -12,7 +12,7 @@ class ArtikelModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['judul', 'isi', 'gambar', 'url', 'deskripsi', 'slug', 'penulis', 'id_categories', 'likes', 'views','created_at', 'updated_at'];
+    protected $allowedFields    = ['judul', 'isi', 'gambar', 'url', 'deskripsi', 'slug', 'penulis', 'id_categories', 'likes', 'views', 'created_at', 'updated_at'];
 
     protected bool $allowEmptyInserts = false;
 
@@ -97,5 +97,14 @@ class ArtikelModel extends Model
         } else {
             return $this->update($artikel['id'], $update);
         }
+    }
+
+    public function getPopularArticles($limit = 5)
+    {
+        $this->select('*');
+        $this->orderBy('views', 'desc');
+        $this->limit($limit);
+        $query = $this->get();
+        return $query->getResultArray();
     }
 }
