@@ -99,6 +99,7 @@ class ArtikelModel extends Model
         }
     }
 
+    //FUNCTION FOOTER ARTIKEL POPULAR FRONT END
     public function getPopularArticles($limit = 5)
     {
         $this->select('*');
@@ -106,5 +107,11 @@ class ArtikelModel extends Model
         $this->limit($limit);
         $query = $this->get();
         return $query->getResultArray();
+    }
+
+    //FUNCTION FOOTER ARTIKEL UPDATE/RECENT FRONT END
+    public function getRecentArticles($limit = 5)
+    {
+        return $this->select('*')->orderBy('created_at', 'desc')->limit($limit)->get()->getResultArray();
     }
 }

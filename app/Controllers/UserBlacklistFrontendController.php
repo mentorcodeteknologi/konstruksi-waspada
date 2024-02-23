@@ -29,6 +29,7 @@ class UserBlacklistFrontendController extends BaseController
             'list_user_blacklist' =>  $this->userBlacklistModel->findAllDatas(true),
             'list_perusahan_blacklist' => $this->perusahaanBlacklistModel->findAllDatas(true),
             'footerPopularArtikel' => $this->getPopularArticles(5),
+            'footerRecentArtikel' => $this->getRecentArticles(5),
         ];
         return view('user_blacklist_frontend/index', $data);
     }

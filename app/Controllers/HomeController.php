@@ -32,6 +32,7 @@ class HomeController extends BaseController
             'recentArtikel' => $this->artikelModel->getOrderArticle('created_at', 'desc'),
             'popularArtikel' => $this->artikelModel->getOrderArticle('views', 'desc'),
             'footerPopularArtikel' => $this->getPopularArticles(5),
+            'footerRecentArtikel' => $this->getRecentArticles(5),
         ];
         return view('home/index', $data);
     }
@@ -45,6 +46,7 @@ class HomeController extends BaseController
             'detail_artikel' => $this->artikelModel->getDataBySlug($slug),
             'comments' => $this->commentModel->getDataBySlug($slug),
             'footerPopularArtikel' => $this->getPopularArticles(5),
+            'footerRecentArtikel' => $this->getRecentArticles(5),
         ];
         return view('home/blog_details', $data);
     }

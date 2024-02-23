@@ -35,6 +35,7 @@ class AuthController extends BaseController
         $data = [
             'title' => 'Login',
             'footerPopularArtikel' => $this->getPopularArticles(5),
+            'footerRecentArtikel' => $this->getRecentArticles(5),
         ];
         return view('auth/login', $data);
     }
@@ -48,6 +49,7 @@ class AuthController extends BaseController
         $data = [
             'title' => 'Register',
             'footerPopularArtikel' => $this->getPopularArticles(5),
+            'footerRecentArtikel' => $this->getRecentArticles(5),
         ];
         return view('auth/register', $data);
     }
@@ -117,7 +119,8 @@ class AuthController extends BaseController
     public function otp()
     {
         $data = [
-            'title' => 'OTP'
+            'title' => 'OTP',
+            'footerRecentArtikel' => $this->getRecentArticles(5),
         ];
         return view('auth/otp', $data);
     }

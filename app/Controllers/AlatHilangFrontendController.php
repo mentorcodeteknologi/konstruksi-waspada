@@ -33,6 +33,7 @@ class AlatHilangFrontendController extends BaseController
             'title' => 'Alat Hilang',
             'list_alat_hilang' => $this->alatHilangModel->getDataValidAlatHilang(),
             'footerPopularArtikel' => $this->getPopularArticles(5),
+            'footerRecentArtikel' => $this->getRecentArticles(5),
         ];
         return view('alat_hilang_frontend/index', $data);
     }

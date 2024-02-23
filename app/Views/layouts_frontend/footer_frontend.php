@@ -28,11 +28,9 @@
                         </div>
                         <div class="footer-contant">
                             <ul>
-                                <li><a href="#">mens</a></li>
-                                <li><a href="#">womens</a></li>
-                                <li><a href="#">clothing</a></li>
-                                <li><a href="#">accessories</a></li>
-                                <li><a href="#">featured</a></li>
+                                <?php foreach ($footerRecentArtikel as $fra) : ?>
+                                    <li><a href="<?= base_url('blog_details/' . $fra['slug']) ?>"><?= $fra['judul'] ?></a></li>
+                                <?php endforeach; ?>
                             </ul>
                         </div>
                     </div>

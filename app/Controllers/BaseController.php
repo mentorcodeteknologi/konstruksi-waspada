@@ -72,4 +72,10 @@ abstract class BaseController extends Controller
         $artikelModel = new ArtikelModel();
         return $artikelModel->getPopularArticles($limit);
     }
+
+    public function getRecentArticles($limit = 5)
+    {
+        $artikelModel = new ArtikelModel();
+        return $artikelModel->getRecentArticles($limit);
+    }
 }
