@@ -88,7 +88,7 @@ class UsersController extends BaseController
                 'jabatan'             => $this->request->getVar('jabatan'),
                 'foto'                => $foto,
                 'status'              => 'active',
-                ' is_veryfied_email ' => 1,
+                ' is_veryfied_email'  => 1,
                 'created_at'          => Time::now('Asia/Jakarta', 'en_US'),
                 'updated_at'          => Time::now('Asia/Jakarta', 'en_US')
             ];

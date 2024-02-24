@@ -44,7 +44,7 @@
             }
             ?>
 
-            <?php if ($session->get('role') == "users") { ?>
+            <?php if ($session->get('role') == "users" && $session->get('status') == "nonactive") { ?>
                 <form action="<?= base_url('pembayaran/create') ?>">
                     <button type="submit" class="btn btn-primary">+ Tambah Data Pembayaran</button>
                 </form>

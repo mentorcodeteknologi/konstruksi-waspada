@@ -6,6 +6,8 @@ use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Config\Services;
+use App\Models\UsersModel;
+use App\Models\PembayaranModel;
 
 class AuthFilter implements FilterInterface
 {
@@ -33,6 +35,34 @@ class AuthFilter implements FilterInterface
         if (!in_array($userRole, $allowedRoles)) {
             // Jika rolenya tidak sesuai, kembalikan response dengan status 404
             return redirect()->to(base_url('/404'));
+        }
+
+        $status = session()->get('status');
+        if ($status == 'active') {
+            $usersModel      = new UsersModel();
+            $pembayaranModel = new PembayaranModel();
+
+            $id    = session()->get('id');
+            $hasil = $pembayaranModel->getExpiredPembayaran($id);
+
+            if (!empty($hasil)) {
+                // UPDATE STATUS USER MENJADI NONACTIVE
+                $usersModel->update($id, ['status' => 'nonactive']);
+
+                // UPDATE SESSION USER MENJADI NONACTIVE
+                $sessionData = [
+                    'id'                => session()->get('id'),
+                    'nama'              => session()->get('nama'),
+                    'email'             => session()->get('email'),
+                    'role'              => session()->get('role'),
+                    'foto'              => session()->get('foto'),
+                    'encrypt'           => session()->get('encrypt'),
+                    'status'            => 'nonactive',
+                    'is_veryfied_email' => session()->get('is_veryfied_email'),
+                    'logged_in'         => true
+                ];
+                session()->set($sessionData);
+            }
         }
 
         return null;

@@ -35,4 +35,19 @@ class PembayaranModel extends Model
         }
         return $builder->get()->getResultArray();
     }
+
+
+    // ========================================== //
+    // FUNCTION GET EXPIRED PEMBAYARAN BY ID USER
+    // ========================================== //
+    public function getExpiredPembayaran($idUser)
+    {
+        $builder = $this->db->table('pembayaran');
+        $builder->select('end_date');
+        $builder->where('id_user', $idUser);
+        $builder->where('end_date <', date('Y-m-d H:i:s'));
+        $builder->orderBy('created_at', 'DESC');
+        $builder->limit(1);
+        return $builder->get()->getRowArray();
+    }
 }

@@ -38,4 +38,28 @@ class UsersModel extends Model
             return false;
         }
     }
+
+    // ========================================== //
+    // FUNCTION CHECK EMAIL EXIST OR NO HP EXIST
+    // ========================================== //
+    public function checkExist($email, $no_hp)
+    {
+        $builder = $this->db->table('users');
+        $builder->select('*');
+        $builder->where('email', $email);
+        $builder->orWhere('no_hp', $no_hp);
+        return $builder->get()->getRowArray();
+    }
+
+
+    // ========================================== //
+    // FUNCTION CHECK STATUS ACTIVE USER
+    // ========================================== //
+    public function updateStatusActive($encrypt)
+    {
+        $builder = $this->db->table('users');
+        $builder->set('status', 'active');
+        $builder->where('encrypt', $encrypt);
+        return $builder->update();
+    }
 }

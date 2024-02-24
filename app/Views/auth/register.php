@@ -37,6 +37,14 @@
 <section class="register-page section-b-space bg-white">
     <div class="container">
         <div class="row">
+            <?php
+            // NOTIFIKASI BERHASIL SIMPAN DATA
+            if (session()->getFlashdata('pesan')) {
+                echo '<div class="alert alert-danger alert-dismissible">
+                ' . session()->getFlashdata('pesan') . '</div>';
+            }
+            ?>
+
             <div class="col-lg-12">
                 <h3>Create Account</h3>
                 <div class="theme-card">

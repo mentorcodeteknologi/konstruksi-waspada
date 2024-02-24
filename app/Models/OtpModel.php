@@ -44,11 +44,11 @@ class OtpModel extends Model
     // ============================= //
     // FUNCTION VALIDATION OTP
     // ============================= //
-    public function validationOtp($encrypt, $kode)
+    public function validationOtp($idUser, $kode)
     {
         $builder = $this->db->table('otp');
         $builder->select('*');
-        $builder->where('id_user', $encrypt);
+        $builder->where('id_user', $idUser);
         $builder->where('kode', $kode);
         $builder->where('expired_at >', date('Y-m-d H:i:s'));
         return $builder->get()->getRowArray();
