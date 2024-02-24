@@ -75,11 +75,32 @@ class UsersController extends BaseController
                 $file->move($path, $foto);
             }
 
+            // VALIDASI EMAIL DAN NO WA SUDAH TERDAFTAR ATAU BELUM
+            $email = $this->request->getVar('email');
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                session()->setFlashdata('failed', 'Email tidak valid');
+                return redirect()->to(base_url('users'));
+            }
+            $noHp  = $this->request->getVar('no_hp');
+            $check = $this->usersModel->checkExist($email, $noHp);
+            if ($check) {
+                if ($check['email'] == $email) {
+                    $pesan = "Email sudah terdaftar";
+                }
+
+                if ($check['no_hp'] == $noHp) {
+                    $pesan = "No Hp sudah terdaftar";
+                }
+
+                session()->setFlashdata('failed', $pesan);
+                return redirect()->to(base_url('users'));
+            }
+
             $data = [
                 'nama'                => $this->request->getVar('nama'),
                 'id_card'             => $this->request->getVar('id_card'),
-                'no_hp'               => $this->request->getVar('no_hp'),
-                'email'               => $this->request->getVar('email'),
+                'no_hp'               => $noHp,
+                'email'               => $email,
                 'password'            => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
                 'alamat'              => $this->request->getVar('alamat'),
                 'role'                => $this->request->getVar('role'),
@@ -146,14 +167,46 @@ class UsersController extends BaseController
             $file->move($path, $foto);
         }
 
+        $email    = $this->request->getVar('email');
+        $noHp     = $this->request->getVar('no_hp');
+        $oldEmail = $userData['email'];
+        $oldNoHp  = $userData['no_hp'];
+
+        // APAKAH ADA PERUBAHAN EMAIL
+        if ($email != $oldEmail) {
+            // VALIDASI EMAIL DAN NO WA SUDAH TERDAFTAR ATAU BELUM
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                session()->setFlashdata('failed', 'Email tidak valid');
+                return redirect()->to(base_url('users'));
+            }
+
+            // VALIDASI EMAIL SUDAH TERDAFTAR ATAU BELUM
+            $check = $this->usersModel->checkEmailExist($email);
+            if ($check) {
+                session()->setFlashdata('failed', "Email sudah terdaftar pada akun lain");
+                return redirect()->to(base_url('users'));
+            }
+        }
+
+        // APAKAH ADA PERUBAHAN NO HP
+        if ($noHp != $oldNoHp) {
+            // VALIDASI NO HP SUDAH TERDAFTAR ATAU BELUM
+            $check = $this->usersModel->checkNoHpExist($noHp);
+            if ($check) {
+                session()->setFlashdata('failed', "No Hp sudah terdaftar pada akun lain");
+                return redirect()->to(base_url('users'));
+            }
+        }
+
+
         // Cek apakah password diubah
         $password = ($this->request->getVar('password') == $userData['password']) ? $userData['password'] : password_hash($this->request->getVar('password'), PASSWORD_DEFAULT);
 
         $data = [
             'nama'       => $this->request->getVar('nama'),
             'id_card'    => $this->request->getVar('id_card'),
-            'no_hp'      => $this->request->getVar('no_hp'),
-            'email'      => $this->request->getVar('email'),
+            'no_hp'      => $noHp,
+            'email'      => $email,
             'password'   => $password,
             'alamat'     => $this->request->getVar('alamat'),
             'role'       => $this->request->getVar('role'),
@@ -211,14 +264,45 @@ class UsersController extends BaseController
             $file->move($path, $foto);
         }
 
+        $email    = $this->request->getVar('email');
+        $noHp     = $this->request->getVar('no_hp');
+        $oldEmail = $userData['email'];
+        $oldNoHp  = $userData['no_hp'];
+
+        // APAKAH ADA PERUBAHAN EMAIL
+        if ($email != $oldEmail) {
+            // VALIDASI EMAIL DAN NO WA SUDAH TERDAFTAR ATAU BELUM
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                session()->setFlashdata('failed', 'Email tidak valid');
+                return redirect()->to(base_url('users'));
+            }
+
+            // VALIDASI EMAIL SUDAH TERDAFTAR ATAU BELUM
+            $check = $this->usersModel->checkEmailExist($email);
+            if ($check) {
+                session()->setFlashdata('failed', "Email sudah terdaftar pada akun lain");
+                return redirect()->to(base_url('users'));
+            }
+        }
+
+        // APAKAH ADA PERUBAHAN NO HP
+        if ($noHp != $oldNoHp) {
+            // VALIDASI NO HP SUDAH TERDAFTAR ATAU BELUM
+            $check = $this->usersModel->checkNoHpExist($noHp);
+            if ($check) {
+                session()->setFlashdata('failed', "No Hp sudah terdaftar pada akun lain");
+                return redirect()->to(base_url('users'));
+            }
+        }
+
         // Cek apakah password diubah
         $password = ($this->request->getVar('password') == $userData['password']) ? $userData['password'] : password_hash($this->request->getVar('password'), PASSWORD_DEFAULT);
 
         $data = [
             'nama'       => $this->request->getVar('nama'),
             'id_card'    => $this->request->getVar('id_card'),
-            'no_hp'      => $this->request->getVar('no_hp'),
-            'email'      => $this->request->getVar('email'),
+            'no_hp'      => $noHp,
+            'email'      => $email,
             'password'   => $password,
             'alamat'     => $this->request->getVar('alamat'),
             'role'       => $this->request->getVar('role'),

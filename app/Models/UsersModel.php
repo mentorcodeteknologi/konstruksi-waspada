@@ -53,6 +53,31 @@ class UsersModel extends Model
 
 
     // ========================================== //
+    // FUNCTION CHECK EMAIL EXIST
+    // ========================================== //
+    public function checkEmailExist($email)
+    {
+        $builder = $this->db->table('users');
+        $builder->select('*');
+        $builder->where('email', $email);
+        return $builder->get()->getRowArray();
+    }
+
+
+    // ========================================== //
+    // FUNCTION CHECK NO HP EXIST
+    // ========================================== //
+    public function checkNoHpExist($no_hp)
+    {
+        $builder = $this->db->table('users');
+        $builder->select('*');
+        $builder->where('no_hp', $no_hp);
+        return $builder->get()->getRowArray();
+    }
+
+
+
+    // ========================================== //
     // FUNCTION CHECK STATUS ACTIVE USER
     // ========================================== //
     public function updateStatusActive($encrypt)

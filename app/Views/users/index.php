@@ -40,6 +40,14 @@
             }
             ?>
 
+            <?php
+            // NOTIFIKASI BERHASIL SIMPAN DATA
+            if (session()->getFlashdata('failed')) {
+                echo '<div class="alert alert-danger alert-dismissible">
+                ' . session()->getFlashdata('pesan') . '</div>';
+            }
+            ?>
+
             <form action="<?= base_url('users/create') ?>">
                 <button type="submit" class="btn btn-primary">+ Tambah Data Users</button>
             </form>
