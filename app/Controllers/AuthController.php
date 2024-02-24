@@ -89,7 +89,7 @@ class AuthController extends BaseController
         ];
 
         // CHECK ROLE ADMIN REDIRECT TO DASHBOARD
-        if ($userDatas['role'] == "users") {
+        if ($userDatas['role'] == "admin") {
             session()->set($sessionData);
             return redirect()->to(base_url('dashboard'));
         }
