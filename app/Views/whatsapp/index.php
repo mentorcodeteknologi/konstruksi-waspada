@@ -72,7 +72,7 @@
     // let intervalId; 
     $(document).ready(() => {
         // hitGetAPI("/api/ready");
-        const socket = new WebSocket('ws://localhost:8081');
+        const socket = new WebSocket('ws://103.67.186.41:8081');
         socket.onopen = function(event) {
             console.log('Connected to WebSocket server');
         };
