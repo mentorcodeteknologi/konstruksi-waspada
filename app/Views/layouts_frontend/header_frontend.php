@@ -8,18 +8,18 @@
         <div class="container">
             <div class="row ">
                 <div class="col-lg-12">
-                    <!-- <div class="header-contact">
-                    </div> -->
+                    <div class="header-contact">
+                    </div>
                     <ul class="header-dropdown">
-                        <li class="onhover-dropdown mobile-account">
+                        <!-- <li class="onhover-dropdown mobile-account">
                             <i class="fa fa-globe" aria-hidden="true"></i>
                             <ul class="onhover-show-div">
                                 <li>
                                     <a href="<?= base_url('/') ?>">Blog</a>
                                 </li>
                             </ul>
-                        </li>
-                        <li class="onhover-dropdown mobile-account">
+                        </li> -->
+                        <!-- <li class="onhover-dropdown mobile-account">
                             <i class="fa fa-users" aria-hidden="true"></i>
                             <ul class="onhover-show-div">
                                 <li> <a href="<?= base_url('user_blacklist_frontend') ?>">User Blacklist</a></li>
@@ -36,28 +36,28 @@
                             <ul class="onhover-show-div">
                                 <li><a href="<?= base_url('calendar_frontend') ?>">Kalender</a></li>
                             </ul>
-                        </li>
-                        <?php
-                        // Cek apakah pengguna sudah login atau belum
-                        $logged_in = false;
-                        ?>
-                        <li class="onhover-dropdown mobile-account">
+                        </li> -->
+                        <!-- <?php
+                                // Cek apakah pengguna sudah login atau belum
+                                $logged_in = false;
+                                ?> -->
+                        <!-- <li class="onhover-dropdown mobile-account">
                             <?php if ($session->get('logged_in')) : ?>
-                                <!-- Jika pengguna sudah login, tampilkan tombol logout -->
+                                Jika pengguna sudah login, tampilkan tombol logout
                                 <i class="fa fa-user" aria-hidden="true"></i><?= $session->get('nama'); ?></a>
                                 <ul class="onhover-show-div">
                                     <li><a href="<?= base_url('dashboard'); ?>">Dashboard</a></li>
                                     <li><a href="<?= base_url('logout') ?>">Logout</a></li>
                                 </ul>
                             <?php else : ?>
-                                <!-- Jika pengguna belum login, tampilkan tombol login -->
+                                Jika pengguna belum login, tampilkan tombol login
                                 <i class="fa fa-user" aria-hidden="true"></i></a>
                                 <ul class="onhover-show-div">
                                     <li><a href="<?= base_url('login') ?>">Login</a></li>
                                     <li><a href="<?= base_url('register') ?>">Register</a></li>
                                 </ul>
                             <?php endif; ?>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <!-- <div class="col-lg-6 text-end">
@@ -102,6 +102,37 @@
                                     </li>
                                     <li>
                                         <a href="<?= base_url('calendar_frontend') ?>">Kalender</a>
+                                    </li>
+                                    <?php
+                                    // Cek apakah pengguna sudah login atau belum
+                                    $logged_in = false;
+                                    ?>
+                                    <li class="nav-item dropdown">
+                                        <?php if ($session->get('logged_in')) : ?>
+                                            <a class="nav-link dropdown" href="#" role="button" data-bs-toggle="dropdown">
+                                                <?= $session->get('nama'); ?>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="<?= base_url('dashboard'); ?>">Dashboard</a>
+                                                </li>
+                                                <li>
+                                                    <a href="<?= base_url('logout') ?>">Logout</a>
+                                                </li>
+                                            </ul>
+                                        <?php else : ?>
+                                            <a class="nav-link dropdown" href="#" role="button" data-bs-toggle="dropdown">
+                                                My account
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="<?= base_url('login') ?>">Login</a>
+                                                </li>
+                                                <li>
+                                                    <a href="<?= base_url('register') ?>">Register</a>
+                                                </li>
+                                            </ul>
+                                        <?php endif; ?>
                                     </li>
                                 </ul>
                             </nav>

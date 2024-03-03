@@ -42,7 +42,7 @@ if (session()->getFlashdata('pesan')) {
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h3>User Blacklist</h3>
+                <!-- <h3>User Blacklist</h3> -->
                 <!-- Pesan untuk menampilkan sebelum login -->
                 <div id="messageBox" style="text-align: center; background-color: #f8d7da; padding: 20px; margin-bottom: 15px;">
                     <p style="font-size: 18px;">Sebelum Anda mengisi form di bawah, silakan login jika Anda sudah punya akun. Jika Anda belum memiliki akun, silakan registrasi terlebih dahulu.</p>
@@ -57,7 +57,7 @@ if (session()->getFlashdata('pesan')) {
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade active show" id="user" role="tabpanel" aria-labelledby="user-tab">
-                        <h4>Blacklist Table</h4>
+                        <!-- <h4>Blacklist Table</h4> -->
                         <?php if ($session->get('logged_in')) : ?>
                             <div class="table-responsive table-desi">
                                 <form class="form-inline search-form search-box mb-3">
@@ -68,30 +68,30 @@ if (session()->getFlashdata('pesan')) {
                                 <table class="all-package coupon-table table table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Nama Perusahaan Penyedia Sewa</th>
-                                            <th>NIK Terlapor</th>
-                                            <th>Nama Terlapor</th>
-                                            <th>Jenis Pelanggaran</th>
-                                            <th>Merk dan Tipe Alat</th>
-                                            <th>No Seri</th>
-                                            <th>Durasi Rental</th>
-                                            <th>Keterangan</th>
-                                            <th>Nominal Kerugian</th>
+                                            <th style="font-size: 12px;">Nama Perusahaan Penyedia Sewa</th>
+                                            <th style="font-size: 12px;">NIK Terlapor</th>
+                                            <th style="font-size: 12px;">Nama Terlapor</th>
+                                            <th style="font-size: 12px;">Jenis Pelanggaran</th>
+                                            <th style="font-size: 12px;">Merk dan Tipe Alat</th>
+                                            <th style="font-size: 12px;">No Seri</th>
+                                            <th style="font-size: 12px;">Durasi Rental</th>
+                                            <th style="font-size: 12px;">Keterangan</th>
+                                            <th style="font-size: 12px;">Nominal Kerugian</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                         <?php foreach ($list_user_blacklist as $value) : ?>
                                             <tr>
-                                                <td><?= $value['perusahaan'] ?></td>
-                                                <td><?= $value['nik'] ?></td>
-                                                <td><?= $value['nama'] ?></td>
-                                                <td><?= $value['jenis_pelanggaran'] ?></td>
-                                                <td><?= $value['merk'] ?> <?= $value['type_alat'] ?></td>
-                                                <td><?= $value['no_seri'] ?></td>
-                                                <td><?= $value['durasi'] . " Bulan" ?></td>
-                                                <td><?= $value['keterangan'] ?></td>
-                                                <td><?= $value['nominal_kerugian'] ?></td>
+                                                <td style="font-size: 12px;"><?= $value['perusahaan'] ?></td>
+                                                <td style="font-size: 12px;"><?= $value['nik'] ?></td>
+                                                <td style="font-size: 12px;"><?= $value['nama'] ?></td>
+                                                <td style="font-size: 12px;"><?= $value['jenis_pelanggaran'] ?></td>
+                                                <td style="font-size: 12px;"><?= $value['merk'] ?> <?= $value['type_alat'] ?></td>
+                                                <td style="font-size: 12px;"><?= $value['no_seri'] ?></td>
+                                                <td style="font-size: 12px;"><?= $value['durasi'] . " Bulan" ?></td>
+                                                <td style="font-size: 12px;"><?= $value['keterangan'] ?></td>
+                                                <td style="font-size: 12px;"> Rp. <?= number_format($value['nominal_kerugian'])  ?></td>
                                             </tr>
                                         <?php endforeach ?>
                                     </tbody>

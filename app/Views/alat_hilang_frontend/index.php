@@ -42,7 +42,7 @@ if (session()->getFlashdata('pesan')) {
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h3>Alat Hilang</h3>
+                <!-- <h3>Alat Hilang</h3> -->
                 <!-- Pesan untuk menampilkan sebelum login -->
                 <div id="messageBox" style="text-align: center; background-color: #f8d7da; padding: 20px; margin-bottom: 15px;">
                     <p style="font-size: 18px;">Sebelum Anda mengisi form di bawah, silakan login jika Anda sudah punya akun. Jika Anda belum memiliki akun, silakan registrasi terlebih dahulu.</p>
@@ -56,7 +56,7 @@ if (session()->getFlashdata('pesan')) {
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade active show" id="alathilang" role="tabpanel" aria-labelledby="alathilang-tab">
-                        <h4>Alat Hilang Table</h4>
+                        <!-- <h4>Alat Hilang Table</h4> -->
                         <?php if ($session->get('logged_in')) : ?>
                             <div class="table-responsive table-desi">
                                 <form class="form-inline search-form search-box mb-3">
@@ -67,14 +67,14 @@ if (session()->getFlashdata('pesan')) {
                                 <table class="all-package coupon-table table table-striped">
                                     <thead>
                                         <tr>
-                                            <th>PEMILIK ALAT</th>
-                                            <th>NO HP</th>
-                                            <th>TYPE ALAT DAN MERK</th>
-                                            <th>SERIAL NUMBER</th>
-                                            <th>TANGGAL KEHILANGAN</th>
-                                            <th>LOKASI KEHILANGAN</th>
-                                            <th>KRONOLOGIS KEJADIAN</th>
-                                            <th>STATUS KEPEMILIKAN</th>
+                                            <th style="font-size: 12px;">PEMILIK ALAT</th>
+                                            <th style="font-size: 12px;">NO HP</th>
+                                            <th style="font-size: 12px;">TYPE ALAT DAN MERK</th>
+                                            <th style="font-size: 12px;">SERIAL NUMBER</th>
+                                            <th style="font-size: 12px;">TANGGAL KEHILANGAN</th>
+                                            <th style="font-size: 12px;">LOKASI KEHILANGAN</th>
+                                            <th style="font-size: 12px;">KRONOLOGIS KEJADIAN</th>
+                                            <th style="font-size: 12px;">STATUS KEPEMILIKAN</th>
                                         </tr>
                                     </thead>
 
@@ -82,22 +82,22 @@ if (session()->getFlashdata('pesan')) {
                                         <?php
                                         foreach ($list_alat_hilang as $value) { ?>
                                             <tr>
-                                                <td><?= $value['nama'] ?></td>
-                                                <td><?= $value['no_hp'] ?></td>
-                                                <td><?= $value['type_alat'] ?> <?= $value['merk'] ?></td>
-                                                <td><?= $value['serial_number'] ?></td>
-                                                <td><?= $value['tanggal_kehilangan'] ?></td>
-                                                <td><?= $value['lokasi_kehilangan'] ?></td>
-                                                <td><?= $value['kronologi'] ?></td>
-                                                <td><?php
-                                                    if ($value['valid'] == null) {
-                                                        echo "Menunggu Validasi";
-                                                    } else if ($value['valid'] == 0) {
-                                                        echo "Tidak Valid";
-                                                    } else {
-                                                        echo "Valid";
-                                                    }
-                                                    ?></td>
+                                                <td style="font-size: 12px;"><?= $value['nama'] ?></td>
+                                                <td style="font-size: 12px;"><?= $value['no_hp'] ?></td>
+                                                <td style="font-size: 12px;"><?= $value['type_alat'] ?> <?= $value['merk'] ?></td>
+                                                <td style="font-size: 12px;"><?= $value['serial_number'] ?></td>
+                                                <td style="font-size: 12px;"><?= $value['tanggal_kehilangan'] ?></td>
+                                                <td style="font-size: 12px;"><?= $value['lokasi_kehilangan'] ?></td>
+                                                <td style="font-size: 12px;"><?= $value['kronologi'] ?></td>
+                                                <td style="font-size: 12px;"><?php
+                                                                                if ($value['valid'] == null) {
+                                                                                    echo "Menunggu Validasi";
+                                                                                } else if ($value['valid'] == 0) {
+                                                                                    echo "Tidak Valid";
+                                                                                } else {
+                                                                                    echo "Valid";
+                                                                                }
+                                                                                ?></td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>

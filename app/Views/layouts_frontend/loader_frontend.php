@@ -6,19 +6,19 @@
                     <div class="col-lg-6">
                         <ul class="header-dropdown">
                             <li class="onhover-dropdown mobile-account">
-                                <i class="fa fa-globe" aria-hidden="true"></i>
+                                <!-- <i class="fa fa-globe" aria-hidden="true"></i> -->
                             </li>
                             <li class="onhover-dropdown mobile-account">
-                                <i class="fa fa-users" aria-hidden="true"></i>
+                                <!-- <i class="fa fa-users" aria-hidden="true"></i> -->
                             </li>
                             <li class="onhover-dropdown mobile-account">
-                                <i class="fa fa-wrench" aria-hidden="true"></i>
+                                <!-- <i class="fa fa-wrench" aria-hidden="true"></i> -->
                             </li>
                             <li class="onhover-dropdown mobile-account">
-                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                <!-- <i class="fa fa-calendar" aria-hidden="true"></i> -->
                             </li>
                             <li class="onhover-dropdown mobile-account">
-                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <!-- <i class="fa fa-user" aria-hidden="true"></i> -->
                             </li>
                         </ul>
                     </div>
@@ -54,6 +54,30 @@
                                         </li>
                                         <li>
                                             <a href="/calendar_frontend">Kalender</a>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown" href="#" role="button" data-bs-toggle="dropdown">
+                                                My account
+                                            </a>
+
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="<?= base_url('dashboard'); ?>">Dashboard</a>
+                                                </li>
+                                                <li>
+                                                    <a href="<?= base_url('logout') ?>">Logout</a>
+                                                </li>
+                                            </ul>
+
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="<?= base_url('login') ?>">Login</a>
+                                                </li>
+                                                <li>
+                                                    <a href="<?= base_url('register') ?>">Register</a>
+                                                </li>
+                                            </ul>
+
                                         </li>
                                     </ul>
                                 </nav>
