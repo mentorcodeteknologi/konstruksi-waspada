@@ -64,7 +64,7 @@ class ArtikelController extends BaseController
 
         // UPLOAD GAMBAR
         $file = $this->request->getFile('gambar');
-        $foto = 'default.png';
+        // $foto = 'default.png';
         if ($file && $file->isValid()) {
             $foto = $file->getRandomName();
             $file->move('assets/backend/images/artikel/', $foto);
