@@ -86,7 +86,7 @@
                     <div class="menu-right pull-right">
                         <div>
                             <nav id="main-nav">
-                                <!-- <div class="toggle-nav"><i class="fa fa-bars sidebar-bar"></i></div> -->
+                                <div class="toggle-nav"><i class="fa fa-bars sidebar-bar"></i></div>
                                 <ul id="main-menu" class="sm pixelstrap sm-horizontal">
                                     <li>
                                         <div class="mobile-back text-end">Back<i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
