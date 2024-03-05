@@ -95,7 +95,7 @@
         </div>
 
         <div class="row section-b-space">
-            <h2>Comments</h2>
+            <h3>Comments</h4>
             <div class="col-sm-12">
                 <ul class="comment-section">
                     <?php foreach ($comments as $c) {?>
