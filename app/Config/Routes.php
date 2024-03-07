@@ -31,6 +31,7 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 
 // HOME ROUTES
+$routes->get('/map', 'HomeController::map');
 $routes->get('/', 'HomeController::index');
 $routes->get('/blog_details/(:any)', 'HomeController::blog_details/$1');
 $routes->post('/blog_details/(:any)', 'HomeController::blog_comment/$1', ['filter' => 'auth:users,admin']);

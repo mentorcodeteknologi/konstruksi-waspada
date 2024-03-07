@@ -65,4 +65,7 @@ class HomeController extends BaseController
         $this->commentModel->insert($data);
         return redirect()->to(base_url("blog_details/$slug"));
     }
+    function map() {
+        return view('map/index');
+    }
 }
