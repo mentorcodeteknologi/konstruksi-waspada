@@ -15,6 +15,7 @@ class AuthController extends BaseController
     // DEKLARASI MODEL
     protected $usersModel;
     protected $otpModel;
+    protected $url = 'http://103.67.186.41/';
 
 
     // ========================= //
@@ -109,7 +110,7 @@ class AuthController extends BaseController
         ]);
 
         $helper = new Helpers();
-        $helper->sendDataToApi($userDatas['no_hp'], "Masukan OTP : $code", 'http://localhost:3000/api/send-message');
+        $helper->sendDataToApi($userDatas['no_hp'], "Masukan OTP : $code", $this->url , 'api/send-message');
         session()->set($sessionData);
         session()->setFlashdata('success', 'Silahkan masukkan kode OTP yang dikirim ke Whatsapp yang didaftarkan!');
         return redirect()->to(base_url('otp'));

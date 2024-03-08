@@ -8,6 +8,7 @@ use CodeIgniter\API\ResponseTrait;
 class Helpers
 {
     use ResponseTrait;
+    
     // ================================= //
     // FUNCTION GENERATE RANDOM STRING
     // ================================= //
@@ -104,7 +105,7 @@ class Helpers
         }
     }
 
-    public function sendDataToApi($number, $message, $url)
+    public function sendDataToApi($number, $message, $url, $endpoint)
     {
         $client = \Config\Services::curlrequest();
 
@@ -113,9 +114,9 @@ class Helpers
             'message' => $message,
         ];
 
-        $jwt = $this->getToken();
+        $jwt = $this->getToken($url);
 
-        $response = $client->request('POST', $url, [
+        $response = $client->request('POST', $url . $endpoint, [
             'headers' => [
                 'Authorization' => 'Bearer ' . $jwt->token,
                 'Content-Type' => 'application/json',
@@ -131,7 +132,7 @@ class Helpers
         }
     }
 
-    public function getToken()
+    public function getToken($url)
     {
         $client = \Config\Services::curlrequest();
 
@@ -140,7 +141,7 @@ class Helpers
             'password' => "password",
         ];
 
-        $response = $client->request('POST', 'http://localhost:3000/api/login', [
+        $response = $client->request('POST', $url . 'api/login', [
             'headers' => [
                 'Content-Type' => 'application/json',
             ],
