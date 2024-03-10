@@ -15,7 +15,7 @@ class AuthController extends BaseController
     // DEKLARASI MODEL
     protected $usersModel;
     protected $otpModel;
-    protected $url = 'http://103.67.186.157/';
+    protected $url = 'http://103.67.186.157';
 
 
     // ========================= //

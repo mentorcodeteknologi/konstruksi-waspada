@@ -116,7 +116,7 @@ class Helpers
 
         $jwt = $this->getToken($url);
 
-        $response = $client->request('POST', $url . $endpoint, [
+        $response = $client->request('POST', $url . ':3000/'. $endpoint, [
             'headers' => [
                 'Authorization' => 'Bearer ' . $jwt->token,
                 'Content-Type' => 'application/json',
@@ -141,7 +141,7 @@ class Helpers
             'password' => "password",
         ];
 
-        $response = $client->request('POST', $url . 'api/login', [
+        $response = $client->request('POST', $url . ':3000/api/login', [
             'headers' => [
                 'Content-Type' => 'application/json',
             ],
