@@ -125,6 +125,8 @@ class AuthController extends BaseController
         $data = [
             'title'               => 'OTP',
             'footerRecentArtikel' => $this->getRecentArticles(5),
+            'footerPopularArtikel' => $this->getPopularArticles(5),
+            
         ];
         return view('auth/otp', $data);
     }
