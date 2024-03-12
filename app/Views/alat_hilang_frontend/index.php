@@ -45,9 +45,9 @@ if (session()->getFlashdata('pesan')) {
                 <!-- <h3>Alat Hilang</h3> -->
                 <!-- Pesan untuk menampilkan sebelum login -->
                 <div id="messageBox" style="text-align: center; background-color: #f8d7da; padding: 20px; margin-bottom: 15px;">
-                    <p style="font-size: 18px;">Sebelum Anda mengisi form di bawah, silakan login jika Anda sudah punya akun. Jika Anda belum memiliki akun, silakan registrasi terlebih dahulu.</p>
-                    <a href="<?= base_url('login') ?>" class="btn btn-orange">Login</a>
-                    <a href="<?= base_url('register') ?>" class="btn btn-orange">Register</a>
+                    <p style="font-size: 14px;">Sebelum Anda mengisi form di bawah, silakan login jika Anda sudah punya akun. Jika Anda belum memiliki akun, silakan registrasi terlebih dahulu.</p>
+                    <a style="font-size: 12px;" href="<?= base_url('login') ?>" class="btn btn-orange">Login</a>
+                    <a style="font-size: 12px;" href="<?= base_url('register') ?>" class="btn btn-orange">Register</a>
                 </div>
                 <!-- Pesan untuk menampilkan sebelum login -->
                 <ul class="nav nav-tabs tab-coupon" id="myTab" role="tablist">
