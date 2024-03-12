@@ -78,8 +78,7 @@ class CalendarController extends BaseController
             'created_at'        => Time::now('Asia/Jakarta', 'en_US'),
             'updated_at'        => Time::now('Asia/Jakarta', 'en_US')
         ];
-
-        $this->calendarModel->insert($data);
+        $calendar = $this->calendarModel->insert($data);
         session()->setFlashdata('pesan', 'Data Berhasil Disimpan');
         return redirect()->to(base_url('calendar'));
     }

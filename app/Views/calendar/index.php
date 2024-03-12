@@ -1,6 +1,14 @@
 <!-- MEMANGGIL SESSION LOGIN -->
 <?php $session = session(); ?>
+<?php
+function translateDate($date)
+{
+    $tanggal_objek = new DateTime($date);
+    $tanggal_baru = $tanggal_objek->format("d-m-Y");
+    return $tanggal_baru;
+}
 
+?>
 <!-- MEMANGGIL LAYOUTS -->
 <?= $this->extend('layouts/app'); ?>
 
@@ -66,14 +74,15 @@
                         <?php
                         $no = 1;
                         foreach ($list_calendar as $value) { ?>
+
                             <tr class="text-center">
                                 <td><?= $no++ ?></td>
-                                <td><?= date('d-m-Y', strtotime($value['tanggal_mulai'] ))?> s/d <?= date('d-m-Y', strtotime($value['tanggal_selesai'] ))?></td>
+                                <td><?= date('d-m-Y', strtotime($value['tanggal_mulai'])) ?> s/d <?= date('d-m-Y', strtotime($value['tanggal_selesai'])) ?></td>
                                 <td><?= $value['nama_kegiatan'] ?></td>
                                 <td><?= $value['created_at'] ?></td>
                                 <td><?= $value['updated_at'] ?></td>
                                 <td>
-                                    <a href="<?= base_url('calendar/update/' . base64_encode($value['id'])) ?>" class="btn btn-info btn-sm">Edit</a>
+                                    <a href="<?= base_url('calendar/update/' . base64_encode($value['id'])) ?>" class="btn btn-info btn-sm mb-2">Edit</a>
                                     <form action="<?= base_url('calendar/delete/' . base64_encode($value['id'])); ?>" method="post">
                                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
                                     </form>
