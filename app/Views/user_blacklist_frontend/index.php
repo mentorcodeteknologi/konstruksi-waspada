@@ -52,8 +52,10 @@ if (session()->getFlashdata('pesan')) {
                 <!-- Pesan untuk menampilkan sebelum login -->
                 <ul class="nav nav-tabs tab-coupon" id="myTab" role="tablist">
                     <li class="nav-item"><a class="nav-link active show" id="user-tab" data-bs-toggle="tab" href="#user" role="tab" aria-controls="user" aria-selected="true" data-original-title="" title="">List Blacklist</a></li>
+                    <?php if ($session->get('logged_in')) : ?>
                     <li class="nav-item"><a class="nav-link" id="add-user-tabs" data-bs-toggle="tab" href="#add-user" role="tab" aria-controls="add-user" aria-selected="false" data-original-title="" title="">Add User Blacklist</a></li>
                     <li class="nav-item"><a class="nav-link" id="add-user-company-tabs" data-bs-toggle="tab" href="#add-user-company" role="tab" aria-controls="add-user-company" aria-selected="false" data-original-title="" title="">Add Perusahaan Blacklist</a></li>
+                    <?php endif; ?>
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade active show" id="user" role="tabpanel" aria-labelledby="user-tab">

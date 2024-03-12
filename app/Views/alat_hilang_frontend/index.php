@@ -52,7 +52,10 @@ if (session()->getFlashdata('pesan')) {
                 <!-- Pesan untuk menampilkan sebelum login -->
                 <ul class="nav nav-tabs tab-coupon" id="myTab" role="tablist">
                     <li class="nav-item"><a class="nav-link active show" id="alathilang-tab" data-bs-toggle="tab" href="#alathilang" role="tab" aria-controls="alathilang" aria-selected="true" data-original-title="" title="">List Alat Hilang</a></li>
+
+                    <?php if ($session->get('logged_in')) : ?>
                     <li class="nav-item"><a class="nav-link" id="add-alathilang-tabs" data-bs-toggle="tab" href="#add-alathilang" role="tab" aria-controls="add-alathilang" aria-selected="false" data-original-title="" title="">Add Alat Hilang</a></li>
+                    <?php endif; ?>
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade active show" id="alathilang" role="tabpanel" aria-labelledby="alathilang-tab">

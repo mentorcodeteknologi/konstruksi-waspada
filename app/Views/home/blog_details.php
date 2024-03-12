@@ -42,47 +42,7 @@
                 <p><?= $detail_artikel['isi']; ?></p>
             </div>
         </div>
-        <div class="row section-b-space blog-advance">
-            <!-- <div class="col-lg-6">
-                <div><img src="assets/4.jpg" class="img-fluid blur-up lazyload bg-img" alt=""></div>
-            </div>
-            <div class="col-lg-6">
-                <div><img src="assets/5.jpg" class="img-fluid blur-up lazyload bg-img" alt=""></div>
-            </div>
-            <div class="col-lg-6">
-                <ul>
-                    <li>Donec ut metus sit amet elit consectetur facilisis id vel turpis.</li>
-                    <li>Aenean in mi eu elit mollis tincidunt.</li>
-                    <li>Etiam blandit metus vitae purus lacinia ultricies.</li>
-                    <li>Nunc quis nulla sagittis, faucibus neque a, tempus metus.</li>
-                    <li>In scelerisque libero ut mi ornare, a porttitor neque pulvinar.</li>
-                    <li>Morbi molestie lacus blandit interdum sodales.</li>
-                    <li>Curabitur eleifend velit molestie eleifend interdum.</li>
-                    <li>Vestibulum fringilla tortor et lorem sagittis,</li>
-                    <li>In scelerisque libero ut mi ornare, a porttitor neque pulvinar.</li>
-                    <li>Morbi molestie lacus blandit interdum sodales.</li>
-                    <li>Curabitur eleifend velit molestie eleifend interdum.</li>
-                </ul>
-            </div>
-            <div class="col-lg-6">
-                <p>Nulla quam turpis, commodo et placerat eu, mollis ut odio. Donec pellentesque egestas consequat.
-                    Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc at
-                    urna dolor. Mauris odio nisi, rhoncus ac justo eget, lacinia iaculis lectus. Pellentesque id
-                    dapibus justo. Nunc venenatis non odio sed luctus. Etiam sit amet elit massa.</p>
-                <p>Phasellus quis lorem eros. Aliquam non tincidunt nibh. Nulla quis interdum neque. Mauris volutpat
-                    neque eu nunc ornare ullamcorper. Sed neque velit, lobortis eget tellus in, pellentesque ornare
-                    nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-                    Maecenas rutrum nisi non nibh egestas lacinia. Cras ut tellus sit amet lacus consequat dictum
-                    nec id sapien. Ut pellentesque ac ex ut elementum. Morbi mollis volutpat neque eu volutpat.</p>
-                <p>Donec rhoncus massa quis nibh imperdiet dictum. Vestibulum id est sit amet felis fringilla
-                    bibendum at at leo. Proin molestie ac nisi eu laoreet. Integer faucibus enim nec ullamcorper
-                    tempor. Aenean nec felis dui. Integer tristique odio mi, in volutpat metus posuere eu. Aenean
-                    suscipit ipsum nunc, id volutpat lorem hendrerit ac. Sed id elit quam. In ac mauris arcu.
-                    Praesent eget lectus sit amet diam vestibulum varius. Suspendisse dignissim mattis leo, nec
-                    facilisis erat tempor quis. Vestibulum eu vestibulum ex. Maecenas luctus orci sed blandit
-                    fermentum. In vulputate eu metus a faucibus. Suspendisse feugiat condimentum congue.</p>
-            </div> -->
-        </div>
+        <hr>
         <div class="row section-b-space blog-advance">
             <div class="col">
                 <h4>Youtube : </h4>
@@ -94,43 +54,41 @@
             </div>
         </div>
 
-        <div class="row section-b-space">
-            <h3>Comments</h4>
-            <div class="col-sm-12">
-                <ul class="comment-section">
-                    <?php foreach ($comments as $c) {?>
-                        <li>
-                        <div class="media">
-                            <div class="media-body">
-                                <h6><?= $c['nama']; ?><span>( <?= $c['created_at']?> )</span></h6>
-                                <p><?= $c['comment']?></p>
-                            </div>
-                        </div>
-                    </li>
-                    <?php } ?>
-                </ul>
-            </div>
+        <div class="row">
+            <h3>Comments (<?= count($comments) ?>)</h4>
+                <div class="col-sm-12 mb-2">
+                    <ul class="comment-section">
+                        <?php if (count($comments) > 0) : ?>
+                            <?php foreach ($comments as $c) { ?>
+                                <li>
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h6><?= $c['nama']; ?><span>( <?= $c['created_at'] ?> )</span></h6>
+                                            <p><?= $c['comment'] ?></p>
+                                        </div>
+                                    </div>
+                                </li>
+                            <?php } ?>
+                        <?php else : ?>
+                            <h4 class="text-center text-secondary m-3">No Comments Found!</h4>
+                        <?php endif; ?>
+                    </ul>
+                </div>
         </div>
         <div class="row blog-contact">
             <div class="col-sm-12">
-                <h2><?= session('id') ? 'Leave Your Comment' : 'Please Login First!'?></h2>
-                <form action="<?= base_url("blog_details/" . $detail_artikel['slug'])?>" method="post" class="theme-form">
+                <?php if (!session('id')) : ?>
+                    <h2>Please Login First!</h2>
+                <?php endif; ?>
+                <form action="<?= base_url("blog_details/" . $detail_artikel['slug']) ?>" method="post" class="theme-form">
                     <?= csrf_field(); ?>
                     <div class="form-row row">
-                        <!-- <div class="col-md-12">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" name="" id="name" placeholder="Enter Your name" required="">
-                        </div>
-                        <div class="col-md-12">
-                            <label for="email">Email</label>
-                            <input type="text" class="form-control" name="" id="email" placeholder="Email" required="">
-                        </div> -->
                         <div class="col-md-12">
                             <label for="exampleFormControlTextarea1">Comment</label>
-                            <textarea class="form-control" name="comment" placeholder="Write Your Comment" id="exampleFormControlTextarea1" rows="6" <?= session('id') ? 'required' : 'disabled'?>></textarea>
+                            <textarea class="form-control" name="comment" placeholder="Write Your Comment" id="exampleFormControlTextarea1" rows="6" <?= session('id') ? 'required' : 'disabled' ?>></textarea>
                         </div>
                         <div class="col-md-12">
-                            <button class="btn btn-solid" type="submit" <?= session('id') ? 'required' : 'disabled'?>>Post Comment</button>
+                            <button class="btn btn-solid" type="submit" <?= session('id') ? 'required' : 'disabled' ?>>Post Comment</button>
                         </div>
                     </div>
                 </form>
@@ -143,22 +101,23 @@
 <?= $this->section('scripts') ?>
 <script>
     let times = 0;
-    let slug = "<?= $detail_artikel['slug']?>";
+    let slug = "<?= $detail_artikel['slug'] ?>";
+
     function updateLikes() {
         $.ajax({
-            url: '<?= base_url("updateLikes")?>',
+            url: '<?= base_url("updateLikes") ?>',
             method: 'GET',
             data: {
-                "slug" : slug,
-                "times" : times,
+                "slug": slug,
+                "times": times,
             },
             contentType: "application/json",
             dataType: "json",
             success: function(res) {
-               times = !res.separator ? times + 1 : 0;
-               $("#targetLikes").html("");
-               $("#targetLikes").append(res.count.likes);
-               
+                times = !res.separator ? times + 1 : 0;
+                $("#targetLikes").html("");
+                $("#targetLikes").append(res.count.likes);
+
             },
             error: function(xhr, status, error) {
                 console.error(status, error);
