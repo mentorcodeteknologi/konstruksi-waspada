@@ -73,7 +73,8 @@ class CalendarController extends BaseController
         $data = [
             'nama_kegiatan'     => $this->request->getVar('nama_kegiatan'),
             'id_user'           => $session->get('id'),
-            'tanggal_kegiatan'  => $this->request->getVar('tanggal_kegiatan'),
+            'tanggal_mulai'  => $this->request->getVar('tanggal_mulai'),
+            'tanggal_selesai'  => $this->request->getVar('tanggal_selesai'),
             'created_at'        => Time::now('Asia/Jakarta', 'en_US'),
             'updated_at'        => Time::now('Asia/Jakarta', 'en_US')
         ];
@@ -109,7 +110,8 @@ class CalendarController extends BaseController
         $data = [
             'nama_kegiatan'     => $this->request->getVar('nama_kegiatan'),
             'id_user'           => $session->get('id'),
-            'tanggal_kegiatan'  => $this->request->getVar('tanggal_kegiatan'),
+            'tanggal_mulai'     => $this->request->getVar('tanggal_mulai'),
+            'tanggal_selesai'   => $this->request->getVar('tanggal_selesai'),
             'created_at'        => Time::now('Asia/Jakarta', 'en_US'),
             'updated_at'        => Time::now('Asia/Jakarta', 'en_US')
         ];
@@ -146,8 +148,8 @@ class CalendarController extends BaseController
             $data[] = [
                 'id' => $event['id'],
                 'title' => $event['nama_kegiatan'],
-                'start' => $event['tanggal_kegiatan'],
-                'end' => $event['tanggal_kegiatan']
+                'start' => $event['tanggal_mulai'],
+                'end' => $event['tanggal_selesai']
             ];
         }
 
