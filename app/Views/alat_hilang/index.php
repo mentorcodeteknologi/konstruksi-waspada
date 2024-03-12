@@ -90,7 +90,7 @@
                                 <td><a href="<?= base_url('assets/backend/images/alat_hilang/' . $value['surat_kepemilikian']) ?>" target="_blank">Lihat Surat Kepemilikan</a></td>
                                 <td><?= $value['lokasi_kehilangan'] ?></td>
                                 <td><?= $value['kronologi'] ?></td>
-                                <td><?= $value['nominal_kerugian'] ?></td>
+                                <td><?= number_format($value['nominal_kerugian'], 0, '', '.') ?></td>
                                 <td>
                                     <?php
                                     if ($value['valid'] == null) {
