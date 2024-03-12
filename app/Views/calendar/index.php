@@ -68,7 +68,7 @@
                         foreach ($list_calendar as $value) { ?>
                             <tr class="text-center">
                                 <td><?= $no++ ?></td>
-                                <td><?= $value['tanggal_kegiatan'] ?></td>
+                                <td><?= date('d-m-Y', strtotime($value['tanggal_mulai'] ))?> s/d <?= date('d-m-Y', strtotime($value['tanggal_selesai'] ))?></td>
                                 <td><?= $value['nama_kegiatan'] ?></td>
                                 <td><?= $value['created_at'] ?></td>
                                 <td><?= $value['updated_at'] ?></td>
