@@ -43,9 +43,19 @@
 
                         <form action="<?= base_url('calendar/update/' . base64_encode($detail_calendar['id'])) ?>" method="post" enctype="multipart/form-data">
                             <?= csrf_field(); ?>
-                            <div class="form-group">
-                                <label>Tanggal Kegiatan</label>
-                                <input type="date" name="tanggal_kegiatan" id="tanggal_kegiatan" class="form-control" placeholder="Tanggal Kegiatan" value="<?= $detail_calendar['tanggal_kegiatan'] ?>" required>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Tanggal Mulai</label>
+                                        <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="form-control" value="<?= $detail_calendar['tanggal_mulai'] ?>"  placeholder="Tanggal Kegiatan" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Tanggal Selesai</label>
+                                        <input type="date" name="tanggal_selesai" id="tanggal_selesai" value="<?= $detail_calendar['tanggal_selesai'] ?>"  class="form-control" placeholder="Tanggal Kegiatan" required>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="form-group">
