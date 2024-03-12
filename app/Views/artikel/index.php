@@ -77,17 +77,19 @@
                                 <td><?= $value['judul'] ?></td>
                                 <td><?= $value['category_name'] ?></td>
                                 <td><img src="<?= base_url('assets/backend/images/artikel/' . $value['gambar']) ?>" width="100px" height="100px"></td>
-                                <td><?= substr($value['isi'] , 0, 30)?></td>
+                                <td><?= substr($value['isi'], 0, 30) ?></td>
                                 <td><?= $value['url'] ?></td>
-                                <td><?= substr($value['deskripsi'] , 0, 30)?></td>
+                                <td><?= substr($value['deskripsi'], 0, 30) ?></td>
                                 <td><?= $value['author'] ?></td>
                                 <td><?= $value['created_at'] ?></td>
                                 <td><?= $value['updated_at'] ?></td>
                                 <td>
-                                    <a href="<?= base_url('artikel/update/' . $value['slug']) ?>" class="btn btn-info btn-sm">Edit</a>
-                                    <form action="<?= base_url('artikel/delete/' . $value['slug']); ?>" method="post">
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
-                                    </form>
+                                    <div class="d-flex">
+                                        <a href="<?= base_url('artikel/update/' . $value['slug']) ?>" class="btn btn-warning btn-sm me-2">Edit</a>
+                                        <form action="<?= base_url('artikel/delete/' . $value['slug']); ?>" method="post">
+                                            <button type="submit" class="btn btn-danger btn-sm shadow-none" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
+                                        </form>
+                                    </div>
                                 </td>
 
                             </tr>

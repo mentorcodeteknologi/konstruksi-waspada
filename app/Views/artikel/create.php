@@ -48,19 +48,11 @@
                                 <input type="text" name="judul" id="judul" class="form-control" placeholder="Judul" required>
                             </div>
 
-                            <div class="form-group">
-                                <label>Kategori</label>
-                                <select name="id_categories" id="id_categories" class="form-control" required>
-                                    <option value="">Pilih Kategori</option>
-                                    <?php foreach ($category as $row) { ?>
-                                        <option value="<?= $row['id'] ?>"><?= $row['category'] ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
+
 
                             <div class="form-group">
                                 <label>Isi</label>
-                                <textarea name="isi" id="isi" class="form-control" placeholder="Isi Artikel" required> </textarea>
+                                <textarea name="isi" id="isi" rows="10" class="form-control" placeholder="Isi Artikel" required> </textarea>
                             </div>
 
                             <!-- <div class="form-group">
@@ -75,13 +67,28 @@
 
                             <div class="form-group">
                                 <label>Deskripsi</label>
-                                <textarea name="deskripsi" id="deskripsi" class="form-control" placeholder="Deskripsi" required> </textarea>
+                                <textarea name="deskripsi" rows="5" id="deskripsi" class="form-control" placeholder="Deskripsi" required> </textarea>
                             </div>
 
-                            <div class="form-group">
-                                <label>Gambar</label>
-                                <input type="file" name="gambar" id="gambar" class="form-control" accept=".jpg,.png,.jpeg" required>
-                                <img src="" id="viewImg" class="img-fluid mt-2" width="200px">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Kategori</label>
+                                        <select name="id_categories" id="id_categories" class="form-control" required>
+                                            <option value="">Pilih Kategori</option>
+                                            <?php foreach ($category as $row) { ?>
+                                                <option value="<?= $row['id'] ?>"><?= $row['category'] ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Gambar</label>
+                                        <input type="file" name="gambar" id="gambar" class="form-control" accept=".jpg,.png,.jpeg" required>
+                                        <img src="" id="viewImg" class="img-fluid mt-2" width="200px">
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="form-group">

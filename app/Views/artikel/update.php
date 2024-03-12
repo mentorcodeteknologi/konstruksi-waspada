@@ -48,19 +48,12 @@
                                 <input type="text" name="judul" id="judul" class="form-control" placeholder="Judul" value="<?= $detail_artikel['judul'] ?>" required>
                             </div>
 
-                            <div class="form-group"></div>
-                            <label>Kategori</label>
-                            <select name="id_categories" id="id_categories" class="form-control" required>
-                                <option value="">Pilih Kategori</option>
-                                <?php foreach ($category as $row) { ?>
-                                    <option value="<?= $row['id'] ?>" <?= ($row['id'] == $detail_artikel['id_categories']) ? 'selected' : '' ?>><?= $row['category'] ?></option>
-                                <?php } ?>
-                            </select>
+
 
 
                             <div class="form-group">
                                 <label>Isi</label>
-                                <textarea name="isi" id="isi" class="form-control" placeholder="Isi Artikel" required><?= $detail_artikel['isi'] ?></textarea>
+                                <textarea name="isi" id="isi" rows="10" class="form-control" placeholder="Isi Artikel" required><?= $detail_artikel['isi'] ?></textarea>
                             </div>
 
                             <!-- <div class="form-group">
@@ -75,15 +68,30 @@
 
                             <div class="form-group">
                                 <label>Deskripsi</label>
-                                <input type="text" name="deskripsi" id="deskripsi" class="form-control" placeholder="deskripsi" value="<?= $detail_artikel['deskripsi'] ?>" required>
+                                <input type="text" name="deskripsi" rows="5" id="deskripsi" class="form-control" placeholder="deskripsi" value="<?= $detail_artikel['deskripsi'] ?>" required>
                             </div>
 
-                            <div class="form-group">
-                                <img src="<?= base_url('assets/backend/images/artikel/' . $detail_artikel['gambar']) ?>" width="100px" height="100px" class="center">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Kategori</label>
+                                        <select name="id_categories" id="id_categories" class="form-control" required>
+                                            <option value="">Pilih Kategori</option>
+                                            <?php foreach ($category as $row) { ?>
+                                                <option value="<?= $row['id'] ?>" <?= ($row['id'] == $detail_artikel['id_categories']) ? 'selected' : '' ?>><?= $row['category'] ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <img src="<?= base_url('assets/backend/images/artikel/' . $detail_artikel['gambar']) ?>" width="100px" height="100px" class="center">
 
-                                <div class="form-group">
-                                    <label>Edit Gambar</label>
-                                    <input type="file" name="gambar" id="gambar" class="form-control" accept=".jpg,.png,.jpeg">
+                                        <div class="form-group">
+                                            <label>Edit Gambar</label>
+                                            <input type="file" name="gambar" id="gambar" class="form-control" accept=".jpg,.png,.jpeg">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
