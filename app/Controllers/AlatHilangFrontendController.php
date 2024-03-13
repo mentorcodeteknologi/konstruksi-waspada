@@ -79,7 +79,7 @@ class AlatHilangFrontendController extends BaseController
         ];
 
         $this->alatHilangModel->insert($data);
-        session()->setFlashdata('pesan', 'Data Berhasil Disimpan, menunggu validasi admin');
+        session()->setFlashdata('success', 'Data Berhasil Disimpan, menunggu validasi admin');
         return redirect()->to(base_url('alat_hilang/detail'));
     }
 
