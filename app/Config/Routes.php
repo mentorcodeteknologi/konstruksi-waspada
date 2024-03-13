@@ -52,7 +52,7 @@ $routes->post('/createUserPeroranganBlacklist', 'UserBlacklistFrontendController
 // ALAT HILANG ROUTES
 $routes->get('alat_hilang/detail', 'AlatHilangFrontendController::index');
 $routes->post('alat_hilang/createAlatHilang', 'AlatHilangFrontendController::createAlatHilang');
-$routes->post('alat_hilang/(:any)', 'AlatHilangFrontendController::validation/$1');
+$routes->post('alat_hilang/front/(:any)', 'AlatHilangFrontendController::validation/$1');
 
 
 // DASHBOARD ROUTES
