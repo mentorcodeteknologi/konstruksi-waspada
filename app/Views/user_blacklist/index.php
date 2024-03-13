@@ -91,22 +91,17 @@
                                 <td><?= $value['created_at'] ?></td>
                                 <td><?= $value['updated_at'] ?></td>
                                 <td>
-                                    <a href="<?= base_url('user_blacklist/update/' . $value['slug']) ?>">
-                                        <i class="fa fa-edit" title="Edit"></i>
-                                    </a>
-                                    <a href="<?= base_url('user_blacklist/detail/' . $value['slug']) ?>">
-                                        <i class="fa-solid fa-eye" title="detail"></i>
-                                    </a>
+                                    <a href="<?= base_url('user_blacklist/update/' . $value['slug']) ?>" class="btn btn-secondary btn-sm mb-2">Edit</a>
+                                    <a href="<?= base_url('user_blacklist/detail/' . $value['slug']) ?>" class="btn btn-info btn-sm mb-2">Detail</a>
+                                    <form action="<?= base_url('user_blacklist/delete/' . $value['slug']); ?>" method="post">
+                                        <button type="submit" class="btn btn-primary btn-sm mb-2" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
+                                    </form>
                                     <?php if ($session->get('role') == "admin" && $value['valid'] == null) { ?>
-                                        <a href="" class="btn btn-info btn-sm mb-2">Edit</a>
-                                        <form action="<?= base_url('user_blacklist/delete/' . $value['slug']); ?>" method="post">
-                                            <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="fa fa-trash" title="Delete"></i></button>
-                                        </form>
                                         <form action="<?= base_url('user_blacklist/validation/' . $value['slug']); ?>" method="post">
-                                            <button type="submit" class="btn btn-primary btn-sm mb-2" onclick="return confirm('Apakah Anda yakin ingin validasi data ini?')">Valid</button>
+                                            <button type="submit" class="btn btn-success btn-sm mb-2" onclick="return confirm('Apakah Anda yakin ingin validasi data ini?')">Valid</button>
                                         </form>
                                         <form action="<?= base_url('user_blacklist/tidakvalid/' . $value['slug']); ?>" method="post">
-                                            <button type="submit" class="btn btn-warning btn-sm mb-2" onclick="return confirm('Apakah Anda yakin data ini tidak valid?')">Tidak Valid</button>
+                                            <button type="submit" class="btn btn-warning btn-sm" onclick="return confirm('Apakah Anda yakin ingin tidak validasi data ini?')">Tidak Valid</button>
                                         <?php } ?>
                                 </td>
 
