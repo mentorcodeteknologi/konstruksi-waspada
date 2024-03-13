@@ -28,19 +28,25 @@ $session = session();
 </div>
 <!-- breadcrumb End -->
 <?= $this->endSection(); ?>
-<?php
-
-// NOTIFIKASI BERHASIL SIMPAN DATA
-if (session()->getFlashdata('pesan')) {
-    echo '<div class="alert alert-success alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . session()->getFlashdata('pesan') . '</div>';
-}
-?>
 
 <?= $this->section('content'); ?>
 <section class="register-page section-b-space bg-white" id="formPerorangan">
     <div class="container">
-        <div class="row">
+        <div class="row"> 
+            <?php
+            // NOTIFIKASI BERHASIL SIMPAN DATA
+            if (session()->getFlashdata('pesan')) {
+                echo '<div class="alert alert-danger alert-dismissible">
+                ' . session()->getFlashdata('pesan') . '</div>';
+            }
+            ?>
+            <?php
+            // NOTIFIKASI BERHASIL SIMPAN DATA
+            if (session()->getFlashdata('success')) {
+                echo '<div class="alert alert-success alert-dismissible">
+                ' . session()->getFlashdata('success') . '</div>';
+            }
+            ?>
             <div class="col-lg-12">
                 <!-- <h3>Alat Hilang</h3> -->
                 <!-- Pesan untuk menampilkan sebelum login -->
