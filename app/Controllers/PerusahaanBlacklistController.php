@@ -65,9 +65,9 @@ class PerusahaanBlacklistController extends BaseController
         }
 
         // UPLOAD FOTO KTP
-        $fileKtp = $this->request->getFile('foto_npwp');
-        $fotoKtp = $fileKtp->getRandomName();
-        $fileKtp->move($path, $fotoKtp);
+        $fileNpwp = $this->request->getFile('foto_npwp');
+        $fotoNpwp = $fileNpwp->getRandomName();
+        $fileNpwp->move($path, $fotoNpwp);
 
         // UPLOAD SURAT PERJANJIAN
         $fileSuratPerjanjian = $this->request->getFile('surat_perjanjian');
@@ -87,8 +87,9 @@ class PerusahaanBlacklistController extends BaseController
         $data = [
             'nik'                    => $this->request->getVar('nik'),
             'nama'                   => $this->request->getVar('nama'),
+            'npwp'                   => $this->request->getVar('npwp'),
             'nama_penanggung_jawab'  => $this->request->getVar('nama_penanggung_jawab'),
-            'foto_ktp'               => $fotoKtp,
+            'foto_npwp'               => $fotoNpwp,
             'no_hp'                  => $this->request->getVar('no_hp'),
             'merk'                   => $this->request->getVar('merk'),
             'type_alat'              => $this->request->getVar('type_alat'),
@@ -117,7 +118,7 @@ class PerusahaanBlacklistController extends BaseController
 
         $this->perusahaanBlacklistModel->insert($data);
         session()->setFlashdata('pesan', 'Data berhasil disimpan');
-        return redirect()->to(base_url('user_blacklist'));
+        return redirect()->to(base_url('perusahaan_blacklist'));
     }
 
 
@@ -129,34 +130,34 @@ class PerusahaanBlacklistController extends BaseController
         $data = [
             'title'                  => 'User Blacklist',
             'subtitle'               => 'Edit Data User Blacklist',
-            'detail_users_blacklist' => $this->perusahaanBlacklistModel->getDataBySlug($slug)
+            'detail_perusahaan_blacklist' => $this->perusahaanBlacklistModel->getDataBySlug($slug)
         ];
-        return view('user_blacklist/update', $data);
+        return view('perusahaan_blacklist/update', $data);
     }
 
 
     // ============================= //
     // FUNCTION UPDATE USER Blacklist
     // ============================= //
-    public function updateUserBlacklist($slug)
+    public function updatePerusahaanBlacklist($slug)
     {
         $datas  = $this->perusahaanBlacklistModel->getDataBySlug($slug);
 
         // CEK FOLDER USER BLACKLIST
-        $path = 'assets/backend/images/user_blacklist/' . $slug . "/";
+        $path = 'assets/backend/images/perusahaan_blacklist/' . $slug . "/";
         if (!file_exists($path)) {
             mkdir($path, 0777, true);
         }
 
         // CHECK APAKAH FOTO KTP ADA PERUBAHAN
-        $fileKtp = $this->request->getFile('foto_ktp');
-        if ($fileKtp->isValid()) {
-            $fotoKtp = $fileKtp->getRandomName();
-            $fileKtp->move($path, $fotoKtp);
+        $fileNpwp = $this->request->getFile('foto_npwp');
+        if ($fileNpwp->isValid()) {
+            $fotoNpwp = $fileNpwp->getRandomName();
+            $fileNpwp->move($path, $fotoNpwp);
             // HAPUS FOTO KTP LAMA
-            unlink($path . $datas['foto_ktp']);
+            unlink($path . $datas['foto_npwp']);
         } else {
-            $fotoKtp = $datas['foto_ktp'];
+            $fotoNpwp = $datas['foto_npwp'];
         }
 
         // CHECK APAKAH SURAT PERJANJIAN ADA PERUBAHAN
@@ -195,7 +196,8 @@ class PerusahaanBlacklistController extends BaseController
         $data = [
             'nik'                    => $this->request->getVar('nik'),
             'nama'                   => $this->request->getVar('nama'),
-            'foto_ktp'               => $fotoKtp,
+            'npwp'                   => $this->request->getVar('npwp'),
+            'foto_npwp'               => $fotoNpwp,
             'no_hp'                  => $this->request->getVar('no_hp'),
             'merk'                   => $this->request->getVar('merk'),
             'type_alat'              => $this->request->getVar('type_alat'),
@@ -226,7 +228,7 @@ class PerusahaanBlacklistController extends BaseController
 
         $this->perusahaanBlacklistModel->update($datas['id'], $data);
         session()->setFlashdata('pesan', 'Data berhasil diupdate');
-        return redirect()->to(base_url('user_blacklist'));
+        return redirect()->to(base_url('perusahaan_blacklist'));
     }
 
     // ========================= //
@@ -237,9 +239,9 @@ class PerusahaanBlacklistController extends BaseController
         $data = [
             'title'                  => 'Detail User Blacklist',
             'subtitle'               => 'Detail Data User Blacklist',
-            'detail_users_blacklist' => $this->perusahaanBlacklistModel->getDataBySlug($slug)
+            'detail_perusahaan_blacklist' => $this->perusahaanBlacklistModel->getDataBySlug($slug)
         ];
-        return view('user_blacklist/update', $data);
+        return view('perusahaan_blacklist/update', $data);
     }
 
 
@@ -252,7 +254,7 @@ class PerusahaanBlacklistController extends BaseController
 
         $this->perusahaanBlacklistModel->update($datas['id'], ['valid' => true]);
         session()->setFlashdata('pesan', 'Data berhasil divalidasi');
-        return redirect()->to(base_url('user_blacklist'));
+        return redirect()->to(base_url('perusahaan_blacklist'));
     }
 
 
@@ -265,7 +267,7 @@ class PerusahaanBlacklistController extends BaseController
 
         $this->perusahaanBlacklistModel->update($datas['id'], ['valid' => false]);
         session()->setFlashdata('pesan', 'Data tidak valid');
-        return redirect()->to(base_url('user_blacklist'));
+        return redirect()->to(base_url('perusahaan_blacklist'));
     }
 
 
@@ -278,13 +280,13 @@ class PerusahaanBlacklistController extends BaseController
         $datas  = $this->perusahaanBlacklistModel->getDataBySlug($slug);
 
         // HAPUS FOLDER
-        $path = 'assets/backend/images/user_blacklist/' . $slug . "/";
+        $path = 'assets/backend/images/perusahaan_blacklist/' . $slug . "/";
         if (file_exists($path)) {
             $helper->deleteDir($path);
         }
 
         $this->perusahaanBlacklistModel->delete($datas['id']);
         session()->setFlashdata('pesan', 'Data berhasil dihapus');
-        return redirect()->to(base_url('user_blacklist'));
+        return redirect()->to(base_url('perusahaan_blacklist'));
     }
 }

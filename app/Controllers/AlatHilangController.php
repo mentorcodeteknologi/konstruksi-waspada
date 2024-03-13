@@ -30,10 +30,11 @@ class AlatHilangController extends BaseController
     // ========================= //
     public function index()
     {
+        
         $data = [
             'title'            => 'Alat Hilang',
             'subtitle'         => 'List Data Alat Hilang',
-            'list_alat_hilang' => $this->alatHilangModel->findAllDatas()
+            'list_alat_hilang' => $this->alatHilangModel->findAllDatas(null, session()->get('role') == "admin" ? null : session()->get('id') )
         ];
         return view('alat_hilang/index', $data);
     }

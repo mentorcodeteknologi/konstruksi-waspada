@@ -49,13 +49,16 @@ class AlatHilangModel extends Model
     // ========================= //
     // FUNCTION FIND ALL DATAS
     // ========================= //
-    public function findAllDatas($id = null)
+    public function findAllDatas($id = null, $user=null)
     {
         $builder = $this->db->table('alat_hilang');
         $builder->select('alat_hilang.*, users.id_card, users.no_hp, users.nama');
         $builder->join('users', 'users.id = alat_hilang.id_user');
         if ($id != null) {
             $builder->where('alat_hilang.id', $id);
+        }
+        if ($user != null) {
+            $builder->where('alat_hilang.id_user', $user);
         }
         return $builder->get()->getResultArray();
     }

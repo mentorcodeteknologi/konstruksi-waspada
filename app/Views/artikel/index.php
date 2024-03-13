@@ -34,29 +34,20 @@
 
     <div class="card">
         <div class="card-body">
-
             <?php
 
             // NOTIFIKASI BERHASIL SIMPAN DATA
             if (session()->getFlashdata('pesan')) {
-                echo '<div class="alert alert-success alert-dismissible">
-             ' . session()->getFlashdata('pesan') . '</div>';
+                echo '<div class="alert alert-success alert-dismissible">' . session()->getFlashdata('pesan') . '</div>';
             }
             ?>
-
-            <form action="<?= base_url('artikel/create') ?>">
-                <button type="submit" class="btn btn-primary">+ Tambah Data Artikel</button>
-            </form>
-            <br><br><br>
-
-
             <div class="table-responsive table-desi">
-                <table class="all-package coupon-table table table-striped">
+                <table class="table all-package table-category " id="editableTable">
                     <thead>
                         <tr>
                             <th>No</th>
                             <th>Judul</th>
-                            <th>kategori</th>
+                            <th>Kategori</th>
                             <th>Gambar</th>
                             <th>Isi</th>
                             <th>Url</th>
@@ -74,9 +65,11 @@
                         foreach ($list_artikel as $value) { ?>
                             <tr class="text-center">
                                 <td><?= $no++ ?></td>
-                                <td><?= $value['judul'] ?></td>
-                                <td><?= $value['category_name'] ?></td>
-                                <td><img src="<?= base_url('assets/backend/images/artikel/' . $value['gambar']) ?>" width="100px" height="100px"></td>
+                                <td data-field="name"><?= $value['judul'] ?></td>
+                                <td data-field="name"><?= $value['category_name'] ?></td>
+                                <td>
+                                    <img src="<?= base_url('assets/backend/images/artikel/' . $value['gambar']) ?>" width="100px" height="100px" data-field="image" alt="">
+                                </td>
                                 <td><?= substr($value['isi'], 0, 30) ?></td>
                                 <td><?= $value['url'] ?></td>
                                 <td><?= substr($value['deskripsi'], 0, 30) ?></td>
@@ -84,12 +77,12 @@
                                 <td><?= $value['created_at'] ?></td>
                                 <td><?= $value['updated_at'] ?></td>
                                 <td>
-                                    <div class="d-flex">
-                                        <a href="<?= base_url('artikel/update/' . $value['slug']) ?>" class="btn btn-warning btn-sm me-2">Edit</a>
-                                        <form action="<?= base_url('artikel/delete/' . $value['slug']); ?>" method="post">
-                                            <button type="submit" class="btn btn-danger btn-sm shadow-none" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
-                                        </form>
-                                    </div>
+                                    <a href="<?= base_url('artikel/update/' . $value['slug']) ?>">
+                                        <i class="fa fa-edit" title="Edit"></i>
+                                    </a>
+                                    <a href="<?= base_url('artikel/delete/' . $value['slug']); ?>" onclick="return confirm('Ingin menghapus artikel?')">
+                                        <i class="fa fa-trash" title="Delete"></i>
+                                    </a>
                                 </td>
 
                             </tr>

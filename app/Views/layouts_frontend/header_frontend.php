@@ -91,49 +91,51 @@
                                     <li>
                                         <div class="mobile-back text-end">Back<i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
                                     </li>
-                                    <li>
-                                        <a href="<?= base_url('/') ?>">Blog</a>
-                                    </li>
-                                    <li>
-                                        <a href="<?= base_url('user_blacklist_frontend') ?>">User Blacklist</a>
-                                    </li>
-                                    <li>
-                                        <a href="<?= base_url('alat_hilang/detail') ?>">Alat Hilang</a>
-                                    </li>
-                                    <li>
-                                        <a href="<?= base_url('calendar_frontend') ?>">Kalender</a>
-                                    </li>
-                                    <?php
-                                    // Cek apakah pengguna sudah login atau belum
-                                    $logged_in = false;
-                                    ?>
-                                    <li class="nav-item dropdown">
-                                        <?php if ($session->get('logged_in')) : ?>
-                                            <a class="nav-link dropdown" href="#" role="button" data-bs-toggle="dropdown">
-                                                <?= $session->get('nama'); ?>
-                                            </a>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a href="<?= base_url('dashboard'); ?>">Dashboard</a>
-                                                </li>
-                                                <li>
-                                                    <a href="<?= base_url('logout') ?>">Logout</a>
-                                                </li>
-                                            </ul>
-                                        <?php else : ?>
-                                            <a class="nav-link dropdown" href="#" role="button" data-bs-toggle="dropdown">
-                                                My account
-                                            </a>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a href="<?= base_url('login') ?>">Login</a>
-                                                </li>
-                                                <li>
-                                                    <a href="<?= base_url('register') ?>">Register</a>
-                                                </li>
-                                            </ul>
-                                        <?php endif; ?>
-                                    </li>
+                                    <?php if (uri_string() != 'otp') : ?>
+                                        <li>
+                                            <a href="<?= base_url('/') ?>">Blog</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?= base_url('user_blacklist_frontend') ?>">User Blacklist</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?= base_url('alat_hilang/detail') ?>">Alat Hilang</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?= base_url('calendar_frontend') ?>">Kalender</a>
+                                        </li>
+                                        <?php
+                                        // Cek apakah pengguna sudah login atau belum
+                                        $logged_in = false;
+                                        ?>
+                                        <li class="nav-item dropdown">
+                                            <?php if ($session->get('logged_in')) : ?>
+                                                <a class="nav-link dropdown" href="#" role="button" data-bs-toggle="dropdown">
+                                                    <?= $session->get('nama'); ?>
+                                                </a>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <a href="<?= base_url('dashboard'); ?>">Dashboard</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="<?= base_url('logout') ?>">Logout</a>
+                                                    </li>
+                                                </ul>
+                                            <?php else : ?>
+                                                <a class="nav-link dropdown" href="#" role="button" data-bs-toggle="dropdown">
+                                                    My account
+                                                </a>
+                                                <ul class="dropdown-menu">
+                                                    <li>
+                                                        <a href="<?= base_url('login') ?>">Login</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="<?= base_url('register') ?>">Register</a>
+                                                    </li>
+                                                </ul>
+                                            <?php endif; ?>
+                                        </li>
+                                    <?php endif; ?>
                                 </ul>
                             </nav>
                         </div>

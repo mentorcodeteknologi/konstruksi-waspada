@@ -32,6 +32,7 @@ class ArtikelController extends BaseController
     // ========================= //
     public function index()
     {
+        
         $data = [
             'title'        => 'Artikel',
             'subtitle'     => 'List Data Artikel',

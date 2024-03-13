@@ -48,11 +48,17 @@ class PerusahaanBlacklistModel extends Model
     {
         $builder = $this->db->table('perusahaan_blacklist');
         $builder->select('perusahaan_blacklist.*, users.perusahaan');
+        $builder->select("CEIL(DATEDIFF(perusahaan_blacklist.akhir_rental, perusahaan_blacklist.mulai_rental) / 30) AS durasi");
         $builder->join('users', 'users.id = perusahaan_blacklist.id_user');
         $builder->orderBy('perusahaan_blacklist.created_at', 'DESC');
         if ($valid != null) {
             $builder->where('perusahaan_blacklist.valid = 1');
         }
         return $builder->get()->getResultArray();
+    }
+
+    public function getDataBySlug($slug)
+    {
+        return $this->select('*')->where('slug', $slug)->get()->getRowArray();
     }
 }

@@ -45,7 +45,7 @@
             ?>
 
             <form action="<?= base_url('perusahaan_blacklist/create') ?>">
-                <button type="submit" class="btn btn-primary">+ Tambah Data User blacklist</button>
+                <button type="submit" class="btn btn-primary">+ Tambah Data Perusahaan blacklist</button>
             </form>
             <br><br><br>
 
@@ -56,11 +56,11 @@
                         <tr>
                             <th>No</th>
                             <th>Perusahaan Penyedia Sewa</th>
-                            <th>NIK Terlapor</th>
+                            <th>NPWP Terlapor</th>
                             <th>Nama Terlapor</th>
                             <th>Nama Penangung Jawab Terlapor</th>
                             <th>Jenis Pelanggaran</th>
-                            <th>merk</th>
+                            <th>Merk</th>
                             <th>Type Alat</th>
                             <th>No Seri</th>
                             <th>Durasi</th>
@@ -82,25 +82,25 @@
                                 <td><?= $value['npwp'] ?></td>
                                 <td><?= $value['nama'] ?></td>
                                 <td><?= $value['nama_penanggung_jawab'] ?></td>
-                                <td><?= $value['valid'] ?></td>
+                                <!-- <td><?= $value['valid'] ?></td> -->
                                 <td><?= $value['jenis_pelanggaran'] ?></td>
                                 <td><?= $value['merk'] ?></td>
                                 <td><?= $value['type_alat'] ?></td>
                                 <td><?= $value['no_seri'] ?></td>
                                 <td><?= $value['durasi'] . " Bulan" ?></td>
                                 <td><?= $value['keterangan'] ?></td>
-                                <td><?= $value['nominal_kerugian'] ?></td>
+                                <td>Rp. <?= number_format($value['nominal_kerugian'], 0, '', '.') ?></td>
                                 <td><?= $value['created_at'] ?></td>
                                 <td><?= $value['updated_at'] ?></td>
                                 <td>
-                                    <a href="<?= base_url('perusahaan_blacklist/update/' . $value['slug']) ?>" class="btn btn-info btn-sm">Edit</a>
-                                    <a href="<?= base_url('perusahaan_blacklist/detail/' . $value['slug']) ?>" class="btn btn-success btn-sm">Detail</a>
+                                    <a href="<?= base_url('perusahaan_blacklist/update/' . $value['slug']) ?>" class="btn btn-secondary btn-sm mb-2">Edit</a>
+                                    <a href="<?= base_url('perusahaan_blacklist/detail/' . $value['slug']) ?>" class="btn btn-info btn-sm mb-2">Detail</a>
                                     <form action="<?= base_url('perusahaan_blacklist/delete/' . $value['slug']); ?>" method="post">
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
+                                        <button type="submit" class="btn btn-primary btn-sm mb-2" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
                                     </form>
                                     <?php if ($session->get('role') == "admin" && $value['valid'] == null) { ?>
                                         <form action="<?= base_url('perusahaan_blacklist/validation/' . $value['slug']); ?>" method="post">
-                                            <button type="submit" class="btn btn-warning btn-sm" onclick="return confirm('Apakah Anda yakin ingin validasi data ini?')">Valid</button>
+                                            <button type="submit" class="btn btn-success btn-sm mb-2" onclick="return confirm('Apakah Anda yakin ingin validasi data ini?')">Valid</button>
                                         </form>
                                         <form action="<?= base_url('perusahaan_blacklist/tidakvalid/' . $value['slug']); ?>" method="post">
                                             <button type="submit" class="btn btn-warning btn-sm" onclick="return confirm('Apakah Anda yakin ingin tidak validasi data ini?')">Tidak Valid</button>

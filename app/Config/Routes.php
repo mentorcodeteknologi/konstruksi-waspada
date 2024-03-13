@@ -87,7 +87,7 @@ $routes->group('artikel', ['filter' => 'auth:users,admin'], function ($routes) {
     $routes->post('create', 'ArtikelController::createArtikel');
     $routes->get('update/(:any)', 'ArtikelController::update/$1');
     $routes->post('update/(:any)', 'ArtikelController::updateArtikel/$1');
-    $routes->post('delete/(:any)', 'ArtikelController::delete/$1');
+    $routes->get('delete/(:any)', 'ArtikelController::delete/$1');
 });
 $routes->get('updateLikes', 'ArtikelController::updateLikes');
 

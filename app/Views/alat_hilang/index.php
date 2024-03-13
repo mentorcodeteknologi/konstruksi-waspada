@@ -103,11 +103,11 @@
                                     ?>
                                 </td>
                                 <td>
-                                    <a href="<?= base_url('alat_hilang/update/' . $value['slug']) ?>" class="btn btn-info btn-sm mb-2">Edit</a>
-                                    <form action="<?= base_url('alat_hilang/delete/' . $value['slug']); ?>" method="post">
-                                        <button type="submit" class="btn btn-danger btn-sm mb-2" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
-                                    </form>
                                     <?php if ($session->get('role') == "admin") { ?>
+                                        <a href="<?= base_url('alat_hilang/update/' . $value['slug']) ?>" class="btn btn-info btn-sm mb-2">Edit</a>
+                                        <form action="<?= base_url('alat_hilang/delete/' . $value['slug']); ?>" method="post">
+                                            <button type="submit" class="btn btn-danger btn-sm mb-2" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
+                                        </form>
                                         <?php if ($value['valid'] == null) { ?>
                                             <form action="<?= base_url('alat_hilang/validation/' . $value['slug']); ?>" method="post">
                                                 <button type="submit" class="btn btn-success btn-sm mb-2" onclick="return confirm('Apakah Anda yakin ingin memvalidasi data ini?')">Validasi</button>
