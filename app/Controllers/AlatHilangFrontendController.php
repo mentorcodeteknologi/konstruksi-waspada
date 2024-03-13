@@ -89,7 +89,7 @@ class AlatHilangFrontendController extends BaseController
         $data = ['valid' => 1];
 
         $this->alatHilangModel->update($userData['id'], $data);
-        session()->setFlashdata('pesan', 'Data Berhasil Divalidasi');
+        session()->setFlashdata('success', 'Data Berhasil Divalidasi');
         return redirect()->to(base_url('alat_hilang/detail'));
     }
 }
