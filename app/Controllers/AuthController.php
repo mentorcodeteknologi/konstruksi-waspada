@@ -100,8 +100,8 @@ class AuthController extends BaseController
     public function otp()
     {
         $data = [
-            'title'               => 'OTP',
-            'footerRecentArtikel' => $this->getRecentArticles(5),
+            'title'                => 'OTP',
+            'footerRecentArtikel'  => $this->getRecentArticles(5),
             'footerPopularArtikel' => $this->getPopularArticles(5),
 
         ];
@@ -151,11 +151,41 @@ class AuthController extends BaseController
         }
 
         try {
-            $data = ['is_veryfied_email' => true];
-
+            $data = ['is_veryfied_email' => '1'];
             $this->usersModel->update($userData['id'], $data);
-            session()->setFlashdata('success', 'Email berhasil diverifikasi!, Silahkan login kembali');
-            return redirect()->to(base_url('login'));
+
+            $code     = rand(100000, 999999);
+            $datePlus = date("c", strtotime('now +5 minutes'));
+            $exp      = date("Y-m-d H:i:s", strtotime($datePlus));
+
+            $sessionData = [
+                'id'                => $userData['id'],
+                'nama'              => $userData['nama'],
+                'email'             => $userData['email'],
+                'role'              => $userData['role'],
+                'foto'              => $userData['foto'],
+                'encrypt'           => $userData['encrypt'],
+                'status'            => $userData['status'],
+                'is_veryfied_email' => $userData['is_veryfied_email'],
+                'logged_in'         => true
+            ];
+
+            // INSERT OTP TO DATABASE
+            $this->otpModel->insert([
+                'kode'       => $code,
+                'type'       => 'login',
+                'expired_at' => $exp,
+                'id_user'    => $userData['id'],
+                'created_at' => Time::now('Asia/Jakarta', 'en_US'),
+                'updated_at' => Time::now('Asia/Jakarta', 'en_US')
+            ]);
+
+            $helper = new Helpers();
+            $helper->sendDataToApi($userData['no_hp'], "Masukan OTP : $code", $this->url, 'api/send-message');
+            session()->set($sessionData);
+
+            session()->setFlashdata('success', 'Silahkan masukkan kode OTP yang dikirim ke Whatsapp yang didaftarkan!');
+            return redirect()->to(base_url('otp'));
         } catch (\Throwable $th) {
             session()->setFlashdata('pesan', $th->getMessage());
             return redirect()->to(base_url('login'));
