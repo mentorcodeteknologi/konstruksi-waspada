@@ -154,10 +154,6 @@ class AuthController extends BaseController
             $data = ['is_veryfied_email' => '1'];
             $this->usersModel->update($userData['id'], $data);
 
-            $code     = rand(100000, 999999);
-            $datePlus = date("c", strtotime('now +5 minutes'));
-            $exp      = date("Y-m-d H:i:s", strtotime($datePlus));
-
             $sessionData = [
                 'id'                => $userData['id'],
                 'nama'              => $userData['nama'],
@@ -169,6 +165,10 @@ class AuthController extends BaseController
                 'is_veryfied_email' => $userData['is_veryfied_email'],
                 'logged_in'         => true
             ];
+
+            $code     = rand(100000, 999999);
+            $datePlus = date("c", strtotime('now +5 minutes'));
+            $exp      = date("Y-m-d H:i:s", strtotime($datePlus));
 
             // INSERT OTP TO DATABASE
             $this->otpModel->insert([
