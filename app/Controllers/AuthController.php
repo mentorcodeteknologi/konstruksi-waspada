@@ -89,31 +89,8 @@ class AuthController extends BaseController
             'logged_in'         => true
         ];
 
-        // CHECK ROLE ADMIN REDIRECT TO DASHBOARD
-        if ($userDatas['role'] == "admin") {
-            session()->set($sessionData);
-            return redirect()->to(base_url('dashboard'));
-        }
-
-        $code     = rand(100000, 999999);
-        $datePlus = date("c", strtotime('now +5 minutes'));
-        $exp      = date("Y-m-d H:i:s", strtotime($datePlus));
-
-        // INSERT OTP TO DATABASE
-        $this->otpModel->insert([
-            'kode'       => $code,
-            'type'       => 'login',
-            'expired_at' => $exp,
-            'id_user'    => $userDatas['id'],
-            'created_at' => Time::now('Asia/Jakarta', 'en_US'),
-            'updated_at' => Time::now('Asia/Jakarta', 'en_US')
-        ]);
-
-        $helper = new Helpers();
-        $helper->sendDataToApi($userDatas['no_hp'], "Masukan OTP : $code", $this->url , 'api/send-message');
         session()->set($sessionData);
-        session()->setFlashdata('success', 'Silahkan masukkan kode OTP yang dikirim ke Whatsapp yang didaftarkan!');
-        return redirect()->to(base_url('otp'));
+        return redirect()->to(base_url('dashboard'));
     }
 
 
@@ -126,7 +103,7 @@ class AuthController extends BaseController
             'title'               => 'OTP',
             'footerRecentArtikel' => $this->getRecentArticles(5),
             'footerPopularArtikel' => $this->getPopularArticles(5),
-            
+
         ];
         return view('auth/otp', $data);
     }
