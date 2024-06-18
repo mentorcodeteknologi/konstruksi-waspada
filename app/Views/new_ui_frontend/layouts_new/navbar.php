@@ -9,7 +9,7 @@
                 <!-- ============================= -->
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">Home</span>
+                    <span class="hide-menu">BLog</span>
                 </li>
                 <!-- =================== -->
                 <!-- Dashboard -->
@@ -23,12 +23,12 @@
                     </a>
                     <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
-                            <a href="../horizontal/index.html" class="sidebar-link">
+                            <a href="<?= base_url("/"); ?>" class="sidebar-link">
                                 <i class="ti ti-aperture"></i>
-                                <span class="hide-menu">Modern</span>
+                                <span class="hide-menu">BLog</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
+                        <!-- <li class="sidebar-item">
                             <a href="../horizontal/index2.html" class="sidebar-link">
                                 <i class="ti ti-shopping-cart"></i>
                                 <span class="hide-menu">eCommerce</span>
@@ -57,7 +57,7 @@
                                 <i class="ti ti-playlist"></i>
                                 <span class="hide-menu">Music</span>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </li>
                 <!-- ============================= -->
@@ -70,7 +70,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
                         <span>
-                            <i class="ti ti-archive"></i>
+                            <i class="ti ti-user-x"></i>
                         </span>
                         <span class="hide-menu">User BLacklist</span>
                     </a>
