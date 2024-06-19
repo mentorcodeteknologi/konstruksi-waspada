@@ -31,7 +31,7 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 
 // HOME ROUTES
-$routes->get('/map', 'HomeController::map');
+// $routes->get('/map', 'HomeController::map');
 $routes->get('/', 'HomeController::index');
 $routes->get('/blog_details/(:any)', 'HomeController::blog_details/$1');
 $routes->post('/blog_details/(:any)', 'HomeController::blog_comment/$1', ['filter' => 'auth:users,admin']);
@@ -42,7 +42,7 @@ $routes->post('/login', 'AuthController::login'); //proses form login
 $routes->get('/register', 'AuthController::indexRegister');
 $routes->get('/verifyEmail/(:any)', 'AuthController::verifyEmail/$1');
 $routes->post('/register', 'AuthController::register'); //proses form register
-$routes->get('/logout', 'AuthController::logout');
+$routes->get('/logout', 'AuthController::logout', ['filter' => 'auth:users,admin']);
 
 // USER BLACKLIST FRONTEND ROUTES
 $routes->get('/user_blacklist_frontend', 'UserBlacklistFrontendController::index');
@@ -165,6 +165,33 @@ $routes->group('pembayaran', ['filter' => 'auth:users,admin'], function ($routes
     $routes->post('create', 'PembayaranController::createPembayaran');
     $routes->post('validasi/(:any)', 'PembayaranController::validasiPembayaran/$1');
     $routes->post('tidakvalid/(:any)', 'PembayaranController::tidakValid/$1');
+});
+
+
+// ROUTES BACKEND
+$routes->group('backend', ['filter' => 'auth:users,admin'], function ($routes) {
+    $routes->get('dashboard', 'DashboardController::index');
+
+    // ROUTES USERS
+    $routes->group('users', function ($routes) {
+        $routes->get('', 'UsersController::index');
+        $routes->get('create', 'UsersController::create');
+        $routes->post('create', 'UsersController::createUser');
+        $routes->get('update/(:any)', 'UsersController::update/$1');
+        $routes->post('update/(:any)', 'UsersController::updateUsers/$1');
+        $routes->get('edit-profile/(:any)', 'UsersController::edit/$1');
+        $routes->post('edit-profile/(:any)', 'UsersController::editProfile/$1');
+    });
+
+    // ROUTES CATEGORY
+    $routes->group('category', function ($routes) {
+        $routes->get('', 'CategoryController::index');
+        $routes->get('create', 'CategoryController::create');
+        $routes->post('create', 'CategoryController::createCategory');
+        $routes->get('update/(:any)', 'CategoryController::update/$1');
+        $routes->post('update/(:any)', 'CategoryController::updateCategory/$1');
+        $routes->get('delete/(:any)', 'CategoryController::delete/$1');
+    });
 });
 
 

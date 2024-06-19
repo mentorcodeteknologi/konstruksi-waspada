@@ -12,7 +12,7 @@ class DashboardController extends BaseController
             'title'    => 'Dashboard',
             'subtitle' => '404'
         ];
-        return view('dashboard/index', $data);
+        return view('backend/dashboard/index', $data);
     }
 
     public function pageNotFound()

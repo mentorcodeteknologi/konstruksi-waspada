@@ -193,17 +193,17 @@ $(function () {
     }
 
     $("#addContactModal").on("hidden.bs.modal", function (e) {
-        var $_name = document.getElementById("c-name");
-        var $_email = document.getElementById("c-email");
-        var $_occupation = document.getElementById("c-occupation");
-        var $_phone = document.getElementById("c-phone");
-        var $_location = document.getElementById("c-location");
+        var $_name = document.getElementById("nama");
+        var $_email = document.getElementById("email");
+        // var $_occupation = document.getElementById("c-occupation");
+        var $_phone = document.getElementById("no_hp");
+        var $_location = document.getElementById("alamat");
         var $_getValidationField =
             document.getElementsByClassName("validation-text");
 
         var $_setNameValueEmpty = ($_name.value = "");
         var $_setEmailValueEmpty = ($_email.value = "");
-        var $_setOccupationValueEmpty = ($_occupation.value = "");
+        // var $_setOccupationValueEmpty = ($_occupation.value = "");
         var $_setPhoneValueEmpty = ($_phone.value = "");
         var $_setLocationValueEmpty = ($_location.value = "");
 
@@ -223,32 +223,33 @@ $(function () {
             var getModal = $("#addContactModal");
 
             // Get List Item Fields
-            var $_name = getParentItem.find(".user-name");
-            var $_email = getParentItem.find(".usr-email-addr");
-            var $_occupation = getParentItem.find(".user-work");
-            var $_phone = getParentItem.find(".usr-ph-no");
-            var $_location = getParentItem.find(".usr-location");
+            var $_name = getParentItem.find(".i-nama");
+            var $_email = getParentItem.find(".i-email");
+            // var $_occupation = getParentItem.find(".user-work");
+            var $_phone = getParentItem.find(".i-no_hp");
+            var $_location = getParentItem.find(".i-alamat");
 
             // Get Attributes
-            var $_nameAttrValue = $_name.attr("data-name");
+            var $_nameAttrValue = $_name.attr("data-nama");
             var $_emailAttrValue = $_email.attr("data-email");
-            var $_occupationAttrValue = $_occupation.attr("data-occupation");
-            var $_phoneAttrValue = $_phone.attr("data-phone");
-            var $_locationAttrValue = $_location.attr("data-location");
+            // var $_occupationAttrValue = $_occupation.attr("data-occupation");
+            var $_phoneAttrValue = $_phone.attr("data-no_hp");
+            var $_locationAttrValue = $_location.attr("data-alamat");
+            console.log($_locationAttrValue);
 
             // Get Modal Attributes
-            var $_getModalNameInput = getModal.find("#c-name");
-            var $_getModalEmailInput = getModal.find("#c-email");
-            var $_getModalOccupationInput = getModal.find("#c-occupation");
-            var $_getModalPhoneInput = getModal.find("#c-phone");
-            var $_getModalLocationInput = getModal.find("#c-location");
+            var $_getModalNameInput = getModal.find("#nama");
+            var $_getModalEmailInput = getModal.find("#email");
+            // var $_getModalOccupationInput = getModal.find("#c-occupation");
+            var $_getModalPhoneInput = getModal.find("#no_hp");
+            var $_getModalLocationInput = getModal.find("#alamat");
 
             // Set Modal Field's Value
             var $_setModalNameValue = $_getModalNameInput.val($_nameAttrValue);
             var $_setModalEmailValue = $_getModalEmailInput.val($_emailAttrValue);
-            var $_setModalOccupationValue = $_getModalOccupationInput.val(
-                $_occupationAttrValue
-            );
+            // var $_setModalOccupationValue = $_getModalOccupationInput.val(
+            //     $_occupationAttrValue
+            // );
             var $_setModalPhoneValue = $_getModalPhoneInput.val($_phoneAttrValue);
             var $_setModalLocationValue =
                 $_getModalLocationInput.val($_locationAttrValue);
@@ -258,35 +259,35 @@ $(function () {
             $("#btn-edit").click(function () {
                 var getParent = $(this).parents(".modal-content");
 
-                var $_getInputName = getParent.find("#c-name");
-                var $_getInputNmail = getParent.find("#c-email");
-                var $_getInputNccupation = getParent.find("#c-occupation");
-                var $_getInputNhone = getParent.find("#c-phone");
-                var $_getInputNocation = getParent.find("#c-location");
+                var $_getInputName = getParent.find("#nama");
+                var $_getInputNmail = getParent.find("#email");
+                var $_getInputNccupation = getParent.find("#alamat");
+                var $_getInputNhone = getParent.find("#no_hp");
+                // var $_getInputNocation = getParent.find("#c-location");
 
                 var $_nameValue = $_getInputName.val();
                 var $_emailValue = $_getInputNmail.val();
                 var $_occupationValue = $_getInputNccupation.val();
                 var $_phoneValue = $_getInputNhone.val();
-                var $_locationValue = $_getInputNocation.val();
+                // var $_locationValue = $_getInputNocation.val();
 
                 var setUpdatedNameValue = $_name.text($_nameValue);
                 var setUpdatedEmailValue = $_email.text($_emailValue);
                 var setUpdatedOccupationValue = $_occupation.text($_occupationValue);
                 var setUpdatedPhoneValue = $_phone.text($_phoneValue);
-                var setUpdatedLocationValue = $_location.text($_locationValue);
+                // var setUpdatedLocationValue = $_location.text($_locationValue);
 
-                var setUpdatedAttrNameValue = $_name.attr("data-name", $_nameValue);
+                var setUpdatedAttrNameValue = $_name.attr("data-nama", $_nameValue);
                 var setUpdatedAttrEmailValue = $_email.attr("data-email", $_emailValue);
                 var setUpdatedAttrOccupationValue = $_occupation.attr(
-                    "data-occupation",
+                    "data-alamat",
                     $_occupationValue
                 );
-                var setUpdatedAttrPhoneValue = $_phone.attr("data-phone", $_phoneValue);
-                var setUpdatedAttrLocationValue = $_location.attr(
-                    "data-location",
-                    $_locationValue
-                );
+                var setUpdatedAttrPhoneValue = $_phone.attr("data-no_hp", $_phoneValue);
+                // var setUpdatedAttrLocationValue = $_location.attr(
+                //     "data-alamat",
+                //     $_locationValue
+                // );
                 $("#addContactModal").modal("hide");
             });
         });
@@ -310,7 +311,7 @@ var $_getValidationField = document.getElementsByClassName("validation-text");
 var reg = /^.+@[^\.].*\.[a-z]{2,}$/;
 var phoneReg = /^\d{10}$/;
 
-getNameInput = document.getElementById("c-name");
+getNameInput = document.getElementById("nama");
 
 getNameInput.addEventListener("input", function () {
     getNameInputValue = this.value;
@@ -323,7 +324,7 @@ getNameInput.addEventListener("input", function () {
     }
 });
 
-getEmailInput = document.getElementById("c-email");
+getEmailInput = document.getElementById("email");
 
 getEmailInput.addEventListener("input", function () {
     getEmailInputValue = this.value;
@@ -339,7 +340,7 @@ getEmailInput.addEventListener("input", function () {
     }
 });
 
-getPhoneInput = document.getElementById("c-phone");
+getPhoneInput = document.getElementById("no_hp");
 
 getPhoneInput.addEventListener("input", function () {
     getPhoneInputValue = this.value;

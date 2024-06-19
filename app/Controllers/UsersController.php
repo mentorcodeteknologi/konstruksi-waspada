@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\I18n\Time;
 use App\Controllers\BaseController;
+use App\Helpers\ComponentHelpers;
 use App\Models\UsersModel;
 use App\Helpers\Helpers;
 
@@ -13,6 +14,7 @@ class UsersController extends BaseController
 
     // DEKLARASI MODEL
     protected $usersModel;
+    protected $componentHelpers;
 
 
     // ========================= //
@@ -21,6 +23,7 @@ class UsersController extends BaseController
     public function __construct()
     {
         $this->usersModel = new UsersModel();
+        $this->componentHelpers = new ComponentHelpers();
     }
 
 
@@ -29,12 +32,31 @@ class UsersController extends BaseController
     // ========================= //
     public function index()
     {
+
+        // $data = [
+        //     'title'     => 'Users',
+        //     'subtitle'  => 'List Data Users',
+        //     'list_user' => $this->usersModel->findAll()
+        // ];
+        // return view('backend/users/index', $data);
+
+        $list_user = $this->usersModel->findAll();
+        $headers = [
+            'id_card' => 'NIK/NPWP',
+            'nama' => 'Nama',
+            'email' => 'Email',
+            'alamat' => 'Alamat',
+            'no_hp' => 'No. Hp',
+        ];
+        $table = $this->componentHelpers->generate_table($headers, $list_user, 'users','encrypt');
+
         $data = [
             'title'     => 'Users',
             'subtitle'  => 'List Data Users',
-            'list_user' => $this->usersModel->findAll()
+            'table'     => $table
         ];
-        return view('users/index', $data);
+
+        return view('backend/users/index', $data);
     }
 
 
@@ -45,9 +67,9 @@ class UsersController extends BaseController
     {
         $data = [
             'title'    => 'Users',
-            'subtitle' => 'Tambah Data Users'
+            'subtitle' => 'Tambah Data User'
         ];
-        return view('users/create', $data);
+        return view('backend/users/create', $data);
     }
 
 
@@ -115,13 +137,13 @@ class UsersController extends BaseController
             ];
 
             $this->usersModel->insert($data);
-            $this->customHelpers->sendMail($data['email'], $encrypt);
+            // $this->customHelpers->sendMail($data['email'], $encrypt);
             session()->setFlashdata('pesan', 'Data Berhasil Disimpan');
-            return redirect()->to(base_url('users'));
+            return redirect()->to(base_url('backend/users'));
         } catch (\Throwable $th) {
             //throw $th;
             session()->setFlashdata('pesan', $th->getMessage());
-            return redirect()->to(base_url('users'));
+            return redirect()->to(base_url('backend/users'));
         }
     }
 
@@ -136,7 +158,7 @@ class UsersController extends BaseController
             'subtitle'    => 'Edit Data Users',
             'detail_user' => $this->usersModel->getDataByEncrypt($encrypt)
         ];
-        return view('users/update', $data);
+        return view('backend/users/update', $data);
     }
 
 
@@ -177,14 +199,14 @@ class UsersController extends BaseController
             // VALIDASI EMAIL DAN NO WA SUDAH TERDAFTAR ATAU BELUM
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 session()->setFlashdata('failed', 'Email tidak valid');
-                return redirect()->to(base_url('users'));
+                return redirect()->to(base_url('backend/users'));
             }
 
             // VALIDASI EMAIL SUDAH TERDAFTAR ATAU BELUM
             $check = $this->usersModel->checkEmailExist($email);
             if ($check) {
                 session()->setFlashdata('failed', "Email sudah terdaftar pada akun lain");
-                return redirect()->to(base_url('users'));
+                return redirect()->to(base_url('backend/users'));
             }
         }
 
@@ -194,7 +216,7 @@ class UsersController extends BaseController
             $check = $this->usersModel->checkNoHpExist($noHp);
             if ($check) {
                 session()->setFlashdata('failed', "No Hp sudah terdaftar pada akun lain");
-                return redirect()->to(base_url('users'));
+                return redirect()->to(base_url('backend/users'));
             }
         }
 
@@ -219,7 +241,7 @@ class UsersController extends BaseController
 
         $this->usersModel->update($userData['id'], $data);
         session()->setFlashdata('pesan', 'Data Berhasil Diubah');
-        return redirect()->to('users');
+        return redirect()->to('backend/users');
     }
 
 
@@ -233,7 +255,7 @@ class UsersController extends BaseController
             'subtitle'    => 'Edit Profile Users',
             'detail_user' => $this->usersModel->getDataByEncrypt($encrypt)
         ];
-        return view('users/edit_profile', $data);
+        return view('backend/users/edit_profile', $data);
     }
 
 
@@ -274,14 +296,14 @@ class UsersController extends BaseController
             // VALIDASI EMAIL DAN NO WA SUDAH TERDAFTAR ATAU BELUM
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 session()->setFlashdata('failed', 'Email tidak valid');
-                return redirect()->to(base_url('users'));
+                return redirect()->to(base_url('backend/users'));
             }
 
             // VALIDASI EMAIL SUDAH TERDAFTAR ATAU BELUM
             $check = $this->usersModel->checkEmailExist($email);
             if ($check) {
                 session()->setFlashdata('failed', "Email sudah terdaftar pada akun lain");
-                return redirect()->to(base_url('users'));
+                return redirect()->to(base_url('backend/users'));
             }
         }
 
@@ -291,7 +313,7 @@ class UsersController extends BaseController
             $check = $this->usersModel->checkNoHpExist($noHp);
             if ($check) {
                 session()->setFlashdata('failed', "No Hp sudah terdaftar pada akun lain");
-                return redirect()->to(base_url('users'));
+                return redirect()->to(base_url('backend/users'));
             }
         }
 
@@ -314,6 +336,6 @@ class UsersController extends BaseController
 
         $this->usersModel->update($userData['id'], $data);
         session()->setFlashdata('pesan', 'Data Berhasil Diubah');
-        return redirect()->to('users');
+        return redirect()->to('backend/users');
     }
 }
