@@ -48,7 +48,7 @@ class HomeController extends BaseController
             'footerPopularArtikel' => $this->getPopularArticles(5),
             'footerRecentArtikel' => $this->getRecentArticles(5),
         ];
-        return view('home/blog_details', $data);
+        return view('new_ui_frontend/blog_new/blog_details', $data);
     }
 
     //Blog Details
