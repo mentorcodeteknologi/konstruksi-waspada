@@ -192,6 +192,17 @@ $routes->group('backend', ['filter' => 'auth:users,admin'], function ($routes) {
         $routes->post('update/(:any)', 'CategoryController::updateCategory/$1');
         $routes->get('delete/(:any)', 'CategoryController::delete/$1');
     });
+    // ROUTES ALAT HILANG
+    $routes->group('alat_hilang', ['filter' => 'auth:users,admin'], function ($routes) {
+        $routes->get('', 'AlatHilangController::index');
+        $routes->get('create', 'AlatHilangController::create');
+        $routes->post('create', 'AlatHilangController::createAlatHilang');
+        $routes->get('update/(:any)', 'AlatHilangController::update/$1');
+        $routes->post('update/(:any)', 'AlatHilangController::updateAlatHilang/$1');
+        $routes->post('delete/(:any)', 'AlatHilangController::delete/$1');
+        $routes->post('validation/(:any)', 'AlatHilangController::validation/$1');
+        $routes->post('notvalid/(:any)', 'AlatHilangController::notValid/$1');
+    });
 });
 
 

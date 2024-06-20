@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 
 use App\Controllers\BaseController;
+use App\Helpers\ComponentHelpers;
 use CodeIgniter\I18n\Time;
 use App\Models\AlatHilangModel;
 use App\Helpers\Helpers;
@@ -14,7 +15,7 @@ class AlatHilangController extends BaseController
 
     // DEKLARASI MODEL
     protected $alatHilangModel;
-
+    protected $componentHelpers;
 
     // ========================= //
     // FUNCTION CONSTRUCTOR
@@ -22,6 +23,7 @@ class AlatHilangController extends BaseController
     public function __construct()
     {
         $this->alatHilangModel = new AlatHilangModel();
+        $this->componentHelpers = new ComponentHelpers();
     }
 
 
@@ -36,7 +38,7 @@ class AlatHilangController extends BaseController
             'subtitle'         => 'List Data Alat Hilang',
             'list_alat_hilang' => $this->alatHilangModel->findAllDatas(null, session()->get('role') == "admin" ? null : session()->get('id') )
         ];
-        return view('alat_hilang/index', $data);
+        return view('backend/alat-hilang/index', $data);
     }
 
 
@@ -49,7 +51,7 @@ class AlatHilangController extends BaseController
             'title'    => 'Alat Hilang',
             'subtitle' => 'Tambah Data Alat Hilang'
         ];
-        return view('alat_hilang/create', $data);
+        return view('backend/alat-hilang/create', $data);
     }
 
 
@@ -95,7 +97,7 @@ class AlatHilangController extends BaseController
 
         $this->alatHilangModel->insert($data);
         session()->setFlashdata('pesan', 'Data Berhasil Disimpan');
-        return redirect()->to(base_url('alat_hilang'));
+        return redirect()->to(base_url('backend/alat_hilang'));
     }
 
 
@@ -109,7 +111,7 @@ class AlatHilangController extends BaseController
             'subtitle'           => 'Edit Data Alat Hilang',
             'detail_alat_hilang' => $this->alatHilangModel->getDataBySlug($slug)
         ];
-        return view('alat_hilang/update', $data);
+        return view('backend/alat-hilang/update', $data);
     }
 
 
@@ -158,7 +160,7 @@ class AlatHilangController extends BaseController
 
         $this->alatHilangModel->update($userData['id'], $data);
         session()->setFlashdata('pesan', 'Data Berhasil Diubah');
-        return redirect()->to(base_url('alat_hilang'));
+        return redirect()->to(base_url('backend/alat_hilang'));
     }
 
 
@@ -173,7 +175,7 @@ class AlatHilangController extends BaseController
 
         $this->alatHilangModel->delete($userData['id']);
         session()->setFlashdata('pesan', 'Data Berhasil Dihapus');
-        return redirect()->to(base_url('alat_hilang'));
+        return redirect()->to(base_url('backend/alat_hilang'));
     }
 
     // ========================= //
@@ -186,7 +188,7 @@ class AlatHilangController extends BaseController
 
         $this->alatHilangModel->update($userData['id'], $data);
         session()->setFlashdata('pesan', 'Data Berhasil Divalidasi');
-        return redirect()->to(base_url('alat_hilang'));
+        return redirect()->to(base_url('backend/alat_hilang'));
     }
 
 
@@ -202,6 +204,6 @@ class AlatHilangController extends BaseController
 
         $this->alatHilangModel->update($userData['id'], $data);
         session()->setFlashdata('pesan', 'Data Berhasil Divalidasi');
-        return redirect()->to(base_url('alat_hilang'));
+        return redirect()->to(base_url('backend/alat_hilang'));
     }
 }

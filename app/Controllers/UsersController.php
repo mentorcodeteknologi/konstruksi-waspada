@@ -48,7 +48,7 @@ class UsersController extends BaseController
             'alamat' => 'Alamat',
             'no_hp' => 'No. Hp',
         ];
-        $table = $this->componentHelpers->generate_table($headers, $list_user, 'users','encrypt');
+        $table = $this->componentHelpers->generate_table($headers, $list_user, 'users', 'encrypt');
 
         $data = [
             'title'     => 'Users',
@@ -117,7 +117,7 @@ class UsersController extends BaseController
                 session()->setFlashdata('failed', $pesan);
                 return redirect()->to(base_url('users'));
             }
-
+            
             $data = [
                 'nama'                => $this->request->getVar('nama'),
                 'id_card'             => $this->request->getVar('id_card'),
@@ -193,6 +193,7 @@ class UsersController extends BaseController
         $noHp     = $this->request->getVar('no_hp');
         $oldEmail = $userData['email'];
         $oldNoHp  = $userData['no_hp'];
+        $status   = $this->request->getVar('status');
 
         // APAKAH ADA PERUBAHAN EMAIL
         if ($email != $oldEmail) {
@@ -219,25 +220,28 @@ class UsersController extends BaseController
                 return redirect()->to(base_url('backend/users'));
             }
         }
-
-
+        
+        $password = $this->request->getVar('password');
         // Cek apakah password diubah
-        $password = ($this->request->getVar('password') == $userData['password']) ? $userData['password'] : password_hash($this->request->getVar('password'), PASSWORD_DEFAULT);
+        if ($password != null || $password != '') {
+            $password = ($password == $userData['password']) ? $userData['password'] : password_hash($password, PASSWORD_DEFAULT);
+        }
 
         $data = [
             'nama'       => $this->request->getVar('nama'),
             'id_card'    => $this->request->getVar('id_card'),
             'no_hp'      => $noHp,
             'email'      => $email,
-            'password'   => $password,
             'alamat'     => $this->request->getVar('alamat'),
             'role'       => $this->request->getVar('role'),
             'perusahaan' => $this->request->getVar('perusahaan'),
             'jabatan'    => $this->request->getVar('jabatan'),
             'foto'       => $foto,
-            'status'     => $this->request->getVar('status'),
+            'status'     => $status == "1" ? 'active' : 'nonactive',
             'updated_at' => Time::now('Asia/Jakarta', 'en_US')
         ];
+
+        if ($password != null || $password != '') $data['password'] = $password;
 
         $this->usersModel->update($userData['id'], $data);
         session()->setFlashdata('pesan', 'Data Berhasil Diubah');
