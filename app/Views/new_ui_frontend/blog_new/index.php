@@ -243,37 +243,7 @@
                                         </div>
                                     </div> -->
                                 </div>
-                                <div class="d-flex align-items-center mt-3 p-3 bg-hover-light-black rounded border-bottom">
-                                    <div class="position-relative d-flex align-items-center">
-                                        <!-- <a href="javascript:void(0)" class="stretched-link "></a> -->
-                                        <img src="<?= base_url('assets/backend/images/artikel/' . $ra['gambar']) ?>" width="45" class="rounded" alt="album" />
-                                        <div class="ms-3">
-                                            <h6 class="mb-0 fw-semibold"><?= date('d-m-Y', strtotime($a['created_at'])); ?></h6>
-                                            <span class="fs-2"><?= $ra['likes']; ?> Likes</span>
-                                        </div>
-                                    </div>
-                                    <!-- <div class="ms-auto">
-                                        <div class="dropdown">
-                                            <a class="" href="javascript:void(0)" id="m1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="ti ti-dots-vertical fs-4"></i>
-                                            </a>
-                                            <ul class="dropdown-menu" aria-labelledby="m1">
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        <i class="ti ti-share text-muted me-1 fs-4"></i>Share </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        <i class="ti ti-download text-muted me-1 fs-4"></i>Download </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        <i class="ti ti-info-circle text-muted me-1 fs-4"></i>Get Song Info </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div> -->
-                                </div>
+
                             <?php endforeach ?>
                             <!-- <div class="d-flex align-items-center bg-hover-light-black rounded p-3 border-bottom">
                                 <div class="position-relative d-flex align-items-center">
@@ -599,6 +569,7 @@
             </div>
         </div>
         <!-- Recent & popular Blog -->
+
         <!-- <div class="col-md-6 col-lg-4">
             <div class="card rounded-2 overflow-hidden hover-img">
                 <div class="position-relative">

@@ -31,7 +31,7 @@ class UserBlacklistFrontendController extends BaseController
             'footerPopularArtikel' => $this->getPopularArticles(5),
             'footerRecentArtikel' => $this->getRecentArticles(5),
         ];
-        return view('user_blacklist_frontend/index', $data);
+        return view('new_ui_frontend/user_blacklist_frontend_new/index', $data);
     }
 
     // FUNCTION CREATE USER PERUSAHAAN BLACKLIST
