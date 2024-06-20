@@ -60,12 +60,35 @@
                 <input type="text" name="jabatan" required placeholder="Jabatan....." class="form-control" id="exampleInputPassword1">
               </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-6">
+              <div class="mb-4">
+                <div class="form-group">
+                  <label>Role</label>
+                  <Select name="role" id="role" class="form-control" required>
+                    <option value=''>Pilih Role</option>
+                    <option value='admin'>Admin</option>
+                    <option value='users'>Users</option>
+                  </Select>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
               <div class="mb-4">
                 <label for="exampleInputPassword1" class="form-label">Foto</label>
                 <input class="form-control" required name="foto" type="file" id="formFile">
               </div>
             </div>
+            <div class="col-md-6">
+              <div class="mb-4">
+                <div class="form-check">
+                  <input class="form-check-input primary" type="checkbox" value="1" name="status" id="status" checked>
+                  <label class="form-check-label text-dark" for="status">
+                    Active?
+                  </label>
+                </div>
+              </div>
+            </div>
+
           </div>
           <button class="btn btn-info rounded-pill px-4 mt-3" type="submit">
             Submit

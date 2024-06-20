@@ -66,7 +66,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="#" aria-expanded="false">
+                    <a class="sidebar-link" href="<?= base_url('backend/alat_hilang') ?>" aria-expanded="false">
                         <span>
                             <i class="ti ti-crane-off"></i>
                         </span>
