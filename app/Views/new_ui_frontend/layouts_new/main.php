@@ -62,6 +62,53 @@
     <!-- Import Js Files -->
 
     <?= $this->include("new_ui_frontend/layouts_new/scripts"); ?>
+
+    <script>
+        function openSearch() {
+            document.getElementById("search-overlay").style.display = "block";
+        }
+
+        function closeSearch() {
+            document.getElementById("search-overlay").style.display = "none";
+        }
+    </script>
+
+    <script>
+        // Mendapatkan elemen input nomor WhatsApp
+        var inputNoHP = document.getElementById("no_hp");
+
+        // Menambahkan event listener untuk event "input"
+        inputNoHP.addEventListener("input", function() {
+            // Mendapatkan nilai yang dimasukkan oleh pengguna
+            var inputValue = this.value;
+
+            // Menghapus karakter selain angka
+            inputValue = inputValue.replace(/\D/g, '');
+
+            // Memastikan bahwa karakter pertama adalah "62"
+            if (!inputValue.startsWith("62")) {
+                inputValue = "62" + inputValue;
+            }
+
+            // Mengatur nilai input dengan karakter "62" dan nomor HP yang dimasukkan oleh pengguna
+            this.value = inputValue.substring(0, 2) + inputValue.substring(2);
+        });
+
+        // Menangani kasus ketika semua input dihapus
+        inputNoHP.addEventListener("keydown", function(event) {
+            if (event.key === "Backspace" && inputNoHP.value.length === 3) {
+                event.preventDefault();
+            }
+        });
+    </script>
+
+    <script>
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                $(this).remove();
+            });
+        }, 6000);
+    </script>
 </body>
 
 </html>

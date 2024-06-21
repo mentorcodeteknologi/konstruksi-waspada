@@ -1,5 +1,9 @@
 <?= $this->extend('new_ui_frontend/layouts_new/main'); ?>
 <?= $this->section('content'); ?>
+<?php
+// SESSION UNTUK MENGAMBIL DATA SESSION
+$session = session();
+?>
 
 <div class="container-fluid">
     <div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
@@ -24,13 +28,23 @@
             </div>
         </div>
     </div>
+    <?php
+
+    // NOTIFIKASI BERHASIL SIMPAN DATA
+    if (session()->getFlashdata('pesan')) {
+        echo '<div class="alert alert-success alert-dismissible">
+                    ' . session()->getFlashdata('pesan') . '</div>';
+    }
+    ?>
 
     <div class="col-md-12">
         <!-- ---------------------start Tab with dropdown ---------------- -->
         <div class="card">
             <div class="card-body">
                 <div class="mb-3">
-                    <!-- <h5 class="mb-0">Tab with dropdown</h5> -->
+                    <?php if (!$session->get('logged_in')) : ?>
+                        <h6 class="mb-0">Sebelum anda mengisi form di bawah, silakan login jika anda sudah punya akun. Jika Anda belum memiliki akun, silakan registrasi terlebih dahulu.</h6>
+                    <?php endif; ?>
                 </div>
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
@@ -38,16 +52,18 @@
                             <span>List user blacklist</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="addUser-tab" data-bs-toggle="tab" href="#addUser" role="tab" aria-controls="addUser">
-                            <span>Add user blacklist</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="addPerusahaan-tab" data-bs-toggle="tab" href="#addPerusahaan" role="tab" aria-controls="addPerusahaan">
-                            <span>Add perusahaan blacklist</span>
-                        </a>
-                    </li>
+                    <?php if ($session->get('logged_in')) : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" id="addUser-tab" data-bs-toggle="tab" href="#addUser" role="tab" aria-controls="addUser">
+                                <span>Add user blacklist</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="addPerusahaan-tab" data-bs-toggle="tab" href="#addPerusahaan" role="tab" aria-controls="addPerusahaan">
+                                <span>Add perusahaan blacklist</span>
+                            </a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
                 <div class="tab-content tabcontent-border p-3" id="myTabContent">
                     <div role="tabpanel" class="tab-pane fade show active" id="user" aria-labelledby="user-tab">
@@ -57,47 +73,84 @@
                                     <div class="card hover-img">
                                         <div class="card-body p-4 text-center border-bottom">
                                             <img src="<?= base_url('assets/new_frontend') ?>/images/profile/user-1.jpg" alt="" class="rounded-circle mb-3" width="80" height="80">
-                                            <h5 class="fw-semibold mb-0 fs-5"><?= $value['nama'] ?></h5>
+                                            <h5 class="fw-semibold mb-0 fs-5">Nama Terlapor : <?= $value['nama'] ?></h5>
                                             <span class="text-dark fs-2">NIK terlapor : <?= $value['nik'] ?></span>
                                         </div>
                                         <ul class="px-2 py-2 list-unstyled d-flex align-items-center justify-content-center mb-0">
-                                            <button class="btn bg-primary-subtle text-primary mb-3 w-50" data-bs-toggle="modal" data-bs-target="#bs-example-modal-md<?= $value['slug'] ?>">Detail</button>
+                                            <button class="btn bg-primary-subtle text-primary mb-3 w-50" data-bs-toggle="modal" data-bs-target="#with-grid-modal<?= $value['slug'] ?>">Detail</button>
                                         </ul>
                                     </div>
                                 </div>
-                                <!-- sample modal content -->
-                                <div id="bs-example-modal-md<?= $value['slug'] ?>" class="modal fade" tabindex="-1" aria-labelledby="bs-example-modal-md" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                                <div class="modal fade" id="with-grid-modal<?= $value['slug'] ?>" tabindex="-1" aria-labelledby="scroll-long-inner-modal" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-scrollable">
                                         <div class="modal-content">
                                             <div class="modal-header d-flex align-items-center">
-                                                <h4 class="modal-title" id="myModalLabel">
-                                                    Detail User Blacklist
+                                                <h4 class="modal-title" id="myLargeModalLabel">
+                                                    Detail
                                                 </h4>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <h4>
-                                                    Nama Terlapor : <?= $value['nama'] ?>
-                                                </h4>
-                                                <li>Nama Perusahaan Penyedia Sewa : <?= $value['perusahaan'] ?></li>
-                                                <li>NIK Terlapor : <?= $value['nik'] ?></li>
-                                                <li>Jenis Pelanggaran : <?= $value['jenis_pelanggaran'] ?></li>
-                                                <li>Merk dan Tipe Alat : <?= $value['merk'] ?> - <?= $value['type_alat'] ?></li>
-                                                <li>No Seri : <?= $value['no_seri'] ?></li>
-                                                <li>Durasi Rental : <?= $value['durasi'] . " Bulan" ?></li>
-                                                <li>Keterangan : <?= $value['keterangan'] ?></li>
-                                                <li>Nominal Kerugian : Rp. <?= number_format($value['nominal_kerugian'])  ?></li>
+                                                <div class="container-fluid">
+                                                    <div class="card-body p-4 text-center">
+                                                        <img src="<?= base_url('assets/new_frontend') ?>/images/profile/user-1.jpg" alt="" class="rounded-circle mb-3" width="80" height="80">
+                                                        <div class="row m-3 text-start">
+                                                            <div class="col">
+                                                                Nama Terlapor : <?= $value['nama'] ?>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row m-3 text-start">
+                                                            <div class="col">
+                                                                NIK terlapor : <?= $value['nik'] ?>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row m-3 text-start">
+                                                            <div class="col">
+                                                                Nama Perusahaan Penyedia Sewa : <?= $value['perusahaan'] ?>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row m-3 text-start">
+                                                            <div class="col">
+                                                                Jenis Pelanggaran : <?= $value['jenis_pelanggaran'] ?>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row m-3 text-start">
+                                                            <div class="col">
+                                                                Merk dan Tipe Alat : <?= $value['merk'] ?> - <?= $value['type_alat'] ?>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row m-3 text-start">
+                                                            <div class="col">
+                                                                No Seri : <?= $value['no_seri'] ?>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row m-3 text-start">
+                                                            <div class="col">
+                                                                Durasi Rental : <?= $value['durasi'] . " Bulan" ?>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row m-3 text-start">
+                                                            <div class="col">
+                                                                Keterangan : <?= $value['keterangan'] ?>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row m-3 text-start">
+                                                            <div class="col">
+                                                                Nominal Kerugian : Rp. <?= number_format($value['nominal_kerugian'])  ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn bg-danger-subtle text-danger font-medium waves-effect" data-bs-dismiss="modal">
+                                                <button type="button" class="btn bg-danger-subtle text-danger font-medium waves-effect text-start" data-bs-dismiss="modal">
                                                     Close
                                                 </button>
                                             </div>
                                         </div>
-                                        <!-- /.modal-content -->
                                     </div>
-                                    <!-- /.modal-dialog -->
                                 </div>
+                                <!-- sample modal content -->
                             <?php endforeach ?>
                         </div>
                     </div>
@@ -105,138 +158,19 @@
                         <div class="row">
                             <div class="col-12">
                                 <!-- --------------------- start Grid With Row Label ---------------- -->
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="mb-3">
-                                            <h5 class="mb-0">User Blacklist Form</h5>
-                                        </div>
-                                        <form action="<?= base_url('createUserPeroranganBlacklist') ?>" method="post" enctype="multipart/form-data">
-                                            <?= csrf_field(); ?>
-                                            <div class="form-body">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label for="nik">NIK Terlapor</label>
-                                                        <div class="mb-3">
-                                                            <input type="text" class="form-control" name="nik" id="nik" placeholder="NIK Terlapor" required />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="nama">Nama Terlapor</label>
-                                                        <div class="mb-3">
-                                                            <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama Terlapor" required />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="no_hp">No HP Terlapor</label>
-                                                        <div class="mb-3">
-                                                            <input type="text" class="form-control" name="no_hp" id="no_hp" value="62" placeholder="No HP Terlapor" required />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="foto_ktp">Upload KTP Terlapor</label>
-                                                        <div class="mb-3">
-                                                            <input type="file" class="form-control" name="foto_ktp" id="foto_ktp" placeholder="Upload KTP Terlapor" required />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="merk">Merk</label>
-                                                        <div class="mb-3">
-                                                            <input type="text" class="form-control" name="merk" id="merk" placeholder="Merk" required />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="type_alat">Type Alat</label>
-                                                        <div class="mb-3">
-                                                            <input type="text" class="form-control" name="type_alat" id="type_alat" placeholder="Tipe Alat" required />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="no_seri">No Seri</label>
-                                                        <div class="mb-3">
-                                                            <input type="text" class="form-control" name="no_seri" id="no_seri" placeholder="No Seri" required />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="surat_perjanjian">Upload Bukti Surat Perjanjian</label>
-                                                        <div class="mb-3">
-                                                            <input type="file" class="form-control" name="surat_perjanjian" id="surat_perjanjian" placeholder="Upload Bukti Surat Perjanjian" required />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="foto_alat">Foto ALat</label>
-                                                        <div class="mb-3">
-                                                            <input type="file" class="form-control" name="foto_alat" id="foto_alat" placeholder="Foto Alat" required />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="foto_serah_terima_alat">Foto Serah Terima ALat</label>
-                                                        <div class="mb-3">
-                                                            <input type="file" class="form-control" name="foto_serah_terima_alat" id="foto_serah_terima_alat" placeholder="Foto Serah Terima Alat" required />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="jenis_pelanggaran">Jenis Pelanggaran</label>
-                                                        <div class="mb-3">
-                                                            <select name="jenis_pelanggaran" id="jenis_pelanggaran" class="form-control" required>
-                                                                <option value=''>Pilih Jenis Pelanggaran</option>
-                                                                <option value='Menggelapkan Alat'>Menggelapkan Alat</option>
-                                                                <option value='Tidak Membayar Sewa'>Tidak Membayar Sewa</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="mulai_rental">Mulai Rental</label>
-                                                        <div class="mb-3">
-                                                            <input type="date" class="form-control" name="mulai_rental" id="mulai_rental" placeholder="Mulai Rental" required />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="akhir_rental">Akhir Rental</label>
-                                                        <div class="mb-3">
-                                                            <input type="date" class="form-control" name="akhir_rental" id="akhir_rental" placeholder="Akhir Rental" required />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="bukti_lainnya">Upload Bukti Lainnya</label>
-                                                        <div class="mb-3">
-                                                            <input type="file" class="form-control" name="bukti_lainnya" id="bukti_lainnya" placeholder="Upload Bukti Lainnya" required />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="nominal_kerugian">Nominal Kerugian</label>
-                                                        <div class="mb-3">
-                                                            <input type="text" class="form-control" name="nominal_kerugian" id="nominal_kerugian" placeholder="Nominal Kerugian" required />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="keterangan">Keterangan</label>
-                                                        <div class="mb-3">
-                                                            <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Keterangan" required />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-actions">
-                                                <div class="text-end">
-                                                    <button type="submit" class="btn bg-primary-subtle text-primary font-medium">
-                                                        Submit
-                                                    </button>
-                                                    <button type="reset" class="btn bg-danger-subtle text-danger font-medium">
-                                                        Reset
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
+                                <?= $this->include("new_ui_frontend/user_blacklist_frontend_new/addUser"); ?>
                                 <!-- --------------------- end Grid With Row Label---------------- -->
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="addPerusahaan" role="tabpanel" aria-labelledby="addPerusahaan-tab">
-                        <p>
-                            add perusahaan blacklist
-                        </p>
+                        <div class="row">
+                            <div class="col-12">
+                                <!-- --------------------- start Grid With Row Label ---------------- -->
+                                <?= $this->include("new_ui_frontend/user_blacklist_frontend_new/addPerusahaan"); ?>
+                                <!-- --------------------- end Grid With Row Label---------------- -->
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
