@@ -245,6 +245,16 @@ $routes->group('backend', ['filter' => 'auth:users,admin'], function ($routes) {
         $routes->post('update/(:any)', 'CalendarController::updateCalendar/$1');
         $routes->post('delete/(:any)', 'CalendarController::delete/$1');
     });
+
+    // ROUTES CALENDAR
+    $routes->group('artikel', ['filter' => 'auth:users,admin'], function ($routes) {
+        $routes->get('', 'ArtikelController::index');
+        $routes->get('create', 'ArtikelController::create');
+        $routes->post('create', 'ArtikelController::createArtikel');
+        $routes->get('update/(:any)', 'ArtikelController::update/$1');
+        $routes->post('update/(:any)', 'ArtikelController::updateArtikel/$1');
+        $routes->get('delete/(:any)', 'ArtikelController::delete/$1');
+    });
 });
 
 

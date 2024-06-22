@@ -32,13 +32,14 @@ class ArtikelController extends BaseController
     // ========================= //
     public function index()
     {
-        
+        $artikel = $this->artikelModel->findAllDataGeneral();
         $data = [
             'title'        => 'Artikel',
             'subtitle'     => 'List Data Artikel',
-            'list_artikel' => $this->artikelModel->findAllData()
+            'list_artikel' => $artikel->paginate(10, 'artikel'),
+            'pager'        => $artikel->pager
         ];
-        return view('artikel/index', $data);
+        return view('backend/artikel/index', $data);
     }
 
 
@@ -52,7 +53,7 @@ class ArtikelController extends BaseController
             'subtitle' => 'Tambah Data Artikel',
             'category' => $this->categoryModel->findAll(),
         ];
-        return view('artikel/create', $data);
+        return view('backend/artikel/create', $data);
     }
 
 
@@ -101,7 +102,7 @@ class ArtikelController extends BaseController
             'detail_artikel' => $this->artikelModel->findAllData($slug),
             'category'       => $this->categoryModel->findAll(),
         ];
-        return view('artikel/update', $data);
+        return view('backend/artikel/update', $data);
     }
 
 

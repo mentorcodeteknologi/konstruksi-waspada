@@ -57,6 +57,17 @@ class ArtikelModel extends Model
     }
 
     // ============================= //
+    // FUNCTION FIND ALL DATA
+    // ============================= //
+    public function findAllDataGeneral()
+    {
+        $this->select('artikel.*, categories.category as category_name, users.nama author');
+        $this->join('categories', 'categories.id = artikel.id_categories');
+        $this->join('users', 'artikel.penulis = users.id');
+        return $this;
+    }
+
+    // ============================= //
     // FUNCTION GET DATA BY SLUG
     // ============================= //
     public function getDataBySlug($slug)
