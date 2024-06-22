@@ -74,7 +74,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="#" aria-expanded="false">
+                    <a class="sidebar-link" href="<?= base_url('backend/user_blacklist') ?>" aria-expanded="false">
                         <span>
                             <i class="ti ti-user-off"></i>
                         </span>
@@ -82,7 +82,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="#" aria-expanded="false">
+                    <a class="sidebar-link" href="<?= base_url('backend/perusahaan_blacklist') ?>" aria-expanded="false">
                         <span>
                             <i class="ti ti-building"></i>
                         </span>
