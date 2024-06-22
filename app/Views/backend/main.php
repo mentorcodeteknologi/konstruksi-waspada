@@ -347,6 +347,7 @@
     <div class="dark-transparent sidebartoggler"></div>
     <!-- Import Js Files -->
     <?= $this->include('backend/layouts/scripts') ?>
+    <?= $this->renderSection('addScripts') ?>
 
 </body>
 

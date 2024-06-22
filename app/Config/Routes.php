@@ -235,6 +235,16 @@ $routes->group('backend', ['filter' => 'auth:users,admin'], function ($routes) {
         $routes->post('validation/(:any)', 'PerusahaanBlacklistController::validation/$1');
         $routes->post('tidakvalid/(:any)', 'PerusahaanBlacklistController::tidakValid/$1');
     });
+
+    // ROUTES CALENDAR
+    $routes->group('calendar', ['filter' => 'auth:users,admin'], function ($routes) {
+        $routes->get('', 'CalendarController::index');
+        $routes->get('create', 'CalendarController::create');
+        $routes->post('create', 'CalendarController::createCalendar');
+        $routes->get('update/(:any)', 'CalendarController::update/$1');
+        $routes->post('update/(:any)', 'CalendarController::updateCalendar/$1');
+        $routes->post('delete/(:any)', 'CalendarController::delete/$1');
+    });
 });
 
 

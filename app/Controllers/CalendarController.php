@@ -34,7 +34,7 @@ class CalendarController extends BaseController
             'subtitle'     => 'List Data Kalender',
             'list_calendar' => $this->calendarModel->findAll(),
         ];
-        return view('calendar/index', $data);
+        return view('backend/calendar/index', $data);
     }
 
     // ========================= //
@@ -67,21 +67,21 @@ class CalendarController extends BaseController
     // ========================= //
     // FUNCTION CREATE Calendar
     // ========================= //
-    public function createCalendar()
-    {
-        $session = session();
-        $data = [
-            'nama_kegiatan'     => $this->request->getVar('nama_kegiatan'),
-            'id_user'           => $session->get('id'),
-            'tanggal_mulai'  => $this->request->getVar('tanggal_mulai'),
-            'tanggal_selesai'  => $this->request->getVar('tanggal_selesai'),
-            'created_at'        => Time::now('Asia/Jakarta', 'en_US'),
-            'updated_at'        => Time::now('Asia/Jakarta', 'en_US')
-        ];
-        $calendar = $this->calendarModel->insert($data);
-        session()->setFlashdata('pesan', 'Data Berhasil Disimpan');
-        return redirect()->to(base_url('calendar'));
-    }
+    // public function createCalendar()
+    // {
+    //     $session = session();
+    //     $data = [
+    //         'nama_kegiatan'     => $this->request->getVar('nama_kegiatan'),
+    //         'id_user'           => $session->get('id'),
+    //         'tanggal_mulai'     => $this->request->getVar('tanggal_mulai'),
+    //         'tanggal_selesai'   => $this->request->getVar('tanggal_selesai'),
+    //         'created_at'        => Time::now('Asia/Jakarta', 'en_US'),
+    //         'updated_at'        => Time::now('Asia/Jakarta', 'en_US')
+    //     ];
+    //     $calendar = $this->calendarModel->insert($data);
+    //     session()->setFlashdata('pesan', 'Data Berhasil Disimpan');
+    //     return redirect()->to(base_url('calendar'));
+    // }
 
 
     // ========================= //
@@ -101,37 +101,37 @@ class CalendarController extends BaseController
     // ========================= //
     // FUNCTION UPDATE USER
     // ========================= //
-    public function updateCalendar($id)
-    {
-        $session = session();
-        $CalendarData = $this->calendarModel->getDataBySlug(base64_decode($id));
+    // public function updateCalendar($id)
+    // {
+    //     $session = session();
+    //     $CalendarData = $this->calendarModel->getDataBySlug(base64_decode($id));
 
-        $data = [
-            'nama_kegiatan'     => $this->request->getVar('nama_kegiatan'),
-            'id_user'           => $session->get('id'),
-            'tanggal_mulai'     => $this->request->getVar('tanggal_mulai'),
-            'tanggal_selesai'   => $this->request->getVar('tanggal_selesai'),
-            'created_at'        => Time::now('Asia/Jakarta', 'en_US'),
-            'updated_at'        => Time::now('Asia/Jakarta', 'en_US')
-        ];
+    //     $data = [
+    //         'nama_kegiatan'     => $this->request->getVar('nama_kegiatan'),
+    //         'id_user'           => $session->get('id'),
+    //         'tanggal_mulai'     => $this->request->getVar('tanggal_mulai'),
+    //         'tanggal_selesai'   => $this->request->getVar('tanggal_selesai'),
+    //         'created_at'        => Time::now('Asia/Jakarta', 'en_US'),
+    //         'updated_at'        => Time::now('Asia/Jakarta', 'en_US')
+    //     ];
 
-        $this->calendarModel->update($CalendarData['id'], $data);
-        session()->setFlashdata('pesan', 'Data Berhasil Diubah');
-        return redirect()->to(base_url('calendar'));
-    }
+    //     $this->calendarModel->update($CalendarData['id'], $data);
+    //     session()->setFlashdata('pesan', 'Data Berhasil Diubah');
+    //     return redirect()->to(base_url('calendar'));
+    // }
 
 
     // ========================= //
     // FUNCTION DELETE
     // ========================= //
-    public function delete($id)
-    {
-        $CalendarData = $this->calendarModel->getDataBySlug(base64_decode($id));
+    // public function delete($id)
+    // {
+    //     $CalendarData = $this->calendarModel->getDataBySlug(base64_decode($id));
 
-        $this->calendarModel->delete($CalendarData['id']);
-        session()->setFlashdata('pesan', 'Data Berhasil Dihapus');
-        return redirect()->to(base_url('calendar'));
-    }
+    //     $this->calendarModel->delete($CalendarData['id']);
+    //     session()->setFlashdata('pesan', 'Data Berhasil Dihapus');
+    //     return redirect()->to(base_url('calendar'));
+    // }
 
     public function calendar_data()
     {
@@ -148,11 +148,105 @@ class CalendarController extends BaseController
                 'id' => $event['id'],
                 'title' => $event['nama_kegiatan'],
                 'start' => $event['tanggal_mulai'],
-                'end' => $event['tanggal_selesai']
+                'end' => $event['tanggal_selesai'],
+                'extendedProps' => [
+                    'calendar' => $event['priority'],
+                ]
             ];
         }
 
         // Mengembalikan data dalam format JSON
         return $this->response->setJSON($data);
+    }
+    // ========================= //
+    // FUNCTION CREATE Calendar
+    // ========================= //
+    public function createCalendar()
+    {
+        try {
+
+            $data = [
+                'nama_kegiatan'     => $this->request->getVar('nama_kegiatan'),
+                'id_user'           => $this->request->getVar('id_user'),
+                'tanggal_mulai'     => $this->request->getVar('tanggal_mulai'),
+                'tanggal_selesai'   => $this->request->getVar('tanggal_selesai'),
+                'priority'          => $this->request->getVar('priority'),
+                'created_at'        => Time::now('Asia/Jakarta', 'en_US'),
+                'updated_at'        => Time::now('Asia/Jakarta', 'en_US')
+            ];
+            $this->calendarModel->insert($data);
+            $response = [
+                'status' => 200,
+                'pesan'  => 'Data berhasil ditambahkan!',
+                'data'   => $data
+            ];
+            return $this->response->setJSON($response);
+        } catch (\Exception $e) {
+            $response = [
+                'status' => 500,
+                'pesan'  => 'Terjadi kesalahan saat menambahkan data!',
+                'error'  => $e->getMessage()
+            ];
+            return $this->response->setJSON($response);
+        }
+    }
+    // ========================= //
+    // FUNCTION UPDATE USER
+    // ========================= //
+    public function updateCalendar($idEvent)
+    {
+
+        try {
+
+            $CalendarData = $this->calendarModel->getDataBySlug(base64_decode($idEvent));
+
+            $data = [
+                'nama_kegiatan'     => $this->request->getVar('nama_kegiatan'),
+                'id_user'           => $this->request->getVar('id_user'),
+                'tanggal_mulai'     => $this->request->getVar('tanggal_mulai'),
+                'tanggal_selesai'   => $this->request->getVar('tanggal_selesai'),
+                'priority'          => $this->request->getVar('priority'),
+                'created_at'        => Time::now('Asia/Jakarta', 'en_US'),
+                'updated_at'        => Time::now('Asia/Jakarta', 'en_US')
+            ];
+            $this->calendarModel->update($CalendarData['id'], $data);
+            $response = [
+                'status' => 200,
+                'pesan'  => 'Data berhasil diubah!',
+                'data'   => $data
+            ];
+            return $this->response->setJSON($response);
+        } catch (\Exception $e) {
+            $response = [
+                'status' => 500,
+                'pesan'  => 'Terjadi kesalahan saat update data!',
+                'error'  => $e->getMessage()
+            ];
+            return $this->response->setJSON($response);
+        }
+    }
+    // ========================= //
+    // FUNCTION DELETE
+    // ========================= //
+    public function delete($id)
+    {
+        try {
+            $data = $this->calendarModel->getDataBySlug(base64_decode($id));
+
+            $this->calendarModel->delete($data['id']);
+            $response = [
+                'status' => 200,
+                'pesan'  => 'Data berhasil dihapus!',
+                'data'   => $data
+            ];
+            return $this->response->setJSON($response);
+        } catch (\Exception $e) {
+            $response = [
+                'status' => 500,
+                'pesan'  => 'Terjadi kesalahan saat hapus data!',
+                'error'  => $e->getMessage()
+            ];
+            return $this->response->setJSON($response);
+        }
     }
 }
