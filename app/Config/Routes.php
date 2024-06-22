@@ -58,7 +58,7 @@ $routes->post('alat_hilang/front/(:any)', 'AlatHilangFrontendController::validat
 // DASHBOARD ROUTES
 $routes->get('/404', 'DashboardController::pageNotFound');
 $routes->get('/dashboard', 'DashboardController::index', ['filter' => 'auth:users,admin']);
-$routes->get('/websocket', 'WebsocketController::index');
+$routes->cli('/websocket', 'WebsocketController::index');
 
 
 // ROUTES OTP
@@ -246,7 +246,7 @@ $routes->group('backend', ['filter' => 'auth:users,admin'], function ($routes) {
         $routes->post('delete/(:any)', 'CalendarController::delete/$1');
     });
 
-    // ROUTES CALENDAR
+    // ROUTES ARTIKEL
     $routes->group('artikel', ['filter' => 'auth:users,admin'], function ($routes) {
         $routes->get('', 'ArtikelController::index');
         $routes->get('create', 'ArtikelController::create');
@@ -255,6 +255,15 @@ $routes->group('backend', ['filter' => 'auth:users,admin'], function ($routes) {
         $routes->post('update/(:any)', 'ArtikelController::updateArtikel/$1');
         $routes->get('delete/(:any)', 'ArtikelController::delete/$1');
     });
+    $routes->group('pembayaran', ['filter' => 'auth:users,admin'], function ($routes) {
+        $routes->get('', 'PembayaranController::index');
+        $routes->get('create', 'PembayaranController::create');
+        $routes->post('create', 'PembayaranController::createPembayaran');
+        $routes->post('validasi/(:any)', 'PembayaranController::validasiPembayaran/$1');
+        $routes->post('tidakvalid/(:any)', 'PembayaranController::tidakValid/$1');
+    });
+    // ROUTES WHATSAPP SCAN QR
+    $routes->get('whatsapp', 'WhatsappController::index', ['filter' => 'auth:admin']);
 });
 
 
