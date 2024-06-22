@@ -58,7 +58,7 @@ $routes->post('alat_hilang/front/(:any)', 'AlatHilangFrontendController::validat
 // DASHBOARD ROUTES
 $routes->get('/404', 'DashboardController::pageNotFound');
 $routes->get('/dashboard', 'DashboardController::index', ['filter' => 'auth:users,admin']);
-$routes->get('/websocket', 'WebsocketController::index');
+$routes->cli('/websocket', 'WebsocketController::index');
 
 
 // ROUTES OTP
@@ -203,6 +203,67 @@ $routes->group('backend', ['filter' => 'auth:users,admin'], function ($routes) {
         $routes->post('validation/(:any)', 'AlatHilangController::validation/$1');
         $routes->post('notvalid/(:any)', 'AlatHilangController::notValid/$1');
     });
+
+    // ROUTES USER BLACKLIST
+    $routes->group('user_blacklist', ['filter' => 'auth:users,admin'], function ($routes) {
+        $routes->get('', 'UserBlacklistController::index');
+        $routes->get('create', 'UserBlacklistController::create');
+        $routes->post('create', 'UserBlacklistController::createUserBlacklist');
+        $routes->get('update/(:any)', 'UserBlacklistController::update/$1');
+        $routes->post('update/(:any)', 'UserBlacklistController::updateUserBlacklist/$1');
+        $routes->get('delete/(:any)', 'UserBlacklistController::delete/$1');
+        $routes->post('delete/(:any)', 'UserBlacklistController::delete/$1');
+        $routes->get('detail/(:any)', 'UserBlacklistController::detail/$1');
+        $routes->post('validation/(:any)', 'UserBlacklistController::validation/$1');
+        $routes->post('tidakvalid/(:any)', 'UserBlacklistController::tidakValid/$1');
+        $routes->get('validation/(:any)', 'UserBlacklistController::validation/$1');
+        $routes->get('tidakvalid/(:any)', 'UserBlacklistController::tidakValid/$1');
+    });
+
+    // ROUTES PERUSAHAAN BLACKLIST
+    $routes->group('perusahaan_blacklist', ['filter' => 'auth:users,admin'], function ($routes) {
+        $routes->get('', 'PerusahaanBlacklistController::index');
+        $routes->get('create', 'PerusahaanBlacklistController::create');
+        $routes->post('create', 'PerusahaanBlacklistController::createPerusahaanBlacklist');
+        $routes->get('update/(:any)', 'PerusahaanBlacklistController::update/$1');
+        $routes->post('update/(:any)', 'PerusahaanBlacklistController::updatePerusahaanBlacklist/$1');
+        $routes->post('delete/(:any)', 'PerusahaanBlacklistController::delete/$1');
+        $routes->get('delete/(:any)', 'PerusahaanBlacklistController::delete/$1');
+        $routes->get('detail/(:any)', 'PerusahaanBlacklistController::detail/$1');
+        $routes->get('validation/(:any)', 'PerusahaanBlacklistController::validation/$1');
+        $routes->get('tidakvalid/(:any)', 'PerusahaanBlacklistController::tidakValid/$1');
+        $routes->post('validation/(:any)', 'PerusahaanBlacklistController::validation/$1');
+        $routes->post('tidakvalid/(:any)', 'PerusahaanBlacklistController::tidakValid/$1');
+    });
+
+    // ROUTES CALENDAR
+    $routes->group('calendar', ['filter' => 'auth:users,admin'], function ($routes) {
+        $routes->get('', 'CalendarController::index');
+        $routes->get('create', 'CalendarController::create');
+        $routes->post('create', 'CalendarController::createCalendar');
+        $routes->get('update/(:any)', 'CalendarController::update/$1');
+        $routes->post('update/(:any)', 'CalendarController::updateCalendar/$1');
+        $routes->post('delete/(:any)', 'CalendarController::delete/$1');
+    });
+
+    // ROUTES ARTIKEL
+    $routes->group('artikel', ['filter' => 'auth:users,admin'], function ($routes) {
+        $routes->get('', 'ArtikelController::index');
+        $routes->get('create', 'ArtikelController::create');
+        $routes->post('create', 'ArtikelController::createArtikel');
+        $routes->get('update/(:any)', 'ArtikelController::update/$1');
+        $routes->post('update/(:any)', 'ArtikelController::updateArtikel/$1');
+        $routes->get('delete/(:any)', 'ArtikelController::delete/$1');
+    });
+    $routes->group('pembayaran', ['filter' => 'auth:users,admin'], function ($routes) {
+        $routes->get('', 'PembayaranController::index');
+        $routes->get('create', 'PembayaranController::create');
+        $routes->post('create', 'PembayaranController::createPembayaran');
+        $routes->post('validasi/(:any)', 'PembayaranController::validasiPembayaran/$1');
+        $routes->post('tidakvalid/(:any)', 'PembayaranController::tidakValid/$1');
+    });
+    // ROUTES WHATSAPP SCAN QR
+    $routes->get('whatsapp', 'WhatsappController::index', ['filter' => 'auth:admin']);
 });
 
 

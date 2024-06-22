@@ -19,6 +19,10 @@
         echo '<script src="' . base_url('assets/new_frontend/libs/fullcalendar/index.global.min.js') . '"></script>';
         echo '<script src="' . base_url('assets/new_frontend/js/apps/contact.js') . '"></script>';
         break;
+    case 'Kalender':
+        echo '<script src="' . base_url('assets/new_frontend/libs/fullcalendar/index.global.min.js') . '"></script>';
+        // echo '<script src="' . base_url('assets/new_frontend/js/apps/calendar-init.js') . '"></script>';
+        break;
     default:
         // No default script
         break;

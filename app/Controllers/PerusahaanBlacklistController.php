@@ -32,7 +32,7 @@ class PerusahaanBlacklistController extends BaseController
             'subtitle'                 => 'List Data Perusahaan Blacklist',
             'list_perusahan_blacklist' => $this->perusahaanBlacklistModel->findAllDatas()
         ];
-        return view('perusahaan_blacklist/index', $data);
+        return view('backend/perusahaan-blacklist/index', $data);
     }
 
 
@@ -45,7 +45,7 @@ class PerusahaanBlacklistController extends BaseController
             'title'    => 'Perusahan Blacklist',
             'subtitle' => 'Tambah Data Perusahaan Blacklist'
         ];
-        return view('perusahaan_blacklist/create', $data);
+        return view('backend/perusahaan-blacklist/create', $data);
     }
 
 
@@ -118,7 +118,7 @@ class PerusahaanBlacklistController extends BaseController
 
         $this->perusahaanBlacklistModel->insert($data);
         session()->setFlashdata('pesan', 'Data berhasil disimpan');
-        return redirect()->to(base_url('perusahaan_blacklist'));
+        return redirect()->to(base_url('backend/perusahaan_blacklist'));
     }
 
 
@@ -132,7 +132,7 @@ class PerusahaanBlacklistController extends BaseController
             'subtitle'               => 'Edit Data User Blacklist',
             'detail_perusahaan_blacklist' => $this->perusahaanBlacklistModel->getDataBySlug($slug)
         ];
-        return view('perusahaan_blacklist/update', $data);
+        return view('backend/perusahaan-blacklist/update', $data);
     }
 
 
@@ -228,7 +228,7 @@ class PerusahaanBlacklistController extends BaseController
 
         $this->perusahaanBlacklistModel->update($datas['id'], $data);
         session()->setFlashdata('pesan', 'Data berhasil diupdate');
-        return redirect()->to(base_url('perusahaan_blacklist'));
+        return redirect()->to(base_url('backend/perusahaan_blacklist'));
     }
 
     // ========================= //
@@ -241,7 +241,7 @@ class PerusahaanBlacklistController extends BaseController
             'subtitle'               => 'Detail Data User Blacklist',
             'detail_perusahaan_blacklist' => $this->perusahaanBlacklistModel->getDataBySlug($slug)
         ];
-        return view('perusahaan_blacklist/update', $data);
+        return view('backend/perusahaan-blacklist/update', $data);
     }
 
 
@@ -254,7 +254,7 @@ class PerusahaanBlacklistController extends BaseController
 
         $this->perusahaanBlacklistModel->update($datas['id'], ['valid' => true]);
         session()->setFlashdata('pesan', 'Data berhasil divalidasi');
-        return redirect()->to(base_url('perusahaan_blacklist'));
+        return redirect()->to(base_url('backend/perusahaan_blacklist'));
     }
 
 
@@ -267,7 +267,7 @@ class PerusahaanBlacklistController extends BaseController
 
         $this->perusahaanBlacklistModel->update($datas['id'], ['valid' => false]);
         session()->setFlashdata('pesan', 'Data tidak valid');
-        return redirect()->to(base_url('perusahaan_blacklist'));
+        return redirect()->to(base_url('backend/perusahaan_blacklist'));
     }
 
 
@@ -287,6 +287,6 @@ class PerusahaanBlacklistController extends BaseController
 
         $this->perusahaanBlacklistModel->delete($datas['id']);
         session()->setFlashdata('pesan', 'Data berhasil dihapus');
-        return redirect()->to(base_url('perusahaan_blacklist'));
+        return redirect()->to(base_url('backend/perusahaan_blacklist'));
     }
 }

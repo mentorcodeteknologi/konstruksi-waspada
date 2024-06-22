@@ -42,7 +42,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="#" aria-expanded="false">
+                    <a class="sidebar-link" href="<?= base_url('backend/pembayaran') ?>" aria-expanded="false">
                         <span>
                             <i class="ti ti-currency-dollar"></i>
                         </span>
@@ -58,7 +58,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="#" aria-expanded="false">
+                    <a class="sidebar-link" href="<?= base_url('backend/artikel') ?>" aria-expanded="false">
                         <span>
                             <i class="ti ti-news"></i>
                         </span>
@@ -74,7 +74,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="#" aria-expanded="false">
+                    <a class="sidebar-link" href="<?= base_url('backend/user_blacklist') ?>" aria-expanded="false">
                         <span>
                             <i class="ti ti-user-off"></i>
                         </span>
@@ -82,7 +82,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="#" aria-expanded="false">
+                    <a class="sidebar-link" href="<?= base_url('backend/perusahaan_blacklist') ?>" aria-expanded="false">
                         <span>
                             <i class="ti ti-building"></i>
                         </span>
@@ -99,7 +99,7 @@
                     <span class="hide-menu">Admin</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="#" aria-expanded="false">
+                    <a class="sidebar-link" href="<?= base_url('backend/calendar') ?>" aria-expanded="false">
                         <span>
                             <i class="ti ti-calendar"></i>
                         </span>
@@ -107,7 +107,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="#" aria-expanded="false">
+                    <a class="sidebar-link" href="<?= base_url('backend/whatsapp') ?>" aria-expanded="false">
                         <span>
                             <i class="ti ti-qrcode"></i>
                         </span>
