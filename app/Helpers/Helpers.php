@@ -155,4 +155,13 @@ class Helpers
             return 'Failed to get token from API.';
         }
     }
+    public function getPusherKey() {
+        $data = [
+            'app_id'    => "1823570",
+            'key'       => "fd5523b0b2af4d2df994",
+            'secret'    => "27e7998e3d3fd195bea6",
+            'cluster'   => "ap1",
+        ];
+        return $data;
+    }
 }

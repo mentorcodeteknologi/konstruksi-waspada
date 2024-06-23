@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Helpers\Helpers;
 use App\Models\Socket;
 
 class WhatsappController extends BaseController
@@ -14,11 +15,13 @@ class WhatsappController extends BaseController
     public function index()
     {
         $model = new Socket();
+        $helpers = new Helpers();
         $data = [
             'title'     => 'Whatsapp Scan QR',
             'subtitle'  => 'Whatsapp Scan QR',
-            'web'       => $model->where('remark', 'WEB')->findAll(),
-            'node'      => $model->where('remark', 'NODE')->find(),
+            'pusher'   => $helpers->getPusherKey(),
+            // 'web'       => $model->where('remark', 'WEB')->findAll(),
+            'node'      => $model->where('remark', 'NODE')->first(),
             'user'      => $model->where('remark', 'USER')->find(),
         ];
         return view('backend/whatsapp/index', $data);
