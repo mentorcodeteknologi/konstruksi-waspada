@@ -26,13 +26,23 @@
             <div class="d-flex align-items-center justify-content-center w-100">
                 <div class="row justify-content-center w-100">
                     <div class="col-md-8 col-lg-10 col-xxl-8">
+
                         <div class="card mb-0">
                             <div class="card-body">
-                                <a href="<?= base_url('register')?>" class="text-nowrap logo-img text-center d-block mb-5 w-100">
+
+                                <a href="<?= base_url('register') ?>" class="text-nowrap logo-img text-center d-block mb-5 w-100">
                                     <img src="<?= base_url('assets/new_frontend') ?>/images/logos/light-logo-2.png" class="dark-logo" alt="Logo-Dark" width="30%" />
                                     <img src="<?= base_url('assets/new_frontend') ?>/images/logos/dark-logo.png" class="light-logo" alt="Logo-light" width="30%" />
                                 </a>
-                                <form action="<?= base_url('register') ?>" method="post" enctype="multipart/form-data">
+                                <?php
+                                // NOTIFIKASI 
+                                if (session()->getFlashdata('pesan')) { ?>
+                                    <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
+                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        <?= session()->getFlashdata('pesan'); ?>
+                                    </div>
+                                <?php } ?>
+                                <form action="<?= base_url('/register') ?>" method="post" enctype="multipart/form-data">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="mb-3">

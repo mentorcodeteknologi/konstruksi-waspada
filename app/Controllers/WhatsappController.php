@@ -8,18 +8,6 @@ use App\Models\Socket;
 class WhatsappController extends BaseController
 {
 
-    // DEKLARASI MODEL
-    // protected $userBacklistModel;
-
-
-    // ========================= //
-    // FUNCTION CONSTRUCTOR
-    // ========================= //
-    public function __construct()
-    {
-    }
-
-
     // ========================= //
     // FUNCTION INDEX
     // ========================= //

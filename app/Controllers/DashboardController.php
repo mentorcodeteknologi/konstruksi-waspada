@@ -10,7 +10,7 @@ class DashboardController extends BaseController
     {
         $data = [
             'title'    => 'Dashboard',
-            'subtitle' => '404'
+            'subtitle' => 'Dashboard'
         ];
         return view('backend/dashboard/index', $data);
     }
@@ -21,6 +21,6 @@ class DashboardController extends BaseController
             'title'    => 'Page Not Found',
             'subtitle' => '404'
         ];
-        return view('dashboard/page_not_found', $data);
+        return view('authorize/404', $data);
     }
 }

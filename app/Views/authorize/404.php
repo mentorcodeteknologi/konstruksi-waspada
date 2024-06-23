@@ -22,9 +22,9 @@
 
 <body>
   <!-- Preloader -->
-  <!-- <div class="preloader">
+  <div class="preloader">
     <img src="<?= base_url('assets/new_frontend') ?>/images/logos/favicon.png" alt="loader" class="lds-ripple img-fluid" />
-  </div> -->
+  </div>
   <div id="main-wrapper">
     <div class="position-relative overflow-hidden min-vh-100 w-100 d-flex align-items-center justify-content-center">
       <div class="d-flex align-items-center justify-content-center w-100">
