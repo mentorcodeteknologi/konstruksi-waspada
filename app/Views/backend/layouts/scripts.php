@@ -27,3 +27,7 @@
         // No default script
         break;
 } ?>
+
+<script src="<?= base_url('assets/new_frontend') ?>/libs/jquery-steps/build/jquery.steps.min.js"></script>
+<script src="<?= base_url('assets/new_frontend') ?>/libs/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="<?= base_url('assets/new_frontend') ?>/js/forms/form-wizard.js"></script>

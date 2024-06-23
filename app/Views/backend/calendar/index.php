@@ -26,20 +26,20 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="tanggal_mulai" class="form-label">Tanggal Mulai</label>
+                            <label for="tanggal_mulai" class="form-label">Tanggal Mulai<span class="text-danger">*</span></label>
                             <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="form-control" placeholder="Tanggal Kegiatan" required>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="tanggal_selesai" class="form-label">Tanggal Selesai</label>
+                            <label for="tanggal_selesai" class="form-label">Tanggal Selesai<span class="text-danger">*</span></label>
                             <input type="date" name="tanggal_selesai" id="tanggal_selesai" class="form-control" placeholder="Tanggal Kegiatan" required>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="nama_kegiatan" class="form-label">Nama Kegiatan</label>
+                    <label for="nama_kegiatan" class="form-label">Nama Kegiatan<span class="text-danger">*</span></label>
                     <textarea name="nama_kegiatan" id="nama_kegiatan" class="form-control" placeholder="Nama Kegiatan" required> </textarea>
                 </div>
                 <div class="col-md-12 mt-4">

@@ -14,7 +14,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="mb-4">
-                <label for="category" class="form-label">Kategori</label>
+                <label for="category" class="form-label">Kategori<span class="text-danger">*</span></label>
                 <input type="text" name="category" required placeholder="Kategori..." class="form-control" id="category">
               </div>
             </div>

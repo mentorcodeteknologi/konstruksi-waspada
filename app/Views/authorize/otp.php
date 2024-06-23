@@ -43,7 +43,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label for="kode" class="form-label">OTP Whatsapp</label>
+                                                <label for="kode" class="form-label">OTP Whatsapp<span class="text-danger">*</span></label>
                                                 <input type="text" name="kode" required class="form-control" placeholder="OTP" id="kode">
                                                 <span class="m-2">Pastikan nomor telah terdaftar <strong>Whatsapp</strong></span>
                                             </div>

@@ -15,13 +15,13 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="mb-4">
-                                <label for="judul" class="form-label">Judul</label>
+                                <label for="judul" class="form-label">Judul<span class="text-danger">*</span></label>
                                 <input type="text" name="judul" id="judul" class="form-control" value="<?= $detail_artikel['judul'] ?>" placeholder="Judul" required>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="mb-4">
-                                <label for="isi" class="form-label">Isi</label>
+                                <label for="isi" class="form-label">Isi<span class="text-danger">*</span></label>
                                 <textarea name="isi" id="isi" rows="5" class="form-control" placeholder="Isi Artikel" required><?= $detail_artikel['isi'] ?></textarea>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-4">
-                                <label for="deskripsi" class="form-label">Kategori</label>
+                                <label for="deskripsi" class="form-label">Kategori<span class="text-danger">*</span></label>
                                 <select name="id_categories" id="id_categories" class="form-control" required>
                                     <option value="">Pilih Kategori</option>
                                     <?php foreach ($category as $row) { ?>

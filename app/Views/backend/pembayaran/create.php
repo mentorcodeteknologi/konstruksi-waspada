@@ -20,13 +20,13 @@
             </div>
             <div class="col-md-6">
               <div class="mb-4">
-                <label for="jumlah_pembayaran" class="form-label">Jumlah Pembayaran</label>
+                <label for="jumlah_pembayaran" class="form-label">Jumlah Pembayaran<span class="text-danger">*</span></label>
                 <input type="number" name="jumlah_pembayaran" id="jumlah_pembayaran" class="form-control" placeholder="Jumlah Pembayaran" required>
               </div>
             </div>
             <div class="col-md-6">
               <div class="mb-4">
-                <label for="bukti_pembayaran" class="form-label">Bukti Pembayaran</label>
+                <label for="bukti_pembayaran" class="form-label">Bukti Pembayaran<span class="text-danger">*</span></label>
                 <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" class="form-control" accept=".jpg,.png,.jpeg" required>
                 <img src="" id="viewImg" class="img-fluid mt-2" width="200px">
               </div>
