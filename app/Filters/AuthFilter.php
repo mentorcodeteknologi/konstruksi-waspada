@@ -30,7 +30,7 @@ class AuthFilter implements FilterInterface
         // ROLE PENGUNA YANG DIPERBOLEHKAN DALAM AKSES ROUTE
         $allowedRoles = $arguments ?? [];
 
-        $userRole = session()->get('role');
+        $userRole = session('role');
         // Periksa apakah role pengguna ada dalam daftar yang diizinkan
         if (!in_array($userRole, $allowedRoles)) {
             // Jika rolenya tidak sesuai, kembalikan response dengan status 404
