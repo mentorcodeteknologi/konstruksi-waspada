@@ -27,13 +27,13 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="foto_ktp">Nama Penanggung Jawab Terlapor</label>
+                        <label for="nama_penanggung_jawab">Nama Penanggung Jawab Terlapor</label>
                         <div class="mb-3">
                             <input type="text" class="form-control" name="nama_penanggung_jawab" id="nama_penanggung_jawab" placeholder="Nama Penanggung Jawab Terlapor" required />
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <label for="merk">No HP Perusahaan Terlapor</label>
+                        <label for="no_hp">No HP Perusahaan Terlapor</label>
                         <div class="mb-3">
                             <input type="text" class="form-control" name="no_hp" id="no_hp" value="62" placeholder="No HP Perusahaan Terlapor" required />
                         </div>

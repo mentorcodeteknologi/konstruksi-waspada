@@ -36,6 +36,7 @@
                                 <a href="<?= base_url('blog_details/' . $a['slug']) ?>">
                                     <img src="<?= base_url('assets/backend/images/artikel/' . $a['gambar']) ?>" class="img-fluid blur-up lazyload bg-img" alt="">
                                 </a>
+                                <span class="badge text-bg-primary fs-2 rounded-4 lh-sm mb-9 me-9 py-1 px-2 fw-semibold position-absolute bottom-0 end-0"><?= $a['category_name']; ?></span>
                                 <img src="<?= base_url('assets/new_frontend') ?>/images/profile/user-1.jpg" alt="" class="img-fluid rounded-circle position-absolute bottom-0 start-0 mb-n9 ms-9" width="40" height="40" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="<?= $a['author']; ?>">
                             </div>
                             <div class="card-body p-4">
