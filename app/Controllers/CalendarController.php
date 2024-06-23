@@ -47,7 +47,7 @@ class CalendarController extends BaseController
             'footerPopularArtikel' => $this->getPopularArticles(5),
             'footerRecentArtikel' => $this->getRecentArticles(5),
         ];
-        return view('calendar/indexFront', $data);
+        return view('new_ui_frontend/calendar/index', $data);
     }
 
 
