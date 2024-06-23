@@ -11,20 +11,20 @@
                 <!-- ============================= -->
                 <!-- Home -->
                 <!-- ============================= -->
-                <li class="nav-small-cap">
+                <!-- <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">BLog</span>
-                </li>
+                </li> -->
                 <!-- =================== -->
                 <!-- blog -->
                 <!-- =================== -->
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="<?= base_url("/"); ?>" aria-expanded="false">
+                    <!-- <a class="sidebar-link" href="<?= base_url("/"); ?>" aria-expanded="false">
                         <span>
                             <i class="ti ti-aperture"></i>
                         </span>
                         <span class="hide-menu">BLog</span>
-                    </a>
+                    </a> -->
                     <!-- <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
                             <a href="<?= base_url("/"); ?>" class="sidebar-link">
@@ -37,17 +37,17 @@
                 <!-- ============================= -->
                 <!-- user blacklist -->
                 <!-- ============================= -->
-                <li class="nav-small-cap">
+                <!-- <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">User Blacklist</span>
-                </li>
+                </li> -->
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="<?= base_url("user_blacklist_frontend"); ?>" aria-expanded="false">
+                    <!-- <a class="sidebar-link" href="<?= base_url("user_blacklist_frontend"); ?>" aria-expanded="false">
                         <span>
                             <i class="ti ti-user-x"></i>
                         </span>
                         <span class="hide-menu">User BLacklist</span>
-                    </a>
+                    </a> -->
                     <!-- <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
                             <a href="<?= base_url("user_blacklist_frontend"); ?>" class="sidebar-link">
@@ -60,17 +60,17 @@
                 <!-- ============================= -->
                 <!-- alat hilang -->
                 <!-- ============================= -->
-                <li class="nav-small-cap">
+                <!-- <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">Alat Hilang</span>
-                </li>
+                </li> -->
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="<?= base_url("alat_hilang/detail"); ?>" aria-expanded="false">
+                    <!-- <a class="sidebar-link" href="<?= base_url("alat_hilang/detail"); ?>" aria-expanded="false">
                         <span>
                             <i class="ti ti-tool"></i>
                         </span>
                         <span class="hide-menu">Alat Hilang</span>
-                    </a>
+                    </a> -->
                     <!-- <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
                             <a href="<?= base_url("alat_hilang/detail"); ?>" class=" sidebar-link">
@@ -83,17 +83,17 @@
                 <!-- ============================= -->
                 <!-- kalender -->
                 <!-- ============================= -->
-                <li class="nav-small-cap">
+                <!-- <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">Kalender</span>
-                </li>
+                </li> -->
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="<?= base_url("calendar_frontend"); ?>" aria-expanded="false">
+                    <!-- <a class="sidebar-link" href="<?= base_url("calendar_frontend"); ?>" aria-expanded="false">
                         <span>
                             <i class="ti ti-calendar"></i>
                         </span>
                         <span class="hide-menu">Kalender</span>
-                    </a>
+                    </a> -->
                     <!-- <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
                             <a href="<?= base_url("calendar_frontend"); ?>" class="sidebar-link">
@@ -106,15 +106,15 @@
                 <!-- ============================= -->
                 <!-- My Account -->
                 <!-- ============================= -->
-                <li class="nav-small-cap">
+                <!-- <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">My Account</span>
-                </li>
-                <?php
-                // Cek apakah pengguna sudah login atau belum
-                $logged_in = false;
-                ?>
-                <?php if ($session->get('logged_in')) : ?>
+                </li> -->
+                <!-- <?php
+                        // Cek apakah pengguna sudah login atau belum
+                        $logged_in = false;
+                        ?> -->
+                <!-- <?php if ($session->get('logged_in')) : ?>
                     <li class="sidebar-item">
                         <a class="sidebar-link has-arrow" href="#" aria-expanded="false">
                             <span>
@@ -160,7 +160,7 @@
                             </li>
                         </ul>
                     </li>
-                <?php endif; ?>
+                <?php endif; ?> -->
             </ul>
         </nav>
         <!-- End Sidebar navigation -->

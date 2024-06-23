@@ -10,13 +10,13 @@ $session = session();
         <div class="card-body px-4 py-3">
             <div class="row align-items-center">
                 <div class="col-9">
-                    <h4 class="fw-semibold mb-8">User Blacklist</h4>
+                    <h4 class="fw-semibold mb-8">ALat Hilang</h4>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
                                 <a class="text-muted text-decoration-none" href="<?= base_url("/"); ?>">Home</a>
                             </li>
-                            <li class="breadcrumb-item" aria-current="page">User Blacklist</li>
+                            <li class="breadcrumb-item" aria-current="page">ALat Hilang</li>
                         </ol>
                     </nav>
                 </div>
@@ -28,15 +28,14 @@ $session = session();
             </div>
         </div>
     </div>
-    <?php
 
+    <?php
     // NOTIFIKASI BERHASIL SIMPAN DATA
-    if (session()->getFlashdata('pesan')) {
+    if (session()->getFlashdata('success')) {
         echo '<div class="alert alert-success alert-dismissible">
-                    ' . session()->getFlashdata('pesan') . '</div>';
+                ' . session()->getFlashdata('success') . '</div>';
     }
     ?>
-
     <div class="col-md-12">
         <!-- ---------------------start Tab with dropdown ---------------- -->
         <div class="card">
@@ -48,34 +47,28 @@ $session = session();
                 </div>
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="user-tab" data-bs-toggle="tab" href="#user" role="tab" aria-controls="user" aria-expanded="true">
-                            <span>List user blacklist</span>
+                        <a class="nav-link active" id="alathilang-tab" data-bs-toggle="tab" href="#alathilang" role="tab" aria-controls="alathilang" aria-expanded="true">
+                            <span>List alat hilang</span>
                         </a>
                     </li>
                     <?php if ($session->get('logged_in')) : ?>
                         <li class="nav-item">
-                            <a class="nav-link" id="addUser-tab" data-bs-toggle="tab" href="#addUser" role="tab" aria-controls="addUser">
-                                <span>Add user blacklist</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="addPerusahaan-tab" data-bs-toggle="tab" href="#addPerusahaan" role="tab" aria-controls="addPerusahaan">
-                                <span>Add perusahaan blacklist</span>
+                            <a class="nav-link" id="addAlatHilang-tab" data-bs-toggle="tab" href="#addAlatHilang" role="tab" aria-controls="addAlatHilang">
+                                <span>Add alat hilang</span>
                             </a>
                         </li>
                     <?php endif; ?>
                 </ul>
                 <div class="tab-content tabcontent-border p-3" id="myTabContent">
                     <?php if ($session->get('logged_in')) : ?>
-                        <div role="tabpanel" class="tab-pane fade show active" id="user" aria-labelledby="user-tab">
+                        <div role="tabpanel" class="tab-pane fade show active" id="alathilang" aria-labelledby="alathilang-tab">
                             <div class="row">
-                                <?php foreach ($list_user_blacklist as $value) : ?>
+                                <?php foreach ($list_alat_hilang as $value) : ?>
                                     <div class="col-md-4">
                                         <div class="card hover-img">
                                             <div class="card-body p-4 text-center border-bottom">
                                                 <img src="<?= base_url('assets/new_frontend') ?>/images/profile/user-1.jpg" alt="" class="rounded-circle mb-3" width="80" height="80">
-                                                <h5 class="fw-semibold mb-0 fs-5">Nama Terlapor : <?= $value['nama'] ?></h5>
-                                                <span class="text-dark fs-2">NIK terlapor : <?= $value['nik'] ?></span>
+                                                <h5 class="fw-semibold mb-0 fs-5">Pemilik ALat : <?= $value['nama'] ?></h5>
                                             </div>
                                             <ul class="px-2 py-2 list-unstyled d-flex align-items-center justify-content-center mb-0">
                                                 <button class="btn bg-primary-subtle text-primary mb-3 w-50" data-bs-toggle="modal" data-bs-target="#with-grid-modal<?= $value['slug'] ?>">Detail</button>
@@ -97,22 +90,12 @@ $session = session();
                                                             <img src="<?= base_url('assets/new_frontend') ?>/images/profile/user-1.jpg" alt="" class="rounded-circle mb-3" width="80" height="80">
                                                             <div class="row m-3 text-start">
                                                                 <div class="col">
-                                                                    Nama Terlapor : <?= $value['nama'] ?>
+                                                                    Pemilik ALat : <?= $value['nama'] ?>
                                                                 </div>
                                                             </div>
                                                             <div class="row m-3 text-start">
                                                                 <div class="col">
-                                                                    NIK terlapor : <?= $value['nik'] ?>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row m-3 text-start">
-                                                                <div class="col">
-                                                                    Nama Perusahaan Penyedia Sewa : <?= $value['perusahaan'] ?>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row m-3 text-start">
-                                                                <div class="col">
-                                                                    Jenis Pelanggaran : <?= $value['jenis_pelanggaran'] ?>
+                                                                    Nomor HP : <?= $value['no_hp'] ?>
                                                                 </div>
                                                             </div>
                                                             <div class="row m-3 text-start">
@@ -122,22 +105,36 @@ $session = session();
                                                             </div>
                                                             <div class="row m-3 text-start">
                                                                 <div class="col">
-                                                                    No Seri : <?= $value['no_seri'] ?>
+                                                                    Serial Number : <?= $value['serial_number'] ?>
                                                                 </div>
                                                             </div>
                                                             <div class="row m-3 text-start">
                                                                 <div class="col">
-                                                                    Durasi Rental : <?= $value['durasi'] . " Bulan" ?>
+                                                                    Tanggal Kehilangan : <?= date('d-m-Y', strtotime($value['tanggal_kehilangan']))  ?>
                                                                 </div>
                                                             </div>
                                                             <div class="row m-3 text-start">
                                                                 <div class="col">
-                                                                    Keterangan : <?= $value['keterangan'] ?>
+                                                                    Lokasi Kehilangan : <?= $value['lokasi_kehilangan'] ?>
                                                                 </div>
                                                             </div>
                                                             <div class="row m-3 text-start">
                                                                 <div class="col">
-                                                                    Nominal Kerugian : Rp. <?= number_format($value['nominal_kerugian'])  ?>
+                                                                    Kronologis Kejadian : <?= $value['kronologi'] ?>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row m-3 text-start">
+                                                                <div class="col">
+                                                                    Status Kepemilikan :
+                                                                    <?php
+                                                                    if ($value['valid'] == null) {
+                                                                        echo "Menunggu Validasi";
+                                                                    } else if ($value['valid'] == 0) {
+                                                                        echo "Tidak Valid";
+                                                                    } else {
+                                                                        echo "Valid";
+                                                                    }
+                                                                    ?>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -156,24 +153,16 @@ $session = session();
                             </div>
                         </div>
                     <?php endif; ?>
-                    <div class="tab-pane fade" id="addUser" role="tabpanel" aria-labelledby="addUser-tab">
+                    <div class="tab-pane fade" id="addAlatHilang" role="tabpanel" aria-labelledby="addAlatHilang-tab">
                         <div class="row">
                             <div class="col-12">
                                 <!-- --------------------- start Grid With Row Label ---------------- -->
-                                <?= $this->include("new_ui_frontend/user_blacklist_frontend_new/addUser"); ?>
+                                <?= $this->include("new_ui_frontend/alat_hilang_frontend_new/addAlatHilang"); ?>
                                 <!-- --------------------- end Grid With Row Label---------------- -->
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="addPerusahaan" role="tabpanel" aria-labelledby="addPerusahaan-tab">
-                        <div class="row">
-                            <div class="col-12">
-                                <!-- --------------------- start Grid With Row Label ---------------- -->
-                                <?= $this->include("new_ui_frontend/user_blacklist_frontend_new/addPerusahaan"); ?>
-                                <!-- --------------------- end Grid With Row Label---------------- -->
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
