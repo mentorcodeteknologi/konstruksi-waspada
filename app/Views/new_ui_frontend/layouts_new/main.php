@@ -109,6 +109,7 @@
             });
         }, 6000);
     </script>
+    <?= $this->renderSection("addScripts"); ?>
 </body>
 
 </html>
