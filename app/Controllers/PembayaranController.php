@@ -31,18 +31,14 @@ class PembayaranController extends BaseController
     public function index()
     {
         $session = session();
-        if ($session->get('role') != "admin") {
-            $listData = $this->pembayaranModel->findAllDatas($session->get('id'));
-        } else {
-            $listData = $this->pembayaranModel->findAllDatas();
-        }
-
+        $id = $session->get('role') != "admin" ?  $session->get('id') : null;
+        $listData = $this->pembayaranModel->findAllDatas($id);
         $data = [
             'title'           => 'Pembayaran',
             'subtitle'        => 'List Data Pembayaran',
             'list_pembayaran' => $listData
         ];
-        return view('pembayaran/index', $data);
+        return view('backend/pembayaran/index', $data);
     }
 
 
@@ -55,7 +51,7 @@ class PembayaranController extends BaseController
             'title'    => 'Pembayaran',
             'subtitle' => 'Tambah Data Pembayaran'
         ];
-        return view('pembayaran/create', $data);
+        return view('backend/pembayaran/create', $data);
     }
 
 

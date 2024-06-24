@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\I18n\Time;
 use App\Controllers\BaseController;
+use App\Helpers\ComponentHelpers;
 use App\Models\CategoryModel;
 use App\Helpers\Helpers;
 
@@ -13,6 +14,7 @@ class CategoryController extends BaseController
 
     // DEKLARASI MODEL
     protected $categoryModel;
+    protected $componentHelpers;
 
 
     // ========================= //
@@ -21,6 +23,7 @@ class CategoryController extends BaseController
     public function __construct()
     {
         $this->categoryModel = new CategoryModel();
+        $this->componentHelpers = new ComponentHelpers();
     }
 
 
@@ -29,12 +32,19 @@ class CategoryController extends BaseController
     // ========================= //
     public function index()
     {
+        $list_category = $this->categoryModel->findAll();
+        $headers = [
+            'category' => 'Kategori',
+        ];
+        $table = $this->componentHelpers->generate_table($headers, $list_category, 'category','id','avatar', true);
+
         $data = [
             'title'        => 'Kategori',
             'subtitle'     => 'List Data Kategori',
-            'list_category' => $this->categoryModel->findAll()
+            'table'     => $table
         ];
-        return view('category/index', $data);
+
+        return view('backend/category/index', $data);
     }
 
 
@@ -47,7 +57,7 @@ class CategoryController extends BaseController
             'title'    => 'Kategori',
             'subtitle' => 'Tambah Data Kategori'
         ];
-        return view('category/create', $data);
+        return view('backend/category/create', $data);
     }
 
 
@@ -78,7 +88,7 @@ class CategoryController extends BaseController
             'subtitle'        => 'Edit Data Kategori',
             'detail_category' => $this->categoryModel->getDataBySlug(base64_decode($id)),
         ];
-        return view('category/update', $data);
+        return view('backend/category/update', $data);
     }
 
 
@@ -88,7 +98,6 @@ class CategoryController extends BaseController
     public function updateCategory($id)
     {
         $categoryData = $this->categoryModel->getDataBySlug(base64_decode($id));
-
         $data = [
             'category'     => $this->request->getVar('category'),
             'created_at'        => Time::now('Asia/Jakarta', 'en_US'),

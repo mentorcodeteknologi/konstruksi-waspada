@@ -32,7 +32,7 @@ class UserBlacklistController extends BaseController
             'subtitle'            => 'List Data User Blacklist',
             'list_user_blacklist' => $this->userBlacklistModel->findAllDatas()
         ];
-        return view('user_blacklist/index', $data);
+        return view('backend/user-blacklist/index', $data);
     }
 
 
@@ -45,7 +45,7 @@ class UserBlacklistController extends BaseController
             'title'    => 'User Blacklist',
             'subtitle' => 'Tambah Data User Blacklist'
         ];
-        return view('user_blacklist/create', $data);
+        return view('backend/user-blacklist/create', $data);
     }
 
 
@@ -116,7 +116,7 @@ class UserBlacklistController extends BaseController
 
         $this->userBlacklistModel->insert($data);
         session()->setFlashdata('pesan', 'Data berhasil disimpan');
-        return redirect()->to(base_url('user_blacklist'));
+        return redirect()->to(base_url('backend/user_blacklist'));
     }
 
 
@@ -130,7 +130,7 @@ class UserBlacklistController extends BaseController
             'subtitle'               => 'Edit Data User Blacklist',
             'detail_users_blacklist' => $this->userBlacklistModel->getDataBySlug($slug)
         ];
-        return view('user_blacklist/update', $data);
+        return view('backend/user-blacklist/update', $data);
     }
 
 
@@ -225,7 +225,7 @@ class UserBlacklistController extends BaseController
 
         $this->userBlacklistModel->update($datas['id'], $data);
         session()->setFlashdata('pesan', 'Data berhasil diupdate');
-        return redirect()->to(base_url('user_blacklist'));
+        return redirect()->to(base_url('backend/user_blacklist'));
     }
 
     // ========================= //
@@ -238,7 +238,7 @@ class UserBlacklistController extends BaseController
             'subtitle'               => 'Detail Data User Blacklist',
             'detail_users_blacklist' => $this->userBlacklistModel->getDataBySlug($slug)
         ];
-        return view('user_blacklist/update', $data);
+        return view('backend/user-blacklist/update', $data);
     }
 
 
@@ -251,7 +251,7 @@ class UserBlacklistController extends BaseController
 
         $this->userBlacklistModel->update($datas['id'], ['valid' => true]);
         session()->setFlashdata('pesan', 'Data berhasil divalidasi');
-        return redirect()->to(base_url('user_blacklist'));
+        return redirect()->to(base_url('backend/user_blacklist'));
     }
 
 
@@ -264,7 +264,7 @@ class UserBlacklistController extends BaseController
 
         $this->userBlacklistModel->update($datas['id'], ['valid' => false]);
         session()->setFlashdata('pesan', 'Data berhasil diunvalidasi');
-        return redirect()->to(base_url('user_blacklist'));
+        return redirect()->to(base_url('backend/user_blacklist'));
     }
 
     // ========================= //
@@ -283,6 +283,6 @@ class UserBlacklistController extends BaseController
 
         $this->userBlacklistModel->delete($datas['id']);
         session()->setFlashdata('pesan', 'Data berhasil dihapus');
-        return redirect()->to(base_url('user_blacklist'));
+        return redirect()->to(base_url('backend/user_blacklist'));
     }
 }

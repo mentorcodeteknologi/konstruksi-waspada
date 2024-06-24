@@ -31,7 +31,7 @@ class UserBlacklistFrontendController extends BaseController
             'footerPopularArtikel' => $this->getPopularArticles(5),
             'footerRecentArtikel' => $this->getRecentArticles(5),
         ];
-        return view('user_blacklist_frontend/index', $data);
+        return view('new_ui_frontend/user_blacklist_frontend_new/index', $data);
     }
 
     // FUNCTION CREATE USER PERUSAHAAN BLACKLIST
@@ -48,9 +48,9 @@ class UserBlacklistFrontendController extends BaseController
         }
 
         // UPLOAD FOTO KTP
-        $fileKtp = $this->request->getFile('foto_npwp');
-        $fotoKtp = $fileKtp->getRandomName();
-        $fileKtp->move($path, $fotoKtp);
+        $fileNpwp = $this->request->getFile('foto_npwp');
+        $fotoNpwp = $fileNpwp->getRandomName();
+        $fileNpwp->move($path, $fotoNpwp);
 
         // UPLOAD SURAT PERJANJIAN
         $fileSuratPerjanjian = $this->request->getFile('surat_perjanjian');
@@ -70,8 +70,9 @@ class UserBlacklistFrontendController extends BaseController
         $data = [
             'nik'                    => $this->request->getVar('nik'),
             'nama'                   => $this->request->getVar('nama'),
+            'npwp'                   => $this->request->getVar('npwp'),
             'nama_penanggung_jawab'  => $this->request->getVar('nama_penanggung_jawab'),
-            'foto_ktp'               => $fotoKtp,
+            'foto_npwp'               => $fotoNpwp,
             'no_hp'                  => $this->request->getVar('no_hp'),
             'merk'                   => $this->request->getVar('merk'),
             'type_alat'              => $this->request->getVar('type_alat'),

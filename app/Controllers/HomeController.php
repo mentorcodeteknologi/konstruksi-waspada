@@ -34,7 +34,7 @@ class HomeController extends BaseController
             'footerPopularArtikel' => $this->getPopularArticles(5),
             'footerRecentArtikel' => $this->getRecentArticles(5),
         ];
-        return view('home/index', $data);
+        return view('new_ui_frontend/blog_new/index', $data);
     }
 
     //Blog Details
@@ -48,7 +48,7 @@ class HomeController extends BaseController
             'footerPopularArtikel' => $this->getPopularArticles(5),
             'footerRecentArtikel' => $this->getRecentArticles(5),
         ];
-        return view('home/blog_details', $data);
+        return view('new_ui_frontend/blog_new/blog_details', $data);
     }
 
     //Blog Details
@@ -65,7 +65,8 @@ class HomeController extends BaseController
         $this->commentModel->insert($data);
         return redirect()->to(base_url("blog_details/$slug"));
     }
-    function map() {
+    function map()
+    {
         return view('map/index');
     }
 }
