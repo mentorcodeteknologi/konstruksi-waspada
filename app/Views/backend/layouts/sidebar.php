@@ -33,6 +33,7 @@
                         <span class="hide-menu">Dashboard</span>
                     </a>
                 </li>
+                <?php if (session('role') == 'admin') { ?>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="<?= base_url('backend/users') ?>" aria-expanded="false">
                         <span>
@@ -41,6 +42,7 @@
                         <span class="hide-menu">Users</span>
                     </a>
                 </li>
+                <?php } ?>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="<?= base_url('backend/pembayaran') ?>" aria-expanded="false">
                         <span>
@@ -49,6 +51,7 @@
                         <span class="hide-menu">Pembayaran</span>
                     </a>
                 </li>
+                <?php if (session('role') == 'admin') { ?>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="<?= base_url('backend/category') ?>" aria-expanded="false">
                         <span>
@@ -57,6 +60,7 @@
                         <span class="hide-menu">Kategori</span>
                     </a>
                 </li>
+                <?php } ?>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="<?= base_url('backend/artikel') ?>" aria-expanded="false">
                         <span>
@@ -90,7 +94,7 @@
                     </a>
                 </li>
                 
-
+                <?php if (session('role') == 'admin') { ?>
                 <!-- ---------------------------------- -->
                 <!-- Admin -->
                 <!-- ---------------------------------- -->
@@ -114,7 +118,7 @@
                         <span class="hide-menu">Scan QR Whatsapp</span>
                     </a>
                 </li>
-                
+                <?php } ?>
                 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="<?= base_url('/') ?>" aria-expanded="false">
