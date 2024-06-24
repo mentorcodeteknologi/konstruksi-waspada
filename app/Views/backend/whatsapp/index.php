@@ -111,7 +111,10 @@
     //         return false; // Ctrl+U
     //     }
     // }
-    const waUrl = '<?= $node["url"] . ':' . $node['port'] ?>';
+    let waUrl = '<?= $node["url"] . ':' . $node['port'] ?>';
+    if ($node['port'] == "" || $url['port'] == null) {
+        waUrl = '<?= $node["url"] ?>';
+    }
 
     function hitPostAPI(data, api) {
         $.ajax({

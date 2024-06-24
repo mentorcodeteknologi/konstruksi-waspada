@@ -113,10 +113,13 @@ class Helpers
             'number' => $number,
             'message' => $message,
         ];
+        $node = $url['url'];
+        if ($url['port'] != "" || $url['port'] != null) {
+            $node .= $node . ':' . $url['port'];
+        }
+        $jwt = $this->getToken($node, '/api/login');
 
-        $jwt = $this->getToken($url);
-
-        $response = $client->request('POST', $url . ':3000/'. $endpoint, [
+        $response = $client->request('POST',$node . $endpoint, [
             'headers' => [
                 'Authorization' => 'Bearer ' . $jwt->token,
                 'Content-Type' => 'application/json',
@@ -132,7 +135,7 @@ class Helpers
         }
     }
 
-    public function getToken($url)
+    public function getToken($url, $endpoint)
     {
         $client = \Config\Services::curlrequest();
 
@@ -141,7 +144,7 @@ class Helpers
             'password' => "password",
         ];
 
-        $response = $client->request('POST', $url . ':3000/api/login', [
+        $response = $client->request('POST', $url . $endpoint, [
             'headers' => [
                 'Content-Type' => 'application/json',
             ],
