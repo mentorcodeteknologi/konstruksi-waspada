@@ -90,6 +90,7 @@ class AuthController extends BaseController
             ]);
             $model  = new Socket();
             $socket = $model->where('remark', 'NODE')->first();
+            
             $helper->sendDataToApi($userDatas['no_hp'], "Masukan OTP : $code", $socket, '/api/send-message');
             return redirect()->to(base_url('otp'))->with('success', 'Silahkan masukkan kode OTP yang dikirim ke Whatsapp yang didaftarkan!');
         }
