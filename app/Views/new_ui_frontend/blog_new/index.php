@@ -43,7 +43,7 @@
                                 <span class="badge text-bg-light fs-2 rounded-4 py-1 px-2 lh-sm mt-3">Posted By : <?= $a['author']; ?></span>
                                 <span class="badge text-bg-light fs-2 rounded-4 py-1 px-2 lh-sm mt-3"><?= date('d-m-Y', strtotime($a['created_at'])); ?></span>
                                 <a class="d-block my-4 fs-5 text-dark fw-semibold" href="<?= base_url('blog_details/' . $a['slug']) ?>"><?= $a['judul']; ?></a>
-                                <p class="d-block my-4 fs-5 text-dark fw-semibold"><?= substr($a['isi'], 0, 150); ?></p>
+                                <p class="d-block my-4 fs-5 text-dark"><?= substr($a['isi'], 0, 150); ?></p>
                                 <div class="d-flex align-items-center gap-4">
                                     <div class="d-flex align-items-center gap-2"><i class="ti ti-eye text-dark fs-5"></i><?= $a['views']; ?></div>
                                     <div class="d-flex align-items-center gap-2"><i class="ti ti-heart text-dark fs-5"></i><?= $a['likes']; ?></div>

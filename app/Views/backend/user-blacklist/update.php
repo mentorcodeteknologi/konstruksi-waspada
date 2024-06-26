@@ -65,13 +65,13 @@
             <div class="col-md-6">
               <div class="mb-4">
                 <label for="mulai_rental" class="form-label">Mulai Rental<span class="text-danger">*</span></label>
-                <input type="date" name="mulai_rental" id="mulai_rental" class="form-control" placeholder="Mulai Rental" required value="<?= date('Y-m-d', strtotime($detail_perusahaan_blacklist['mulai_rental'])) ?>">
+                <input type="date" name="mulai_rental" id="mulai_rental" class="form-control" placeholder="Mulai Rental" required value="<?= date('Y-m-d', strtotime($detail_users_blacklist['mulai_rental'])) ?>">
               </div>
             </div>
             <div class="col-md-6">
               <div class="mb-4">
                 <label for="akhir_rental" class="form-label">Akhir Rental<span class="text-danger">*</span></label>
-                <input type="date" name="akhir_rental" id="akhir_rental" class="form-control" placeholder="Akhir Rental" required value="<?= date('Y-m-d', strtotime($detail_perusahaan_blacklist['akhir_rental'])) ?>">
+                <input type="date" name="akhir_rental" id="akhir_rental" class="form-control" placeholder="Akhir Rental" required value="<?= date('Y-m-d', strtotime($detail_users_blacklist['akhir_rental'])) ?>">
               </div>
             </div>
             
