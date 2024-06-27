@@ -78,6 +78,24 @@
                         </div>
                     </div>
                 </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title fw-semibold">Kategori Artikel</h5>
+                        <div class="card bg-primary-subtle shadow-none mb-0">
+                            <div class="card-body px-3 py-4">
+                                <?php foreach ($kategoriArtikel as $ka) : ?>
+                                    <div class="d-flex align-items-center mt-3 p-3 bg-hover-light-black rounded border-bottom">
+                                        <a href="<?= base_url('/ ? category=' . $ka['category_name']) ?>">
+                                            <div class="position-relative d-flex align-items-center">
+                                                <li><?= $ka['category_name']; ?> (<?= $ka['article_count']; ?>)</li>
+                                            </div>
+                                        </a>
+                                    </div>
+                                <?php endforeach ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="card-body">
                     <h5 class="card-title fw-semibold">Popular Blog</h5>
                     <div class="card bg-primary-subtle shadow-none mb-0">
@@ -87,7 +105,7 @@
                                     <div class="position-relative d-flex align-items-center">
                                         <img src="<?= base_url('assets/backend/images/artikel/' . $pa['gambar']) ?>" width="45" class="rounded" alt="album" />
                                         <div class="ms-3">
-                                            <h6 class="mb-0 fw-semibold"><?= $pa['judul']; ?></h6>
+                                            <h6 class="mb-0 fw-semibold"><?= substr($pa['judul'], 0, 10) . (strlen($pa['judul']) > 10 ? '...' : '') ?></h6>
                                             <span class="fs-2"><?= date('d', strtotime($pa['created_at'])); ?> - <?= date('M', strtotime($pa['created_at'])); ?></span>
                                             <p style="font-size: 10px;"><?= substr($pa['isi'], 0, 10); ?></p>
                                             <span style="font-size: 10px;"><?= $pa['views']; ?> Views</span>

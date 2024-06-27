@@ -125,4 +125,16 @@ class ArtikelModel extends Model
     {
         return $this->select('*')->orderBy('created_at', 'desc')->limit($limit)->get()->getResultArray();
     }
+
+    public function getArtikelByCategory($category)
+    {
+        $builder = $this->db->table('artikel');
+        $builder->select('artikel.*, categories.category as category_name, users.nama author');
+        $builder->join('categories', 'categories.id = artikel.id_categories');
+        $builder->join('users', 'artikel.penulis = users.id');
+        $builder->where('categories.category', $category);
+        $query = $builder->get();
+
+        return $query->getResultArray();
+    }
 }

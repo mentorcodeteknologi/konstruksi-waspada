@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\ArtikelModel;
+use App\Models\CategoryModel;
 use App\Models\CommentModel;
 use CodeIgniter\I18n\Time;
 
@@ -11,6 +12,7 @@ class HomeController extends BaseController
 {
     // DEKLARASI MODEL
     protected $artikelModel;
+    protected $categoryModel;
     protected $commentModel;
 
 
@@ -20,15 +22,24 @@ class HomeController extends BaseController
     public function __construct()
     {
         $this->artikelModel = new ArtikelModel();
+        $this->categoryModel = new CategoryModel();
         $this->commentModel = new CommentModel();
     }
 
     // Home
     public function index()
     {
+        $category = $this->request->getGet('category');
+
+        if ($category) {
+            $artikel = $this->artikelModel->getArtikelByCategory($category);
+        } else {
+            $artikel = $this->artikelModel->findAllData();
+        }
         $data = [
             'title' => 'Blog',
-            'artikel' => $this->artikelModel->findAllData(),
+            'artikel' => $artikel,
+            'kategoriArtikel' => $this->categoryModel->getArticleCountByCategory(),
             'recentArtikel' => $this->artikelModel->getOrderArticle('created_at', 'desc'),
             'popularArtikel' => $this->artikelModel->getOrderArticle('views', 'desc'),
             'footerPopularArtikel' => $this->getPopularArticles(5),

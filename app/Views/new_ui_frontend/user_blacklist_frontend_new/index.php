@@ -66,96 +66,98 @@ $session = session();
                     <?php endif; ?>
                 </ul>
                 <div class="tab-content tabcontent-border p-3" id="myTabContent">
-                    <?php if ($session->get('logged_in')) : ?>
-                        <div role="tabpanel" class="tab-pane fade show active" id="user" aria-labelledby="user-tab">
-                            <div class="row">
-                                <?php foreach ($list_user_blacklist as $value) : ?>
-                                    <div class="col-md-4">
-                                        <div class="card hover-img">
-                                            <div class="card-body p-4 text-center border-bottom">
-                                                <img src="<?= base_url('assets/new_frontend') ?>/images/profile/user-1.jpg" alt="" class="rounded-circle mb-3" width="80" height="80">
-                                                <h5 class="fw-semibold mb-0 fs-5">Nama Terlapor : <?= $value['nama'] ?></h5>
-                                                <span class="text-dark fs-2">NIK terlapor : <?= $value['nik'] ?></span>
-                                            </div>
-                                            <ul class="px-2 py-2 list-unstyled d-flex align-items-center justify-content-center mb-0">
-                                                <button class="btn bg-primary-subtle text-primary mb-3 w-50" data-bs-toggle="modal" data-bs-target="#with-grid-modal<?= $value['slug'] ?>">Detail</button>
-                                            </ul>
+                    <?php
+                    $is_logged_in = $session->get('logged_in');
+                    ?>
+                    <div role="tabpanel" class="tab-pane fade show active" id="user" aria-labelledby="user-tab">
+                        <div class="row">
+                            <?php foreach ($list_user_blacklist as $value) : ?>
+                                <div class="col-md-4">
+                                    <div class="card hover-img <?= $is_logged_in ? '' : 'blur' ?>">
+                                        <div class="card-body p-4 text-center border-bottom">
+                                            <img src="<?= base_url('assets/new_frontend') ?>/images/profile/user-1.jpg" alt="" class="rounded-circle mb-3" width="80" height="80">
+                                            <h5 class="fw-semibold mb-0 fs-5">Nama Terlapor : <?= $value['nama'] ?></h5>
+                                            <h6 class="text-dark fs-2">NIK terlapor : <?= $value['nik'] ?></h6>
+                                            <h6 class="text-dark fs-2">Jenis Pelanggaran : <?= $value['jenis_pelanggaran'] ?></h6>
+                                            <h6 class="text-dark fs-2">Nominal Kerugian : Rp. <?= number_format($value['nominal_kerugian'])  ?></h6>
                                         </div>
+                                        <ul class="px-2 py-2 list-unstyled d-flex align-items-center justify-content-center mb-0">
+                                            <button class="btn bg-primary-subtle text-primary mb-3 w-50" data-bs-toggle="modal" data-bs-target="#with-grid-modal<?= $value['slug'] ?>">Detail</button>
+                                        </ul>
                                     </div>
-                                    <div class="modal fade" id="with-grid-modal<?= $value['slug'] ?>" tabindex="-1" aria-labelledby="scroll-long-inner-modal" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-scrollable">
-                                            <div class="modal-content">
-                                                <div class="modal-header d-flex align-items-center">
-                                                    <h4 class="modal-title" id="myLargeModalLabel">
-                                                        Detail
-                                                    </h4>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="container-fluid">
-                                                        <div class="card-body p-4 text-center">
-                                                            <img src="<?= base_url('assets/new_frontend') ?>/images/profile/user-1.jpg" alt="" class="rounded-circle mb-3" width="80" height="80">
-                                                            <div class="row m-3 text-start">
-                                                                <div class="col">
-                                                                    Nama Terlapor : <?= $value['nama'] ?>
-                                                                </div>
+                                </div>
+                                <div class="modal fade" id="with-grid-modal<?= $value['slug'] ?>" tabindex="-1" aria-labelledby="scroll-long-inner-modal" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-scrollable">
+                                        <div class="modal-content">
+                                            <div class="modal-header d-flex align-items-center">
+                                                <h4 class="modal-title" id="myLargeModalLabel">
+                                                    Detail
+                                                </h4>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="container-fluid">
+                                                    <div class="card-body p-4 text-center">
+                                                        <img src="<?= base_url('assets/new_frontend') ?>/images/profile/user-1.jpg" alt="" class="rounded-circle mb-3" width="80" height="80">
+                                                        <div class="row m-3 text-start">
+                                                            <div class="col">
+                                                                Nama Terlapor : <?= $value['nama'] ?>
                                                             </div>
-                                                            <div class="row m-3 text-start">
-                                                                <div class="col">
-                                                                    NIK terlapor : <?= $value['nik'] ?>
-                                                                </div>
+                                                        </div>
+                                                        <div class="row m-3 text-start">
+                                                            <div class="col">
+                                                                NIK terlapor : <?= $value['nik'] ?>
                                                             </div>
-                                                            <div class="row m-3 text-start">
-                                                                <div class="col">
-                                                                    Nama Perusahaan Penyedia Sewa : <?= $value['perusahaan'] ?>
-                                                                </div>
+                                                        </div>
+                                                        <div class="row m-3 text-start">
+                                                            <div class="col">
+                                                                Nama Perusahaan Penyedia Sewa : <?= $value['perusahaan'] ?>
                                                             </div>
-                                                            <div class="row m-3 text-start">
-                                                                <div class="col">
-                                                                    Jenis Pelanggaran : <?= $value['jenis_pelanggaran'] ?>
-                                                                </div>
+                                                        </div>
+                                                        <div class="row m-3 text-start">
+                                                            <div class="col">
+                                                                Jenis Pelanggaran : <?= $value['jenis_pelanggaran'] ?>
                                                             </div>
-                                                            <div class="row m-3 text-start">
-                                                                <div class="col">
-                                                                    Merk dan Tipe Alat : <?= $value['merk'] ?> - <?= $value['type_alat'] ?>
-                                                                </div>
+                                                        </div>
+                                                        <div class="row m-3 text-start">
+                                                            <div class="col">
+                                                                Merk dan Tipe Alat : <?= $value['merk'] ?> - <?= $value['type_alat'] ?>
                                                             </div>
-                                                            <div class="row m-3 text-start">
-                                                                <div class="col">
-                                                                    No Seri : <?= $value['no_seri'] ?>
-                                                                </div>
+                                                        </div>
+                                                        <div class="row m-3 text-start">
+                                                            <div class="col">
+                                                                No Seri : <?= $value['no_seri'] ?>
                                                             </div>
-                                                            <div class="row m-3 text-start">
-                                                                <div class="col">
-                                                                    Durasi Rental : <?= $value['durasi'] . " Bulan" ?>
-                                                                </div>
+                                                        </div>
+                                                        <div class="row m-3 text-start">
+                                                            <div class="col">
+                                                                Durasi Rental : <?= $value['durasi'] . " Bulan" ?>
                                                             </div>
-                                                            <div class="row m-3 text-start">
-                                                                <div class="col">
-                                                                    Keterangan : <?= $value['keterangan'] ?>
-                                                                </div>
+                                                        </div>
+                                                        <div class="row m-3 text-start">
+                                                            <div class="col">
+                                                                Keterangan : <?= $value['keterangan'] ?>
                                                             </div>
-                                                            <div class="row m-3 text-start">
-                                                                <div class="col">
-                                                                    Nominal Kerugian : Rp. <?= number_format($value['nominal_kerugian'])  ?>
-                                                                </div>
+                                                        </div>
+                                                        <div class="row m-3 text-start">
+                                                            <div class="col">
+                                                                Nominal Kerugian : Rp. <?= number_format($value['nominal_kerugian'])  ?>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn bg-danger-subtle text-danger font-medium waves-effect text-start" data-bs-dismiss="modal">
-                                                        Close
-                                                    </button>
-                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn bg-danger-subtle text-danger font-medium waves-effect text-start" data-bs-dismiss="modal">
+                                                    Close
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- sample modal content -->
-                                <?php endforeach ?>
-                            </div>
+                                </div>
+                            <?php endforeach ?>
                         </div>
-                    <?php endif; ?>
+                    </div>
                     <div class="tab-pane fade" id="addUser" role="tabpanel" aria-labelledby="addUser-tab">
                         <div class="row">
                             <div class="col-12">

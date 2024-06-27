@@ -26,7 +26,7 @@
 
     <div class="card rounded-2 overflow-hidden">
         <div class="position-relative">
-            <img src="<?= base_url('assets/backend/images/artikel/' . $detail_artikel['gambar']) ?>" class="card-img-top rounded-0 object-fit-cover" alt="..." height="440">
+            <img src="<?= base_url('assets/backend/images/artikel/' . $detail_artikel['gambar']) ?>" class="card-img-top rounded-0" alt="..." style="max-width: 100%; max-height: 100%; object-fit: cover;">
             <!-- <span class="badge text-bg-light fs-2 rounded-4 lh-sm mb-9 me-9 py-1 px-2 fw-semibold position-absolute bottom-0 end-0">2
                 min Read</span> -->
             <!-- <img src="<?= base_url('assets/new_frontend') ?>/images/profile/user-5.jpg" alt="" class="img-fluid rounded-circle position-absolute bottom-0 start-0 mb-n9 ms-9" width="40" height="40" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Esther Lindsey"> -->
@@ -83,7 +83,7 @@
                 </div>
                 <div class="col">
                     <h4>Description :</h4>
-                    <textarea class="form-control" disabled rows="12" style="border: none;"><?= $detail_artikel['deskripsi']; ?></textarea>
+                    <textarea class="form-control" disabled rows="14" style="border: none;"><?= $detail_artikel['deskripsi']; ?></textarea>
                 </div>
             </div>
             <!-- <div class="border-top mt-7 pt-7">
@@ -118,7 +118,7 @@
                             <div class="d-flex align-items-center gap-3">
                                 <!-- <img src="<?= base_url('assets/new_frontend') ?>/images/profile/user-2.jpg" alt="" class="rounded-circle" width="33" height="33"> -->
                                 <h6 class="fw-semibold mb-0 fs-4"><?= $c['nama']; ?></h6>
-                                <span class="p-1 text-muted d-inline-block">( <?= $c['created_at'] ?> )</span>
+                                <span class="p-1 text-muted fs-2 d-inline-block">( <?= $c['created_at'] ?> )</span>
                             </div>
                             <p class="my-3"><?= $c['comment'] ?></p>
                         </div>

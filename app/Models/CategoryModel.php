@@ -48,4 +48,16 @@ class CategoryModel extends Model
     {
         return $this->select('*')->where('id', $id)->get()->getRowArray();
     }
+
+    public function getArticleCountByCategory()
+    {
+        $builder = $this->db->table('categories');
+        $builder->select('categories.category AS category_name, COUNT(artikel.id) AS article_count');
+        $builder->join('artikel', 'artikel.id_categories = categories.id', 'left');
+        $builder->groupBy('categories.category');
+        $builder->orderBy('article_count', 'DESC');
+        $builder->limit(5);
+        $query = $builder->get();
+        return $query->getResultArray();
+    }
 }
