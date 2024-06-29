@@ -61,6 +61,33 @@
         <div class="col-xl-3 col-lg-4 col-md-5">
             <div class="card">
                 <div class="card-body">
+                    <h5 class="card-title fw-semibold">Kategori</h5>
+                    <div class="card bg-primary-subtle shadow-none mb-0">
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                        List
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <?php foreach ($kategoriArtikel as $ka) : ?>
+                                            <a href="<?= base_url('/ ? category=' . $ka['category_name']) ?>">
+                                                <div class="position-relative d-flex align-items-center">
+                                                    <li><?= $ka['category_name']; ?> (<?= $ka['article_count']; ?>)</li>
+                                                </div>
+                                            </a>
+                                        <?php endforeach ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
                     <h5 class="card-title fw-semibold">Recent Blog</h5>
                     <div class="card bg-primary-subtle shadow-none mb-0">
                         <div class="card-body px-3 py-4">
@@ -75,24 +102,6 @@
                                     </div>
                                 </div>
                             <?php endforeach ?>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title fw-semibold">Kategori Artikel</h5>
-                        <div class="card bg-primary-subtle shadow-none mb-0">
-                            <div class="card-body px-3 py-4">
-                                <?php foreach ($kategoriArtikel as $ka) : ?>
-                                    <div class="d-flex align-items-center mt-3 p-3 bg-hover-light-black rounded border-bottom">
-                                        <a href="<?= base_url('/ ? category=' . $ka['category_name']) ?>">
-                                            <div class="position-relative d-flex align-items-center">
-                                                <li><?= $ka['category_name']; ?> (<?= $ka['article_count']; ?>)</li>
-                                            </div>
-                                        </a>
-                                    </div>
-                                <?php endforeach ?>
-                            </div>
                         </div>
                     </div>
                 </div>
