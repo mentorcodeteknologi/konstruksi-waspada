@@ -43,7 +43,7 @@ $session = session();
             <div class="card-body">
                 <div class="mb-3">
                     <?php if (!$session->get('logged_in')) : ?>
-                        <h6 class="mb-0">Sebelum anda mengisi form di bawah, silakan login jika anda sudah punya akun. Jika Anda belum memiliki akun, silakan registrasi terlebih dahulu.</h6>
+                        <h6 class="mb-0">Untuk melihat data silahkan login terlebih dahulu</h6>
                     <?php endif; ?>
                 </div>
                 <ul class="nav nav-tabs" id="myTab" role="tablist">

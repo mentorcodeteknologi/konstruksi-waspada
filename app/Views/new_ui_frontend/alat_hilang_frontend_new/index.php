@@ -10,13 +10,13 @@ $session = session();
         <div class="card-body px-4 py-3">
             <div class="row align-items-center">
                 <div class="col-9">
-                    <h4 class="fw-semibold mb-8">ALat Hilang</h4>
+                    <h4 class="fw-semibold mb-8">Alat Hilang</h4>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
                                 <a class="text-muted text-decoration-none" href="<?= base_url("/"); ?>">Home</a>
                             </li>
-                            <li class="breadcrumb-item" aria-current="page">ALat Hilang</li>
+                            <li class="breadcrumb-item" aria-current="page">Alat Hilang</li>
                         </ol>
                     </nav>
                 </div>
@@ -42,7 +42,7 @@ $session = session();
             <div class="card-body">
                 <div class="mb-3">
                     <?php if (!$session->get('logged_in')) : ?>
-                        <h6 class="mb-0">Sebelum anda mengisi form di bawah, silakan login jika anda sudah punya akun. Jika Anda belum memiliki akun, silakan registrasi terlebih dahulu.</h6>
+                        <h6 class="mb-0">Untuk melihat data silahkan login terlebih dahulu</h6>
                     <?php endif; ?>
                 </div>
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -60,15 +60,18 @@ $session = session();
                     <?php endif; ?>
                 </ul>
                 <div class="tab-content tabcontent-border p-3" id="myTabContent">
-                    <?php if ($session->get('logged_in')) : ?>
-                        <div role="tabpanel" class="tab-pane fade show active" id="alathilang" aria-labelledby="alathilang-tab">
-                            <div class="row">
+                    <?php
+                    $is_logged_in = $session->get('logged_in');
+                    ?>
+                    <div role="tabpanel" class="tab-pane fade show active" id="alathilang" aria-labelledby="alathilang-tab">
+                        <div class="row">
+                            <?php if ($session->get('logged_in')) : ?>
                                 <?php foreach ($list_alat_hilang as $value) : ?>
                                     <div class="col-md-4">
-                                        <div class="card hover-img">
+                                        <div class="card hover-img <?= $is_logged_in ? '' : 'blur' ?>">
                                             <div class="card-body p-4 text-center border-bottom">
                                                 <img src="<?= base_url('assets/new_frontend') ?>/images/profile/user-1.jpg" alt="" class="rounded-circle mb-3" width="80" height="80">
-                                                <h5 class="fw-semibold mb-0 fs-5">Pemilik ALat : <?= $value['nama'] ?></h5>
+                                                <h5 class="fw-semibold mb-0 fs-5">Pemilik Alat : <?= $value['nama'] ?></h5>
                                             </div>
                                             <ul class="px-2 py-2 list-unstyled d-flex align-items-center justify-content-center mb-0">
                                                 <button class="btn bg-primary-subtle text-primary mb-3 w-50" data-bs-toggle="modal" data-bs-target="#with-grid-modal<?= $value['slug'] ?>">Detail</button>
@@ -150,9 +153,43 @@ $session = session();
                                     </div>
                                     <!-- sample modal content -->
                                 <?php endforeach ?>
-                            </div>
+                            <?php else : ?>
+                                <div class="col-md-4">
+                                    <div class="card hover-img <?= $is_logged_in ? '' : 'blur' ?>">
+                                        <div class="card-body p-4 text-center border-bottom">
+                                            <img src="<?= base_url('assets/new_frontend') ?>/images/profile/user-1.jpg" alt="" class="rounded-circle mb-3" width="80" height="80">
+                                            <h5 class="fw-semibold mb-0 fs-5">Pemilik Alat : xxxxxx</h5>
+                                        </div>
+                                        <ul class="px-2 py-2 list-unstyled d-flex align-items-center justify-content-center mb-0">
+                                            <button class="btn bg-primary-subtle text-primary mb-3 w-50" data-bs-toggle="modal" data-bs-target="#with-grid-modal">Detail</button>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card hover-img <?= $is_logged_in ? '' : 'blur' ?>">
+                                        <div class="card-body p-4 text-center border-bottom">
+                                            <img src="<?= base_url('assets/new_frontend') ?>/images/profile/user-1.jpg" alt="" class="rounded-circle mb-3" width="80" height="80">
+                                            <h5 class="fw-semibold mb-0 fs-5">Pemilik Alat : xxxxxx</h5>
+                                        </div>
+                                        <ul class="px-2 py-2 list-unstyled d-flex align-items-center justify-content-center mb-0">
+                                            <button class="btn bg-primary-subtle text-primary mb-3 w-50" data-bs-toggle="modal" data-bs-target="#with-grid-modal">Detail</button>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card hover-img <?= $is_logged_in ? '' : 'blur' ?>">
+                                        <div class="card-body p-4 text-center border-bottom">
+                                            <img src="<?= base_url('assets/new_frontend') ?>/images/profile/user-1.jpg" alt="" class="rounded-circle mb-3" width="80" height="80">
+                                            <h5 class="fw-semibold mb-0 fs-5">Pemilik Alat : xxxxxx</h5>
+                                        </div>
+                                        <ul class="px-2 py-2 list-unstyled d-flex align-items-center justify-content-center mb-0">
+                                            <button class="btn bg-primary-subtle text-primary mb-3 w-50" data-bs-toggle="modal" data-bs-target="#with-grid-modal">Detail</button>
+                                        </ul>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
                         </div>
-                    <?php endif; ?>
+                    </div>
                     <div class="tab-pane fade" id="addAlatHilang" role="tabpanel" aria-labelledby="addAlatHilang-tab">
                         <div class="row">
                             <div class="col-12">
