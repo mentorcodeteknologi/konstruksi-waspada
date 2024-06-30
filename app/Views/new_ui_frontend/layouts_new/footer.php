@@ -1,5 +1,6 @@
-<footer id="footer" class="footer mt-5">
-    <div class="container">
+<div class="my-5">&nbsp;</div>
+<footer id="footer" class="footer p-5 bg-primary-subtle">
+    <div class="container py-2">
         <div class="row">
             <div class="col-lg-4 col-md-6">
                 <div>
@@ -35,4 +36,5 @@
             </div>
         </div>
     </div>
+    <div class="mb-5"></div>
 </footer>
