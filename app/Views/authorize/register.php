@@ -99,11 +99,18 @@
                                                 <input class="form-control" required name="foto" type="file" id="formFile">
                                             </div>
                                         </div>
+                                        <div class="mb-3">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input" id="terms" />
+                                                <label class="form-check-label" for="terms">I accept
+                                                    <a href="#">Terms and Conditions</a></label><span class="text-danger">*</span>
+                                            </div>
+                                        </div>
                                     </div>
 
 
 
-                                    <button type="submit" class="btn btn-primary w-100 py-8 mb-4 rounded-2">Sign Up</button>
+                                    <button type="submit" class="btn btn-primary w-100 py-8 mb-4 rounded-2" disabled id="btn-submit">Sign Up</button>
                                     <div class="d-flex align-items-center">
                                         <p class="fs-4 mb-0 text-dark">Already have an Account?</p>
                                         <a class="text-primary fw-medium ms-2" href="<?= base_url('login') ?>">Sign In</a>
@@ -127,7 +134,17 @@
 
     <script src="<?= base_url('assets/new_frontend') ?>/js/sidebarmenu.js"></script>
     <script src="<?= base_url('assets/new_frontend') ?>/js/theme.js"></script>
-
+    <script>
+        $(document).ready(function() {
+            $('#terms').change(function() {
+                if ($(this).is(':checked')) {
+                    $('#btn-submit').removeAttr('disabled');
+                } else {
+                    $('#btn-submit').attr('disabled', 'disabled');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
