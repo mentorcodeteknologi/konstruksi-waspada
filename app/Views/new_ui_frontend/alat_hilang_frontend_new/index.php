@@ -93,7 +93,7 @@ $session = session();
                                                 <div class="modal-body">
                                                     <div class="container-fluid">
                                                         <div class="card-body p-4 text-center">
-                                                            <img src="<?= base_url('assets/new_frontend') ?>/images/profile/user-1.jpg" alt="" class="rounded-circle mb-3" width="80" height="80">
+                                                            <img src="<?= base_url('assets/backend/images/alat_hilang/' . $value['foto']) ?>" alt="" class="rounded-circle mb-3" width="80" height="80">
                                                             <div class="row m-3 text-start">
                                                                 <div class="col">
                                                                     Pemilik ALat : <?= $value['nama'] ?>
