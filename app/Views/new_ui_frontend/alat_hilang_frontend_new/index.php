@@ -70,8 +70,11 @@ $session = session();
                                     <div class="col-md-4">
                                         <div class="card hover-img <?= $is_logged_in ? '' : 'blur' ?>">
                                             <div class="card-body p-4 text-center border-bottom">
-                                                <img src="<?= base_url('assets/new_frontend') ?>/images/profile/user-1.jpg" alt="" class="rounded-circle mb-3" width="80" height="80">
-                                                <h5 class="fw-semibold mb-0 fs-5">Pemilik Alat : <?= $value['nama'] ?></h5>
+                                                <img src="<?= base_url('assets/backend/images/alat_hilang/' . $value['foto']) ?>" alt="" class="rounded-circle mb-3" width="80" height="80">
+                                                <h5 style="line-height: 20px; font-weight:bold; "><?= $value['merk'] ?> - <?= $value['type_alat'] ?></h5>
+                                                <h6><?= $value['serial_number'] ?></h6>
+                                                <h6>Hilang : <?= date('d-m-Y', strtotime($value['tanggal_kehilangan']))  ?></h6>
+                                                <h6 style="line-height: 20px; font-weight:bold; ">Pemilik Alat : <?= $value['no_hp'] ?> (<?= $value['nama'] ?>)</h6>
                                             </div>
                                             <ul class="px-2 py-2 list-unstyled d-flex align-items-center justify-content-center mb-0">
                                                 <button class="btn bg-primary-subtle text-primary mb-3 w-50" data-bs-toggle="modal" data-bs-target="#with-grid-modal<?= $value['slug'] ?>">Detail</button>

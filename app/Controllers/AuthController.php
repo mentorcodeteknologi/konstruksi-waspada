@@ -90,7 +90,7 @@ class AuthController extends BaseController
             ]);
             $model  = new Socket();
             $socket = $model->where('remark', 'NODE')->first();
-            
+
             $helper->sendDataToApi($userDatas['no_hp'], "Masukan OTP : $code", $socket, '/api/send-message');
             return redirect()->to(base_url('otp'))->with('success', 'Silahkan masukkan kode OTP yang dikirim ke Whatsapp yang didaftarkan!');
         }
@@ -106,7 +106,7 @@ class AuthController extends BaseController
         //     'is_veryfied_email' => $userDatas['is_veryfied_email'],
         //     'logged_in'         => true
         // ];
-        
+
 
         // CHECK ROLE ADMIN REDIRECT TO DASHBOARD
         // if ($userDatas['role'] == "admin") {
@@ -117,7 +117,7 @@ class AuthController extends BaseController
         // session()->setFlashdata('success', 'Silahkan masukkan kode OTP yang dikirim ke Whatsapp yang didaftarkan!');
         // return redirect()->to(base_url('backend/dashboard'));
     }
-  
+
 
     // ========================= //
     // FUNCTION OTP
@@ -149,7 +149,7 @@ class AuthController extends BaseController
         $kode          = $this->request->getVar('kode');
         $validationOtp = $this->otpModel->validationOtp($userData['id'], $kode);
         if (empty($validationOtp)) {
-           
+
             session()->setFlashdata('pesan', 'OTP Expired silahkan login kembali!');
             return redirect()->to(base_url('login'));
         }
@@ -157,7 +157,7 @@ class AuthController extends BaseController
         $data = ['is_veryfied_otp' => true];
         $this->usersModel->update($userData['id'], $data);
         // DELETE OTP ON DATABASE
-        
+
         $this->otpModel->delete($validationOtp['id']);
         return redirect()->to(base_url('dashboard'));
     }
@@ -228,80 +228,85 @@ class AuthController extends BaseController
     // ========================= //
     public function register()
     {
-        $helper  = new Helpers();
-        $encrypt = $helper->generateRandomString(12, 'ec');
-        $path    = 'assets/backend/images/profile/' . $encrypt . "/";
-        // VALIDASI EMAIL DAN NO WA SUDAH TERDAFTAR ATAU BELUM
-        $email = $this->request->getVar('email');
-        $noHp  = $this->request->getVar('no_hp');
-        $check = $this->usersModel->checkExist($email, $noHp);
-        if ($check) {
-            $pesan = "";
-            if ($check['email'] == $email) {
-                $pesan .= "Email sudah terdaftar";
+        try {
+            $helper  = new Helpers();
+            $encrypt = $helper->generateRandomString(12, 'ec');
+            $path    = 'assets/backend/images/profile/' . $encrypt . "/";
+            // VALIDASI EMAIL DAN NO WA SUDAH TERDAFTAR ATAU BELUM
+            $email = $this->request->getVar('email');
+            $noHp  = $this->request->getVar('no_hp');
+            $check = $this->usersModel->checkExist($email, $noHp);
+            if ($check) {
+                $pesan = "";
+                if ($check['email'] == $email) {
+                    $pesan .= "Email sudah terdaftar";
+                }
+                if ($check['no_hp'] == $noHp) {
+                    $pesan .= "No Hp sudah terdaftar";
+                }
+                session()->setFlashdata('pesan', $pesan);
+                return redirect()->to(base_url('register'));
             }
-            if ($check['no_hp'] == $noHp) {
-                $pesan .= "No Hp sudah terdaftar";
+
+            // UPLOAD FOTO PROFILE
+            $file = $this->request->getFile('foto');
+            $foto = 'default.png';
+            if ($file && $file->isValid()) {
+                $foto = $file->getRandomName();
+
+                // CEK FOLDER USER BLACKLIST
+                if (!file_exists($path)) {
+                    mkdir($path, 0777, true);
+                }
+
+                $file->move($path, $foto);
             }
-            session()->setFlashdata('pesan', $pesan);
-            return redirect()->to(base_url('register'));
+            $password = $this->request->getVar('password');
+
+            $data = [
+                'nama'       => $this->request->getVar('nama'),
+                'id_card'    => $this->request->getVar('id_card'),
+                'no_hp'      => $noHp,
+                'email'      => $email,
+                'password'   => password_hash($password, PASSWORD_DEFAULT),
+                'alamat'     => $this->request->getVar('alamat'),
+                'role'       => 'users',
+                'encrypt'    => $encrypt,
+                'perusahaan' => $this->request->getVar('perusahaan'),
+                'jabatan'    => $this->request->getVar('jabatan'),
+                'foto'       => $foto,
+                'status'     => 'non_active',
+                'created_at' => Time::now('Asia/Jakarta', 'en_US'),
+                'updated_at' => Time::now('Asia/Jakarta', 'en_US')
+            ];
+
+            $user = $this->usersModel->insert($data);
+            $userDatas = $this->usersModel->checkLogin($email, $password);
+            $userDatas['logged_in'] = true;
+            session()->set($userDatas);
+            $helper->sendMail($email, $encrypt);
+
+            $code     = rand(100000, 999999);
+            $datePlus = date("c", strtotime('now +5 minutes'));
+            $exp      = date("Y-m-d H:i:s", strtotime($datePlus));
+
+            // INSERT OTP TO DATABASE
+            $this->otpModel->insert([
+                'kode'       => $code,
+                'type'       => 'login',
+                'expired_at' => $exp,
+                'id_user'    => $user,
+                'created_at' => Time::now('Asia/Jakarta', 'en_US'),
+                'updated_at' => Time::now('Asia/Jakarta', 'en_US')
+            ]);
+            $model  = new Socket();
+            $socket = $model->where('remark', 'NODE')->first();
+            $helper->sendDataToApi($noHp, "Masukan OTP : $code", $socket, 'api/send-message');
+            return redirect()->to(base_url('otp'))->with('success', 'Silahkan masukkan kode OTP yang dikirim ke Whatsapp yang didaftarkan!');
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect()->to(base_url('dashboard'));
         }
-
-        // UPLOAD FOTO PROFILE
-        $file = $this->request->getFile('foto');
-        $foto = 'default.png';
-        if ($file && $file->isValid()) {
-            $foto = $file->getRandomName();
-
-            // CEK FOLDER USER BLACKLIST
-            if (!file_exists($path)) {
-                mkdir($path, 0777, true);
-            }
-
-            $file->move($path, $foto);
-        }
-        $password = $this->request->getVar('password');
-
-        $data = [
-            'nama'       => $this->request->getVar('nama'),
-            'id_card'    => $this->request->getVar('id_card'),
-            'no_hp'      => $noHp,
-            'email'      => $email,
-            'password'   => password_hash($password, PASSWORD_DEFAULT),
-            'alamat'     => $this->request->getVar('alamat'),
-            'role'       => 'users',
-            'encrypt'    => $encrypt,
-            'perusahaan' => $this->request->getVar('perusahaan'),
-            'jabatan'    => $this->request->getVar('jabatan'),
-            'foto'       => $foto,
-            'status'     => 'non_active',
-            'created_at' => Time::now('Asia/Jakarta', 'en_US'),
-            'updated_at' => Time::now('Asia/Jakarta', 'en_US')
-        ];
-
-        $user = $this->usersModel->insert($data);
-        $userDatas = $this->usersModel->checkLogin($email, $password);
-        $userDatas['logged_in'] = true;
-        session()->set($userDatas);
-        $helper->sendMail($email, $encrypt);
-
-        $code     = rand(100000, 999999);
-        $datePlus = date("c", strtotime('now +5 minutes'));
-        $exp      = date("Y-m-d H:i:s", strtotime($datePlus));
-
-        // INSERT OTP TO DATABASE
-        $this->otpModel->insert([
-            'kode'       => $code,
-            'type'       => 'login',
-            'expired_at' => $exp,
-            'id_user'    => $user,
-            'created_at' => Time::now('Asia/Jakarta', 'en_US'),
-            'updated_at' => Time::now('Asia/Jakarta', 'en_US')
-        ]);
-        $model  = new Socket();
-        $socket = $model->where('remark', 'NODE')->first();
-        $helper->sendDataToApi($noHp, "Masukan OTP : $code", $socket, 'api/send-message');
-        return redirect()->to(base_url('otp'))->with('success', 'Silahkan masukkan kode OTP yang dikirim ke Whatsapp yang didaftarkan!');
     }
 
 
