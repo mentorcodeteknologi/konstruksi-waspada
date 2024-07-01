@@ -46,33 +46,7 @@
             <p class="mb-3">
                 <?=  nl2br(esc($detail_artikel['isi'])); ?>
             </p>
-            <!-- <p class="mb-3">
-                Gigure out what it is or what it can do. MTA web directory is the simplest way in which one can bid on a
-                link, or a few links if they wish to do so. The link directory on MTA
-                displays all of the links it currently has, and does so in alphabetical order, which makes it much
-                easier for someone to find what they are looking for if it is something
-                specific and they do not want to go through all the other sites and links as well. It allows you to
-                start your bid at the bottom and slowly work your way to the top of the
-            </p>
-            <p class="text-dark mb-0"><strong>This is strong text.</strong></p>
-            <p class="mb-0"><em>This is italic text.</em></p>
-            <div class="border-top mt-7 pt-7">
-                <h3 class="fw-semibold">Unorder list.</h3>
-                <ul class="my-3 ps-4 text-dark">
-                    <li class="d-flex align-items-center gap-2"><span class="p-1 text-bg-dark rounded-circle"></span> Gigure
-                        out what it is or</li>
-                    <li class="d-flex align-items-center gap-2"><span class="p-1 text-bg-dark rounded-circle"></span> The links
-                        it currently</li>
-                    <li class="d-flex align-items-center gap-2"><span class="p-1 text-bg-dark rounded-circle"></span> It allows
-                        you to start your bid</li>
-                    <li class="d-flex align-items-center gap-2"><span class="p-1 text-bg-dark rounded-circle"></span> Gigure
-                        out what it is or</li>
-                    <li class="d-flex align-items-center gap-2"><span class="p-1 text-bg-dark rounded-circle"></span> The links
-                        it currently</li>
-                    <li class="d-flex align-items-center gap-2"><span class="p-1 text-bg-dark rounded-circle"></span> It allows
-                        you to start your bid</li>
-                </ul>
-            </div> -->
+            
             <div class="row border-top mt-7 pt-7">
                 <div class="col-md-6">
                     <h4>Youtube : </h4>
@@ -83,13 +57,7 @@
                     <textarea class="form-control" disabled rows="14" style="border: none; background-color: white; height: 315px;"><?= $detail_artikel['deskripsi']; ?></textarea>
                 </div>
             </div>
-            <!-- <div class="border-top mt-7 pt-7">
-                <h3 class="fw-semibold">Quotes</h3>
-                <div class="p-3">
-                    <h6 class="mb-0 fs-4 fw-semibold"><i class="ti ti-quote fs-7"></i>Life is short, Smile while you still
-                        have teeth!</h6>
-                </div>
-            </div> -->
+            
         </div>
     </div>
     <div class="card">
@@ -123,48 +91,6 @@
                 <?php else : ?>
                     <h4 class="text-center text-secondary m-3">No Comments Found!</h4>
                 <?php endif; ?>
-                <!-- <div class="p-4 rounded-2 text-bg-light mb-3">
-                    <div class="d-flex align-items-center gap-3">
-                        <img src="<?= base_url('assets/new_frontend') ?>/images/profile/user-3.jpg" alt="" class="rounded-circle" width="33" height="33">
-                        <h6 class="fw-semibold mb-0 fs-4">Cordelia Potter</h6>
-                        <span class="p-1 text-bg-muted rounded-circle d-inline-block"></span>
-                    </div>
-                    <p class="my-3">Huwso jewzehgu julriw niwgazep lewbob isujirmuz hemto pahop cewa zuhucze rinitba
-                        etdebluj.
-                        Obdevo bo fa siztes laobeir agoemugo rut sapaviw mulati do re dabelul wo tumnik wih mu.
-                    </p>
-                    <div class="d-flex align-items-center gap-2">
-                        <a class="d-flex align-items-center justify-content-center text-bg-secondary p-2 fs-4 rounded-circle" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Reply">
-                            <i class="ti ti-arrow-back-up"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="p-4 rounded-2 text-bg-light mb-3 ms-7">
-                    <div class="d-flex align-items-center gap-3">
-                        <img src="<?= base_url('assets/new_frontend') ?>/images/profile/user-3.jpg" alt="" class="rounded-circle" width="40" height="40">
-                        <h6 class="fw-semibold mb-0 fs-4">Irene Hanson</h6>
-                        <span class="p-1 text-bg-muted rounded-circle d-inline-block"></span>
-                    </div>
-                    <p class="my-3">Uborofgic be rof lom sedge vapozi ohoinu nutremcuc ro ko atmeg anrov git ve vuj ki teb
-                        or.
-                        Lohi hafa faddegon horoz ebema kew idful ducam nev rol iga wikkobsu sucdu gud.
-                    </p>
-                </div>
-                <div class="p-4 rounded-2 text-bg-light">
-                    <div class="d-flex align-items-center gap-3">
-                        <img src="<?= base_url('assets/new_frontend') ?>/images/profile/user-4.jpg" alt="" class="rounded-circle" width="33" height="33">
-                        <h6 class="fw-semibold mb-0 fs-4">Seth Ortiz</h6>
-                        <span class="p-1 text-bg-muted rounded-circle d-inline-block"></span>
-                    </div>
-                    <p class="my-3">Icme rasejmat ciwo ifekemug owoca vicoz ukikitus famiftat nuk eroewu za upe.
-                        Pobrikvup kivofvac tuba ot veh ozoab sa gesi hahoniha hop burbip volo hufotobo di uted vojoamu.
-                    </p>
-                    <div class="d-flex align-items-center gap-2">
-                        <a class="d-flex align-items-center justify-content-center text-bg-secondary p-2 fs-4 rounded-circle" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Reply">
-                            <i class="ti ti-arrow-back-up"></i>
-                        </a>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>

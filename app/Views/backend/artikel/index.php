@@ -58,13 +58,13 @@
             <div class="col-md-6 col-lg-4">
                 <div class="card rounded-2 overflow-hidden hover-img">
                     <div class="position-relative">
-                        <a href="javascript:void(0)"><img src="<?= base_url('assets/backend/images/artikel/' . $value['gambar']) ?>" class="card-img-top rounded-0" alt="..."></a>
+                        <a href="<?= base_url('backend/artikel/update/' . $value['slug']) ?>"><img src="<?= base_url('assets/backend/images/artikel/' . $value['gambar']) ?>" class="card-img-top rounded-0" alt="..."></a>
                         <span class="badge text-bg-light fs-2 rounded-4 lh-sm mb-9 me-9 py-1 px-2 fw-semibold position-absolute bottom-0 end-0"><?= $value['author']; ?></span>
                         <img src="<?= base_url('assets/new_frontend') ?>/images/profile/user-1.jpg" alt="" class="img-fluid rounded-circle position-absolute bottom-0 start-0 mb-n9 ms-9" width="40" height="40" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="<?= $value['author']; ?>">
                     </div>
                     <div class="card-body p-4">
                         <span class="badge text-bg-light fs-2 rounded-4 py-1 px-2 lh-sm  mt-3"><?= $value['category_name']; ?></span>
-                        <a class="d-block my-4 fs-5 text-dark fw-semibold" href=""><?= $value['category_name']; ?></a>
+                        <a class="d-block my-4 fs-5 text-dark fw-semibold" href="<?= base_url('backend/artikel/update/' . $value['slug']) ?>"><?= $value['judul']; ?></a>
                         <div class="d-flex align-items-center gap-4">
                             <!-- <div class="d-flex align-items-center gap-2"><a href="#"><i class="ti ti-eye fs-5"></i></a></div> -->
                             <div class="d-flex align-items-center gap-2"><a href="<?= base_url('backend/artikel/update/' . $value['slug']) ?>"><i class="ti ti-pencil fs-5"></i></a></div>
