@@ -76,11 +76,11 @@ $session = session();
                                     <div class="col-md-4">
                                         <div class="card hover-img <?= $is_logged_in ? '' : 'blur' ?>">
                                             <div class="card-body p-4 text-center border-bottom">
-                                                <img src="<?= base_url('assets/new_frontend') ?>/images/profile/user-1.jpg" alt="" class="rounded-circle mb-3" width="80" height="80">
-                                                <h5 class="fw-semibold mb-0 fs-5">Nama Terlapor : <?= $value['nama'] ?></h5>
-                                                <h6 class="text-dark fs-2">NIK terlapor : <?= $value['nik'] ?></h6>
-                                                <h6 class="text-dark fs-2">Jenis Pelanggaran : <?= $value['jenis_pelanggaran'] ?></h6>
-                                                <h6 class="text-dark fs-2">Nominal Kerugian : Rp. <?= number_format($value['nominal_kerugian'])  ?></h6>
+                                                <img src="<?= base_url('assets/backend/images/user_blacklist/' . $value['slug'] . "/" . $value['foto_serah_terima_alat']) ?>" alt="" class="rounded-circle mb-3" width="80" height="80">
+                                                <b><h5 class="" style="line-height: 20px; font-weight:bold; "><?= $value['nama'] ?></h5></b>
+                                                <b><h6 class="text-dark fs-3"><?= $value['nik'] ?></h6></b>
+                                                <b><h6 class="text-dark fs-3"> <?= $value['jenis_pelanggaran'] ?></h6></b>
+                                                <b><h6 class="text-dark fs-3">Nominal Kerugian : <span style="font-weight:bold; ">Rp. <?= number_format($value['nominal_kerugian'], 0, "", ",")  ?></span></h6></b>
                                             </div>
                                             <ul class="px-2 py-2 list-unstyled d-flex align-items-center justify-content-center mb-0">
                                                 <button class="btn bg-primary-subtle text-primary mb-3 w-50" data-bs-toggle="modal" data-bs-target="#with-grid-modal<?= $value['slug'] ?>">Detail</button>
@@ -99,7 +99,8 @@ $session = session();
                                                 <div class="modal-body">
                                                     <div class="container-fluid">
                                                         <div class="card-body p-4 text-center">
-                                                            <img src="<?= base_url('assets/new_frontend') ?>/images/profile/user-1.jpg" alt="" class="rounded-circle mb-3" width="80" height="80">
+                                                            <img src="<?= base_url('assets/backend/images/user_blacklist/' . $value['slug'] . "/" . $value['foto_serah_terima_alat']) ?>" alt="" class="rounded-circle mb-3" width="80" height="80">
+                                                            <!-- <img src="<?= base_url('assets/new_frontend') ?>/images/profile/user-1.jpg" alt="" class="rounded-circle mb-3" width="80" height="80"> -->
                                                             <div class="row m-3 text-start">
                                                                 <div class="col">
                                                                     Nama Terlapor : <?= $value['nama'] ?>

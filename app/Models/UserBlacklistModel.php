@@ -24,7 +24,7 @@ class UserBlacklistModel extends Model
     public function findAllDatas($valid = null)
     {
         $builder = $this->db->table('user_blacklist');
-        $builder->select('user_blacklist.nik, user_blacklist.nama, user_blacklist.valid, user_blacklist.merk, user_blacklist.slug, user_blacklist.type_alat, user_blacklist.no_seri, user_blacklist.keterangan, user_blacklist.nominal_kerugian, user_blacklist.jenis_pelanggaran, user_blacklist.created_at, user_blacklist.updated_at, users.perusahaan');
+        $builder->select('user_blacklist.foto_serah_terima_alat, user_blacklist.nik, user_blacklist.nama, user_blacklist.valid, user_blacklist.merk, user_blacklist.slug, user_blacklist.type_alat, user_blacklist.no_seri, user_blacklist.keterangan, user_blacklist.nominal_kerugian, user_blacklist.jenis_pelanggaran, user_blacklist.created_at, user_blacklist.updated_at, users.perusahaan');
 
         // Menghitung durasi rental dalam bulan dan membulatkannya ke atas
         $builder->select("CEIL(DATEDIFF(user_blacklist.akhir_rental, user_blacklist.mulai_rental) / 30) AS durasi");
