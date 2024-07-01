@@ -17,7 +17,7 @@
 </div>
 <div class="row justify-content-center">
     <!-- column -->
-    <div class="col-lg-8 col-md-6">
+    <div class="col-lg-6 col-md-6">
         <!-- Card -->
         <div class="card card-body">
             <div class="">

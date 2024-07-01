@@ -44,7 +44,7 @@
         <div class="card-body border-top p-4">
             <!-- <h2 class="fs-8 fw-semibold mb-3">Title of the paragraph</h2> -->
             <p class="mb-3">
-                <?= $detail_artikel['isi']; ?>
+                <?=  nl2br(esc($detail_artikel['isi'])); ?>
             </p>
             <!-- <p class="mb-3">
                 Gigure out what it is or what it can do. MTA web directory is the simplest way in which one can bid on a
