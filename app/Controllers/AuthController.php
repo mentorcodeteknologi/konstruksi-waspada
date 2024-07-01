@@ -208,9 +208,10 @@ class AuthController extends BaseController
                 'created_at' => Time::now('Asia/Jakarta', 'en_US'),
                 'updated_at' => Time::now('Asia/Jakarta', 'en_US')
             ]);
-
+            $model  = new Socket();
+            $socket = $model->where('remark', 'NODE')->first();
             $helper = new Helpers();
-            $helper->sendDataToApi($userData['no_hp'], "Masukan OTP : $code", $this->url, 'api/send-message');
+            $helper->sendDataToApi($userData['no_hp'], "Masukan OTP : $code", $socket, 'api/send-message');
             session()->set($sessionData);
 
             session()->setFlashdata('success', 'Silahkan masukkan kode OTP yang dikirim ke Whatsapp yang didaftarkan!');
@@ -299,7 +300,7 @@ class AuthController extends BaseController
         ]);
         $model  = new Socket();
         $socket = $model->where('remark', 'NODE')->first();
-        $helper->sendDataToApi($noHp, "Masukan OTP : $code", $socket['url'], 'api/send-message');
+        $helper->sendDataToApi($noHp, "Masukan OTP : $code", $socket, 'api/send-message');
         return redirect()->to(base_url('otp'))->with('success', 'Silahkan masukkan kode OTP yang dikirim ke Whatsapp yang didaftarkan!');
     }
 
