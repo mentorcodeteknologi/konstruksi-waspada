@@ -17,7 +17,7 @@
 </div>
 <div class="row justify-content-center">
     <!-- column -->
-    <div class="col-lg-6 col-md-6">
+    <div class="col-lg-4 col-md-4">
         <!-- Card -->
         <div class="card card-body">
             <div class="">
@@ -28,19 +28,20 @@
                 </div>
                 <div id="targetQr" class="mt-3" style="display:block; margin: 0 auto;">
                 </div>
-                <div id="wa-label">
-                    <h2 class="text-center" style="display:none;">SCAN WHATSAPP BOT</h2>
+                <div id="wa-label" style="display:none;">
+                    <h2 class="text-center">SCAN WHATSAPP</h2>
                 </div>
                 <div id="status-connect" style="display:none;">
                     <h2 class="text-center text-success">WhatsApp Connected</h2>
-                    <br>
                 </div>
                 <div id="status-disconnect" style="display:none;">
                     <h2 class="text-center text-danger">WhatsApp Disconnect</h2>
-                    <br>
-                    <h6 class="text-center">Refresh Page!</h6>
                 </div>
-                <div id="error-status" style="display:none;">Somethings Wrong!</div>
+                <div id="status-error" style="display:none;">
+                    <h2 class="text-center text-danger">Somethings Wrong!</h2>
+                    <br>
+                    <h6 class="text-center">Please check server!</h6>
+                </div>
             </div>
         </div>
         <!-- Card -->
@@ -53,9 +54,6 @@
 <script src="<?= base_url('assets/new_frontend/js') ?>/qrcode.js"></script>
 <script src="<?= base_url('assets/new_frontend/js') ?>/pusher.min.js"></script>
 <script>
-    // Enable pusher logging - don't include this in production
-    // Pusher.logToConsole = true;
-
     var pusher = new Pusher('<?= $pusher["key"] ?>', {
         cluster: '<?= $pusher['cluster']; ?>',
     });
@@ -63,36 +61,30 @@
     var channel = pusher.subscribe('my-channel');
     channel.bind('my-event', function(data) {
         let res = JSON.parse(JSON.stringify(data));
-        if (res.qr) {
-            showQrCode(res.qr);
-            show(false);
-        } else if (res.code === "status") {
-            if (res.message === "Connected") {
-                show(true);
-                return;
-            }
-            if (res.message === "Not Connected") {
-                show(true);
-                return;
-            }
-            if (res.message === "Disconnected") {
-                $('#targetQr').hide();
-                $('#wa-label').hide();
-                $('#status-connect').hide();
-                $('#status-disconnect').show();
-                return;
-            }
-
-            // if () {
-            //     $('#targetQr').hide();
-            //     $('#status-connect').show();
-            // }
-            // if (res.message === "Not Connected") {
-            //     $('#targetQr').show();
-            //     $('#status-connect').hide();
-            // }
+        $('#status-connect').hide();
+        $('#status-error').hide();
+        $('#status-disconnect').hide();
+        console.log(res);
+        if (res.message === "Connected") {
+            show(true);
+            return;
         }
-        // alert(data);
+        if (res.message === "Not Connected") {
+            if (res.qr != null) {
+                show(false);
+                showQrCode(res.qr);
+                return;
+            }
+            $("#targetQr").html("");
+            $("#targetQr").append(`<div class="spinner-border" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                      </div>`);
+            $("#targetQr").append(`<span>Please wait...</span>`);
+        }
+        if (res.message === "Disconnected") {
+            disconnect();
+            return;
+        }
     });
     // document.addEventListener('contextmenu', function(e) {
     //     e.preventDefault();
@@ -112,9 +104,9 @@
     //     }
     // }
     let waUrl = '<?= $node["url"] . ':' . $node['port'] ?>';
-    if ($node['port'] == "" || $url['port'] == null) {
+    <?php if ($node['port'] == "" || $node['port'] == null) { ?>
         waUrl = '<?= $node["url"] ?>';
-    }
+    <?php } ?>
 
     function hitPostAPI(data, api) {
         $.ajax({
@@ -124,10 +116,7 @@
             contentType: "application/json",
             dataType: "json",
             beforeSend: function() {
-                // $("#targetQr").html("");
-                // $("#targetQr").append(`<div class="spinner-border" role="status">
-                //                         <span class="visually-hidden">Loading...</span>
-                //                       </div>`);
+
             },
             success: function(res) {
                 token = res.token;
@@ -144,14 +133,6 @@
         });
     }
 
-    // function setToken() {
-    //     let data = JSON.stringify({
-    //         username: "<= $user[0]["url"] ?>",
-    //         password: "<= $user[0]["port"] ?>"
-    //     });
-    //     hitPostAPI(data, '/api/login');
-    // }
-
     function show(bool) {
         $('#spinner').hide();
         if (bool) {
@@ -165,44 +146,58 @@
         $('#status-connect').hide();
     };
 
+    function disconnect() {
+        $('#spinner').hide();
+        $('#targetQr').hide();
+        $('#wa-label').hide();
+        $('#status-connect').hide();
+        $('#status-disconnect').show();
+    }
+    function errorServer() {
+        $('#spinner').hide();
+        $('#targetQr').hide();
+        $('#wa-label').hide();
+        $('#status-connect').hide();
+        $('#status-error').show();
+    }
+
     function hitGetAPI(api) {
         $('#spinner').show();
         $('#targetQr').hide();
         $('#wa-label').hide();
         $('#status-connect').hide();
+        $('#status-error').hide();
+        $('#status-disconnect').hide();
+        
         $.ajax({
             url: waUrl + api,
             method: 'GET',
             contentType: "application/json",
             dataType: "json",
+            beforeSend: function() {
+                $("#targetQr").html("");
+                $("#targetQr").append(`<div class="spinner-border" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                      </div>
+                                      <span>Please wait...</span>`);
+            },
             success: function(res) {
-                // if (res.status != 200) {
-                //     setToken();
-                //     return;
-                // }
-
-                if (res.status == 200) {
-                    if (res.qrData != null) {
-                        show(false);
-                        showQrCode(res.qrData);
-                        return;
-                    }
+                console.log(res);
+                if (res.message === "Connected") {
                     show(true);
                 }
-                // if (res.status) {
-                // $('#targetQr').hide();
-                // $('#status-connect').show();
-                //     // clearInterval(intervalId);
-                // } else if (res.qrCodeData) {
-                //     showQrCode(res.qrCodeData ?? null);
-                // } else {
-                //     setToken();
+                if (res.message === "Not Connected") {
+                    if (res.qr != null) {
+                        show(false);
+                        showQrCode(res.qr);
+                        return;
+                    }
 
-                // }
+                }
             },
             error: function(xhr, status, error) {
                 console.error(status, error);
-                show(true);
+                errorServer();
             }
         });
     }
@@ -223,29 +218,8 @@
     }
     // // let statQR;
     // // let intervalId; 
-    // $(document).ready(() => {
-    //     // hitGetAPI("/api/ready");
-    //     const socket = new WebSocket('<= $web[0]["url"] . ':' . $web[0]['port'] ?>');
-    //     socket.onopen = function(event) {
-    //         hitGetAPI("/api/ready");
-    //         console.log('Connected to WebSocket server');
-    //     };
-    //     socket.onmessage = function(event) {
-    //         const messageData = JSON.parse(event.data);
-    //         if (messageData.code === "qr") {
-    //             showQrCode(messageData.message);
-    //         } else if (messageData.code === "status") {
-    //             if (messageData.message === "Connected") {
-    //                 $('#targetQr').hide();
-    //                 $('#status-connect').show();
-    //             }
-    //             if (messageData.message === "Not Connected") {
-    //                 $('#targetQr').show();
-    //                 $('#status-connect').hide();
-    //             }
-    //         }
-
-    //     };
-    // });
+    $(document).ready(() => {
+        hitGetAPI("/api/ready");
+    });
 </script>
 <?= $this->endSection() ?>
