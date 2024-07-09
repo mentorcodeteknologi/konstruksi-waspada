@@ -159,5 +159,6 @@
             </li>
         </ul>
     </nav> -->
+    <?= $pager->links('artikel', 'custom_pagination') ?>
 </div>
 <?= $this->endSection(); ?>

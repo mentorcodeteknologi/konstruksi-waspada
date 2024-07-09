@@ -45,15 +45,15 @@ class ArtikelModel extends Model
     // ============================= //
     public function findAllData($slug = null)
     {
-        $builder = $this->db->table('artikel');
-        $builder->select('artikel.*, categories.category as category_name, users.nama author');
+        $builder = $this->table('artikel');
+        $builder->select('artikel.*, categories.category as category_name, users.nama as author');
         $builder->join('categories', 'categories.id = artikel.id_categories');
         $builder->join('users', 'artikel.penulis = users.id');
         if ($slug != null) {
             $builder->where('artikel.slug', $slug);
-            return $builder->get()->getRowArray();
         }
-        return $builder->get()->getResultArray();
+
+        return $builder;
     }
 
     // ============================= //
@@ -128,13 +128,12 @@ class ArtikelModel extends Model
 
     public function getArtikelByCategory($category)
     {
-        $builder = $this->db->table('artikel');
-        $builder->select('artikel.*, categories.category as category_name, users.nama author');
+        $builder = $this->table('artikel');
+        $builder->select('artikel.*, categories.category as category_name, users.nama as author');
         $builder->join('categories', 'categories.id = artikel.id_categories');
         $builder->join('users', 'artikel.penulis = users.id');
         $builder->where('categories.category', $category);
-        $query = $builder->get();
 
-        return $query->getResultArray();
+        return $builder;
     }
 }

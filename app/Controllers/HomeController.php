@@ -38,7 +38,8 @@ class HomeController extends BaseController
         }
         $data = [
             'title' => 'Blog',
-            'artikel' => $artikel,
+            'artikel' => $artikel->paginate(10, 'artikel'),
+            'pager' => $artikel->pager,
             'kategoriArtikel' => $this->categoryModel->getArticleCountByCategory(),
             'recentArtikel' => $this->artikelModel->getOrderArticle('created_at', 'desc'),
             'popularArtikel' => $this->artikelModel->getOrderArticle('views', 'desc'),
